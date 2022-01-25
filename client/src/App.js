@@ -1,32 +1,55 @@
-import React from 'react'
-import { Logo } from './components'
-//import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import React, { Fragment, useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-// import { NavBar } from '../components'
-// import { MoviesList, MoviesInsert, MoviesUpdate } from '../pages'
+// import Header from "./components/layout/Header";
+// import Footer from "./components/layout/Footer";
+import HomePage from "./components/layout/HomePage";
 
-// import 'bootstrap/dist/css/bootstrap.min.css'
+import RoutesFile from "./components/routing/RoutesFile";
 
-function App() {
-    return (
-        <>
-           <Logo/>
-        </>
-     
-        // <Router>
-        //     <NavBar />
-        //     {/* <Switch>
-        //         <Route path="/movies/list" exact component={MoviesList} />
-        //         <Route path="/movies/create" exact component={MoviesInsert} />
-        //         <Route
-        //             path="/movies/update/:id"
-        //             exact
-        //             component={MoviesUpdate}
-        //         />
-        //     </Switch> */}
-        // </Router> 
-    )
-}
+// Redux
+import { Provider } from "react-redux";
+import store from "./store";
+import { loadUser } from "./actions/auth";
+// import setAuthToken from "./utils/setAuthToken";
 
-export default App
+//import './App.css';
+import "./styles/bootstrap/css/bootstrap.min.css";
+import "./styles/CustomisedStyle.css";
 
+// import Login from "./components/auth/Login";
+// import Alert from "./components/layout/Alert";
+
+// if (localStorage.token) {
+//   setAuthToken(localStorage.token);
+// }
+
+const App = () => {
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+
+  return (
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          {/* <Header /> */}
+          {/* <Alert /> */}
+
+          <Routes>
+            <Route exact path="/" component={HomePage} />
+            {/* <Route exact path="/login" component={Login} /> */}
+            <Route component={RoutesFile} />
+          </Routes>
+
+          <footer className="footer">
+            {/* <Footer /> */}
+            <br />
+          </footer>
+        </Fragment>
+      </Router>
+    </Provider>
+  );
+};
+
+export default App;
