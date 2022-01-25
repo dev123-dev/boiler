@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-// import Header from "./components/layout/Header";
-// import Footer from "./components/layout/Footer";
+import Header from "./components/layout/Header";
+import Footer from "./components/layout/Footer";
 import HomePage from "./components/layout/HomePage";
 
 import RoutesFile from "./components/routing/RoutesFile";
@@ -33,7 +33,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          {/* <Header /> */}
+          <Header />
           {/* <Alert /> */}
 
           <Routes>
@@ -43,7 +43,7 @@ const App = () => {
           </Routes>
 
           <footer className="footer">
-            {/* <Footer /> */}
+            <Footer />
             <br />
           </footer>
         </Fragment>

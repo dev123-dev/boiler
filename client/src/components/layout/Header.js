@@ -51,7 +51,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
               <img
                 className="log_size"
                 alt="Fat Turtle"
-                src={require("../../static/images/fat-turtle-logo-wh.png")}
+                src={require("../../static/images/pmLogo.jpg")}
               />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -93,7 +93,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
               <img
                 className="log_size"
                 alt="Fat Turtle"
-                src={require("../../static/images/fat-turtle-logo-wh.png")}
+                src={require("../../static/images/pmLogo.jpg")}
               />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
