@@ -7,16 +7,16 @@ import { logout } from "../../actions/auth";
 import Login from "../auth/Login";
 
 const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
-  const [showLogin, setShowLogin] = useState(false);
+  const [showLogin, setShowLogin] = useState(true);
   const [showLogout, setShowLogout] = useState(false);
 
-  const handleLoginModalClose = () => setShowLogin(false);
-  const handleLoginModalShow = () => setShowLogin(true);
+  // const handleLoginModalClose = () => setShowLogin(false);
+  // const handleLoginModalShow = () => setShowLogin(true);
 
   const handleLogoutModalClose = () => setShowLogout(false);
   const handleLogoutModalShow = () => setShowLogout(true);
 
-  const history = useNavigate();
+  // const history = useNavigate();
 
   const LogoutModalClose = () => {
     handleLogoutModalClose();
@@ -37,7 +37,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     }
   };
 
-  const dummyNavbar = (
+  return (
     <Fragment>
       <header>
         <Container id="header_navbar">
@@ -50,58 +50,14 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             <Navbar.Brand>
               <img
                 className="log_size"
-                alt="Fat Turtle"
-                src={require("../../static/images/pmLogo.jpg")}
+                alt="Pinnacle Media"
+                src={require("../../static/images/pmLogo_wh.png")}
               />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto navbar_Collapse_content">
-                <NavItem>
-                  <Link to="#">HOME</Link>
-                </NavItem>
-              </Nav>
-              <nav>
-                <NavItem>
-                  <Link className="navbar-right" to="#">
-                    LOGIN
-                  </Link>
-                </NavItem>
-              </nav>
-            </Navbar.Collapse>
-          </Navbar>
-        </Container>
-      </header>
-    </Fragment>
-  );
-
-  return history &&
-    history.location &&
-    history.location.pathname === "/first_login_disclaimer" ? (
-    dummyNavbar
-  ) : (
-    <Fragment>
-      <header>
-        <Container id="header_navbar">
-          <Navbar
-            className="navbar_height top_menu"
-            expand="lg"
-            fixed="top"
-            style={{ padding: "0px 1em" }}
-          >
-            <Navbar.Brand>
-              <img
-                className="log_size"
-                alt="Fat Turtle"
-                src={require("../../static/images/pmLogo.jpg")}
-              />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto navbar_Collapse_content">
-                <NavItem>
-                  <Link to="/">HOME</Link>
-                </NavItem>
+                <NavItem></NavItem>
               </Nav>
               {!loading && isAuthenticated && user ? (
                 <Nav>
@@ -148,9 +104,9 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 <Fragment>
                   <Nav>
                     <NavItem>
-                      <Link to="#" onClick={() => handleLoginModalShow()}>
+                      {/* <Link to="#" onClick={() => handleLoginModalShow()}>
                         LOGIN
-                      </Link>
+                      </Link> */}
                     </NavItem>
 
                     <Modal
@@ -162,7 +118,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                     >
                       <Modal.Header></Modal.Header>
                       <Modal.Body>
-                        <button
+                        {/* <button
                           onClick={() => handleLoginModalClose()}
                           className="close"
                         >
@@ -170,7 +126,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             src={require("../../static/images/close.png")}
                             alt="X"
                           />
-                        </button>
+                        </button> */}
                         <Login />
                       </Modal.Body>
                     </Modal>

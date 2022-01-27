@@ -6,7 +6,7 @@ const config = require("config");
 const { check, validationResult } = require("express-validator");
 
 const mongoose = require("mongoose");
-const User = require("../../models/Staff");
+const User = require("../../models/StaffDetails");
 
 // @route    POST api/users
 // @desc     Register User

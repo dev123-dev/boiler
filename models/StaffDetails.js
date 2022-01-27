@@ -14,14 +14,14 @@ const StaffSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  sdUserName: {
+  userName: {
     type: String,
     required: true,
   },
-  sdPassword: {
+  password: {
     type: String,
     required: true,
   },
 });
 
-module.exports = User = mongoose.model("StaffDetails", StaffSchema);
+module.exports = StaffDetails = mongoose.model("staffdetails", StaffSchema);

@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Navigate, Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login, removeError } from "../../actions/auth";
@@ -18,30 +18,30 @@ const Login = ({
   let modalTitle = { marginTop: "-30px", marginBottom: "20px" };
 
   const [formData, setFormData] = useState({
-    email: "shain@gmail.com",
-    password: "Password@123",
+    userName: "renita",
+    password: "renita123",
   });
 
-  const { email, password } = formData;
+  const { userName, password } = formData;
 
   const onInputChange = (e) => {
     const { name, value } = e.target;
     switch (name) {
-      case "email":
+      case "userName":
         if (value === "") {
           setError({
             ...error,
-            emailValChecker: true,
-            emailValResult: "Please Enter Your Email",
-            emailValStyle: { color: "#FF0000" },
-            emailInptErrStyle: { borderBottom: "1px solid #FF0000" },
+            userNameValChecker: true,
+            userNameValResult: "Please Enter Your userName",
+            userNameValStyle: { color: "#FF0000" },
+            userNameInptErrStyle: { borderBottom: "1px solid #FF0000" },
           });
           setFormData({ ...formData, [e.target.name]: "" });
         } else {
           setError({
             ...error,
-            emailValChecker: false,
-            emailInptErrStyle: { borderBottom: "1px solid #43b90f" },
+            userNameValChecker: false,
+            userNameInptErrStyle: { borderBottom: "1px solid #0086dc" },
           });
           setFormData({ ...formData, [e.target.name]: value });
         }
@@ -61,7 +61,7 @@ const Login = ({
             ...error,
             passwordValChecker: false,
 
-            passwordInptErrStyle: { borderBottom: "1px solid #43b90f" },
+            passwordInptErrStyle: { borderBottom: "1px solid #0086dc" },
           });
           setFormData({ ...formData, [e.target.name]: value });
         }
@@ -72,10 +72,10 @@ const Login = ({
   };
 
   const [error, setError] = useState({
-    emailValChecker: false,
-    emailValResult: "",
-    emailValStyle: {},
-    emailInptErrStyle: {},
+    userNameValChecker: false,
+    userNameValResult: "",
+    userNameValStyle: {},
+    userNameInptErrStyle: {},
 
     passwordValChecker: false,
     passwordValResult: "",
@@ -84,10 +84,10 @@ const Login = ({
   });
 
   const {
-    emailValChecker,
-    emailValResult,
-    emailValStyle,
-    emailInptErrStyle,
+    userNameValChecker,
+    userNameValResult,
+    userNameValStyle,
+    userNameInptErrStyle,
 
     passwordValChecker,
     passwordValResult,
@@ -96,25 +96,24 @@ const Login = ({
   } = error;
 
   const checkErrors = (formData) => {
-    if (formData && formData.email === "") {
+    if (formData && formData.userName === "") {
       setError({
         ...error,
-        emailValChecker: true,
-        emailValResult: "Please Enter Your Email",
-        emailValStyle: { color: "#FF0000" },
-        emailInptErrStyle: { borderBottom: "1px solid #FF0000" },
+        userNameValChecker: true,
+        userNameValResult: "Please Enter Your userName",
+        userNameValStyle: { color: "#FF0000" },
+        userNameInptErrStyle: { borderBottom: "1px solid #FF0000" },
       });
       return false;
     } else {
-      const emailFilter =
-        /^(\d*[a-zA-Z][a-zA-Z\d_.+-]*)\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})*$/;
-      if (!emailFilter.test(formData && formData.email)) {
+      const userNameFilter = /^([a-zA-Z])*$/;
+      if (!userNameFilter.test(formData && formData.userName)) {
         setError({
           ...error,
-          emailValChecker: true,
-          emailValResult: "Please Enter Valid Email",
-          emailValStyle: { color: "#FF0000" },
-          emailInptErrStyle: { borderBottom: "1px solid #FF0000" },
+          userNameValChecker: true,
+          userNameValResult: "Please Enter Valid userName",
+          userNameValStyle: { color: "#FF0000" },
+          userNameInptErrStyle: { borderBottom: "1px solid #FF0000" },
         });
         return false;
       }
@@ -135,7 +134,7 @@ const Login = ({
   const onSubmit = async (e) => {
     e.preventDefault();
     if (checkErrors(formData)) {
-      login(email, password);
+      login(userName, password);
     }
     setFormData({ ...formData, submitted: true });
   };
@@ -146,7 +145,7 @@ const Login = ({
 
   return (
     <Fragment>
-      <div className="col-md-12 col-lg-12 col-sm-12 col-12">
+      <div className="col-md-12 col-lg-12 col-sm-12 col-12 py-5">
         <div className="modal-header">
           {loading ? (
             <h2 className="modal-title " id="myModalLabel" style={modalTitle}>
@@ -164,21 +163,20 @@ const Login = ({
           <div className="form-group form_top">
             <input
               type="text"
-              name="email"
-              value={email}
-              style={emailInptErrStyle}
+              name="userName"
+              value={userName}
+              style={userNameInptErrStyle}
               className="form-control form_contct"
               onChange={(e) => onInputChange(e)}
-              autoComplete="flase"
             />
-            {emailValChecker && (
-              <span style={emailValStyle}>
-                {emailValResult}
+            {userNameValChecker && (
+              <span style={userNameValStyle}>
+                {userNameValResult}
                 <br />
               </span>
             )}
             <label className="pop_up">
-              <span className="label-content">email *</span>
+              <span className="label-content">User Name *</span>
             </label>
           </div>
 
@@ -198,17 +196,12 @@ const Login = ({
                 <br />
               </span>
             )}
-            <label className="pop_up">password *</label>
+            <label className="pop_up">Password *</label>
           </div>
           <div className="col-md-12 col-sm-12 col-lg-12 col-12 text-center">
             <button className="btn contact_reg">SIGN IN</button>
           </div>
         </form>
-      </div>
-      <div className="col-md-12 col-sm-12 col-lg-12 col-12 text-center">
-        <p className="create">
-          <Link to="/register">New? Create an account.</Link>
-        </p>
       </div>
     </Fragment>
   );
