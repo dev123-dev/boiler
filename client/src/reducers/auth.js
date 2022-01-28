@@ -2,6 +2,7 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   REMOVE_ERROR,
+  ALL_USERS,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
@@ -18,7 +19,7 @@ const initialState = {
   patient: null,
 };
 
-export default function (state = initialState, action) {
+const auth = (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
@@ -52,6 +53,12 @@ export default function (state = initialState, action) {
         successResponse: "",
       };
 
+    case ALL_USERS:
+      return {
+        ...state,
+        users: payload,
+      };
+
     case REMOVE_ERROR:
       return {
         ...state,
@@ -62,4 +69,6 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+export default auth;

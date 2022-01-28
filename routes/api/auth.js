@@ -20,8 +20,12 @@ const {
   EXPIRES_IN,
 } = require("../../common/constant/constants");
 
-const { LOGIN, LOAD_USER } = require("../../common/constant/api-constants");
-
+const {
+  LOGIN,
+  LOAD_USER,
+  GET_ALL_USERS,
+  FILTER_USERS,
+} = require("../../common/constant/api-constants");
 
 // @route    POST api/auth
 // @desc     Authenticate user & get token
@@ -32,7 +36,7 @@ router.post(
     check(USERNAME, USERNAME_REQUIRED_INVALID).exists(),
     check(PASSWORD, PASSWORD_INVALID).exists(),
   ],
- 
+
   async (req, res) => {
     const errors = "";
 
@@ -45,7 +49,10 @@ router.post(
 
     try {
       //userName Check In DB
-      let staffDetails = await StaffDetails.findOne({userName:"renita",password:password});
+      let staffDetails = await StaffDetails.findOne({
+        userName: "renita",
+        password: password,
+      });
 
       console.log(staffDetails);
 
@@ -99,6 +106,39 @@ router.get("/load-user", auth, async (req, res) => {
   }
 });
 
+// @route    GET api/auth
+// @desc     Get All Users
+// @access   Private
+router.get(GET_ALL_USERS, auth, async (req, res) => {
+  try {
+    const staffDetails = await StaffDetails.find().select("-password"); //.select('-password');
+    res.json(staffDetails);
+  } catch (err) {
+    console.error(err.message);
+    res.status(STATUS_CODE_500).send(SERVER_ERROR);
+  }
+});
 
+// @route    POST api/auth
+// @desc     POST Filtered Users Based on Search
+// @access   Private
+router.post(FILTER_USERS, auth, async (req, res) => {
+  const { alphaSearch } = req.body;
+  try {
+    let query = {};
+    if (alphaSearch !== "") {
+      query = {
+        name: {
+          $regex: new RegExp("^" + alphaSearch, "i"),
+        },
+      };
+    }
+    staffDetails = await StaffDetails.find(query).select("-password");
+    res.json(staffDetails);
+  } catch (err) {
+    console.error(err.message);
+    res.status(STATUS_CODE_500).send(SERVER_ERROR);
+  }
+});
 
 module.exports = router;

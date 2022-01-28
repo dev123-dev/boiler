@@ -9,12 +9,8 @@ const RouteDriver = ({ auth: { user }, loadUser }) => {
     loadUser();
   }, [loadUser]);
 
-  if (user && user.firstLoginDisclaimer === false) {
-    return <Navigate to="/first_login_disclaimer" />;
-  }
-
-  if (user && user.firstLoginDisclaimer === true) {
-    return <Navigate to="/landing-page" />;
+  if (user) {
+    return <Navigate to="/all-staff-details" />;
   }
   return <Fragment>loading...</Fragment>;
 };

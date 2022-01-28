@@ -74,7 +74,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
                       <ul className="dropdown-menu second-level-menu ">
                         <li>
-                          <Link to="/landing-page">Landing</Link>
+                          <Link to="/all-staff-details">Landing</Link>
                         </li>
 
                         <li>
@@ -88,7 +88,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         className="second-level-menu2"
                       >
                         <li>
-                          <Link to="/landing-page">Landing</Link>
+                          <Link to="/all-staff-details">Landing</Link>
                         </li>
 
                         <li>

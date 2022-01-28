@@ -7,13 +7,23 @@ import PrivateRoute from "./PrivateRoute";
 import RouteDriver from "../dashboard/RouteDriver";
 
 //DashBoard
-import LandingPage from "../dashboard/LandingPage";
+import AllStaffDetails from "../dashboard/AllStaffDetails";
+import AddStaffFeedBack from "../dashboard/AddStaffFeedBack";
 
 const RoutesFile = () => {
   return (
     <section className="container">
       <Routes>
-        <PrivateRoute exact path="/landing-page" component={LandingPage} />
+        <PrivateRoute
+          exact
+          path="/all-staff-details"
+          component={AllStaffDetails}
+        />
+        <PrivateRoute
+          exact
+          path="/add-staff-feedBack"
+          component={AddStaffFeedBack}
+        />
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
 
         <Route component={NotFound} />
