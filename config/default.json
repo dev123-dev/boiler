@@ -1,5 +1,5 @@
 {
-  "mongoURI": "mongodb+srv://user_infinity:infinitymongo123@cluster0.4nkdi.mongodb.net/pinnac23_spm?retryWrites=true&w=majority", 
+  "mongoURI": "mongodb://127.0.1:27017/pinac23", 
   "jwtSecret": "jwtSecret",
   "githubClientId": "",
   "githubSecret": "",

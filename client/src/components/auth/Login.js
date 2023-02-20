@@ -18,8 +18,8 @@ const Login = ({
   let modalTitle = { marginTop: "-30px", marginBottom: "20px" };
 
   const [formData, setFormData] = useState({
-    userName: "renita",
-    password: "renita@123",
+    userName: "Sam",
+    password: "123",
   });
 
   const { userName, password } = formData;

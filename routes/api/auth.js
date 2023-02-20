@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken");
 //const config = require('config');
 const { check, validationResult } = require("express-validator");
 const StaffDetails = require("../../models/StaffDetails");
+const con =require("../../config/db")
 
 const {
   SERVER_ERROR,
@@ -49,10 +50,39 @@ router.post(
 
     try {
       //userName Check In DB
-      let staffDetails = await StaffDetails.findOne({
-        userName: "renita",
-        password: password,
-      });
+      // let userDet = await StaffDetails.findOne({
+      //   userName: "renita",
+      //   password: password,
+      // });
+
+      let staffDetails=con.query("select * from user WHERE Name=? and Password=?", [userName,password],
+      (err, result) => {
+console.log()
+        if(result.length!==0){
+            console.log(result[0].Name)
+            const payload = {
+              user: {
+                id: result[0].Id,
+              },
+            };
+      
+            jwt.sign(payload, JWT_SECRET, { expiresIn: EXPIRES_IN }, (err, token) => {
+              if (err) {
+                throw err;
+              }
+      
+              res.json({ token });
+            });
+            //res.send(result);
+        }else{
+           console.log("err")
+            // res.send({message: "error "})
+           res.status(STATUS_CODE_400).json({
+              errors: [{ msg: INVALID_CREDENTIALS }],
+            });
+        }
+    })
+
 
       if (!staffDetails) {
         return res.status(STATUS_CODE_400).json({
@@ -60,29 +90,6 @@ router.post(
         });
       }
 
-      // //Match The Passwords
-      // const isMatch = await compare(password, StaffDetails.password);
-      // console.log(isMatch);
-      // if (!isMatch) {
-      //   return res
-      //     .status(STATUS_CODE_400)
-      //     .json({ errors: [{ msg: INVALID_CREDENTIALS }] });
-      // }
-
-      //Create Payload
-      const payload = {
-        user: {
-          id: staffDetails._id,
-        },
-      };
-
-      jwt.sign(payload, JWT_SECRET, { expiresIn: EXPIRES_IN }, (err, token) => {
-        if (err) {
-          throw err;
-        }
-
-        res.json({ token });
-      });
     } catch (err) {
       console.error(err.message);
       res.status(STATUS_CODE_500).json({ errors: [{ msg: "Server Error" }] });
@@ -90,18 +97,21 @@ router.post(
   }
 );
 
-// @route    GET api/auth
-// @desc     Get Authenticated User
-// @access   Private
+
 router.get("/load-user", auth, async (req, res) => {
   try {
-    const user = await StaffDetails.findById(req.user.id).select("-password");
-    res.json(user);
+    //const user =
+     con.query("select * from user WHERE id=?",[ req.user.id],
+     (err, result) => {
+      if(result){
+          console.log(result[0].Name)
+          res.json(result[0])
+      }
+       }) 
   } catch (err) {
     res.status(STATUS_CODE_500).send(SERVER_ERROR);
   }
 });
-
 // @route    GET api/auth
 // @desc     Get All Users
 // @access   Private
