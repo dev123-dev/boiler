@@ -17,7 +17,9 @@ const Homepage = ({ auth: { isAuthenticated, user } }) => {
         <Fragment></Fragment>
       ) : (
         <Fragment>
-          <h1>Pinnacle Media...</h1>
+          <div className="container container_align">
+            <h1>Pinnacle Media...</h1>
+          </div>
           <Link
             className="log btn btn_submit"
             style={{ padding: "10px 39px" }}

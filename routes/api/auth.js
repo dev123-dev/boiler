@@ -43,7 +43,7 @@ router.post(
     // if (!errors.isEmpty()) {
     //   return res.status(STATUS_CODE_400).json({ errors: errors.array() });
     // }
-    console.log(req.body);
+
     //retriving Data
     const { userName, password } = req.body;
 
@@ -53,8 +53,6 @@ router.post(
         userName: "renita",
         password: password,
       });
-
-      console.log(staffDetails);
 
       if (!staffDetails) {
         return res.status(STATUS_CODE_400).json({
@@ -73,7 +71,7 @@ router.post(
 
       //Create Payload
       const payload = {
-        StaffDetails: {
+        user: {
           id: staffDetails._id,
         },
       };
@@ -97,10 +95,8 @@ router.post(
 // @access   Private
 router.get("/load-user", auth, async (req, res) => {
   try {
-    const staffDetails = await StaffDetails.findById(
-      req.StaffDetails.id
-    ).select("-password");
-    res.json(staffDetails);
+    const user = await StaffDetails.findById(req.user.id).select("-password");
+    res.json(user);
   } catch (err) {
     res.status(STATUS_CODE_500).send(SERVER_ERROR);
   }
@@ -111,8 +107,8 @@ router.get("/load-user", auth, async (req, res) => {
 // @access   Private
 router.get(GET_ALL_USERS, auth, async (req, res) => {
   try {
-    const staffDetails = await StaffDetails.find().select("-password"); //.select('-password');
-    res.json(staffDetails);
+    const user = await StaffDetails.find().select("-password"); //.select('-password');
+    res.json(user);
   } catch (err) {
     console.error(err.message);
     res.status(STATUS_CODE_500).send(SERVER_ERROR);
@@ -124,16 +120,18 @@ router.get(GET_ALL_USERS, auth, async (req, res) => {
 // @access   Private
 router.post(FILTER_USERS, auth, async (req, res) => {
   const { alphaSearch } = req.body;
+  console;
   try {
     let query = {};
     if (alphaSearch !== "") {
       query = {
-        name: {
+        sdName: {
           $regex: new RegExp("^" + alphaSearch, "i"),
         },
       };
     }
     staffDetails = await StaffDetails.find(query).select("-password");
+
     res.json(staffDetails);
   } catch (err) {
     console.error(err.message);

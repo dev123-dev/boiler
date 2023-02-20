@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useRef } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NotFound from "../layout/NotFound";
@@ -47,7 +47,7 @@ const AllStaffDetails = ({
     getAllUsers();
   }, [getAllUsers]);
 
-  //console.log(users);
+  console.log(users);
 
   const [showModal, setShowModal] = useState(false);
   const handleViewModalClose = () => setShowModal(false);
@@ -74,6 +74,7 @@ const AllStaffDetails = ({
       const finalData = {
         alphaSearch: e.value,
       };
+
       getSearchUsersByFilter(finalData);
     }
   };
@@ -87,14 +88,8 @@ const AllStaffDetails = ({
   //   }
   // };
 
-  // creating reference
-  const selectInputRef = useRef();
-  const userRoleInputRef = useRef();
-
   const onClickReset = () => {
     //added the reference value
-    selectInputRef.current.select.clearValue();
-    userRoleInputRef.current.select.clearValue();
 
     setSearchData({
       ...searchData,
@@ -111,8 +106,8 @@ const AllStaffDetails = ({
         <section className="sub_reg">
           <form>
             <div className="row">
-              <div className="col-lg-2 col-md-12 col-sm-12 col-12">
-                <h2 className="heading_color">All User</h2>
+              <div className="col-lg-4 col-md-12 col-sm-12 col-12">
+                <h2 className="heading_color">All Staff Details</h2>
               </div>
               <div
                 className="col-lg-2 col-md-6 col-sm-6 col-6 no_padding "
@@ -120,7 +115,6 @@ const AllStaffDetails = ({
               >
                 <Select
                   name="alphaSearch"
-                  ref={selectInputRef}
                   options={optName}
                   isSearchable={false}
                   placeholder="Filter By:All"
@@ -159,20 +153,13 @@ const AllStaffDetails = ({
                   <tr>
                     <th></th>
                     <th>
-                      <strong>Full Name</strong>
+                      <strong>Staff Name</strong>
                     </th>
+
                     <th>
-                      <strong>Email /Phone</strong>
+                      <strong>Designation</strong>
                     </th>
-                    <th>
-                      <strong>Registered as</strong>
-                    </th>
-                    <th>
-                      <strong>License/Degree certificate</strong>
-                    </th>
-                    <th>
-                      <strong>Status</strong>
-                    </th>
+
                     <th>
                       <strong>Operations</strong>
                     </th>
@@ -184,42 +171,13 @@ const AllStaffDetails = ({
                       return (
                         <tr key={idx}>
                           <td>
-                            {user.status &&
-                            user.status.statusState === "Approved" ? (
-                              <img
-                                src={require("../../static/images/green_dot.png")}
-                                alt="green"
-                              />
-                            ) : user.status &&
-                              user.status.statusState === "Not Approved" &&
-                              user.apprStatus.apprMailState === true ? (
-                              <img
-                                src={require("../../static/images/blue.png")}
-                                alt="blue"
-                              />
-                            ) : user.status &&
-                              user.status.statusState === "Not Approved" &&
-                              user.apprStatus.apprMailState === false ? (
-                              <img
-                                src={require("../../static/images/orenge.png")}
-                                alt="orenge"
-                              />
-                            ) : (
-                              <img
-                                src={require("../../static/images/red.png")}
-                                alt="red"
-                              />
-                            )}
+                            <img
+                              src={require(`../../static/staffprofile/${user.sdProfile}`)}
+                              alt="green"
+                            />
                           </td>
-                          <td>{user.name}</td>
-                          <td></td>
-                          <td>
-                            {/* {user.doj} <br />
-                            {new Date(
-                              user.dateCreate
-                            ).toLocaleDateString()}{" "} */}
-                          </td>
-                          <td></td>
+                          <td>{user.sdName}</td>
+                          <td>{user.sdDesig}</td>
 
                           <td style={{ width: "17%" }}>
                             <Link

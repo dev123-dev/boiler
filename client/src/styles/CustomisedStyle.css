@@ -30,7 +30,7 @@
 
 .decocting_instruction {
   font-weight: bold;
-  color: #0da527;
+  color: #5c87a3;
   position: absolute;
   cursor: pointer;
   text-decoration: underline;
@@ -202,7 +202,7 @@ h5:last-child {
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 2px;
-  background: #0da527;
+  background: #5c87a3;
 }
 
 .footer {
@@ -637,12 +637,12 @@ p {
 ::-webkit-scrollbar-thumb {
   -webkit-border-radius: 10px;
   border-radius: 2px;
-  background: #0da527;
+  background: #5c87a3;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 ::-webkit-scrollbar-thumb:window-inactive {
-  background: #0da527;
+  background: #5c87a3;
 }
 
 #regDes {
@@ -2308,11 +2308,11 @@ input[type="radio"].error {
 .second-level-menu {
   position: absolute;
   top: 30px;
-  left: -50px;
+  left: -20px;
   list-style: none;
   display: none;
   padding: 0;
-  margin: 0 0 0 -50px;
+  margin: 0 0 0 -20px;
   background: #fff;
 }
 

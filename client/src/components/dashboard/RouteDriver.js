@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import { Navigate } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loadUser } from "../../actions/auth";
@@ -10,7 +10,7 @@ const RouteDriver = ({ auth: { user }, loadUser }) => {
   }, [loadUser]);
 
   if (user) {
-    return <Navigate to="/all-staff-details" />;
+    return <Redirect to="/all-staff-details" />;
   }
   return <Fragment>loading...</Fragment>;
 };

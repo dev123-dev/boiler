@@ -13,7 +13,6 @@ import setAuthToken from "../utils/setAuthToken";
 
 // Login User
 export const login = (userName, password) => async (dispatch) => {
-  console.log(userName);
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +20,7 @@ export const login = (userName, password) => async (dispatch) => {
   };
 
   const body = JSON.stringify({ userName, password });
-  console.log(body);
+
   try {
     const res = await axios.post("/api/auth/login", body, config);
 

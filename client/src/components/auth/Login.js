@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login, removeError } from "../../actions/auth";
@@ -19,7 +19,7 @@ const Login = ({
 
   const [formData, setFormData] = useState({
     userName: "renita",
-    password: "renita123",
+    password: "renita@123",
   });
 
   const { userName, password } = formData;
@@ -140,7 +140,7 @@ const Login = ({
   };
 
   if (isAuthenticated) {
-    return <Navigate to="/route-driver" />;
+    return <Redirect to="/route-driver" />;
   }
 
   return (

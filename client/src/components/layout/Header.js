@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Container, Navbar, Nav, NavItem, Modal } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
@@ -15,8 +15,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
   const handleLogoutModalClose = () => setShowLogout(false);
   const handleLogoutModalShow = () => setShowLogout(true);
-
-  // const history = useNavigate();
 
   const LogoutModalClose = () => {
     handleLogoutModalClose();
@@ -61,34 +59,20 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
               </Nav>
               {!loading && isAuthenticated && user ? (
                 <Nav>
-                  <ul className="top-level-menu ">
+                  <ul className="top-level-menu text-right">
                     <li>
                       <Link
-                        to="#"
+                        to="/all-staff-details"
                         onClick={() => openSecondLevelMenu2()}
                         className="navbar-right"
                       >
-                        {user.name.toUpperCase()}{" "}
+                        {user.sdName}
                         <i className="fa fa-caret-down" />
                       </Link>
 
                       <ul className="dropdown-menu second-level-menu ">
                         <li>
-                          <Link to="/all-staff-details">Landing</Link>
-                        </li>
-
-                        <li>
-                          <Link to="#" onClick={() => handleLogoutModalShow()}>
-                            Logout
-                          </Link>
-                        </li>
-                      </ul>
-                      <ul
-                        id="second-level-menu2"
-                        className="second-level-menu2"
-                      >
-                        <li>
-                          <Link to="/all-staff-details">Landing</Link>
+                          <Link to="/all-staff-details">Levels</Link>
                         </li>
 
                         <li>

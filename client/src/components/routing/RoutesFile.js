@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import NotFound from "../layout/NotFound";
 
 //user Section
@@ -13,7 +13,7 @@ import AddStaffFeedBack from "../dashboard/AddStaffFeedBack";
 const RoutesFile = () => {
   return (
     <section className="container">
-      <Routes>
+      <Switch>
         <PrivateRoute
           exact
           path="/all-staff-details"
@@ -27,7 +27,7 @@ const RoutesFile = () => {
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
 
         <Route component={NotFound} />
-      </Routes>
+      </Switch>
     </section>
   );
 };
