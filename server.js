@@ -1,5 +1,5 @@
 const express = require("express");
-const connectDB = require("../boiler/config/db");
+const connectDB = require("../DAG_login/config/db");
 //const path = require('path');
 const app = express();
 

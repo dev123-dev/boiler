@@ -55,7 +55,7 @@ router.post(
       //   password: password,
       // });
 
-      let staffDetails=con.query("select * from user WHERE Name=? and Password=?", [userName,password],
+      let staffDetails=con.query("select * from user WHERE UserName=? and Password=?", [userName,password],
       (err, result) => {
 console.log()
         if(result.length!==0){
@@ -101,7 +101,7 @@ console.log()
 router.get("/load-user", auth, async (req, res) => {
   try {
     //const user =
-     con.query("select * from user WHERE id=?",[ req.user.id],
+     con.query("select * from user WHERE Id=?",[ req.user.id],
      (err, result) => {
       if(result){
           console.log(result[0].Name)

@@ -66,7 +66,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         onClick={() => openSecondLevelMenu2()}
                         className="navbar-right"
                       >
-                        {user.Name}
+                        {user.UserName}
                         <i className="fa fa-caret-down" />
                       </Link>
 

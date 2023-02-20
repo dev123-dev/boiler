@@ -30,7 +30,7 @@ const connectDB=mysql.createConnection({
   user:"root",
   host:"localhost",
   password:"",
-  database:"test"
+  database:"test10"
 })
 
 module.exports = connectDB;
