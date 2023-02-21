@@ -61,7 +61,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             {!loading && isAuthenticated && user ? (
                     <NavLink
                       to="/add-tenant-details" className='navlink'
-                      activeStyle={{ color: "Black", textDecoration: "none" }}
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
                     >
                       Organization
                     </NavLink>
@@ -74,7 +74,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
              {!loading && isAuthenticated && user ? (
                     <NavLink
                       to="/all-tenant-shop-Details" className='navlink'
-                      activeStyle={{ color: "Black", textDecoration: "none" }}
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
                     >
                       Users
                     </NavLink>
@@ -149,7 +149,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                           alt="X"
                         />
                       </button> */}
-                      <Login />
+                       <Login /> 
                     </Modal.Body>
                   </Modal>
                 </Nav>

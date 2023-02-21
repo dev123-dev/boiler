@@ -1409,6 +1409,7 @@ td{
 }
 .navlinkitem:hover{
   background-color: rgb(231, 157, 105);
+  color: white;
 }
 
 
@@ -1945,7 +1946,7 @@ button{
 background: #877bae;
 }
 table{
-width: 130%;
+width: 100%;
 }
 
 Nav.Link{
@@ -1965,6 +1966,7 @@ height: 50px;
 .navcolor{
 background-color: #877bae;
 }
+
 
 
 
