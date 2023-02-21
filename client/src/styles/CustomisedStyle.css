@@ -207,6 +207,10 @@ h5:last-child {
   line-height: 20px;
 }
 
+.navcolor{
+  background-color: #877bae;
+}
+
 .navbar_height {
   padding: 0px 1em;
 }

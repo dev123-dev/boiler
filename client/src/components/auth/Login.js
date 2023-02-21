@@ -199,7 +199,7 @@ const Login = ({
             <label className="pop_up">Password *</label>
           </div>
           <div className="col-md-12 col-sm-12 col-lg-12 col-12 text-center">
-            <button className="btn contact_reg">SIGN IN</button>
+            <button  className="btn contact_reg btn_color">SIGN IN</button>
           </div>
         </form>
       </div>
