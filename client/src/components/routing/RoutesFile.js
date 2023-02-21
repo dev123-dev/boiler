@@ -9,6 +9,7 @@ import RouteDriver from "../dashboard/RouteDriver";
 //DashBoard
 import AllStaffDetails from "../dashboard/AllStaffDetails";
 import AddStaffFeedBack from "../dashboard/AddStaffFeedBack";
+import Dashboard from "../Superadmin/Dashboard";
 
 const RoutesFile = () => {
   return (
@@ -16,8 +17,8 @@ const RoutesFile = () => {
       <Switch>
         <PrivateRoute
           exact
-          path="/all-staff-details"
-          component={AllStaffDetails}
+          path="/superdashboard"
+          component={Dashboard}
         />
         <PrivateRoute
           exact

@@ -1432,6 +1432,7 @@ td{
 .img_icon_size {
   width: 30px;
   height: 30px;
+  text-align: right;
 }
 
 .img_icon_size2 {
@@ -1926,3 +1927,41 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 100%;
   }
 }
+
+.Icon{
+  width:80px;
+  height: 60px;
+}
+table,th,td{
+border:1px solid rgb(4, 1, 1);
+text-align: center;
+
+}
+button{
+background: #877bae;
+}
+table{
+width: 130%;
+}
+
+Nav.Link{
+margin: 5px 10px 5px 10px;
+}
+
+
+.headingsize{
+font-size:larger;
+}
+th{
+height: 50px;
+}
+
+
+
+.navcolor{
+background-color: #877bae;
+}
+
+
+
+
