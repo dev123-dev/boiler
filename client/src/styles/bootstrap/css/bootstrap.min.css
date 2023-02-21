@@ -1656,9 +1656,9 @@ pre code {
 .table-bordered thead th {
   border-bottom-width: 2px;
 }
-.table-striped tbody tr:nth-of-type(odd) {
+/* .table-striped tbody tr:nth-of-type(odd) {
   background-color: rgba(0, 0, 0, 0.05);
-}
+} */
 .table-hover tbody tr:hover {
   background-color: rgba(0, 0, 0, 0.075);
 }
@@ -3938,9 +3938,9 @@ tbody.collapse.show {
     -ms-flex-direction: row;
     flex-direction: row;
   }
-  .navbar-expand-lg .navbar-nav .dropdown-menu {
+  /* .navbar-expand-lg .navbar-nav .dropdown-menu {
     position: absolute;
-  }
+  } */
   .navbar-expand-lg .navbar-nav .dropdown-menu-right {
     right: 0;
     left: auto;
