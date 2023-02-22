@@ -7,16 +7,17 @@ import PrivateRoute from "./PrivateRoute";
 import RouteDriver from "../dashboard/RouteDriver";
 
 //DashBoard
-import AllStaffDetails from "../dashboard/AllStaffDetails";
-import AddStaffFeedBack from "../dashboard/AddStaffFeedBack";
-import Home from "../dashboard/Home";
+// import AllStaffDetails from "../dashboard/AllStaffDetails";
+// import AddStaffFeedBack from "../dashboard/AddStaffFeedBack";
+// import Home from "../dashboard/Home";
 import SuperDashboard from "../dashboard/SuperAdmin/SuperDashboard";
+import Organization from "../dashboard/SuperAdmin/Organization";
 
 const RoutesFile = () => {
   return (
     <section className="container">
       <Switch>
-        <PrivateRoute
+        {/* <PrivateRoute
           exact
           path="/all-staff-details"
           component={AllStaffDetails}
@@ -25,11 +26,16 @@ const RoutesFile = () => {
           exact
           path="/add-staff-feedBack"
           component={AddStaffFeedBack}
-        />
+        /> */}
          <PrivateRoute
           exact
           path="/superdashboard"
           component={SuperDashboard}
+        />
+        <PrivateRoute
+          exact
+          path="/organization"
+          component={Organization}
         />
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
 
