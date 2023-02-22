@@ -97,7 +97,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                   )}
              </NavItem>
              <NavItem>   
-             {!loading && isAuthenticated && user&&user.sdDesig==="admin" ? (
+             {!loading && isAuthenticated && user&&user.sdType==="Admin" ? (
                     <NavLink
                       to="/Category" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -108,6 +108,58 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                     <NavItem></NavItem>
                   )}
              </NavItem>
+             <NavItem>   
+             {!loading && isAuthenticated && user&&user.sdType==="Admin" ? (
+                    <NavLink
+                      to="/InstInd" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Institution/Individual
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+             </NavItem>
+             <NavItem>   
+             {!loading && isAuthenticated && user&&user.sdType==="Admin" ? (
+                    <NavLink
+                      to="/GenerateLabel" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Generate Label
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+             </NavItem>
+             <NavItem>   
+             {!loading && isAuthenticated && user&&user.sdType==="Admin" ? (
+                    <NavLink
+                      to="/EmptyCategory" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Empty Category
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+             </NavItem>
+             <NavItem>   
+             {!loading && isAuthenticated && user&&user.sdType==="Admin" ? (
+                    <NavLink
+                      to="/EmptyInstInd" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Empty Inst/Ind
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+             </NavItem>
+
+
+
+
              </Nav>
 
             {!loading && isAuthenticated && user ? (
