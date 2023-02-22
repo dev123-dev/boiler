@@ -72,7 +72,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             <NavItem>
 
 
-            {!loading && isAuthenticated && user&&user.sdDesig==="Management" ? (
+            {!loading && isAuthenticated && user &&user.sdDesig==="Management" ? (
                     <NavLink
                       to="/add-tenant-details" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -85,12 +85,24 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                    </NavItem>
 
              <NavItem>   
-             {!loading && isAuthenticated===true && user ? (
+             {!loading && isAuthenticated && user&&user.sdDesig==="Management" ? (
                     <NavLink
                       to="/all-tenant-shop-Details" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
                     >
                       Users
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+             </NavItem>
+             <NavItem>   
+             {!loading && isAuthenticated && user&&user.sdDesig==="admin" ? (
+                    <NavLink
+                      to="/Category" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Category
                     </NavLink>
                   ) : (
                     <NavItem></NavItem>
