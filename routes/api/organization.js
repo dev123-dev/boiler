@@ -2,7 +2,7 @@ const router = require("express").Router();
 
  const OrgDetails = require("../../models/OrganizationDetails");
 
-router.route("/add").post((req, res) => {
+router.route("/addorganization").post((req, res) => {
     console.log(req.body)
 let Org=new OrgDetails(req.body)
     Org.save(req.body)

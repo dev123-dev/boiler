@@ -38,7 +38,7 @@ export const AddOrganization = (OrganizationData)=> async(dispatch)=>{
  console.log(OrganizationData)
  try {
   await axios.post(
-    `${linkPath}/api/dagapi/add-Organization`,
+    `${linkPath}/api/organization/addorganization`,
     OrganizationData,
     config
   );

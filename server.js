@@ -12,7 +12,7 @@ app.use(express.json({ extended: false }));
 // Define Routes
 app.use("/api/users", require("../DAG_mongo/routes/api/user"));
 app.use("/api/auth", require("../DAG_mongo/routes/api/auth"));
-app.use("/api/org", require("../DAG_mongo/routes/api/organization"));
+app.use("/api/organization", require("../DAG_mongo/routes/api/organization"));
 
 
 // Set static folder for client build Serve static assets in production

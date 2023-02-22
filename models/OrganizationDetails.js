@@ -20,7 +20,7 @@ const OrgSchema = new mongoose.Schema({
   },
   endDate: {
     type: String,
-    required: true,
+    
   },
   address: {
     type: String,
@@ -28,7 +28,7 @@ const OrgSchema = new mongoose.Schema({
   },
   orgStatus: {
     type: String,
-    required: true,
+  
   },
 });
 
