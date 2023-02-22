@@ -76,6 +76,7 @@ const AddOrgModal=({
      
      
     });
+    handleEditModalClose();
   };
 
   return !isAuthenticated || !user || !users ? (
