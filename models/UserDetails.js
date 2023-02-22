@@ -10,6 +10,10 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  orgName: {
+    type: String,
+    required: true,
+  },
   fullName: {
     type: String,
     required: true,

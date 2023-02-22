@@ -46,7 +46,7 @@ router.post(
 
     //retriving Data
     const { userName, password } = req.body;
-console.log(userName+password)
+
     try {
       //userName Check In DB
       let UserDetail = await UserDetails.findOne({
@@ -54,7 +54,7 @@ console.log(userName+password)
         password: password,
       });
 
-console.log(UserDetail)
+
 
       if (!UserDetail) {
         return res.status(STATUS_CODE_400).json({

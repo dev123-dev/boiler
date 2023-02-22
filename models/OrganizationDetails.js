@@ -32,5 +32,5 @@ const OrgSchema = new mongoose.Schema({
   },
 });
 
-module.exports = OrgDetails = mongoose.model("sampleorgs", OrgSchema);
+module.exports = OrgDetails = mongoose.model("Org", OrgSchema);
 
