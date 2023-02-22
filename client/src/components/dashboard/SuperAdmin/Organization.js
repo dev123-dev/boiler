@@ -6,6 +6,7 @@ import refresh from '../../../static/images/download.png';
 import addicon from '../../../static/images/add-icon.png';
 import Modal from 'react-bootstrap/Modal';
 //import Button from 'react-bootstrap/Button';
+import AddOrgModal from './AddOrgModal';
 
 
 
@@ -42,6 +43,9 @@ export default function Organization() {
                 </div> */}
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
                     <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Organisation Lists</h1><br />
+
+
+                    <AddOrgModal />
                     {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
 
                     <div className='text-right'>
