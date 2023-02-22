@@ -72,7 +72,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             <NavItem>
 
 
-            {!loading && isAuthenticated && user &&user.sdType==="SuperAdmin" ? (
+            {!loading && isAuthenticated && user &&user.userGroup==="Dev" ? (
                     <NavLink
                       to="/organization" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -85,7 +85,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                    </NavItem>
 
              <NavItem>   
-             {!loading && isAuthenticated && user&&user.sdType==="SuperAdmin" ? (
+             {!loading && isAuthenticated && user&&user.userGroup==="Dev" ? (
                     <NavLink
                       to="/all-tenant-shop-Details" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -97,7 +97,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                   )}
              </NavItem>
              <NavItem>   
-             {!loading && isAuthenticated && user&&user.sdType==="Admin" ? (
+             {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
                     <NavLink
                       to="/Category" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -109,7 +109,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                   )}
              </NavItem>
              <NavItem>   
-             {!loading && isAuthenticated && user&&user.sdType==="Admin" ? (
+             {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
                     <NavLink
                       to="/InstInd" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -121,7 +121,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                   )}
              </NavItem>
              <NavItem>   
-             {!loading && isAuthenticated && user&&user.sdType==="Admin" ? (
+             {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
                     <NavLink
                       to="/GenerateLabel" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -133,7 +133,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                   )}
              </NavItem>
              <NavItem>   
-             {!loading && isAuthenticated && user&&user.sdType==="Admin" ? (
+             {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
                     <NavLink
                       to="/EmptyCategory" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -145,7 +145,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                   )}
              </NavItem>
              <NavItem>   
-             {!loading && isAuthenticated && user&&user.sdType==="Admin" ? (
+             {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
                     <NavLink
                       to="/EmptyInstInd" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}

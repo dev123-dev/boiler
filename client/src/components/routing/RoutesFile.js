@@ -7,10 +7,11 @@ import PrivateRoute from "./PrivateRoute";
 import RouteDriver from "../dashboard/RouteDriver";
 
 //DashBoard
-import AllStaffDetails from "../dashboard/AllStaffDetails";
-import AddStaffFeedBack from "../dashboard/AddStaffFeedBack";
-import Home from "../dashboard/Home";
+// import AllStaffDetails from "../dashboard/AllStaffDetails";
+// import AddStaffFeedBack from "../dashboard/AddStaffFeedBack";
+// import Home from "../dashboard/Home";
 import SuperDashboard from "../dashboard/SuperAdmin/SuperDashboard";
+import Organization from "../dashboard/SuperAdmin/Organization";
 
 const RoutesFile = () => {
   return (
@@ -34,7 +35,7 @@ const RoutesFile = () => {
         <PrivateRoute
           exact
           path="/organization"
-          component={SuperDashboard}
+          component={Organization}
         />
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
 
