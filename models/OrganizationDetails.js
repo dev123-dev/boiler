@@ -1,28 +1,24 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema({
-  userName: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  userGroup: {
-    type: String,
-    required: true,
-  },
+const OrgSchema = new mongoose.Schema({
   orgName: {
     type: String,
     required: true,
-  },
-  fullName: {
-    type: String,
-    required: true,
+    unique: true,
   },
   email: {
     type: String,
     required: true,
   },
-  phone: {
+  startDate: {
+    type: String,
+    required: true,
+  },
+  phoneNumber: {
+    type: String,
+    required: true,
+  },
+  endDate: {
     type: String,
     required: true,
   },
@@ -30,15 +26,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  userStatus: {
+  orgStatus: {
     type: String,
     required: true,
   },
 });
 
-module.exports = UserDetails = mongoose.model("users", UserSchema);
+module.exports = OrgDetails = mongoose.model("Org", OrgSchema);
 
