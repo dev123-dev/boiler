@@ -12,6 +12,7 @@ import RouteDriver from "../dashboard/RouteDriver";
 // import Home from "../dashboard/Home";
 import SuperDashboard from "../dashboard/SuperAdmin/SuperDashboard";
 import Organization from "../dashboard/SuperAdmin/Organization";
+import Users from "../dashboard/SuperAdmin/Users";
 
 const RoutesFile = () => {
   return (
@@ -36,6 +37,11 @@ const RoutesFile = () => {
           exact
           path="/organization"
           component={Organization}
+        />
+         <PrivateRoute
+          exact
+          path="/users"
+          component={Users}
         />
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
 
