@@ -50,7 +50,7 @@ console.log(userName+password)
     try {
       //userName Check In DB
       let UserDetail = await UserDetails.findOne({
-        sdName: userName,
+        userName: userName,
         password: password,
       });
 

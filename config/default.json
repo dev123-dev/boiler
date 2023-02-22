@@ -1,8 +1,7 @@
 {
-  "mongoURI": "mongodb://127.0.0.1:27017/test10", 
+  "mongoURI": "mongodb+srv://team:team@test.cuuqfjn.mongodb.net/pinnac_DAG", 
   "jwtSecret": "jwtSecret",
   "githubClientId": "",
   "githubSecret": "",
   "fileUploadPath":"herb\\files\\csv\\original\\"
 }
-

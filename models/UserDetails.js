@@ -1,16 +1,28 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
-  sdName: {
+  userName: {
     type: String,
     required: true,
     unique: true,
   },
-  sdType: {
+  userGroup: {
     type: String,
     required: true,
   },
-  userName: {
+  fullName: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+  },
+  address: {
     type: String,
     required: true,
   },
@@ -18,6 +30,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userStatus: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = UserDetails = mongoose.model("users", UserSchema);
+
