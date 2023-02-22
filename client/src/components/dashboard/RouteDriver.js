@@ -11,7 +11,7 @@ const RouteDriver = ({ auth: { user }, loadUser }) => {
 
   if (user) {
     // return <Redirect to="/all-staff-details" />;
-    return <Redirect to="/home" />
+    return <Redirect to="/superdashboard" />
   }
   return <Fragment>loading...</Fragment>;
 };

@@ -1,12 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { Container, Navbar, Nav, NavItem, Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 import Login from "../auth/Login";
 
 const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
+
   const [showLogin, setShowLogin] = useState(true);
   const [showLogout, setShowLogout] = useState(false);
 
@@ -33,11 +35,24 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         menu.style.display = "none";
       }
     }
+    // if (window.innerWidth <= 508) {
+    //   if (menu) {
+    //     if (menu.style.display === "block") {
+    //       menu.style.display = "none";
+    //     } else {
+    //       menu.style.display = "block";
+    //     }
+    //   } else {
+    //     menu.style.display = "none";
+    //   }
+    // }
+    
   };
-
+  console.log(user)
   return (
     <Fragment>
       <header>
+<<<<<<< HEAD
         <Container id="header_navbar">
           <Navbar
             className="navbar_height top_menu"
@@ -63,16 +78,80 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 <NavItem>cy</NavItem>
 
                   <ul className="top-level-menu text-right">
+=======
+
+        <Navbar
+          className="navbar_height top_menu"
+          expand="lg"
+          fixed="top"
+          style={{ padding: "0px 1em" }}
+        >
+          <Navbar.Brand>
+            <img
+              className="Icon"
+              alt="Pinnacle Media"
+              src={require("../../static/images/dag_logo1.png")}
+            />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto navbar_Collapse_content">
+            <NavItem>
+
+
+            {!loading && isAuthenticated && user &&user.sdDesig==="Management" ? (
+                    <NavLink
+                      to="/add-tenant-details" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Organization
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+                   </NavItem>
+
+             <NavItem>   
+             {!loading && isAuthenticated && user&&user.sdDesig==="Management" ? (
+                    <NavLink
+                      to="/all-tenant-shop-Details" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Users
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+             </NavItem>
+             <NavItem>   
+             {!loading && isAuthenticated && user&&user.sdDesig==="admin" ? (
+                    <NavLink
+                      to="/Category" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Category
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+             </NavItem>
+             </Nav>
+
+            {!loading && isAuthenticated && user ? (
+              <Nav>
+                 <ul className="top-level-menu text-left">
+>>>>>>> fbe68aeb89a5631d8e446ed76b93b606721f1747
                     <li>
                       <Link
-                        to="/all-staff-details"
+                        to="#"
                         onClick={() => openSecondLevelMenu2()}
-                        className="navbar-right"
+                        className="navbar-right "
                       >
-                        {user.sdName}
+                        {user.sdName}&nbsp;
                         <i className="fa fa-caret-down" />
                       </Link>
 
+<<<<<<< HEAD
                     </li>
                   </ul>
                 </Nav>
@@ -114,6 +193,72 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             </Navbar.Collapse>
           </Navbar>
         </Container>
+=======
+                      <ul className="dropdown-menu second-level-menu ">
+                        <li className="hwhite">
+                          <Link to="/shop-Details" className="navlinkitem" >User Group</Link>
+                        </li>
+
+                        {/* <li>
+                          <Link                                  if modal is required
+                            to="#"
+                            // onClick={() => handleTenantSettingModalShow()}
+                          >
+                            Tenant Setting
+                          </Link>
+                        </li> */}
+                        <li className="hwhite">
+                          <Link to="#" className="navlinkitem" onClick={() => handleLogoutModalShow()}>
+                            Logout
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+              
+
+
+                </Nav>
+    
+              
+            ) : (
+              <Fragment>
+                <Nav>
+                  <NavItem>
+                    {/* <Link to="#" onClick={() => handleLoginModalShow()}>
+                      LOGIN
+                    </Link> */}
+                  </NavItem>
+
+                  <Modal
+                    show={showLogin}
+                    backdrop="static"
+                    keyboard={false}
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                  >
+                    <Modal.Header></Modal.Header>
+                    <Modal.Body>
+                      {/* <button
+                        onClick={() => handleLoginModalClose()}
+                        className="close"
+                      >
+                        <img
+                          src={require("../../static/images/close.png")}
+                          alt="X"
+                        />
+                      </button> */}
+                       <Login /> 
+                    </Modal.Body>
+                  </Modal>
+                </Nav>
+              </Fragment>
+            )}
+                       
+          </Navbar.Collapse>
+        </Navbar>
+
+>>>>>>> fbe68aeb89a5631d8e446ed76b93b606721f1747
         <Modal
           show={showLogout}
           backdrop="static"
@@ -130,13 +275,13 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           </Modal.Body>
           <Modal.Footer>
             <button
-              className="btn btn_green_bg"
+               className="btn contact_reg btn_color"
               onClick={() => LogoutModalClose()}
             >
               YES
             </button>
             <button
-              className="btn btn_green_bg"
+              className="btn contact_reg btn_color"
               onClick={() => handleLogoutModalClose()}
             >
               NO
@@ -157,3 +302,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { logout })(Header);
+
+
