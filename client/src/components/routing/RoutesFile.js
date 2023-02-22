@@ -10,6 +10,7 @@ import RouteDriver from "../dashboard/RouteDriver";
 import AllStaffDetails from "../dashboard/AllStaffDetails";
 import AddStaffFeedBack from "../dashboard/AddStaffFeedBack";
 import Home from "../dashboard/Home";
+import SuperDashboard from "../dashboard/SuperAdmin/SuperDashboard";
 
 const RoutesFile = () => {
   return (
@@ -27,8 +28,8 @@ const RoutesFile = () => {
         />
          <PrivateRoute
           exact
-          path="/home"
-          component={Home}
+          path="/superdashboard"
+          component={SuperDashboard}
         />
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
 
