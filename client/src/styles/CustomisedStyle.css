@@ -1514,6 +1514,17 @@ td{
   .top-level-menu li:hover .second-level-menu {
     display: block;
   }
+  
+
+  .second-level-menu2 {
+    display: none;
+  }
+}
+@media (max-width: 986px) {
+  .top-level-menu li:hover .second-level-menu {
+    display: block;
+  }
+  
 
   .second-level-menu2 {
     display: none;

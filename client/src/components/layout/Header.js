@@ -35,6 +35,18 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         menu.style.display = "none";
       }
     }
+    if (window.innerWidth <= 508) {
+      if (menu) {
+        if (menu.style.display === "block") {
+          menu.style.display = "none";
+        } else {
+          menu.style.display = "block";
+        }
+      } else {
+        menu.style.display = "none";
+      }
+    }
+    
   };
   console.log(user)
   return (
@@ -60,7 +72,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             <NavItem>
 
 
-            {!loading && isAuthenticated && user ? (
+            {!loading && isAuthenticated && user&&user.sdDesig==="Management" ? (
                     <NavLink
                       to="/add-tenant-details" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -88,7 +100,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
             {!loading && isAuthenticated && user ? (
               <Nav>
-                 <ul className="top-level-menu text-right">
+                 <ul className="top-level-menu text-left">
                     <li>
                       <Link
                         to="#"
