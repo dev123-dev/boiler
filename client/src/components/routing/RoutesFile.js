@@ -16,7 +16,7 @@ const RoutesFile = () => {
   return (
     <section className="container">
       <Switch>
-        <PrivateRoute
+        {/* <PrivateRoute
           exact
           path="/all-staff-details"
           component={AllStaffDetails}
@@ -25,10 +25,15 @@ const RoutesFile = () => {
           exact
           path="/add-staff-feedBack"
           component={AddStaffFeedBack}
-        />
+        /> */}
          <PrivateRoute
           exact
           path="/superdashboard"
+          component={SuperDashboard}
+        />
+        <PrivateRoute
+          exact
+          path="/organization"
           component={SuperDashboard}
         />
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
