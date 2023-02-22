@@ -1,12 +1,14 @@
 import React, { Fragment, useState } from "react";
 import { Container, Navbar, Nav, NavItem, Modal } from "react-bootstrap";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 import Login from "../auth/Login";
 
 const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
+
   const [showLogin, setShowLogin] = useState(true);
   const [showLogout, setShowLogout] = useState(false);
 
@@ -34,92 +36,133 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
       }
     }
   };
-
+  console.log(user)
   return (
     <Fragment>
       <header>
-        <Container id="header_navbar">
-          <Navbar
-            className="navbar_height top_menu"
-            expand="lg"
-            fixed="top"
-            style={{ padding: "0px 1em" }}
-          >
-            <Navbar.Brand>
-              <img
-                className="log_size"
-                alt="Pinnacle Media"
-                src={require("../../static/images/pmLogo_wh.png")}
-              />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto navbar_Collapse_content">
-                <NavItem></NavItem>
-              </Nav>
-              {!loading && isAuthenticated && user ? (
-                <Nav>
-                  <ul className="top-level-menu text-right">
+
+        <Navbar
+          className="navbar_height top_menu"
+          expand="lg"
+          fixed="top"
+          style={{ padding: "0px 1em" }}
+        >
+          <Navbar.Brand>
+            <img
+              className="Icon"
+              alt="Pinnacle Media"
+              src={require("../../static/images/dag_logo1.png")}
+            />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="mr-auto navbar_Collapse_content">
+            <NavItem>
+
+
+            {!loading && isAuthenticated && user ? (
+                    <NavLink
+                      to="/add-tenant-details" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Organization
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+                   </NavItem>
+
+             <NavItem>   
+             {!loading && isAuthenticated===true && user ? (
+                    <NavLink
+                      to="/all-tenant-shop-Details" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Users
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+             </NavItem>
+             </Nav>
+
+            {!loading && isAuthenticated && user ? (
+              <Nav>
+                 <ul className="top-level-menu text-right">
                     <li>
                       <Link
-                        to="/all-staff-details"
+                        to="#"
                         onClick={() => openSecondLevelMenu2()}
-                        className="navbar-right"
+                        className="navbar-right "
                       >
-                        {user.sdName}
+                        {user.sdName}&nbsp;
                         <i className="fa fa-caret-down" />
                       </Link>
 
                       <ul className="dropdown-menu second-level-menu ">
                         <li>
-                          <Link to="/all-staff-details">Levels</Link>
+                          <Link to="/shop-Details" className="navlinkitem" >User Group</Link>
                         </li>
 
+                        {/* <li>
+                          <Link                                  if modal is required
+                            to="#"
+                            // onClick={() => handleTenantSettingModalShow()}
+                          >
+                            Tenant Setting
+                          </Link>
+                        </li> */}
                         <li>
-                          <Link to="#" onClick={() => handleLogoutModalShow()}>
+                          <Link to="#" className="navlinkitem" onClick={() => handleLogoutModalShow()}>
                             Logout
                           </Link>
                         </li>
                       </ul>
                     </li>
                   </ul>
-                </Nav>
-              ) : (
-                <Fragment>
-                  <Nav>
-                    <NavItem>
-                      {/* <Link to="#" onClick={() => handleLoginModalShow()}>
-                        LOGIN
-                      </Link> */}
-                    </NavItem>
+              
 
-                    <Modal
-                      show={showLogin}
-                      backdrop="static"
-                      keyboard={false}
-                      aria-labelledby="contained-modal-title-vcenter"
-                      centered
-                    >
-                      <Modal.Header></Modal.Header>
-                      <Modal.Body>
-                        {/* <button
-                          onClick={() => handleLoginModalClose()}
-                          className="close"
-                        >
-                          <img
-                            src={require("../../static/images/close.png")}
-                            alt="X"
-                          />
-                        </button> */}
-                        <Login />
-                      </Modal.Body>
-                    </Modal>
-                  </Nav>
-                </Fragment>
-              )}
-            </Navbar.Collapse>
-          </Navbar>
-        </Container>
+
+                </Nav>
+    
+              
+            ) : (
+              <Fragment>
+                <Nav>
+                  <NavItem>
+                    {/* <Link to="#" onClick={() => handleLoginModalShow()}>
+                      LOGIN
+                    </Link> */}
+                  </NavItem>
+
+                  <Modal
+                    show={showLogin}
+                    backdrop="static"
+                    keyboard={false}
+                    aria-labelledby="contained-modal-title-vcenter"
+                    centered
+                  >
+                    <Modal.Header></Modal.Header>
+                    <Modal.Body>
+                      {/* <button
+                        onClick={() => handleLoginModalClose()}
+                        className="close"
+                      >
+                        <img
+                          src={require("../../static/images/close.png")}
+                          alt="X"
+                        />
+                      </button> */}
+                       <Login /> 
+                    </Modal.Body>
+                  </Modal>
+                </Nav>
+              </Fragment>
+            )}
+                       
+          </Navbar.Collapse>
+        </Navbar>
+
         <Modal
           show={showLogout}
           backdrop="static"
@@ -136,13 +179,13 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           </Modal.Body>
           <Modal.Footer>
             <button
-              className="btn btn_green_bg"
+               className="btn contact_reg btn_color"
               onClick={() => LogoutModalClose()}
             >
               YES
             </button>
             <button
-              className="btn btn_green_bg"
+              className="btn contact_reg btn_color"
               onClick={() => handleLogoutModalClose()}
             >
               NO
@@ -163,3 +206,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { logout })(Header);
+
+

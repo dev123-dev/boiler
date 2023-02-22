@@ -6,6 +6,7 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 // import refresh from "../../static/images/download.png"
+import refresh from "../../../static/images/download.png"
 // import AddStaffFeedBack from "./AddStaffFeedBack";
 
 
@@ -89,13 +90,13 @@ const SuperDashboard = ({
         {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
         <div className="text-right">
 
-          {/* <img
+          <img
             className="img_icon_size log text-right"
             // onClick={() => onClickReset()}
             src={refresh}
             alt="refresh"
             title="Refresh"
-          /> */}
+          />
         </div><br/>
   
         <div className="container-fluid">
