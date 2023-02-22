@@ -38,9 +38,9 @@ export default function Organization() {
         <div>
            
             <div className="row">
-                <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-center">
-                </div>
-                <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
+                {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-center">
+                </div> */}
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
                     <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Organisation Lists</h1><br />
                     {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
 
@@ -80,8 +80,8 @@ export default function Organization() {
                     </table>
                     </div>
                 </div>
-                <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-left">
-                </div>
+                {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-left">
+                </div> */}
 
 
                 {/* add modal */}
@@ -89,7 +89,7 @@ export default function Organization() {
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered>
-                    <Modal.Header closeButton>
+                    <Modal.Header >
 
                         <Modal.Title className='container'><h1 className='font-weight-bold '>ADD ORGANIZATION</h1></Modal.Title>
                     </Modal.Header>
@@ -177,7 +177,7 @@ export default function Organization() {
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered>
-                    <Modal.Header closeButton>
+                    <Modal.Header >
 
                         <Modal.Title className='container'><h1 className='font-weight-bold '>EDIT ORGANIZATION</h1></Modal.Title>
                     </Modal.Header>
@@ -246,7 +246,7 @@ export default function Organization() {
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered>
-                    <Modal.Header closeButton>
+                    <Modal.Header >
 
                         <Modal.Title className='container'><h1 className='font-weight-bold '>DEACTIVATE ORGANIZATION</h1></Modal.Title>
                     </Modal.Header>
