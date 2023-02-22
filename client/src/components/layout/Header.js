@@ -35,17 +35,17 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         menu.style.display = "none";
       }
     }
-    if (window.innerWidth <= 508) {
-      if (menu) {
-        if (menu.style.display === "block") {
-          menu.style.display = "none";
-        } else {
-          menu.style.display = "block";
-        }
-      } else {
-        menu.style.display = "none";
-      }
-    }
+    // if (window.innerWidth <= 508) {
+    //   if (menu) {
+    //     if (menu.style.display === "block") {
+    //       menu.style.display = "none";
+    //     } else {
+    //       menu.style.display = "block";
+    //     }
+    //   } else {
+    //     menu.style.display = "none";
+    //   }
+    // }
     
   };
   console.log(user)
@@ -112,7 +112,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                       </Link>
 
                       <ul className="dropdown-menu second-level-menu ">
-                        <li>
+                        <li className="hwhite">
                           <Link to="/shop-Details" className="navlinkitem" >User Group</Link>
                         </li>
 
@@ -124,7 +124,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             Tenant Setting
                           </Link>
                         </li> */}
-                        <li>
+                        <li className="hwhite">
                           <Link to="#" className="navlinkitem" onClick={() => handleLogoutModalShow()}>
                             Logout
                           </Link>

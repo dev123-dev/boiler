@@ -807,7 +807,7 @@ label {
   .dropdown-menu > .nav-item > a:focus,
   .dropdown-menu > .nav-item > a:hover {
     color: #262626;
-    background-color: #e8e8e8;
+    background-color: #fff;
   }
 
   .build-input {
@@ -1976,6 +1976,12 @@ height: 50px;
 
 .navcolor{
 background-color: #877bae;
+}
+.hwhite{
+  background-color: #fff;
+  height: 20px;
+  width:160px;
+
 }
 
 
