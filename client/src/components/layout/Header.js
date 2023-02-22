@@ -56,9 +56,12 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto navbar_Collapse_content">
                 <NavItem></NavItem>
-              </Nav>
-              {!loading && isAuthenticated && user ? (
+              
+              {!loading && isAuthenticated && user ? (<>
                 <Nav>
+                  
+                <NavItem>cy</NavItem>
+
                   <ul className="top-level-menu text-right">
                     <li>
                       <Link
@@ -70,20 +73,10 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         <i className="fa fa-caret-down" />
                       </Link>
 
-                      <ul className="dropdown-menu second-level-menu ">
-                        <li>
-                          <Link to="/all-staff-details">Levels</Link>
-                        </li>
-
-                        <li>
-                          <Link to="#" onClick={() => handleLogoutModalShow()}>
-                            Logout
-                          </Link>
-                        </li>
-                      </ul>
                     </li>
                   </ul>
                 </Nav>
+                </>
               ) : (
                 <Fragment>
                   <Nav>
@@ -117,6 +110,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                   </Nav>
                 </Fragment>
               )}
+</Nav>
             </Navbar.Collapse>
           </Navbar>
         </Container>

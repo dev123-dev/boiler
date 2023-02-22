@@ -5,7 +5,7 @@ const auth = require("../../middleware/auth");
 const jwt = require("jsonwebtoken");
 //const config = require('config');
 const { check, validationResult } = require("express-validator");
-const StaffDetails = require("../../models/StaffDetails");
+const UserDetails = require("../../models/UserDetails");
 
 const {
   SERVER_ERROR,
@@ -46,15 +46,17 @@ router.post(
 
     //retriving Data
     const { userName, password } = req.body;
-
+console.log(userName+password)
     try {
       //userName Check In DB
-      let staffDetails = await StaffDetails.findOne({
-        userName: "renita",
+      let UserDetail = await UserDetails.findOne({
+        sdName: userName,
         password: password,
       });
 
-      if (!staffDetails) {
+console.log(UserDetail)
+
+      if (!UserDetail) {
         return res.status(STATUS_CODE_400).json({
           errors: [{ msg: INVALID_CREDENTIALS }],
         });
@@ -72,7 +74,7 @@ router.post(
       //Create Payload
       const payload = {
         user: {
-          id: staffDetails._id,
+          id: UserDetail._id,
         },
       };
 
@@ -95,7 +97,7 @@ router.post(
 // @access   Private
 router.get("/load-user", auth, async (req, res) => {
   try {
-    const user = await StaffDetails.findById(req.user.id).select("-password");
+    const user = await UserDetails.findById(req.user.id).select("-password");
     res.json(user);
   } catch (err) {
     res.status(STATUS_CODE_500).send(SERVER_ERROR);
@@ -107,7 +109,7 @@ router.get("/load-user", auth, async (req, res) => {
 // @access   Private
 router.get(GET_ALL_USERS, auth, async (req, res) => {
   try {
-    const user = await StaffDetails.find().select("-password"); //.select('-password');
+    const user = await UserDetails.find().select("-password"); //.select('-password');
     res.json(user);
   } catch (err) {
     console.error(err.message);
@@ -130,7 +132,7 @@ router.post(FILTER_USERS, auth, async (req, res) => {
         },
       };
     }
-    staffDetails = await StaffDetails.find(query).select("-password");
+    staffDetails = await UserDetails.find(query).select("-password");
 
     res.json(staffDetails);
   } catch (err) {
