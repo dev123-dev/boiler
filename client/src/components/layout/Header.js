@@ -52,34 +52,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   return (
     <Fragment>
       <header>
-<<<<<<< HEAD
-        <Container id="header_navbar">
-          <Navbar
-            className="navbar_height top_menu"
-            expand="lg"
-            fixed="top"
-            style={{ padding: "0px 1em" }}
-          >
-            <Navbar.Brand>
-              <img
-                className="log_size"
-                alt="Pinnacle Media"
-                src={require("../../static/images/pmLogo_wh.png")}
-              />
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto navbar_Collapse_content">
-                <NavItem></NavItem>
-              
-              {!loading && isAuthenticated && user ? (<>
-                <Nav>
-                  
-                <NavItem>cy</NavItem>
-
-                  <ul className="top-level-menu text-right">
-=======
-
+        
         <Navbar
           className="navbar_height top_menu"
           expand="lg"
@@ -99,7 +72,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             <NavItem>
 
 
-            {!loading && isAuthenticated && user &&user.sdDesig==="Management" ? (
+            {!loading && isAuthenticated && user &&user.sdType==="SuperAdmin" ? (
                     <NavLink
                       to="/add-tenant-details" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -112,7 +85,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                    </NavItem>
 
              <NavItem>   
-             {!loading && isAuthenticated && user&&user.sdDesig==="Management" ? (
+             {!loading && isAuthenticated && user&&user.sdType==="SuperAdmin" ? (
                     <NavLink
                       to="/all-tenant-shop-Details" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
@@ -140,7 +113,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             {!loading && isAuthenticated && user ? (
               <Nav>
                  <ul className="top-level-menu text-left">
->>>>>>> fbe68aeb89a5631d8e446ed76b93b606721f1747
                     <li>
                       <Link
                         to="#"
@@ -151,49 +123,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         <i className="fa fa-caret-down" />
                       </Link>
 
-<<<<<<< HEAD
-                    </li>
-                  </ul>
-                </Nav>
-                </>
-              ) : (
-                <Fragment>
-                  <Nav>
-                    <NavItem>
-                      {/* <Link to="#" onClick={() => handleLoginModalShow()}>
-                        LOGIN
-                      </Link> */}
-                    </NavItem>
-
-                    <Modal
-                      show={showLogin}
-                      backdrop="static"
-                      keyboard={false}
-                      aria-labelledby="contained-modal-title-vcenter"
-                      centered
-                    >
-                      <Modal.Header></Modal.Header>
-                      <Modal.Body>
-                        {/* <button
-                          onClick={() => handleLoginModalClose()}
-                          className="close"
-                        >
-                          <img
-                            src={require("../../static/images/close.png")}
-                            alt="X"
-                          />
-                        </button> */}
-                        <Login />
-                      </Modal.Body>
-                    </Modal>
-                  </Nav>
-                </Fragment>
-              )}
-</Nav>
-            </Navbar.Collapse>
-          </Navbar>
-        </Container>
-=======
                       <ul className="dropdown-menu second-level-menu ">
                         <li className="hwhite">
                           <Link to="/shop-Details" className="navlinkitem" >User Group</Link>
@@ -258,7 +187,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           </Navbar.Collapse>
         </Navbar>
 
->>>>>>> fbe68aeb89a5631d8e446ed76b93b606721f1747
         <Modal
           show={showLogout}
           backdrop="static"
