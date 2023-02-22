@@ -18,7 +18,7 @@ const Login = ({
   let modalTitle = { marginTop: "-30px", marginBottom: "20px" };
 
   const [formData, setFormData] = useState({
-    userName: "Rakki",
+    userName: "Dev",
     password: "123",
   });
 
@@ -199,7 +199,7 @@ const Login = ({
             <label className="pop_up">Password *</label>
           </div>
           <div className="col-md-12 col-sm-12 col-lg-12 col-12 text-center">
-            <button className="btn contact_reg">SIGN IN</button>
+            <button style={{ background: "#877bae" }} className="btn contact_reg">SIGN IN</button>
           </div>
         </form>
       </div>
