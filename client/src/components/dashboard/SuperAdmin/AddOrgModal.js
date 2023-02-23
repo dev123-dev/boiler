@@ -71,7 +71,8 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
       phoneNumber: OrganizationNumber,
       endDate: oneYearLaterString,
       address: OrganizationAddress,
-      orgStatus:"Active"
+      orgStatus:"Active",
+      orgDeactiveReason:"",
       
     };
 
@@ -86,6 +87,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
       address: "",
       endDate:"",
       orgStatus:"Active",
+      orgDeactiveReason:"",
      
     });
     handleEditModalClose();
