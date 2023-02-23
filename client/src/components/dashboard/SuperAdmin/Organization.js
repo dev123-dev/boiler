@@ -91,11 +91,11 @@ const Organization = ({
     const onAdd = () => {
         const reason = {
             Org_id: OrgId,
-            org_status: "Deactive",
+            // org_status: "Deactive",
             deactive_reason: Organization_DE_Reason,
         };
         deleteOrganization(reason);
-        console.log(OrgId);
+        //console.log(reason);
     };
  
     
