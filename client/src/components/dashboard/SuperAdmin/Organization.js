@@ -53,6 +53,8 @@ const Organization = ({
         OrganizationEmail: "",
         OrganizationNumber: "",
         OrganizationAddress: "",
+        OrganizationStartdate:"",
+        
 
     });
     const {
@@ -60,6 +62,7 @@ const Organization = ({
         OrganizationEmail,
         OrganizationNumber,
         OrganizationAddress,
+        OrganizationStartdate,
 
     } = formDataORG;
    
@@ -111,11 +114,11 @@ const Organization = ({
     const onAdd = () => {
         const reason = {
             Org_id: OrgId,
-            org_status: "Deactive",
+            // org_status: "Deactive",
             deactive_reason: Organization_DE_Reason,
         };
         deleteOrganization(reason);
-        console.log(OrgId);
+        //console.log(reason);
     };
     // const onEdit = () => {
     //     const editdata = {
@@ -300,7 +303,105 @@ const Organization = ({
 
 
             {/* Edit OrganiZation start */}
+<<<<<<< HEAD
             
+=======
+            <Modal
+                show={showEditModal}
+                backdrop="static"
+                size="lg"
+                keyboard={false}
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+
+            >
+                <Modal.Header >
+
+                    <Modal.Title className='container'><h1 className='font-weight-bold '>EDIT ORGANIZATION</h1></Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <form >
+                        <div className="container ">
+                            <section className="body">
+                                <div className="body-inner">
+                                    <div className="row form-group">
+                                        <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                                            <label className="control-label">Org Name </label>
+                                            <div className="controls">
+                                                <input name="OrganizationName" id="cat_name" type="text" className="form-control" value={OrganizationName}  onChange={(e) => onORGchange(e)} />
+                                                <span id="category_result" className="form-input-info"></span>
+                                            </div>
+                                        </div>
+                                        <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                                            <label className="control-label">Email</label>
+                                            <div className="controls">
+                                                <input name="OrganizationEmail" id="category_status" type="text" className="form-control"  value={OrganizationEmail}  onChange={(e) => onORGchange(e)} readonly />
+                                                <span className="form-input-info" ></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row form-group">
+                                        <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                                            <label className="control-label">Phone No.</label>
+                                            <div className="controls">
+                                                <input name="OrganizationNumber" id="category_status" type="number" className="form-control" value={OrganizationNumber}  onChange={(e) => onORGchange(e)}  readonly />
+                                                <span className="form-input-info" ></span>
+                                            </div>
+
+                                        </div>
+                                        <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                                            <label className="control-label">Address</label>
+                                            <div className="controls">
+                                                <textarea rows="2" name="OrganizationAddress" id="category_description" className="form-control" value={OrganizationAddress}  onChange={(e) => onORGchange(e)}  ></textarea>
+                                                <span className="form-input-info" ></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="row form-group">
+                                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                                                <label className="control-label">Start Date </label>
+                                                <div className="controls">
+                                                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control" value={OrganizationStartdate} onChange={(e) => onORGchange(e)} />
+                                                    <span id="category_result" className="form-input-info"></span>
+                                                </div>
+                                            </div>
+                                            {/* <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                                                <label className="control-label">Org Logo</label>
+                                                <div className="controls">
+                                                    <input name="logo_name" id="logo_name" type="file" className="form-control" value="" />
+                                                    <span id="category_result" className="form-input-info"></span>
+                                                </div>
+                                            </div> */}
+                                        </div>
+                                </div>
+                            </section>
+                        </div>
+                    </form>
+
+                </Modal.Body>
+                <Modal.Footer>
+                     <button onClick={handleEditModalClose} className="btn contact_reg btn_color"> NO</button>
+                    <button onClick={handleEditModalClose} className="btn contact_reg btn_color">  EDIT</button>
+                    {/* <div className="col-lg-12 Savebutton " size="lg">
+            <button
+              variant="success"
+              className="btn sub_form btn_continue Save float-right"
+              // onClick={() => onSubmitORGdata()}
+            >
+              Save
+            </button>
+            <button
+              variant="success"
+              className="btn sub_form btn_continue Save float-right"
+              // onClick={() => onSubmitORGdata()}
+              onClick={()=>handleClose()}
+            >
+             cancel
+            </button>
+          </div> */}
+                </Modal.Footer>
+            </Modal>
+>>>>>>> bbd78e1dae4f68f7470ee0d9ad61c94cb77a284c
             {/* End of Edit Organization */}
         </div>
     );
