@@ -84,7 +84,7 @@ const AddOrgModal=({
     <div>
       <Fragment>
         <div className="container container_align">
-          <div className="col-lg-12 col-md-11 col-sm-11 col-11 py-4">
+          <div className="col-lg-12 col-md-11 col-sm-11 col-11 py-4 text-right">
             <img
               className="img_icon_size log"
               // onClick={() => onClickHandler()}
