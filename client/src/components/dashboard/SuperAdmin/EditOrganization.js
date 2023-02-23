@@ -15,7 +15,7 @@ const EditOrganization = ({
     Org,
     updateOrganization
 })=>{
-   //console.log(Org);
+   console.log(Org);
     const [showEditModal, setShowEditModal] = useState(false);
     const handleEditModalClose = () => setShowEditModal(false);
     const handleOpen = () => setShowEditModal(true);
@@ -59,11 +59,11 @@ const EditOrganization = ({
 //multiple location end
 
 const [formDataORG, setFormDataORG] = useState({
-    OrganizationId :  Org,
-    OrganizationName: Org.OrganizationName ,
-    OrganizationEmail:  Org.OrganizationEmail,
-    OrganizationNumber:  Org.OrganizationNumber,
-    OrganizationAddress: Org.OrganizationAddress ,
+    OrganizationId :  Org._id,
+    OrganizationName: Org.orgName ,
+    OrganizationEmail:  Org.email,
+    OrganizationNumber:  Org.phoneNumber,
+    OrganizationAddress: Org.address ,
    
   });
   const {
