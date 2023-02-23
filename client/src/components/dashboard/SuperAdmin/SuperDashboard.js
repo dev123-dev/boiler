@@ -16,11 +16,13 @@ import { getAllOrganization } from "../../../actions/dag";
 
 const SuperDashboard = ({
   auth: { isAuthenticated, user, users },
+  dag:{allorg}
   
 }) => {
   useEffect(() => {
+    getAllOrganization("");
     
-  },);
+  },[]);
 
   // console.log(users);
    //   const [showModal, setShowModal] = useState(false);
@@ -74,45 +76,105 @@ const SuperDashboard = ({
   return !isAuthenticated || !user ? (
     <NotFound />
   ) : (
+    <div className="container container_align ">
+    {/* OrganiZation Details  start*/}
+    <section className="sub_reg">
+        <div className="row col-lg-12 col-md-12 col-sm-12 col-12 no_padding">
+            <div className="col-lg-10 col-md-11 col-sm-11 col-11 ">
+                <h2 className="heading_color">Organization List </h2>
+            </div>
 
+           
+        </div>
+        <div className="row">
+            <div className="col-lg-11 col-md-11 col-sm-11 col-11 text-center ">
+                <section className="body">
+                    <div className="body-inner no-padding  table-responsive fixTableHead">
+                        <table
+                            className="table table-bordered table-striped table-hover"
+                            id="datatable2"
+                        >
+                            <thead>
+                                <tr>
+                                    <th>Org Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Start date</th>
+                                    <th>End date</th>
+                                    {/* <th>Number of Users</th> */}
+                                    <th> Status</th>
+                                    <th>Operation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {allorg &&
+                                    
+                                    allorg.map((orgVal, idx) => {
+                                        return (
+                                            <tr key={idx}>
+                                                <td>{orgVal.orgName}</td>
+                                                <td>{orgVal.email}</td>
+                                                <td>{orgVal.phoneNumber}</td>
+                                                <td>{orgVal.startDate}</td>
+                                                <td>{orgVal.endDate}</td>
+                                                <td>{orgVal.orgStatus}</td>
+                                                <td>
+                                                    {/* <img
+                                                        className="img_icon_size log"
+                                                        // onClick={() => onClickHandler()}
+                                                        // onClick={() => clicking()}
+                                                        // onClick={handleOpen}
+                                                        // onClick={() => onedit(orgVal)}
+                                                        src={require("../../../static/images/edit_icon.png")}
+                                                        alt="Edit"
+                                                        title="Edit User"
+                                                    /> */}
+                                                    {/* <img
+                                                        className="img_icon_size log"
+                                                        // onClick={() => onClickHandler()}
+                                                        // onClick={() => onDelete(orgVal._id)}
+                                                        src={require("../../../static/images/delete.png")}
+                                                        alt="delete User"
+                                                        title="delete User"
+                                                    /> */}
+                                                    <button>RENEWAL</button>
+                                                </td>
 
+                                                {/* {orgVal.AgreementStatus === "Expired" ? (
+                    <td>
+                      <center>
+                         <button
+                          variant="success"
+                          className="btn sub_form"
+                          // onClick={() =>
+                          //   onRenewal(orgVal, idx)
+                          // }
+                        >
+                          Renewal
+                        </button> 
+                      </center>
+                    </td>
+                  
+                  ) : (
+                    <td></td>
+                  )} */}
+                                            </tr>
+                                        );
+                                    })}
+                            </tbody>
 
-    <div className="row">
-
-      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left overflow-hidden"><br /><br />
-        <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Dashboard</h1><br />
-
-        {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
-        <div className="text-right">
-
-          <img
-            className="img_icon_size log text-right"
-            // onClick={() => onClickReset()}
-            src={refresh}
-            alt="refresh"
-            title="Refresh"
-          />
-        </div><br/>
-  
-        <div className="container-fluid">
-          <div className="row  text-center body-inner no-padding table-responsive">
-          <table border="1" id="datatable2" className="text-left mr-4">
-   <tr className='headingsizes'>
-       <th>Org Name</th>
-       <th>Email</th>
-       <th>Phone No.</th>
-       <th>Start Date</th>
-       <th>End Date</th>
-       <th>Status</th>
-       <th>Operation</th>
-   </tr>
-     
-</table>
-
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+    {/* OrganiZation Deatils End */}
 </div>
-</div>
-</div>
-</div>
+
+
+
+    
 );
 };
 
@@ -123,11 +185,11 @@ auth: PropTypes.object.isRequired,
 };
 const mapStateToProps = (state) => ({
 auth: state.auth,
+dag:state.dag,
 });
 
 export default connect(mapStateToProps, {
-//   getAllUsers,
-//   getSearchUsersByFilter,
+getAllOrganization,
 })(SuperDashboard);
 
 
