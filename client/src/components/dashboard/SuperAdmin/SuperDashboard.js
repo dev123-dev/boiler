@@ -22,8 +22,7 @@ const SuperDashboard = ({
   },);
 
   console.log(users);
-
-  //   const [showModal, setShowModal] = useState(false);
+   //   const [showModal, setShowModal] = useState(false);
   //   const handleViewModalClose = () => setShowModal(false);
 
   //   const [userData, setUserData] = useState(null);
@@ -52,7 +51,6 @@ const SuperDashboard = ({
   //       getSearchUsersByFilter(finalData);
   //     }
   //   };
-
   // const onKeyUp = (e) => {
   //   if (e.keyCode === 13) {
   //     const finalData = {
@@ -78,11 +76,7 @@ const SuperDashboard = ({
 
 
 
-
     <div className="row">
-
-
-
 
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left overflow-hidden"><br /><br />
         <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Dashboard</h1><br />
@@ -111,29 +105,29 @@ const SuperDashboard = ({
        <th>Status</th>
        <th>Operation</th>
    </tr>
-   
+     
 </table>
 
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-  );
+</div>
+</div>
+</div>
+</div>
+);
 };
 
 SuperDashboard .propTypes = {
-  auth: PropTypes.object.isRequired,
-  // getAllUsers: PropTypes.func.isRequired,
-  // getSearchUsersByFilter: PropTypes.func.isRequired,
+auth: PropTypes.object.isRequired,
+// getAllUsers: PropTypes.func.isRequired,
+// getSearchUsersByFilter: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
-  auth: state.auth,
+auth: state.auth,
 });
 
 export default connect(mapStateToProps, {
-  //   getAllUsers,
-  //   getSearchUsersByFilter,
+//   getAllUsers,
+//   getSearchUsersByFilter,
 })(SuperDashboard);
+
+
+

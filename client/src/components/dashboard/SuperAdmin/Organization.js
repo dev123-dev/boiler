@@ -1,280 +1,399 @@
-import React, { useEffect } from 'react'
-import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import AddOrgModal from "./AddOrgModal";
+import { Props } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Modal from "react-bootstrap/Modal";
+import { getAllOrganization } from "../../../actions/dag";
+import { deleteOrganization } from "../../../actions/dag";
+// import "../../../../client/src/styles/CustomisedStyle.css";
+// import "../../styles/CustomisedStyle.css";
 
-import refresh from '../../../static/images/download.png';
-import addicon from '../../../static/images/add-icon.png';
-import Modal from 'react-bootstrap/Modal';
-//import Button from 'react-bootstrap/Button';
-import AddOrgModal from './AddOrgModal';
+const Organization = ({
+  //here to connect to action we need to import the function
+  //then again we need to mention inside the const function
+dag: { allorg },
+  deleteOrganization,
+  getAllOrganization,
+}) => {
+  useEffect(() => {
+    getAllOrganization("");
+  }, []);
 
+  const clicking = () => {
+    alert("Edit");
+  };
+  console.log(allorg[0])
 
+  const [formData, setFormData] = useState({
+    Organization_DE_Reason: "",
+    isSubmitted: false,
+  });
 
+  const { Organization_DE_Reason } = formData;
 
-//import Addorg from './Modals/Addorg';
+  const onInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
-export default function Organization() {
-   // const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-    const [show, setShow] = useState(false);
-    const [editshow, editsetShow] = useState(false);
-    const [deleteshow, deletesetShow] = useState(false);
+  const [OrgId, setId] = useState("");
 
+  const onDelete = (id) => {
+    setId(id);
+    handleShow();
+  };
 
-    const handleClose = () => setShow(false);
-    const edithandleClose = () => editsetShow(false);
-    const deletehandleClose = () => deletesetShow(false);
+  const onedit = (id) => {
+    setId(id);
+    handleOpen();
+  };
 
+  const onAdd = () => {
+    const reason = {
+      Org_id: OrgId,
+      org_status: "Deactive",
+      deactive_reason: Organization_DE_Reason,
+    };
+    deleteOrganization(reason);
+    console.log(OrgId);
+  };
+  const [formDataORG, setFormDataORG] = useState({
+    OrganizationName: "",
+    OrganizationEmail: "",
+    OrganizationNumber: "",
+    OrganizationAddress: "",
+    
+  });
+  const {
+    OrganizationName,
+    OrganizationEmail,
+    OrganizationNumber,
+    OrganizationAddress,
+   
+  } = formDataORG;
 
-    const addhandleShow = () => setShow(true);
-    const edithandleShow = () => editsetShow(true);
-    const deletehandleShow = () => deletesetShow(true);
-
-    const handleAddOrg = (e) => {
-        alert("yi")
-        e.preventDefault();
-        // console.log('The add was clicked.');
+  const [showEditModal, setShowEditModal] = useState(false);
+  const handleEditModalClose = () => setShowEditModal(false);
+  const handleOpen = () => setShowEditModal(true);
+  const onAddStaffModalChange = (e) => {
+    if (e) {
+      handleEditModalClose();
     }
-    return (
-        <div>
-           
-            <div className="row">
-                {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-center">
-                </div> */}
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
-                    <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Organisation Lists</h1>
+  };
 
+  return (
+    <div>
+      <div className="container container_align ">
+        {/* OrganiZation Details  start*/}
+        <section className="sub_reg">
+          <div className="row col-lg-12 col-md-12 col-sm-12 col-12 no_padding">
+            <div className="col-lg-10 col-md-11 col-sm-11 col-11 ">
+              <h2 className="heading_color">Organization List </h2>
+            </div>
 
-                    <AddOrgModal />
-                    {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
+            <AddOrgModal />
+          </div>
+          <div className="row">
+            <div className="col-lg-11 col-md-11 col-sm-11 col-11 text-center ">
+              <section className="body">
+                <div className="body-inner no-padding  table-responsive fixTableHead">
+                  <table
+                    className="table table-bordered table-striped table-hover"
+                    id="datatable2"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Org Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Address</th>
+                        {/* <th>Number of Users</th> */}
+                        <th>Current Status</th>
+                        <th>Operation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {allorg &&
+                        allorg[0] &&
+                        allorg.map((orgVal, idx) => {
+                          return (
+                            <tr key={idx}>
+                              <td>{orgVal.orgName}</td>
+                              <td>{orgVal.email}</td>
+                              <td>{orgVal.phoneNumber}</td>
+                              <td>{orgVal.address}</td>
+                              <td>{orgVal.orgStatus}</td>
+                              <td>
+                                <img
+                                  className="img_icon_size log"
+                                  // onClick={() => onClickHandler()}
+                                  // onClick={() => clicking()}
+                                  // onClick={handleOpen}
+                                  onClick={() => onedit(orgVal._id)}
+                                  src={require("../../../static/images/edit_icon.png")}
+                                  alt="Edit"
+                                  title="Edit User"
+                                />
+                                <img
+                                  className="img_icon_size log"
+                                  // onClick={() => onClickHandler()}
+                                  onClick={() => onDelete(orgVal._id)}
+                                  src={require("../../../static/images/delete.png")}
+                                  alt="delete User"
+                                  title="delete User"
+                                />
+                              </td>
 
-                    <div className='text-right'>
-                        <button onClick={deletehandleShow}>Delete</button>
-                        <button onClick={edithandleShow}>edit</button>
-                        <img
-                            className="img_icon_size log text-right"
-                            //   onClick={() => handleAddOrg()}
-                            // onClick={handleShow}
-                            onClick={addhandleShow}
-                            src={addicon}
-                            alt="add-icon"
-                            title="add icon"
-                        /> &nbsp;&nbsp;&nbsp;
-                        <img
-                            className="img_icon_size log text-right"
-                            // onClick={() => onClickReset()}
-                            src={refresh}
-                            alt="refresh"
-
-                        />
-                    </div><br />
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive">
-
-
-                    <table border="1" id="datatable2" >
-                        <tr className='headingsizes'>
-                            <th>Org Name</th>
-                            <th>Email</th>
-                            <th>Phone No.</th>
-                            <th>Address</th>
-                            <th>Operation</th>
-                        </tr>
-                        <tr>
-                        </tr>
-                    </table>
-                    </div>
+                              {/* {orgVal.AgreementStatus === "Expired" ? (
+                                <td>
+                                  <center>
+                                     <button
+                                      variant="success"
+                                      className="btn sub_form"
+                                      // onClick={() =>
+                                      //   onRenewal(orgVal, idx)
+                                      // }
+                                    >
+                                      Renewal
+                                    </button> 
+                                  </center>
+                                </td>
+                              
+                              ) : (
+                                <td></td>
+                              )} */}
+                            </tr>
+                          );
+                        })}
+                    </tbody>
+                   
+                  </table>
                 </div>
-                {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-left">
-                </div> */}
+              </section>
+            </div>
+          </div>
+        </section>
+        {/* OrganiZation Deatils End */}
+      </div>
+      {/* modal for deactivating start */}
 
-
-                {/* add modal */}
-                <Modal show={show} onHide={handleClose}
-                    size="lg"
-                    aria-labelledby="contained-modal-title-vcenter"
-                    centered>
-                    <Modal.Header >
-
-                        <Modal.Title className='container'><h1 className='font-weight-bold '>ADD ORGANIZATION</h1></Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <form >
-                            <div className="container ">
-                                <section className="body">
-                                    <div className="body-inner">
-                                        <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Org Name <span >*</span></label>
-                                                <div className="controls">
-                                                    <input name="cat_name" id="cat_name" type="text" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div>
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Email<span >*</span></label>
-                                                <div className="controls">
-                                                    <input name="category_status" id="category_status" type="text" className="form-control" readonly />
-                                                    <span className="form-input-info" ></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Start Date <span >*</span></label>
-                                                <div className="controls">
-                                                    <input name="cat_name" id="cat_name" type="date" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div>
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Phone No.<span >*</span></label>
-                                                <div className="controls">
-                                                    <input name="category_status" id="category_status" type="text" className="form-control" readonly />
-                                                    <span className="form-input-info" ></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">End  Date <span >*</span></label>
-                                                <div className="controls">
-                                                    <input name="cat_name" id="cat_name" type="text" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div>
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Address</label>
-                                                <div className="controls">
-                                                    <textarea rows="2" name="category_description" id="category_description" className="form-control" ></textarea>
-                                                    <span className="form-input-info" ></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Org Logo <span >*</span></label>
-                                                <div className="controls">
-                                                    <input name="logo_name" id="logo_name" type="file" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="row form-group ">
-                                            <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
-                                                <br /><label className="control-label" >* Indicates mandatory fields.</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <button onClick={handleClose} className="btn contact_reg btn_color"> CANCEL</button>
-                        <button onClick={handleClose} className="btn contact_reg btn_color">  ADD</button>
-                    </Modal.Footer>
-                </Modal>
-
-                {/* edit modal */}
-                <Modal show={editshow} onHide={edithandleClose}
-                    size="lg"
-                    aria-labelledby="contained-modal-title-vcenter"
-                    centered>
-                    <Modal.Header >
-
-                        <Modal.Title className='container'><h1 className='font-weight-bold '>EDIT ORGANIZATION</h1></Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <form >
-                            <div className="container ">
-                                <section className="body">
-                                    <div className="body-inner">
-                                        <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Org Name </label>
-                                                <div className="controls">
-                                                    <input name="cat_name" id="cat_name" type="text" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div>
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Email</label>
-                                                <div className="controls">
-                                                    <input name="category_status" id="category_status" type="text" className="form-control" readonly />
-                                                    <span className="form-input-info" ></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Phone No.</label>
-                                                <div className="controls">
-                                                    <input name="category_status" id="category_status" type="text" className="form-control" readonly />
-                                                    <span className="form-input-info" ></span>
-                                                </div>
-
-                                            </div>
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Address</label>
-                                                <div className="controls">
-                                                    <textarea rows="2" name="category_description" id="category_description" className="form-control" ></textarea>
-                                                    <span className="form-input-info" ></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Org Logo</label>
-                                                <div className="controls">
-                                                    <input name="logo_name" id="logo_name" type="file" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <button onClick={edithandleClose} className="btn contact_reg btn_color"> CANCEL</button>
-                        <button onClick={edithandleClose} className="btn contact_reg btn_color">  EDIT</button>
-                    </Modal.Footer>
-                </Modal>
-
-
-
-                {/* delete modal */}
-                <Modal show={deleteshow} onHide={deletehandleClose}
-                    size="lg"
-                    aria-labelledby="contained-modal-title-vcenter"
-                    centered>
-                    <Modal.Header >
-
-                        <Modal.Title className='container'><h1 className='font-weight-bold '>DEACTIVATE ORGANIZATION</h1></Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                    <label className="control-label">Reason for Deactivating:</label>
+      {/* deactivating the Super User */}
+      <Modal
+        show={show}
+        // onHide={handleClose}
+        centered
+        
+  size="lg"
+  aria-labelledby="contained-modal-title-vcenter"
+      >
+          <Modal.Header >
+          <Modal.Title className='container'><h1 className='font-weight-bold '>DEACTIVATE ORGANIZATION</h1></Modal.Title>
+          </Modal.Header>
+      
+      
+        <Modal.Body>
+         
+          <label className="control-label">Reason for Deactivating:</label>
                         <form>
                             <div className="controls">
-                                <textarea rows="2" name="org_reason" id="org_reason" className="form-control" ></textarea>
+                                <textarea rows="2"  name="Organization_DE_Reason"
+                onChange={(e) => onInputChange(e)} id="org_reason" className="form-control" ></textarea>
                                 <span className="form-input-info" ></span>
                             </div>
 
                         </form>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <button onClick={deletehandleClose} className="btn contact_reg btn_color"> NO</button>
-                        <button onClick={deletehandleClose} className="btn contact_reg btn_color">  YES</button>
-                    </Modal.Footer>
-                </Modal>
+        </Modal.Body>
+        <Modal.Footer>
+          
 
+          
+<button onClick={handleClose} className="btn contact_reg btn_color"> NO</button>
+                        <button onClick={onAdd} className="btn contact_reg btn_color">  YES</button>
+        </Modal.Footer>
+      </Modal>
+      {/*  End Deactivating the user  */}
 
+      {/* Edit OrganiZation start */}
+      <Modal
+        show={showEditModal}
+        backdrop="static"
+        size="lg"
+        keyboard={false}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      
+      >
+        <Modal.Header >
 
-
-
+          <div className=" row col-lg-10 col-md-12 col-sm-12 col-12 ">
+            <h2 className="heading_color">Edit Organization Details </h2>
+            <div className=" tenant_img col-lg-2">
+              <button onClick={handleEditModalClose} className="close">
+                <img
+                  src={require("../../../static/images/close.png")}
+                  alt="X"
+                  style={{ height: "20px", width: "20px" }}
+                />
+              </button>
             </div>
-        </div>
-    )
-}
+          </div>
+        </Modal.Header>
+        <Modal.Body className="org_add">
+          {/* <div className="container container_align">
+              <div className=" col-lg-12 col-md-9 col-sm-9 col-12 py-3"> */}
+          <div className="col-lg-3 col-md-2 col-sm-4 col-12">
+            <label> OrganizationName:</label>
+
+            {/* <div className="col-lg-3 col-md-4 col-sm-4 col-12"> */}
+            <input
+              type="text"
+              name="OrganizationName"
+              value={OrganizationName}
+              // onChange={(e) => onORGchange(e)}
+              className="form-control"
+              // onChange={(e) => onInputChange(e)}
+            />
+          </div>
+          <br></br>
+          {/* </div> */}
+          <div className="col-lg-3 col-md-2 col-sm-4 col-12">
+            <label>Email *:</label>
+            {/* <div className="col-lg-3  col-md-4 col-sm-4 col-12"> */}
+            <input
+              type="email"
+              name="OrganizationEmail"
+              value={OrganizationEmail}
+              // onChange={(e) => onORGchange(e)}
+              className="form-control"
+              //onChange={(e) => onInputChange(e)}
+              required
+            />{" "}
+          </div>
+          <br></br>
+          {/* </div> */}
+          <div className="col-lg-3 col-md-2 col-sm-4 col-12">
+            <label>Phone No:</label>
+
+            {/* <div className="col-lg-4 col-md-4 col-sm-4 col-12"> */}
+            <input
+              type="number"
+              name="OrganizationNumber"
+              value={OrganizationNumber}
+              // onChange={(e) => onORGchange(e)}
+              className="form-control"
+              //onChange={(e) => onInputChange(e)}
+            />
+          </div>
+          <br></br>
+          {/* </div> */}
+          <div className="col-lg-3 col-md-2 col-sm-4 col-12">
+            <label>Number of User:</label>
+            {/* <div className="col-lg-4 col-md-4 col-sm-4 col-12"> */}
+            <input
+              type="number"
+              //  name="user"
+              //value={}
+              className="form-control"
+              //onChange={(e) => onInputChange(e)}
+            />{" "}
+          </div>
+          <br></br>
+          {/* </div> */}
+          {/* </div> */}
+
+          <div className="row col-lg-12 col-md-9 col-sm-9 col-12 py-3">
+            <div className="col-lg-3 col-md-2 col-sm-4 col-12">
+              <label> Address *:</label>
+              {/* <div className="col-lg-3 col-md-4 col-sm-6 col-12"> */}
+              <textarea
+                name="OrganizationAddress"
+                value={OrganizationAddress}
+                // onChange={(e) => onORGchange(e)}
+                // id="tenantAddr"
+                className="textarea form-control"
+                rows="5"
+                cols="20"
+                placeholder="Address"
+                // onChange={(e) => onInputChange(e)}
+                style={{ width: "100%" }}
+                required
+              ></textarea>{" "}
+            </div>
+            <br></br>
+            {/* </div> */}
+            <div className="addItem  col-lg-3 col-md-2 col-sm-4 col-12">
+              <label className="field_font">
+                Location
+                <i className="text-danger ">
+                  <b>*</b>
+                </i>{" "}
+                :
+              </label>
+            </div>
+            <div className="col-lg-3 col-md-4 col-sm-4 col-12">
+              <input
+                className=""
+                type="text"
+                name="Location"
+                value={Location}
+                // onChange={(e) => setinput(e.target.value)}
+                placeholder="Location"
+                id="Location"
+              ></input>
+
+              {/* <div className="showItem ">
+                  {items.map((ele, index) => {
+                    return (
+                      <div className="eachItem" key={index}>
+                        <span>{ele}</span>{" "}
+                        <button
+                          onClick={() => handleLocationclose(index)}
+                          className="loc_close_btn m-2"
+                        >
+                          X
+                        </button>
+                      </div>
+                    );
+                  })}
+                </div> */}
+            </div>
+            {/*------------- Multiple Location adding details Ending------------ */}
+          </div>
+          {/* </div> */}
+        </Modal.Body>
+        <Modal.Footer>
+          <div className="col-lg-12 Savebutton " size="lg">
+            <button
+              variant="success"
+              className="btn sub_form btn_continue Save float-right"
+              // onClick={() => onSubmitORGdata()}
+            >
+              Save
+            </button>
+            <button
+              variant="success"
+              className="btn sub_form btn_continue Save float-right"
+              // onClick={() => onSubmitORGdata()}
+              onClick={()=>handleClose()}
+            >
+             cancel
+            </button>
+          </div>
+        </Modal.Footer>
+      </Modal>
+      {/* End of Edit Organization */}
+    </div>
+  );
+};
+const mapStateToProps = (state) => ({
+  dag: state.dag,
+});
+export default connect(mapStateToProps, {
+  getAllOrganization,
+  deleteOrganization,
+})(Organization);

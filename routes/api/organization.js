@@ -1,7 +1,6 @@
 const router = require("express").Router();
-
 const OrgDetails = require("../../models/OrganizationDetails");
-
+const mongoose = require("mongoose");
 //add organization
 router.route("/addorganization").post((req, res) => {
     console.log(req.body)
@@ -27,43 +26,37 @@ router.route("/").get((req, res) => {
 });
 
 //deactive Org
-router.route("/deactiveorganization").post((req, res) => {
+router.route("/deactiveorg").post((req, res) => {
 
     let data = req.body;
+    console.log("data",data)
     OrgDetails.updateOne(
-        { _id: data.Org_id },
+        { _id:  data.orgId },
         {
             $set: {
-                orgStatus: "Deactive",
-                orgDeactiveReason: data.deactive_reason,
+                orgStatus: "De",
             },
         }
     )
         .then((data) => {
-            res.status(200).json(data);
+            
+            res.status(200).json("sucess");
         })
 
         .catch((err) => res.status(400).json("Error" + err));
 }
 );
 
-//deactive Org
+//edit Org
 router.route("/editorganization").post((req, res) => {
 
     let data = req.body;
 
     OrgDetails.updateOne(
-        { _id: data.Org_id },
+        { _id:  data.orgId },
         {
             $set: {
-                orgName: "",
-                email: "",
-                startDate: "",
-                phoneNumber: "",
-                endDate: "",
-                address: "",
-                orgStatus: "",
-                orgDeactiveReason: "",
+                orgName: "e",
             },
         }
     )
