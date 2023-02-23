@@ -50,6 +50,8 @@ const Organization = ({
         OrganizationEmail: "",
         OrganizationNumber: "",
         OrganizationAddress: "",
+        OrganizationStartdate:"",
+        
 
     });
     const {
@@ -57,6 +59,7 @@ const Organization = ({
         OrganizationEmail,
         OrganizationNumber,
         OrganizationAddress,
+        OrganizationStartdate,
 
     } = formDataORG;
 
@@ -286,15 +289,22 @@ const Organization = ({
                                             </div>
                                         </div>
                                     </div>
-                                    {/* <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                                    <div className="row form-group">
+                                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                                                <label className="control-label">Start Date </label>
+                                                <div className="controls">
+                                                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control" value={OrganizationStartdate} onChange={(e) => onORGchange(e)} />
+                                                    <span id="category_result" className="form-input-info"></span>
+                                                </div>
+                                            </div>
+                                            {/* <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Org Logo</label>
                                                 <div className="controls">
                                                     <input name="logo_name" id="logo_name" type="file" className="form-control" value="" />
                                                     <span id="category_result" className="form-input-info"></span>
                                                 </div>
-                                            </div>
-                                        </div> */}
+                                            </div> */}
+                                        </div>
                                 </div>
                             </section>
                         </div>
