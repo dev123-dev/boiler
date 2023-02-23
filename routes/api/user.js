@@ -26,15 +26,15 @@ router.route("/getuser").get((req, res) => {
 });
 
 //deactive user
-router.route("/deactiveuser").get((req, res) => {
+router.route("/deactiveuser").post((req, res) => {
 
     let data = req.body;
     UserDetails.updateOne(
-        { _id: data.Org_id },
+        { _id: data.User_id },
         {
             $set: {
                 userStatus: "Deactive",
-                userDeactiveReason: data.deactive_reason,
+                //userDeactiveReason: data.deactive_reason,
             },
         }
     )
@@ -47,7 +47,7 @@ router.route("/deactiveuser").get((req, res) => {
 );
 
 //edit user
-router.route("/edituser").get((req, res) => {
+router.route("/edituser").post((req, res) => {
 
     let data = req.body;
 

@@ -16,7 +16,7 @@ router.route("/addorganization").post((req, res) => {
 
 //get all details 
 router.route("/").get((req, res) => {
-    OrgDetails.find().select("-password")
+    OrgDetails.find()
 
         .then((data) => {
             res.status(200).json(data);
@@ -29,7 +29,7 @@ router.route("/").get((req, res) => {
 router.route("/deactiveorg").post((req, res) => {
 
     let data = req.body;
-    console.log("data",data)
+    
     OrgDetails.updateOne(
         { _id:  data.Org_id },
         {
@@ -57,7 +57,11 @@ router.route("/editorganization").post((req, res) => {
         { _id:  data.orgId },
         {
             $set: {
-                orgName: "e",
+                orgName:"", 
+                email:"",
+                startDate:"",
+                phoneNumber:"",
+                address:"",
             },
         }
     )

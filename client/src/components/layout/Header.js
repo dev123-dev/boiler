@@ -61,7 +61,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         >
            <Navbar.Brand>
             <img
-              className="Icon"
+              className="Icon p-2"
               alt="Pinnacle Media"
               src={require("../../static/images/dag_logo1.png")}
             />
@@ -201,7 +201,9 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         onClick={() => openSecondLevelMenu2()}
                         className="navbar-right "
                       >
-                        {user.userGroup}&nbsp;
+                        {user.userGroup}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <i className="fa fa-caret-down" />
                       </Link>
 
