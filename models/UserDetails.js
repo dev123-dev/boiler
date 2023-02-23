@@ -38,6 +38,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userDeactiveReason:{
+    type: String,
+  }
 });
 
 module.exports = UserDetails = mongoose.model("users", UserSchema);

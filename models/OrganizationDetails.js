@@ -30,6 +30,9 @@ const OrgSchema = new mongoose.Schema({
     type: String,
   
   },
+  orgDeactiveReason:{
+    type: String,
+  },
 });
 
 module.exports = OrgDetails = mongoose.model("Org", OrgSchema);
