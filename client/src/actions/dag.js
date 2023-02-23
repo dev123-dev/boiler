@@ -56,7 +56,7 @@ export const AddOrganization = (OrganizationData)=> async(dispatch)=>{
 export const getAllOrganization = () => async (dispatch) => {
   try {
   
-    const res = await axios.get(`${linkPath}/api/organization/getallorganization`);
+    const res = await axios.get(`${linkPath}/api/organization/`);
     dispatch({
       type: GET_ALL_ORGANIZATION,
       payload: res.data,

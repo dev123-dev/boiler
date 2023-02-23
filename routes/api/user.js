@@ -1,45 +1,77 @@
-const express = require("express");
-const router = express.Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const config = require("config");
-const { check, validationResult } = require("express-validator");
+const router = require("express").Router();
 
-const mongoose = require("mongoose");
-const User = require("../../models/StaffDetails");
+const UserDetails = require("../../models/UserDetails");
 
-// @route    POST api/users
-// @desc     Register User
-// @access   Public
-router.post(
-  "/register",
-  [
-    check("name", "Invalid Request").not().isEmpty(),
-    check("password", "Invalid Request").not().isEmpty(),
-  ],
-  async (req, res) => {
-    //validating the Request
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    //assigning the data from body
+//add user
+router.route("/adduser").post((req, res) => {
+    console.log(req.body)
+    let User = new UserDetails(req.body)
+
+    User.save(req.body)
+        .then((data) => {
+            res.status(200).json(data);
+        })
+        .catch((err) => res.status(400).json("Error" + err));
+});
+
+//get all user 
+router.route("/getuser").get((req, res) => {
+    UserDetails.find().select("-password")
+
+        .then((data) => {
+            res.status(200).json(data);
+        })
+
+        .catch((err) => res.status(400).json("Error" + err));
+});
+
+//deactive user
+router.route("/deactiveuser").get((req, res) => {
+
+    let data = req.body;
+    UserDetails.updateOne(
+        { _id: data.Org_id },
+        {
+            $set: {
+                userStatus: "Deactive",
+                userDeactiveReason: data.deactive_reason,
+            },
+        }
+    )
+        .then((data) => {
+            res.status(200).json(data);
+        })
+
+        .catch((err) => res.status(400).json("Error" + err));
+}
+);
+
+//edit user
+router.route("/edituser").get((req, res) => {
+
     let data = req.body;
 
-    try {
-      // Assigning the Data To User Model as The data is already Structured
-      user = new User(data);
-      //preparing The Salt
-      const salt = await bcrypt.genSalt(10);
-      //hashing the Password
-      user.password = await bcrypt.hash(data.password, salt);
-      //save the Data to db
-      await user.save();
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send("Internal Server Error.");
-    }
-  }
+    UserDetails.updateOne(
+        { _id: data.Org_id },
+        {
+            $set: {
+                orgName: "",
+                email: "",
+                startDate: "",
+                phoneNumber: "",
+                endDate: "",
+                address: "",
+                orgStatus: "",
+                orgDeactiveReason: "",
+            },
+        }
+    )
+        .then((data) => {
+            res.status(200).json(data);
+        })
+
+        .catch((err) => res.status(400).json("Error" + err));
+}
 );
 
 module.exports = router;
