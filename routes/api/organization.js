@@ -31,10 +31,11 @@ router.route("/deactiveorg").post((req, res) => {
     let data = req.body;
     console.log("data",data)
     OrgDetails.updateOne(
-        { _id:  data.orgId },
+        { _id:  data.Org_id },
         {
             $set: {
-                orgStatus: "De",
+                orgStatus: "Deactive",
+                orgDeactiveReason:data.deactive_reason
             },
         }
     )
