@@ -87,7 +87,6 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
       endDate:"",
       orgStatus:"Active",
      
-     
     });
     handleEditModalClose();
   };
