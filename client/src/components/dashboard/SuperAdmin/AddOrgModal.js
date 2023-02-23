@@ -120,6 +120,15 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                     <Modal.Header >
 
                         <Modal.Title className='container'><h1 className='font-weight-bold '>ADD ORGANIZATION</h1></Modal.Title>
+                        <div className="col-lg-2">
+              <button onClick={()=>handleAddClose()}className="close">
+                <img
+                  src={require("../../../static/images/close.png")}
+                  alt="X"
+                  style={{ height: "20px", width: "20px" }}
+                />
+              </button>
+            </div>
                     </Modal.Header>
 
 
@@ -148,7 +157,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Start Date <span >*</span></label>
                                                 <div className="controls">
-                                                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control"  onChange={(e) => onORGchange(e)} />
+                                                    <input name="OrganizationStartdate" id="cat_name" type="text" className="form-control"  onChange={(e) => onORGchange(e)} />
                                                     <span id="category_result" className="form-input-info"></span>
                                                 </div>
                                             </div>

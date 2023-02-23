@@ -11,26 +11,26 @@ import { updateOrganization } from "../../../actions/dag";
 // import "../../../../client/src/styles/CustomisedStyle.css";
 // import { editOrganization } from "../../../actions/dag";
 const EditOrganization = ({
-    auth: { isAuthenticated, user, users },
-    Org,
-    updateOrganization
-})=>{
-   console.log(Org);
-    const [showEditModal, setShowEditModal] = useState(false);
-    const handleEditModalClose = () => setShowEditModal(false);
-    const handleOpen = () => setShowEditModal(true);
-    const onAddStaffModalChange = (e) => {
-      if (e) {
-        handleEditModalClose();
-      }
-    };
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+  auth: { isAuthenticated, user, users },
+  Org,
+  updateOrganization
+}) => {
+  console.log(Org);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const handleEditModalClose = () => setShowEditModal(false);
+  const handleOpen = () => setShowEditModal(true);
+  const onAddStaffModalChange = (e) => {
+    if (e) {
+      handleEditModalClose();
+    }
+  };
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
- const [OrgId, setId] = useState("");
+  const [OrgId, setId] = useState("");
 
-//  console.log(org.Location)
+  //  console.log(org.Location)
 
   const onedit = (id) => {
     setId(id);
@@ -38,33 +38,34 @@ const EditOrganization = ({
   };
 
   const [inputdata, setinput] = useState("");
-//   const [items, setitem] = useState(org.Location); 
+  //   const [items, setitem] = useState(org.Location); 
 
 
-//   const handleLocationclose = (ele1,index) => {
-   
-//     const delitem = items.filter((ele, ind) => {
-//       return ele1 != ele;
-//     });
-//     setitem(delitem);
-//   };
+  //   const handleLocationclose = (ele1,index) => {
 
-//   const addItem = () => {
-//     if (!inputdata) {
-//     } else {
-//       setitem([...items, inputdata]);
-//       setinput("");
-//     }
-//   };
-//multiple location end
+  //     const delitem = items.filter((ele, ind) => {
+  //       return ele1 != ele;
+  //     });
+  //     setitem(delitem);
+  //   };
 
-const [formDataORG, setFormDataORG] = useState({
-    OrganizationId :  Org._id,
-    OrganizationName: Org.orgName ,
-    OrganizationEmail:  Org.email,
-    OrganizationNumber:  Org.phoneNumber,
-    OrganizationAddress: Org.address ,
-   
+  //   const addItem = () => {
+  //     if (!inputdata) {
+  //     } else {
+  //       setitem([...items, inputdata]);
+  //       setinput("");
+  //     }
+  //   };
+  //multiple location end
+
+  const [formDataORG, setFormDataORG] = useState({
+    OrganizationId: Org._id,
+    OrganizationName: Org.orgName,
+    OrganizationEmail: Org.email,
+    OrganizationNumber: Org.phoneNumber,
+    OrganizationAddress: Org.address,
+    OrganizationStartdate:Org.startDate,
+
   });
   const {
     OrganizationId,
@@ -72,172 +73,116 @@ const [formDataORG, setFormDataORG] = useState({
     OrganizationEmail,
     OrganizationNumber,
     OrganizationAddress,
-    
+    OrganizationStartdate,
+
   } = formDataORG;
   const onInputChange = (e) => {
     setFormDataORG({ ...formDataORG, [e.target.name]: e.target.value });
   };
 
-  const onUpdate=()=>{
+  const onUpdate = () => {
     const update = {
-    OrganizationId : OrganizationId, 
-    OrganizationName : OrganizationName,
-    OrganizationEmail : OrganizationEmail,
-    OrganizationNumber : OrganizationNumber,
-    OrganizationAddress : OrganizationAddress,
- 
+      OrganizationId: OrganizationId,
+      OrganizationName: OrganizationName,
+      OrganizationEmail: OrganizationEmail,
+      OrganizationNumber: OrganizationNumber,
+      OrganizationAddress: OrganizationAddress,
+      OrganizationStartdate:OrganizationStartdate,
+
     }
-    console.log("main page"+update)
+    console.log("main page" + update)
     updateOrganization(update)
- };
- return !isAuthenticated || !user || !users ? (
+  };
+  return !isAuthenticated || !user || !users ? (
     <Fragment></Fragment>
   ) : (
-    
-    
-       <Fragment>
-       
-          {/* <div className="container container_align">
-              <div className=" col-lg-12 col-md-9 col-sm-9 col-12 py-3"> */}
-          <div className="col-lg-3 col-md-2 col-sm-4 col-12">
-            <label> OrganizationName:</label>
 
-            {/* <div className="col-lg-3 col-md-4 col-sm-4 col-12"> */}
-            <input
-              type="text"
-              name="OrganizationName"
-              value={OrganizationName}
-              // onChange={(e) => onORGchange(e)}
-              className="form-control"
-               onChange={(e) => onInputChange(e)}
-            />
-          </div>
-          <br></br>
-          {/* </div> */}
-          <div className="col-lg-3 col-md-2 col-sm-4 col-12">
-            <label>Email *:</label>
-            {/* <div className="col-lg-3  col-md-4 col-sm-4 col-12"> */}
-            <input
-              type="email"
-              name="OrganizationEmail"
-              value={OrganizationEmail}
-              // onChange={(e) => onORGchange(e)}
-              className="form-control"
-              onChange={(e) => onInputChange(e)}
-              required
-            />{" "}
-          </div>
-          <br></br>
-          {/* </div> */}
-          <div className="col-lg-3 col-md-2 col-sm-4 col-12">
-            <label>Phone No:</label>
 
-            {/* <div className="col-lg-4 col-md-4 col-sm-4 col-12"> */}
-            <input
-              type="number"
-              name="OrganizationNumber"
-              value={OrganizationNumber}
-              // onChange={(e) => onORGchange(e)}
-              className="form-control"
-              onChange={(e) => onInputChange(e)}
-            />
-          </div>
-          <br></br>
- {/* </div> */}
- {/* <div className="col-lg-3 col-md-2 col-sm-4 col-12">
-            <label>Number of User:</label>
-            <div className="col-lg-4 col-md-4 col-sm-4 col-12">
-            <input
-              type="number"
-               name="user"
-              value={}
-              className="form-control"
-              onChange={(e) => onInputChange(e)}
-            />{" "}
-          </div> */}
-          <br></br>
-          {/* </div> */}
-          {/* </div> */}
-
-          <div className="row col-lg-12 col-md-9 col-sm-9 col-12 py-3">
-            <div className="col-lg-3 col-md-2 col-sm-4 col-12">
-              <label> Address *:</label>
-              {/* <div className="col-lg-3 col-md-4 col-sm-6 col-12"> */}
-              <textarea
-                name="OrganizationAddress"
-                value={OrganizationAddress}
-                // onChange={(e) => onORGchange(e)}
-                // id="tenantAddr"
-                className="textarea form-control"
-                rows="5"
-                cols="20"
-                placeholder="Address"
-                 onChange={(e) => onInputChange(e)}
-                style={{ width: "100%" }}
-                required
-              ></textarea>{" "}
-            </div>
-            <br></br>
-            {/* </div> */}
-            {/* <div className="addItem  col-lg-2 col-md-2 col-sm-4 col-12">
-                <label className="field_font">
-                  Location
-                  <i className="text-danger  ">
-                    <b>*</b>
-                  </i>{" "}
-                  :
-                </label>
+    <Fragment>
+      <form >
+        <div className="container ">
+          <section className="body">
+            <div className="body-inner">
+              <div className="row form-group">
+                <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                  <label className="control-label">Org Name </label>
+                  <div className="controls">
+                    <input name="OrganizationName" id="cat_name" type="text" className="form-control" value={OrganizationName} onChange={(e) => onInputChange(e)} />
+                    <span id="category_result" className="form-input-info"></span>
+                  </div>
+                </div>
+                <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                  <label className="control-label">Email</label>
+                  <div className="controls">
+                    <input name="OrganizationEmail" id="category_status" type="text" className="form-control" value={OrganizationEmail} onChange={(e) => onInputChange(e)} />
+                    <span className="form-input-info" ></span>
+                  </div>
+                </div>
               </div>
-              <div className="col-lg-4 col-md-4 col-sm-4 col-12">
-                <input
-                  className="form-control"
-                  type="text"
-                  name="Location"
-                  value={inputdata}
-                  onChange={(e) => setinput(e.target.value)}
-                  placeholder="Location"
-                  id="Location"
-                ></input>
-                <button className="loc-btn " onClick={addItem}>
-                  +
-                </button>
-                <div className="showItem ">
-                    {items.map((ele,index1)=>{return (
-                      <div className="eachItem" key={index1}>
-                        <span>{ele}</span>{" "}
-                        <button
-                          onClick={() => handleLocationclose(ele,index1)}
-                          className="loc_close_btn m-5 text-end"
-                        >
-                          X
-                        </button>
-                      </div>
-                    );})}
+              <div className="row form-group">
+                <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                  <label className="control-label">Phone No.</label>
+                  <div className="controls">
+                    <input name="OrganizationNumber" id="category_status" type="text" className="form-control" value={OrganizationNumber} onChange={(e) => onInputChange(e)} />
+                    <span className="form-input-info" ></span>
+                  </div>
 
                 </div>
-              </div> */}
-            {/*------------- Multiple Location adding details Ending------------ */}
+                <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                  <label className="control-label">Address</label>
+                  <div className="controls">
+                    <textarea rows="2" name="OrganizationAddress" id="category_description" className="form-control" value={OrganizationAddress} onChange={(e) => onInputChange(e)}  ></textarea>
+                    <span className="form-input-info" ></span>
+                  </div>
+                </div>
+              </div>
+              <div className="row form-group">
+                {/* <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                  <label className="control-label">Org Logo</label>
+                  <div className="controls">
+                    <input name="logo_name" id="logo_name" type="file" className="form-control" value="" />
+                    <span id="category_result" className="form-input-info"></span>
+                  </div>
+                </div> */}
+                <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                  <label className="control-label">Start Date <span >*</span></label>
+                  <div className="controls">
+                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control" 
+                    
+                    
+                    placeholder="dd/mm/yyyy"
+                    // className="form-control cpp-input datevalidation"
+                    // name="instistartDate"
+                    // value={aggrementStartDate}
+                    
+                    value={OrganizationStartdate} onChange={(e) => onInputChange(e)}  />
+                    <span id="category_result" className="form-input-info"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <div className="text-right">
+          {/* <button className="btn contact_reg btn_color"  onClick={handleClose}>CANCEL</button> */}
+          <button className="btn contact_reg btn_color" onClick={()=>onUpdate()}>UPDATE</button>
+
           </div>
-          {/* </div> */}
-          <div className="col-lg-12 Savebutton " size="lg">
-          <button
-            variant="success"
-            className="btn sub_form btn_continue Save float-right"
-            onClick={() => onUpdate()}>
-            Update
-          </button>
-          </div>
-          </Fragment>
+         
+        </div>
+      </form>
+
+
+    </Fragment>
   )
 }
 const mapStateToProps = (state) => ({
-    auth: state.auth,
-    tenants1: state.tenants,
-  });
-  
-  export default connect(mapStateToProps, {
-   // UpdateTenantsDetails,
-   // getAllTenants,
-   // tenantsDetailsHistory,
-   updateOrganization,
-  })(EditOrganization);
+  auth: state.auth,
+  tenants1: state.tenants,
+});
+
+export default connect(mapStateToProps, {
+  // UpdateTenantsDetails,
+  // getAllTenants,
+  // tenantsDetailsHistory,
+  updateOrganization,
+})(EditOrganization);

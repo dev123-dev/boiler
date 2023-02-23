@@ -292,6 +292,7 @@ const Organization = ({
             <EditOrganization  Org={orgdata}/>
                
           </Modal.Body>
+        
         </Modal>
      
         </div>
