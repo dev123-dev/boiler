@@ -59,19 +59,35 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           fixed="top"
           style={{ padding: "0px 1em" }}
         >
-          <Navbar.Brand>
+           <Navbar.Brand>
             <img
               className="Icon"
               alt="Pinnacle Media"
               src={require("../../static/images/dag_logo1.png")}
             />
           </Navbar.Brand>
+          
+
+           
+
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto navbar_Collapse_content">
+
             <NavItem>
+            {!loading && isAuthenticated && user &&user.userGroup==="Dev" ? (
+                    <NavLink
+                      to="/superdashboard" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                      Home
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+                   </NavItem>
 
-
+            <NavItem>
             {!loading && isAuthenticated && user &&user.userGroup==="Dev" ? (
                     <NavLink
                       to="/organization" className='navlink'
@@ -96,6 +112,20 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                     <NavItem></NavItem>
                   )}
              </NavItem>
+
+
+             <NavItem>
+            {!loading && isAuthenticated && user &&user.userGroup==="Admin" ? (
+                    <NavLink
+                      to="/admindashboard" className='navlink'
+                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    >
+                     Home
+                    </NavLink>
+                  ) : (
+                    <NavItem></NavItem>
+                  )}
+                   </NavItem>
              <NavItem>   
              {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
                     <NavLink
