@@ -42,12 +42,12 @@ const AddOrgModal=({
         });
       };
 
-      const [showEditModal, setShowEditModal] = useState(false);
-  const handleEditModalClose = () => setShowEditModal(false);
-  const handleOpen = () => setShowEditModal(true);
+      const [showAddModal, setShowAddModal] = useState(false);
+  const handleAddClose = () => setShowAddModal(false);
+  const handleOpen = () => setShowAddModal(true);
   const onAddStaffModalChange = (e) => {
     if (e) {
-      handleEditModalClose();
+      handleAddClose();
     }
   };
 
@@ -90,7 +90,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
       orgDeactiveReason:"",
      
     });
-    handleEditModalClose();
+    handleAddClose();
   };
 
   return !isAuthenticated || !user || !users ? (
@@ -112,7 +112,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
         </div>
         {/* Adding Organization */}
      
-            <Modal show={showEditModal}  backdrop="static"
+            <Modal show={showAddModal}  backdrop="static"
           keyboard={false} onHide={handleClose}
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
@@ -200,7 +200,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
          
            <Modal.Footer>
   
-                        <button onClick={()=>handleEditModalClose()} className="btn contact_reg btn_color"> CANCEL</button>
+                        <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button>
                         <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button>
                     </Modal.Footer>
           </Modal>
