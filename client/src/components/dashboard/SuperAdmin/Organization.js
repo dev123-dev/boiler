@@ -7,6 +7,8 @@ import AddOrgModal from "./AddOrgModal";
 import Modal from "react-bootstrap/Modal";
 import { getAllOrganization } from "../../../actions/dag";
 import { deleteOrganization } from "../../../actions/dag";
+import { editOrganization } from "../../../actions/dag";
+import EditOrganization from "./EditOrganization"
 // import "../../../../client/src/styles/CustomisedStyle.css";
 // import "../../styles/CustomisedStyle.css";
 
@@ -16,6 +18,7 @@ const Organization = ({
     dag: { allorg },
     deleteOrganization,
     getAllOrganization,
+    editOrganization,
 }) => {
     useEffect(() => {
         getAllOrganization("");
@@ -24,7 +27,7 @@ const Organization = ({
     const clicking = () => {
         alert("Edit");
     };
-    console.log(allorg[0])
+    // console.log(allorg[0])
 
     //deactivate
     const [formData, setFormData] = useState({
@@ -59,6 +62,7 @@ const Organization = ({
         OrganizationAddress,
 
     } = formDataORG;
+   
 
 
     //deactivate modal
@@ -82,11 +86,27 @@ const Organization = ({
         setId(id);
         handleShow();
     };
-
-    const onedit = (id) => {
+    const[orgdata,setorgdata]=useState(null);
+    const onedit = (user,id) => {
+        setShowUpdateModal(true);
         setId(id);
+        setorgdata(user)
         handleOpen();
-    };
+        
+      };
+     
+   
+
+      const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const handleUpdateModalClose = () => setShowUpdateModal(false);
+
+  const onUpdateModalChange = (e) => {
+    if (e) {
+      handleUpdateModalClose();
+    }
+  };
+ 
+    
 
     const onAdd = () => {
         const reason = {
@@ -97,7 +117,22 @@ const Organization = ({
         deleteOrganization(reason);
         console.log(OrgId);
     };
- 
+    // const onEdit = () => {
+    //     const editdata = {
+    //         Org_id: OrgId,
+    //         orgName:OrganizationName,
+    //         email:OrganizationEmail,
+    //         phoneNumber:OrganizationNumber,
+    //         address:OrganizationAddress,
+
+            
+           
+    //     };
+    //     console.log(editdata)
+    //  editOrganization(editdata);
+   
+       
+    // };
     
 
     return (
@@ -226,6 +261,36 @@ const Organization = ({
                     <button onClick={onAdd} className="btn contact_reg btn_color">  YES</button>
                 </Modal.Footer>
             </Modal>
+{/* edit modal */}
+            <Modal
+          show={showUpdateModal}
+          backdrop="static"
+          keyboard={false}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header>
+            <div className="col-lg-10">
+              <h3 className="modal-title text-center">Edit Organization Details </h3>
+            </div>
+            <div className="col-lg-2">
+              <button onClick={handleUpdateModalClose} className="close">
+                <img
+                  src={require("../../../static/images/close.png")}
+                  alt="X"
+                  style={{ height: "20px", width: "20px" }}
+                />
+              </button>
+            </div>
+          </Modal.Header>
+          <Modal.Body>
+
+            <EditOrganization  Org={orgdata}/>
+               
+          </Modal.Body>
+        </Modal>
+     
            
 
 
@@ -235,94 +300,7 @@ const Organization = ({
 
 
             {/* Edit OrganiZation start */}
-            <Modal
-                show={showEditModal}
-                backdrop="static"
-                size="lg"
-                keyboard={false}
-                aria-labelledby="contained-modal-title-vcenter"
-                centered
-
-            >
-                <Modal.Header >
-
-                    <Modal.Title className='container'><h1 className='font-weight-bold '>EDIT ORGANIZATION</h1></Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <form >
-                        <div className="container ">
-                            <section className="body">
-                                <div className="body-inner">
-                                    <div className="row form-group">
-                                        <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                            <label className="control-label">Org Name </label>
-                                            <div className="controls">
-                                                <input name="OrganizationName" id="cat_name" type="text" className="form-control" value={OrganizationName}  onChange={(e) => onORGchange(e)} />
-                                                <span id="category_result" className="form-input-info"></span>
-                                            </div>
-                                        </div>
-                                        <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                            <label className="control-label">Email</label>
-                                            <div className="controls">
-                                                <input name="OrganizationEmail" id="category_status" type="text" className="form-control"  value={OrganizationEmail}  onChange={(e) => onORGchange(e)} readonly />
-                                                <span className="form-input-info" ></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="row form-group">
-                                        <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                            <label className="control-label">Phone No.</label>
-                                            <div className="controls">
-                                                <input name="OrganizationNumber" id="category_status" type="number" className="form-control" value={OrganizationNumber}  onChange={(e) => onORGchange(e)}  readonly />
-                                                <span className="form-input-info" ></span>
-                                            </div>
-
-                                        </div>
-                                        <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                            <label className="control-label">Address</label>
-                                            <div className="controls">
-                                                <textarea rows="2" name="OrganizationAddress" id="category_description" className="form-control" value={OrganizationAddress}  onChange={(e) => onORGchange(e)}  ></textarea>
-                                                <span className="form-input-info" ></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {/* <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Org Logo</label>
-                                                <div className="controls">
-                                                    <input name="logo_name" id="logo_name" type="file" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div>
-                                        </div> */}
-                                </div>
-                            </section>
-                        </div>
-                    </form>
-
-                </Modal.Body>
-                <Modal.Footer>
-                     <button onClick={handleEditModalClose} className="btn contact_reg btn_color"> NO</button>
-                    <button onClick={handleEditModalClose} className="btn contact_reg btn_color">  EDIT</button>
-                    {/* <div className="col-lg-12 Savebutton " size="lg">
-            <button
-              variant="success"
-              className="btn sub_form btn_continue Save float-right"
-              // onClick={() => onSubmitORGdata()}
-            >
-              Save
-            </button>
-            <button
-              variant="success"
-              className="btn sub_form btn_continue Save float-right"
-              // onClick={() => onSubmitORGdata()}
-              onClick={()=>handleClose()}
-            >
-             cancel
-            </button>
-          </div> */}
-                </Modal.Footer>
-            </Modal>
+            
             {/* End of Edit Organization */}
         </div>
     );
@@ -333,4 +311,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
     getAllOrganization,
     deleteOrganization,
+   
 })(Organization);

@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 // import refresh from "../../static/images/download.png"
 import refresh from "../../../static/images/download.png"
+import { getAllOrganization } from "../../../actions/dag";
 // import AddStaffFeedBack from "./AddStaffFeedBack";
 
 
@@ -15,13 +16,13 @@ import refresh from "../../../static/images/download.png"
 
 const SuperDashboard = ({
   auth: { isAuthenticated, user, users },
-
+  
 }) => {
   useEffect(() => {
-    // getAllUsers();
+    
   },);
 
-  console.log(users);
+  // console.log(users);
    //   const [showModal, setShowModal] = useState(false);
   //   const handleViewModalClose = () => setShowModal(false);
 
