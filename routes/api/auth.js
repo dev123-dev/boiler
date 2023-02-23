@@ -48,6 +48,7 @@ router.post(
     const { userName, password } = req.body;
 
     try {
+
       //userName Check In DB
       let UserDetail = await UserDetails.findOne({
         userName: userName,
@@ -96,6 +97,7 @@ router.post(
 // @desc     Get Authenticated User
 // @access   Private
 router.get("/load-user", auth, async (req, res) => {
+  console.log("hit")
   try {
     const user = await UserDetails.findById(req.user.id).select("-password");
     res.json(user);

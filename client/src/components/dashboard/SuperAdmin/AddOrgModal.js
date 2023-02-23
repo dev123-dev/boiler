@@ -74,7 +74,6 @@ const AddOrgModal=({
       endDate:"",
       orgStatus:"Active",
      
-     
     });
     handleEditModalClose();
   };
