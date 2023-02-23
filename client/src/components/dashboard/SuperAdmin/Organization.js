@@ -93,7 +93,7 @@ dag: { allorg },
         <section className="sub_reg">
           <div className="row col-lg-12 col-md-12 col-sm-12 col-12 no_padding">
             <div className="col-lg-10 col-md-11 col-sm-11 col-11 ">
-              <h2 className="heading_color">OrganiZation Reports </h2>
+              <h2 className="heading_color">Organization List </h2>
             </div>
 
             <AddOrgModal />
@@ -171,14 +171,7 @@ dag: { allorg },
                           );
                         })}
                     </tbody>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                      <center></center>
-                    </td>
+                   
                   </table>
                 </div>
               </section>
@@ -194,33 +187,33 @@ dag: { allorg },
         show={show}
         // onHide={handleClose}
         centered
+        
+  size="lg"
+  aria-labelledby="contained-modal-title-vcenter"
       >
-        <Modal.Title>Deactivate</Modal.Title>
-        {/* <Modal.Header className="lg" ></Modal.Header> */}
+          <Modal.Header >
+          <Modal.Title className='container'><h1 className='font-weight-bold '>DEACTIVATE ORGANIZATION</h1></Modal.Title>
+          </Modal.Header>
+      
+      
         <Modal.Body>
-          <Form>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Reason For Deactivating</Form.Label>
-              <Form.Control
-                type="text"
-                name="Organization_DE_Reason"
-                onChange={(e) => onInputChange(e)}
-                autoFocus
-              />
-            </Form.Group>
-          </Form>
+         
+          <label className="control-label">Reason for Deactivating:</label>
+                        <form>
+                            <div className="controls">
+                                <textarea rows="2"  name="Organization_DE_Reason"
+                onChange={(e) => onInputChange(e)} id="org_reason" className="form-control" ></textarea>
+                                <span className="form-input-info" ></span>
+                            </div>
+
+                        </form>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            // variant="primary"
-            className="bg-dark"
-            onClick={onAdd}
-          >
-            Save
-          </Button>
-          <Button variant="primary" onClick={handleClose} className="bg-dark">
-            close
-          </Button>
+          
+
+          
+<button onClick={handleClose} className="btn contact_reg btn_color"> NO</button>
+                        <button onClick={onAdd} className="btn contact_reg btn_color">  YES</button>
         </Modal.Footer>
       </Modal>
       {/*  End Deactivating the user  */}
@@ -229,10 +222,11 @@ dag: { allorg },
       <Modal
         show={showEditModal}
         backdrop="static"
+        size="lg"
         keyboard={false}
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        className="logout-modal"
+      
       >
         <Modal.Header >
 
@@ -380,6 +374,14 @@ dag: { allorg },
               // onClick={() => onSubmitORGdata()}
             >
               Save
+            </button>
+            <button
+              variant="success"
+              className="btn sub_form btn_continue Save float-right"
+              // onClick={() => onSubmitORGdata()}
+              onClick={()=>handleClose()}
+            >
+             cancel
             </button>
           </div>
         </Modal.Footer>
