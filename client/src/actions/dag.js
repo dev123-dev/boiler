@@ -43,7 +43,7 @@ export const AddOrganization = (OrganizationData)=> async(dispatch)=>{
     config
   );
   //diapatching get function because it should relfex immidiatly after adding
-//   dispatch(getAllOrganization());
+  dispatch(getAllOrganization());
 
 } catch (err) {
   dispatch({
@@ -51,3 +51,41 @@ export const AddOrganization = (OrganizationData)=> async(dispatch)=>{
   });
 }
 };
+
+//gettting organization details
+export const getAllOrganization = () => async (dispatch) => {
+  try {
+  
+    const res = await axios.get(`${linkPath}/api/organization/getallorganization`);
+    dispatch({
+      type: GET_ALL_ORGANIZATION,
+      payload: res.data,
+    
+
+    }  );
+    
+    
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
+
+
+//deleting organization details
+export const deleteOrganization = (id) => async(dispatch)=>{
+  console.log('INSIDE ACTION')
+  console.log(id);
+  try {
+    const res = await axios.post(`${linkPath}/api/organization/deactiveorg`,id,config);
+    dispatch(getAllOrganization());
+  } catch (err) {
+    console.log("error while sending from action");
+    dispatch({
+      type: TENANT_FEEDBACK_ERROR,
+    });
+  }
+
+};
+

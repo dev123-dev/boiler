@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
-import { AddOrganization } from "../../../actions/dagaction";
+import { AddOrganization } from "../../../actions/dag";
 
 const AddOrgModal=({
 
@@ -211,7 +211,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  dagaction: state.dagaction,
+  dag: state.dag,
 });
 export default connect(mapStateToProps, { AddOrganization })(AddOrgModal);
 

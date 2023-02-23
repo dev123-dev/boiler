@@ -13,7 +13,7 @@ router.route("/addorganization").post((req, res) => {
         .catch((err) => res.status(400).json("Error" + err));
 });
 
-router.route("/").get((req, res) => {
+router.route("/getallorganization").get((req, res) => {
     OrgDetails.find().select("-password")
       .then((data) => {
 
