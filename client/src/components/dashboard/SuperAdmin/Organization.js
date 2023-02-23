@@ -118,6 +118,7 @@ const Organization = ({
             deactive_reason: Organization_DE_Reason,
         };
         deleteOrganization(reason);
+        handleClose();
         //console.log(reason);
     };
     // const onEdit = () => {
@@ -140,47 +141,62 @@ const Organization = ({
 
     return (
         <div>
-            <div className="container container_align ">
-                {/* OrganiZation Details  start*/}
-                <section className="sub_reg">
-                    <div className="row col-lg-12 col-md-12 col-sm-12 col-12 no_padding">
-                        <div className="col-lg-10 col-md-11 col-sm-11 col-11 ">
-                            <h2 className="heading_color">Organization List </h2>
-                        </div>
+            
+    <div className="row">
+      {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-center">
+    </div> */}
+      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
+        <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Organisation Lists</h1><br />
+        {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
 
-                        <AddOrgModal />
-                    </div>
-                    <div className="row">
-                        <div className="col-lg-11 col-md-11 col-sm-11 col-11 text-center ">
-                            <section className="body">
-                                <div className="body-inner no-padding  table-responsive fixTableHead">
-                                    <table
-                                        className="table table-bordered table-striped table-hover"
-                                        id="datatable2"
-                                    >
-                                        <thead>
-                                            <tr>
-                                                <th>Org Name</th>
-                                                <th>Email</th>
-                                                <th>Phone</th>
-                                                <th>Address</th>
-                                                {/* <th>Number of Users</th> */}
-                                                <th>Current Status</th>
-                                                <th>Operation</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {allorg &&
-                                                
-                                                allorg.map((orgVal, idx) => {
-                                                    return (
-                                                        <tr key={idx}>
-                                                            <td>{orgVal.orgName}</td>
-                                                            <td>{orgVal.email}</td>
-                                                            <td>{orgVal.phoneNumber}</td>
-                                                            <td>{orgVal.address}</td>
-                                                            <td>{orgVal.orgStatus}</td>
-                                                            <td>
+        {/* <div className='text-right'>
+            <button onClick={deletehandleShow}>Delete</button>
+            <button onClick={edithandleShow}>edit</button>
+            <img
+                className="img_icon_size log text-right"
+                //   onClick={() => handleAddOrg()}
+                // onClick={handleShow}
+                onClick={addhandleShow}
+                src={addicon}
+                alt="add-icon"
+                title="add icon"
+            /> &nbsp;&nbsp;&nbsp;
+            <img
+                className="img_icon_size log text-right"
+                // onClick={() => onClickReset()}
+                src={refresh}
+                alt="refresh"
+
+            />
+        </div><br /> */}
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive">
+
+
+          <table border="1" id="datatable2" >
+          <thead>
+            <tr className='headingsizes'>
+              <th>Org Name</th>
+              <th>Email</th>
+              <th>Phone No.</th>
+              <th>Address</th>
+            
+              <th>Status</th>
+              <th>Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+              {allorg &&
+
+                allorg.map((orgVal, idx) => {
+                  return (
+                    <tr key={idx}>
+                      <td>{orgVal.orgName}</td>
+                      <td>{orgVal.email}</td>
+                      <td>{orgVal.phoneNumber}</td>
+                      <td>{orgVal.address}</td>
+                     
+                      <td>{orgVal.orgStatus}</td>
+                      <td>
                                                                 <img
                                                                     className="img_icon_size log"
                                                                     // onClick={() => onClickHandler()}
@@ -200,38 +216,54 @@ const Organization = ({
                                                                     title="delete User"
                                                                 />
                                                             </td>
+                        {/* <img
+                                                        className="img_icon_size log"
+                                                        // onClick={() => onClickHandler()}
+                                                        // onClick={() => clicking()}
+                                                        // onClick={handleOpen}
+                                                        // onClick={() => onedit(orgVal)}
+                                                        src={require("../../../static/images/edit_icon.png")}
+                                                        alt="Edit"
+                                                        title="Edit User"
+                                                    /> */}
+                        {/* <img
+                                                        className="img_icon_size log"
+                                                        // onClick={() => onClickHandler()}
+                                                        // onClick={() => onDelete(orgVal._id)}
+                                                        src={require("../../../static/images/delete.png")}
+                                                        alt="delete User"
+                                                        title="delete User"
+                                                    /> */}
+                       
 
-                                                            {/* {orgVal.AgreementStatus === "Expired" ? (
-                                <td>
-                                  <center>
-                                     <button
-                                      variant="success"
-                                      className="btn sub_form"
-                                      // onClick={() =>
-                                      //   onRenewal(orgVal, idx)
-                                      // }
-                                    >
-                                      Renewal
-                                    </button> 
-                                  </center>
-                                </td>
-                              
-                              ) : (
-                                <td></td>
-                              )} */}
-                                                        </tr>
-                                                    );
-                                                })}
-                                        </tbody>
-
-                                    </table>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </section>
-                {/* OrganiZation Deatils End */}
-            </div>
+                      {/* {orgVal.AgreementStatus === "Expired" ? (
+                    <td>
+                      <center>
+                         <button
+                          variant="success"
+                          className="btn sub_form"
+                          // onClick={() =>
+                          //   onRenewal(orgVal, idx)
+                          // }
+                        >
+                          Renewal
+                        </button> 
+                      </center>
+                    </td>
+                  
+                  ) : (
+                    <td></td>
+                  )} */}
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-left">
+    </div> */}
+    </div>
            
            
             {/* modal for deactivating start */}
@@ -245,6 +277,15 @@ const Organization = ({
             >
                 <Modal.Header >
                     <Modal.Title className='container'><h1 className='font-weight-bold '>DEACTIVATE ORGANIZATION</h1></Modal.Title>
+                    <div className="col-lg-2">
+              <button onClick={handleClose} className="close">
+                <img
+                  src={require("../../../static/images/close.png")}
+                  alt="X"
+                  style={{ height: "20px", width: "20px" }}
+                />
+              </button>
+            </div>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -260,8 +301,8 @@ const Organization = ({
                 </Modal.Body>
                 <Modal.Footer>
 
-                    <button onClick={handleClose} className="btn contact_reg btn_color"> NO</button>
-                    <button onClick={onAdd} className="btn contact_reg btn_color">  YES</button>
+                    {/* <button onClick={handleClose} className="btn contact_reg btn_color"> NO</button> */}
+                    <button onClick={onAdd} className="btn contact_reg btn_color">  DEACTIVATE</button>
                 </Modal.Footer>
             </Modal>
 {/* edit modal */}

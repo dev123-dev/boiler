@@ -16,16 +16,16 @@ import { getAllOrganization } from "../../../actions/dag";
 
 const SuperDashboard = ({
   auth: { isAuthenticated, user, users },
-  dag:{allorg}
-  
+  dag: { allorg }
+
 }) => {
   useEffect(() => {
     getAllOrganization("");
-    
-  },[]);
+
+  }, []);
 
   // console.log(users);
-   //   const [showModal, setShowModal] = useState(false);
+  //   const [showModal, setShowModal] = useState(false);
   //   const handleViewModalClose = () => setShowModal(false);
 
   //   const [userData, setUserData] = useState(null);
@@ -76,50 +76,64 @@ const SuperDashboard = ({
   return !isAuthenticated || !user ? (
     <NotFound />
   ) : (
-    <div className="container container_align ">
-    {/* OrganiZation Details  start*/}
-    <section className="sub_reg">
-        <div className="row col-lg-12 col-md-12 col-sm-12 col-12 no_padding">
-            <div className="col-lg-10 col-md-11 col-sm-11 col-11 ">
-                <h2 className="heading_color">Organization List </h2>
-            </div>
 
-           
-        </div>
-        <div className="row">
-            <div className="col-lg-11 col-md-11 col-sm-11 col-11 text-center ">
-                <section className="body">
-                    <div className="body-inner no-padding  table-responsive fixTableHead">
-                        <table
-                            className="table table-bordered table-striped table-hover"
-                            id="datatable2"
-                        >
-                            <thead>
-                                <tr>
-                                    <th>Org Name</th>
-                                    <th>Email</th>
-                                    <th>Phone</th>
-                                    <th>Start date</th>
-                                    <th>End date</th>
-                                    {/* <th>Number of Users</th> */}
-                                    <th> Status</th>
-                                    <th>Operation</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {allorg &&
-                                    
-                                    allorg.map((orgVal, idx) => {
-                                        return (
-                                            <tr key={idx}>
-                                                <td>{orgVal.orgName}</td>
-                                                <td>{orgVal.email}</td>
-                                                <td>{orgVal.phoneNumber}</td>
-                                                <td>{orgVal.startDate}</td>
-                                                <td>{orgVal.endDate}</td>
-                                                <td>{orgVal.orgStatus}</td>
-                                                <td>
-                                                    {/* <img
+
+    <div className="row">
+      {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-center">
+    </div> */}
+      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
+        <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Organisation Lists</h1><br />
+        {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
+
+        {/* <div className='text-right'>
+            <button onClick={deletehandleShow}>Delete</button>
+            <button onClick={edithandleShow}>edit</button>
+            <img
+                className="img_icon_size log text-right"
+                //   onClick={() => handleAddOrg()}
+                // onClick={handleShow}
+                onClick={addhandleShow}
+                src={addicon}
+                alt="add-icon"
+                title="add icon"
+            /> &nbsp;&nbsp;&nbsp;
+            <img
+                className="img_icon_size log text-right"
+                // onClick={() => onClickReset()}
+                src={refresh}
+                alt="refresh"
+
+            />
+        </div><br /> */}
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive">
+
+
+          <table border="1" id="datatable2" >
+          <thead>
+            <tr className='headingsizes'>
+              <th>Org Name</th>
+              <th>Email</th>
+              <th>Phone No.</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Status</th>
+              <th>Operation</th>
+            </tr>
+            </thead>
+            <tbody>
+              {allorg &&
+
+                allorg.map((orgVal, idx) => {
+                  return (
+                    <tr key={idx}>
+                      <td>{orgVal.orgName}</td>
+                      <td>{orgVal.email}</td>
+                      <td>{orgVal.phoneNumber}</td>
+                      <td>{orgVal.startDate}</td>
+                      <td>{orgVal.endDate}</td>
+                      <td>{orgVal.orgStatus}</td>
+                      <td>
+                        {/* <img
                                                         className="img_icon_size log"
                                                         // onClick={() => onClickHandler()}
                                                         // onClick={() => clicking()}
@@ -129,7 +143,7 @@ const SuperDashboard = ({
                                                         alt="Edit"
                                                         title="Edit User"
                                                     /> */}
-                                                    {/* <img
+                        {/* <img
                                                         className="img_icon_size log"
                                                         // onClick={() => onClickHandler()}
                                                         // onClick={() => onDelete(orgVal._id)}
@@ -137,10 +151,10 @@ const SuperDashboard = ({
                                                         alt="delete User"
                                                         title="delete User"
                                                     /> */}
-                                                    <button>RENEWAL</button>
-                                                </td>
+                        <button>RENEWAL</button>
+                      </td>
 
-                                                {/* {orgVal.AgreementStatus === "Expired" ? (
+                      {/* {orgVal.AgreementStatus === "Expired" ? (
                     <td>
                       <center>
                          <button
@@ -158,38 +172,35 @@ const SuperDashboard = ({
                   ) : (
                     <td></td>
                   )} */}
-                                            </tr>
-                                        );
-                                    })}
-                            </tbody>
-
-                        </table>
-                    </div>
-                </section>
-            </div>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
         </div>
-    </section>
-    {/* OrganiZation Deatils End */}
-</div>
+      </div>
+      {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-left">
+    </div> */}
+    </div>
 
 
 
-    
-);
+
+  );
 };
 
-SuperDashboard .propTypes = {
-auth: PropTypes.object.isRequired,
-// getAllUsers: PropTypes.func.isRequired,
-// getSearchUsersByFilter: PropTypes.func.isRequired,
+SuperDashboard.propTypes = {
+  auth: PropTypes.object.isRequired,
+  // getAllUsers: PropTypes.func.isRequired,
+  // getSearchUsersByFilter: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
-auth: state.auth,
-dag:state.dag,
+  auth: state.auth,
+  dag: state.dag,
 });
 
 export default connect(mapStateToProps, {
-getAllOrganization,
+  getAllOrganization,
 })(SuperDashboard);
 
 
