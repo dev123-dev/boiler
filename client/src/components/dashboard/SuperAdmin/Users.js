@@ -116,7 +116,8 @@ export default function Users() {
                     centered>
                     <Modal.Header closeButton>
 
-                        <Modal.Title className='container'><h1 className='font-weight-bold '>ADD USERS</h1></Modal.Title>
+                         <Modal.Title className='container'><h1 className='font-weight-bold '>ADD USERS</h1></Modal.Title> 
+                        
                     </Modal.Header>
                     <Modal.Body>
                         <form >

@@ -54,14 +54,14 @@ router.route("/editorganization").post((req, res) => {
     let data = req.body;
 
     OrgDetails.updateOne(
-        { _id:  data.orgId },
+        { _id:  data.OrganizationId },
         {
             $set: {
-                orgName:"", 
-                email:"",
-                startDate:"",
-                phoneNumber:"",
-                address:"",
+                orgName:data.OrganizationName, 
+                email:data.OrganizationEmail,
+                startDate:data.OrganizationStartdate,
+                phoneNumber:data.OrganizationNumber,
+                address:data.OrganizationAddress,
             },
         }
     )
