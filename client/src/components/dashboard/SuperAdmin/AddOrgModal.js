@@ -93,8 +93,8 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
   
       <Fragment>
         
-          {/* <div className="col-lg-12 col-md-11 col-sm-11 col-11 py-4 text-right"> */}
-          <div className="text-right">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-right">
+          {/* <div className="text-right"> */}
             <img
               className="img_icon_size log"
               // onClick={() => onClickHandler()}

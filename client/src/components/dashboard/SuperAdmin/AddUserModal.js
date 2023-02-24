@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
-import { AddUser } from "../../../actions/dag";
+import { AddUser, getAllOrganization } from "../../../actions/dag";
 
 const AddUserModal=({
 
+    dag:{allorg},
     auth: { isAuthenticated, user, users, finalDataRep },
     AddUser,
+    getAllOrganization,
   }) => {
+    useEffect(()=>{
+      getAllOrganization();
+    },[]);
+   
+
 
 
     const [show, setshow] = useState("");
@@ -115,8 +122,8 @@ const AddUserModal=({
   
       <Fragment>
         
-          {/* <div className="col-lg-12 col-md-11 col-sm-11 col-11 py-4 text-right"> */}
-          <div className="text-right">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-right">
+          {/* <div className="text-right"> */}
             <img
               className="img_icon_size log"
               // onClick={() => onClickHandler()}
@@ -168,7 +175,16 @@ const AddUserModal=({
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Organization Belongs<span >*</span></label>
                                                 <div className="controls">
-                                                    <input name="UserOrgbelongs" id="org_belongs" type="text" className="form-control" onChange={(e)=>onUserchange(e)} />
+                                                    {/* <input name="UserOrgbelongs" id="org_belongs" type="text" className="form-control" onChange={(e)=>onUserchange(e)} /> */}
+                                                    
+                                                    <select name="UserOrgbelongs"  className="form-control" onChange={(e)=>onUserchange(e)}>
+                                                      {allorg&&
+                                                      allorg.map((org,idx)=>
+                                                    <option key ={idx}value={org.orgName}>{org.orgName}</option>
+                                                        )}
+                                                       
+
+                                                    </select>
                                                     <span className="form-input-info" ></span>
                                                 </div>
                                             </div>
@@ -251,5 +267,5 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   dag: state.dag,
 });
-export default connect(mapStateToProps, { AddUser })(AddUserModal);
+export default connect(mapStateToProps, { AddUser,getAllOrganization })(AddUserModal);
 

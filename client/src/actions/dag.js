@@ -35,7 +35,7 @@ const config = {
 var linkPath = "";
 
 export const AddOrganization = (OrganizationData)=> async(dispatch)=>{
- console.log(OrganizationData)
+//  console.log(OrganizationData)
  try {
   await axios.post(
     `${linkPath}/api/organization/addorganization`,
@@ -75,8 +75,8 @@ export const getAllOrganization = () => async (dispatch) => {
 
 //deleting organization details
 export const deleteOrganization = (id) => async(dispatch)=>{
-  console.log('INSIDE ACTION')
-  console.log(id);
+  // console.log('INSIDE ACTION')
+  // console.log(id);
   try {
     const res = await axios.post(`${linkPath}/api/organization/deactiveorg`,id,config);
     dispatch(getAllOrganization());
@@ -91,7 +91,7 @@ export const deleteOrganization = (id) => async(dispatch)=>{
 
 //edit organization details
 export const updateOrganization = (updatedata) => async(dispatch)=>{
-console.log(updatedata);
+// console.log(updatedata);
 try {
    axios.post(
     `${linkPath}/api/organization/editOrganization`,
@@ -123,7 +123,7 @@ export const renewOrganization = (renewdata) => async(dispatch)=>{
 
 //add user
 export const AddUser = (UserData)=> async(dispatch)=>{
-  console.log(UserData)
+  // console.log(UserData)
   try {
    await axios.post(
      `${linkPath}/api/user/adduser`,
@@ -162,8 +162,8 @@ export const getAllUser = () => async (dispatch) => {
 
 //deleting organization details
 export const deleteUser = (id) => async(dispatch)=>{
-  console.log('INSIDE ACTION')
-  console.log(id);
+  // console.log('INSIDE ACTION')
+  // console.log(id);
   try {
     const res = await axios.post(`${linkPath}/api/user/deactiveuser`,id,config);
     dispatch(getAllUser());
@@ -182,7 +182,7 @@ export const updateUser = (updatedata) => async(dispatch)=>{
   
 
   console.log("inside action")
-  console.log(updatedata);
+  // console.log(updatedata);
   try {
      axios.post(
       `${linkPath}/api/user/edituser`,
