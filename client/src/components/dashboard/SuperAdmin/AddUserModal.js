@@ -177,7 +177,10 @@ const AddUserModal=({
                                                 <div className="controls">
                                                     {/* <input name="UserOrgbelongs" id="org_belongs" type="text" className="form-control" onChange={(e)=>onUserchange(e)} /> */}
                                                     
+                                                   
+                                                   
                                                     <select name="UserOrgbelongs"  className="form-control" onChange={(e)=>onUserchange(e)}>
+                                                    <option>--Select Organization--</option>
                                                       {allorg&&
                                                       allorg.map((org,idx)=>
                                                     <option key ={idx}value={org.orgName}>{org.orgName}</option>
