@@ -8,7 +8,7 @@ import Modal from "react-bootstrap/Modal";
 import { getAllUser } from "../../../actions/dag";
 import { deleteUser} from "../../../actions/dag";
 // import { editOrganization } from "../../../actions/dag";
-// import EditOrganization from "./EditOrganization"
+import EditUser from "./EditUser"
 // import "../../../../client/src/styles/CustomisedStyle.css";
 // import "../../styles/CustomisedStyle.css";
 
@@ -22,7 +22,7 @@ const Users = ({
 }) => {
   useEffect(() => {
     getAllUser();
-    console.log(alluser)
+    // console.log(alluser)
   }, []);
 
   
@@ -89,10 +89,10 @@ const Users = ({
   };
 
   const [orgdata, setorgdata] = useState(null);
-  const onedit = (user) => {
+  const onedit = (user2) => {
     setShowUpdateModal(true);
     //setId(id);
-    setorgdata(user)
+    setorgdata(user2)
     handleOpen();
 
   };
@@ -347,7 +347,7 @@ const Users = ({
         </Modal.Header>
         <Modal.Body>
 
-          {/* <EditOrganization Org={orgdata} /> */}
+          <EditUser userdata={orgdata} />
 
         </Modal.Body>
 

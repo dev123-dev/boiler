@@ -166,3 +166,22 @@ export const deleteUser = (id) => async(dispatch)=>{
   }
 
 };
+
+//edit user details
+export const updateUser = (updatedata) => async(dispatch)=>{
+  
+  
+
+  console.log("inside action")
+  console.log(updatedata);
+  try {
+     axios.post(
+      `${linkPath}/api/user/edituser`,
+     updatedata,
+      
+    );
+    dispatch(getAllUser());
+  } catch (err) {}
+  };
+  
+  

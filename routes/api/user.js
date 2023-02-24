@@ -52,17 +52,15 @@ router.route("/edituser").post((req, res) => {
     let data = req.body;
 
     UserDetails.updateOne(
-        { _id: data.Org_id },
+        { _id: data.User_id },
         {
             $set: {
-                orgName: "",
-                email: "",
-                startDate: "",
-                phoneNumber: "",
-                endDate: "",
-                address: "",
-                orgStatus: "",
-                orgDeactiveReason: "",
+                fullName:data.fullName,
+                userName: data.UserName,
+                email: data.UserEmail,
+                phone: data.UserNumber,
+                address:data.UserAddress,
+              
             },
         }
     )
