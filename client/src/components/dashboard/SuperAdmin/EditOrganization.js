@@ -170,7 +170,6 @@ const EditOrganization = ({
 }
 const mapStateToProps = (state) => ({
   auth: state.auth,
-  tenants1: state.tenants,
 });
 
 export default connect(mapStateToProps, {

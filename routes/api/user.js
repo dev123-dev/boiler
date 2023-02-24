@@ -16,7 +16,7 @@ router.route("/adduser").post((req, res) => {
 
 //get all user 
 router.route("/getuser").get((req, res) => {
-    UserDetails.find().select("-password")
+    UserDetails.find().select("-password").sort({userStatus:1})
 
         .then((data) => {
             res.status(200).json(data);
