@@ -73,4 +73,29 @@ router.route("/editorganization").post((req, res) => {
 }
 );
 
+//renwel Org
+router.route("/renewalorganization").post((req, res) => {
+
+    let data = req.body;
+
+    OrgDetails.updateOne(
+        { _id:  data.OrganizationId },
+        {
+            $set: { 
+                  
+                startDate:data.OrganizationStartdate,
+               endDate:data.OrganizationEnddate,
+               orgStatus: "Active",
+            },
+        }
+    )
+        .then((data) => {
+            res.status(200).json(data);
+        })
+
+        .catch((err) => res.status(400).json("Error" + err));
+}
+);
+
+
 module.exports = router;

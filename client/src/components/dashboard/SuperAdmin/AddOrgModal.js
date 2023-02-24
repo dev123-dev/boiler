@@ -21,9 +21,7 @@ const AddOrgModal=({
         OrganizationEmail: "",
         OrganizationNumber: "",
         OrganizationAddress: "",
-        OrganizationStartdate:"",
-       
-        
+        OrganizationStartdate:"",    
       });
 
       const {
@@ -42,14 +40,10 @@ const AddOrgModal=({
         });
       };
 
-      const [showAddModal, setShowAddModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
   const handleAddClose = () => setShowAddModal(false);
   const handleOpen = () => setShowAddModal(true);
-  const onAddStaffModalChange = (e) => {
-    if (e) {
-      handleAddClose();
-    }
-  };
+  
 
   const onSubmitORGdata = () => {
 
@@ -77,10 +71,10 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
     };
 
     AddOrganization(finalORGdata);
-    // console.log(finalORGdata)
+    
     setFormDataORG({
       ...formDataORG,
-      orgName: "" /*name*/,
+      orgName: "",
       email: "",
       startDate: "",
       phoneNumber: "",

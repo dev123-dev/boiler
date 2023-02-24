@@ -345,7 +345,7 @@ fieldset[disabled] {
 
 .sub_form:hover,
 .sub_form:focus {
-  background-color: #000;
+  background-color: #634998;
   color: #fff;
   border: 1px solid #000;
 }

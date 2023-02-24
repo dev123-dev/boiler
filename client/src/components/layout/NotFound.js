@@ -4,7 +4,7 @@ const NotFound = (props) => {
   return (
     <Fragment>
       {/*  <h1>No {props.msg} Found</h1>
-        <p>Sorry, there are no {props.msg} for you</p>*/}
+        <p>Sorry, there are no {props.msg} for you</p>
       <div className="container container_align">
         <div className="col-md-12 col-lg-12 col-sm-12 col-12 center_div height_full">
           <div className="col-md-12 col-lg-12 col-sm-12 col-12">
@@ -31,7 +31,7 @@ const NotFound = (props) => {
             <hr className="doted_hr" />
           </div>
         </div>
-      </div>
+      </div>*/}
     </Fragment>
   );
 };

@@ -1,15 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { connect } from "react-redux";
-// import AddOrgModal from "./AddOrgModal";
-// import { Props } from "react";
-// import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
-// import Modal from "react-bootstrap/Modal";
-// import { getAllOrganization } from "../../actions/tenants";
-// import { deleteOrganization } from "../../actions/tenants";
 import { updateOrganization } from "../../../actions/dag";
-// import "../../../../client/src/styles/CustomisedStyle.css";
-// import { editOrganization } from "../../../actions/dag";
+
 const EditOrganization = ({
   auth: { isAuthenticated, user, users },
   Org,
@@ -19,6 +11,7 @@ const EditOrganization = ({
   const [showEditModal, setShowEditModal] = useState(false);
   const handleEditModalClose = () => setShowEditModal(false);
   const handleOpen = () => setShowEditModal(true);
+  
   const onAddStaffModalChange = (e) => {
     if (e) {
       handleEditModalClose();

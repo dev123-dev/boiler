@@ -89,12 +89,8 @@ export const deleteOrganization = (id) => async(dispatch)=>{
 
 };
 
-//deleting organization details
+//edit organization details
 export const updateOrganization = (updatedata) => async(dispatch)=>{
-  
-  
-
-console.log("inside action")
 console.log(updatedata);
 try {
    axios.post(
@@ -105,5 +101,18 @@ try {
   dispatch(getAllOrganization());
 } catch (err) {}
 };
+
+//renew org
+export const renewOrganization = (renewdata) => async(dispatch)=>{
+  
+  try {
+     axios.post(
+      `${linkPath}/api/organization/renewalorganization`,
+     renewdata,
+      
+    );
+    dispatch(getAllOrganization());
+  } catch (err) {}
+  };
 
 
