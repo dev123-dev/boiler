@@ -10,18 +10,14 @@ import refresh from "../../../static/images/download.png"
 import { getAllOrganization } from "../../../actions/dag";
 // import AddStaffFeedBack from "./AddStaffFeedBack";
 
-
-
-
-
 const SuperDashboard = ({
   auth: { isAuthenticated, user, users },
-  dag: { allorg }
+  dag: { allorg },getAllOrganization
 
 }) => {
   useEffect(() => {
     getAllOrganization();
-  },[]);
+  }, []);
 
  console.log("superdashboard",allorg);
   //   const [showModal, setShowModal] = useState(false);

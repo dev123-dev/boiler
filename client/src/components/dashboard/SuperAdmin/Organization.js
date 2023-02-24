@@ -21,13 +21,9 @@ const Organization = ({
   editOrganization,
 }) => {
   useEffect(() => {
-    getAllOrganization("");
+    getAllOrganization();
   }, []);
 
-  const clicking = () => {
-    alert("Edit");
-  };
-  // console.log(allorg[0])
 
   //deactivate
   const [formData, setFormData] = useState({
@@ -89,6 +85,7 @@ const Organization = ({
     setId(id);
     handleShow();
   };
+
   const [orgdata, setorgdata] = useState(null);
   const onedit = (org) => {
     setShowUpdateModal(true);
@@ -119,7 +116,7 @@ const Organization = ({
     };
     deleteOrganization(reason);
     handleClose();
-    //console.log(reason);
+    
   };
   // const onEdit = () => {
   //     const editdata = {
