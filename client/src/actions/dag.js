@@ -116,3 +116,81 @@ export const renewOrganization = (renewdata) => async(dispatch)=>{
   };
 
 
+
+
+
+
+
+//add user
+export const AddUser = (UserData)=> async(dispatch)=>{
+  console.log(UserData)
+  try {
+   await axios.post(
+     `${linkPath}/api/user/adduser`,
+    UserData,
+     config
+   );
+   //diapatching get function because it should relfex immidiatly after adding
+    dispatch(getAllUser());
+ 
+ } catch (err) {
+   dispatch({
+     type: AUTH_ERROR,
+   });
+ }
+ };
+
+ //gettting User details
+export const getAllUser = () => async (dispatch) => {
+  try {
+  
+    const res = await axios.get(`${linkPath}/api/user/getuser`);
+    dispatch({
+      type: GET_ALL_USER,
+      payload: res.data,
+    
+
+    }  );
+    
+    
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
+
+//deleting organization details
+export const deleteUser = (id) => async(dispatch)=>{
+  console.log('INSIDE ACTION')
+  console.log(id);
+  try {
+    const res = await axios.post(`${linkPath}/api/user/deactiveuser`,id,config);
+    dispatch(getAllUser());
+  } catch (err) {
+    console.log("error while sending from action");
+    dispatch({
+      type: TENANT_FEEDBACK_ERROR,
+    });
+  }
+
+};
+
+//edit user details
+export const updateUser = (updatedata) => async(dispatch)=>{
+  
+  
+
+  console.log("inside action")
+  console.log(updatedata);
+  try {
+     axios.post(
+      `${linkPath}/api/user/edituser`,
+     updatedata,
+      
+    );
+    dispatch(getAllUser());
+  } catch (err) {}
+  };
+  
+  

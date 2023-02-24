@@ -59,14 +59,37 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           fixed="top"
           style={{ padding: "0px 1em" }}
         >
+
+{!loading && isAuthenticated && user &&user.userGroup==="Dev" ? (
            <Navbar.Brand>
+            <NavLink to="/superdashboard">
             <img
               className="Icon p-2"
               alt="Pinnacle Media"
               src={require("../../static/images/dag_logo1.png")}
             />
+            </NavLink>
           </Navbar.Brand>
-          
+):(
+  <Navbar.Brand>
+            
+          </Navbar.Brand>
+)}
+          {!loading && isAuthenticated && user &&user.userGroup==="Admin" ? (
+           <Navbar.Brand>
+            <NavLink to="/usergroup">
+            <img
+              className="Icon p-2"
+              alt="Pinnacle Media"
+              src={require("../../static/images/dag_logo1.png")}
+            />
+            </NavLink>
+          </Navbar.Brand>
+):(
+  <Navbar.Brand>
+           
+          </Navbar.Brand>
+)}
 
            
 
@@ -74,18 +97,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto navbar_Collapse_content">
 
-            <NavItem>
-            {!loading && isAuthenticated && user &&user.userGroup==="Dev" ? (
-                    <NavLink
-                      to="/superdashboard" className='navlink'
-                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
-                    >
-                      Home
-                    </NavLink>
-                  ) : (
-                    <NavItem></NavItem>
-                  )}
-                   </NavItem>
+       
 
             <NavItem>
             {!loading && isAuthenticated && user &&user.userGroup==="Dev" ? (
@@ -114,18 +126,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
              </NavItem>
 
 
-             <NavItem>
-            {!loading && isAuthenticated && user &&user.userGroup==="Admin" ? (
-                    <NavLink
-                      to="/admindashboard" className='navlink'
-                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
-                    >
-                     Home
-                    </NavLink>
-                  ) : (
-                    <NavItem></NavItem>
-                  )}
-                   </NavItem>
+           
              <NavItem>   
              {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
                     <NavLink
@@ -209,7 +210,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
                       <ul className="dropdown-menu second-level-menu ">
                         <li className="hwhite">
-                          <Link to="/shop-Details" className="navlinkitem" >User Group</Link>
+                          <Link to="/usergroup" className="navlinkitem" >User Group</Link>
                         </li>
 
                         {/* <li>
