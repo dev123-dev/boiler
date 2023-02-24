@@ -209,7 +209,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
                       <ul className="dropdown-menu second-level-menu ">
                         <li className="hwhite">
-                          <Link to="/shop-Details" className="navlinkitem" >User Group</Link>
+                          <Link to="/usergroup" className="navlinkitem" >User Group</Link>
                         </li>
 
                         {/* <li>
