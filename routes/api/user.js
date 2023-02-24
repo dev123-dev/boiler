@@ -34,7 +34,7 @@ router.route("/deactiveuser").post((req, res) => {
         {
             $set: {
                 userStatus: "Deactive",
-                //userDeactiveReason: data.deactive_reason,
+                userDeactiveReason: data.deactive_reason,
             },
         }
     )

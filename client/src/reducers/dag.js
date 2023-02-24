@@ -9,6 +9,7 @@ import {
     GET_DOORNUMBER,
     GET_ALL_ORGANIZATION,
     GET_ALL_SUPERUSER,
+    GET_ALL_USER
   } from "../actions/types";
 
   const initialState = {
@@ -29,6 +30,7 @@ import {
     yearExpCnt: [],
     expReport: [],
     allorg : [""],
+    alluser:[""],
     allsuperuser : [""],
   };
 
@@ -77,6 +79,11 @@ import {
             ...state,
             allsuperuser  : payload,
           }
+          case GET_ALL_USER:
+            return{
+              ...state,
+              alluser  : payload,
+            }
       default:
         return state;
     }

@@ -89,7 +89,7 @@ export const deleteOrganization = (id) => async(dispatch)=>{
 
 };
 
-//deleting organization details
+//edit organization details
 export const updateOrganization = (updatedata) => async(dispatch)=>{
   
   
@@ -106,6 +106,12 @@ try {
 } catch (err) {}
 };
 
+
+
+
+
+
+
 //add user
 export const AddUser = (UserData)=> async(dispatch)=>{
   console.log(UserData)
@@ -116,7 +122,7 @@ export const AddUser = (UserData)=> async(dispatch)=>{
      config
    );
    //diapatching get function because it should relfex immidiatly after adding
-  //  dispatch(getAllOrganization());
+    dispatch(getAllUser());
  
  } catch (err) {
    dispatch({
@@ -125,3 +131,38 @@ export const AddUser = (UserData)=> async(dispatch)=>{
  }
  };
 
+ //gettting User details
+export const getAllUser = () => async (dispatch) => {
+  try {
+  
+    const res = await axios.get(`${linkPath}/api/user/getuser`);
+    dispatch({
+      type: GET_ALL_USER,
+      payload: res.data,
+    
+
+    }  );
+    
+    
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
+
+//deleting organization details
+export const deleteUser = (id) => async(dispatch)=>{
+  console.log('INSIDE ACTION')
+  console.log(id);
+  try {
+    const res = await axios.post(`${linkPath}/api/user/deactiveuser`,id,config);
+    dispatch(getAllUser());
+  } catch (err) {
+    console.log("error while sending from action");
+    dispatch({
+      type: TENANT_FEEDBACK_ERROR,
+    });
+  }
+
+};

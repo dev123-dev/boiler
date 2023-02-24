@@ -9,6 +9,8 @@ const AddUserModal=({
     auth: { isAuthenticated, user, users, finalDataRep },
     AddUser,
   }) => {
+
+
     const [show, setshow] = useState("");
     const handleClose = () => setshow("false");
     const handleShow = () => setshow("true");
@@ -102,7 +104,9 @@ const AddUserModal=({
      
      
     });
+    //setsubmitAddData(true)
     handleAddClose();
+
   };
 
   return !isAuthenticated || !user || !users ? (
