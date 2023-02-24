@@ -96,10 +96,11 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
   return !isAuthenticated || !user || !users ? (
     <Fragment></Fragment>
   ) : (
-    <div>
+  
       <Fragment>
         
-          <div className="col-lg-12 col-md-11 col-sm-11 col-11 py-4 ">
+          {/* <div className="col-lg-12 col-md-11 col-sm-11 col-11 py-4 text-right"> */}
+          <div className="text-right">
             <img
               className="img_icon_size log"
               // onClick={() => onClickHandler()}
@@ -108,8 +109,10 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
               alt="Add User"
               title="Add User"
             />
+            {/* </div> */}
+            </div><br/>
          
-        </div>
+       
         {/* Adding Organization */}
      
             <Modal show={showAddModal}  backdrop="static"
@@ -157,7 +160,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Start Date <span >*</span></label>
                                                 <div className="controls">
-                                                    <input name="OrganizationStartdate" id="cat_name" type="text" className="form-control"  onChange={(e) => onORGchange(e)} />
+                                                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control"  onChange={(e) => onORGchange(e)} />
                                                     <span id="category_result" className="form-input-info"></span>
                                                 </div>
                                             </div>
@@ -217,7 +220,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
 
        
       </Fragment>
-    </div>
+  
   );
 };
 const mapStateToProps = (state) => ({

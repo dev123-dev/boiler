@@ -20,11 +20,10 @@ const SuperDashboard = ({
 
 }) => {
   useEffect(() => {
-    getAllOrganization("");
+    getAllOrganization();
+  },[]);
 
-  }, []);
-
-  // console.log(users);
+ console.log("superdashboard",allorg);
   //   const [showModal, setShowModal] = useState(false);
   //   const handleViewModalClose = () => setShowModal(false);
 
@@ -82,7 +81,7 @@ const SuperDashboard = ({
       {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-center">
     </div> */}
       <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
-        <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Organisation Lists</h1><br />
+        <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Organisation Lists</h1><br /><br/>
         {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
 
         {/* <div className='text-right'>

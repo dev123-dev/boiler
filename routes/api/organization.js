@@ -41,7 +41,7 @@ router.route("/deactiveorg").post((req, res) => {
     )
         .then((data) => {
             
-            res.status(200).json("sucess");
+            res.status(200).json("success");
         })
 
         .catch((err) => res.status(400).json("Error" + err));

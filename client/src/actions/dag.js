@@ -93,25 +93,14 @@ export const deleteOrganization = (id) => async(dispatch)=>{
 export const updateOrganization = (updatedata) => async(dispatch)=>{
   
   
-//   console.log(id);
-//   try {
-//     const res = await axios.post(`${linkPath}/api/organization/editorg`,id,config);
-//     dispatch(getAllOrganization());
-//   } catch (err) {
-//     console.log("error while sending from action");
-//     dispatch({
-//       type: TENANT_FEEDBACK_ERROR,
-//     });
-//   }
 
-// };
 console.log("inside action")
 console.log(updatedata);
 try {
-  const res = await axios.post(
+   axios.post(
     `${linkPath}/api/organization/editOrganization`,
    updatedata,
-    config
+    
   );
   dispatch(getAllOrganization());
 } catch (err) {}
