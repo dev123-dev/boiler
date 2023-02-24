@@ -194,6 +194,8 @@ const Organization = ({
                 {allorg &&
 
                   allorg.map((orgVal, idx) => {
+                    if(orgVal.orgStatus=="Active")
+                    {
                     return (
                       <tr key={idx}>
                         <td>{orgVal.orgName}</td>
@@ -212,7 +214,7 @@ const Organization = ({
                             src={require("../../../static/images/edit_icon.png")}
                             alt="Edit"
                             title="Edit User"
-                          />
+                          />&nbsp;&nbsp;
                           <img
                             className="img_icon_size log"
                             // onClick={() => onClickHandler()}
@@ -262,6 +264,7 @@ const Organization = ({
                   )} */}
                       </tr>
                     );
+                }
                   })}
               </tbody>
             </table>

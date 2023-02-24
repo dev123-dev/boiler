@@ -144,14 +144,14 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Org Name <span >*</span></label>
                                                 <div className="controls">
-                                                    <input name="OrganizationName" id="cat_name" type="text" className="form-control" onChange={(e) => onORGchange(e)} />
+                                                    <input name="OrganizationName" id="cat_name" type="text" className="form-control" onChange={(e) => onORGchange(e)} required />
                                                     <span id="category_result" className="form-input-info"></span>
                                                 </div>
                                             </div>
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Email<span >*</span></label>
                                                 <div className="controls">
-                                                    <input name="OrganizationEmail" id="category_status" type="text" className="form-control"   onChange={(e) => onORGchange(e)} readonly />
+                                                    <input name="OrganizationEmail" id="category_status" type="text" className="form-control"   onChange={(e) => onORGchange(e)} required />
                                                     <span className="form-input-info" ></span>
                                                 </div>
                                             </div>
@@ -160,14 +160,14 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Start Date <span >*</span></label>
                                                 <div className="controls">
-                                                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control"  onChange={(e) => onORGchange(e)} />
+                                                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control"  onChange={(e) => onORGchange(e)} required />
                                                     <span id="category_result" className="form-input-info"></span>
                                                 </div>
                                             </div>
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Phone No.<span >*</span></label>
                                                 <div className="controls">
-                                                    <input name="OrganizationNumber" id="category_status" type="text" className="form-control"  onChange={(e) => onORGchange(e)} readonly />
+                                                    <input name="OrganizationNumber" id="category_status" type="text" className="form-control"  onChange={(e) => onORGchange(e)} required />
                                                     <span className="form-input-info" ></span>
                                                 </div>
                                             </div>
@@ -212,7 +212,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
          
            <Modal.Footer>
   
-                        <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button>
+                        {/* <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button> */}
                         <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button>
                     </Modal.Footer>
           </Modal>

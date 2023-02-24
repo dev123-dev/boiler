@@ -218,12 +218,12 @@ h5:last-child {
 ::-moz-selection {
   /* Code for Firefox */
   color: #fff;
-  background: #877bae;
+  background: #e79d69;
 }
 
 ::selection {
   color: #fff;
-  background: #877bae;
+  background: #e79d69;
 }
 
 /* Handle */
@@ -737,7 +737,7 @@ label {
 
 ::selection {
   color: #fff;
-  background: #877bae;
+  background: #e79d69;
 }
 
 .dropdown-menu {

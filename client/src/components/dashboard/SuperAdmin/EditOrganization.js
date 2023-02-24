@@ -145,7 +145,7 @@ const EditOrganization = ({
                   </div>
                 </div> */}
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                  <label className="control-label">Start Date <span >*</span></label>
+                  <label className="control-label">Start Date </label>
                   <div className="controls">
                     <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control" 
                     
