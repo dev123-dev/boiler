@@ -23,7 +23,7 @@ const EditOrganization = ({
 
   const [OrgId, setId] = useState("");
 
-  //  console.log(org.Location)
+
 
   const onedit = (id) => {
     setId(id);
