@@ -16,7 +16,7 @@ router.route("/addorganization").post((req, res) => {
 
 //get all details 
 router.route("/").get((req, res) => {
-    OrgDetails.find()
+    OrgDetails.find().sort({orgStatus:1})
 
         .then((data) => {
             res.status(200).json(data);
@@ -82,8 +82,7 @@ router.route("/renewalorganization").post((req, res) => {
     OrgDetails.updateOne(
         { _id:  data.OrganizationId },
         {
-            $set: { 
-                  
+            $set: {                  
                 startDate:data.OrganizationStartdate,
                endDate:data.OrganizationEnddate,
                orgStatus: "Active",
