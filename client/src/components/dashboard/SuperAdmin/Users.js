@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import refresh from '../../../static/images/download.png';
 import addicon from '../../../static/images/add-icon.png';
 import Modal from 'react-bootstrap/Modal';
+import AddUserModal from './AddUserModal';
 // import Button from 'react-bootstrap/Button';
 
 
@@ -54,7 +55,7 @@ export default function Users() {
                         <button onClick={edithandleShow}>edit</button>
 
 
-                        <img
+                        {/* <img
                             className="img_icon_size log text-right"
                             //   onClick={() => handleAddOrg()}
                             // onClick={handleShow}
@@ -69,8 +70,10 @@ export default function Users() {
                             src={refresh}
                             alt="refresh"
 
-                        />
+                        /> */}
                     </div><br />
+
+                    <AddUserModal/>
                   
 
                   
@@ -110,7 +113,7 @@ export default function Users() {
 
 
 
-                <Modal show={show} onHide={handleClose}
+                {/* <Modal show={show} onHide={handleClose}
                     size="lg"
                     aria-labelledby="contained-modal-title-vcenter"
                     centered>
@@ -190,22 +193,7 @@ export default function Users() {
                                             </div>
                                         </div>
                                       
-                                        {/* <div className="row form-group">
-                                        <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">End Date <span >*</span></label>
-                                                <div className="controls">
-                                                    <input name="cat_name" id="cat_name" type="text" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div>
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <br /><label className="control-label">Address</label>
-                                                <div className="controls">
-                                                    <textarea rows="2"  name="category_description" id="category_description" className="form-control" ></textarea>
-                                                    <span className="form-input-info" ></span>
-                                                </div>
-                                            </div>
-                                        </div> */}
+                                       
                                         <div className="row form-group ">
                                             <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
                                                 <br /><label className="control-label" >* Indicates mandatory fields.</label>
@@ -220,14 +208,9 @@ export default function Users() {
                         <button onClick={handleClose} className="btn contact_reg btn_color "> CANCEL</button>
                         <button onClick={handleClose} className="btn contact_reg btn_color">  ADD</button>
 
-                        {/* <Button  onClick={handleClose}>
-                            CANCEL
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            ADD
-                        </Button> */}
+                     
                     </Modal.Footer>
-                </Modal>
+                </Modal> */}
             </div>
 
 
