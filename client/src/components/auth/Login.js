@@ -3,7 +3,7 @@ import { Redirect, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login, removeError } from "../../actions/auth";
-import { getAllOrganization } from "../../actions/dag";
+
 
 const Login = ({
   login,
@@ -14,7 +14,7 @@ const Login = ({
 }) => {
   useEffect(() => {
     removeError();
-    getAllOrganization();
+   
   }, [removeError]);
 
   let modalTitle = { marginTop: "-30px", marginBottom: "20px" };
