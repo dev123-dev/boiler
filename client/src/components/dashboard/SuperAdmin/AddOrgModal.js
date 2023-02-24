@@ -93,17 +93,15 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
   
       <Fragment>
         
-          <div className="col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-right">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right">
           {/* <div className="text-right"> */}
             <img
               className="img_icon_size log"
-              // onClick={() => onClickHandler()}
               onClick={handleOpen}
               src={require("../../../static/images/add-icon.png")}
               alt="Add User"
               title="Add User"
             />
-            {/* </div> */}
             </div><br/>
          
        
@@ -167,13 +165,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                                             </div>
                                         </div>
                                         <div className="row form-group">
-                                            {/* <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">End  Date <span ></span></label>
-                                                <div className="controls">
-                                                    <input name="cat_name" id="cat_name" type="text" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div> */}
+                                           
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Address</label>
                                                 <div className="controls">

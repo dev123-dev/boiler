@@ -62,6 +62,7 @@ router.route("/editorganization").post((req, res) => {
                 startDate:data.OrganizationStartdate,
                 phoneNumber:data.OrganizationNumber,
                 address:data.OrganizationAddress,
+                endDate:data.OrganizationEnddate,
             },
         }
     )
