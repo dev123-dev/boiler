@@ -106,4 +106,22 @@ try {
 } catch (err) {}
 };
 
+//add user
+export const AddUser = (UserData)=> async(dispatch)=>{
+  console.log(UserData)
+  try {
+   await axios.post(
+     `${linkPath}/api/user/adduser`,
+    UserData,
+     config
+   );
+   //diapatching get function because it should relfex immidiatly after adding
+  //  dispatch(getAllOrganization());
+ 
+ } catch (err) {
+   dispatch({
+     type: AUTH_ERROR,
+   });
+ }
+ };
 

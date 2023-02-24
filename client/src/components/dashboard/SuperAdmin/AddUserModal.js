@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
-import { AddOrganization } from "../../../actions/dag";
+import { AddUser } from "../../../actions/dag";
 
 const AddUserModal=({
 
     auth: { isAuthenticated, user, users, finalDataRep },
-    AddOrganization,
+    AddUser,
   }) => {
     const [show, setshow] = useState("");
     const handleClose = () => setshow("false");
@@ -16,27 +16,34 @@ const AddUserModal=({
     const [inputdata, setinput] = useState("");
     const [items, setitem] = useState([]);
 
-    const [formDataORG, setFormDataORG] = useState({
-        OrganizationName: "",
-        OrganizationEmail: "",
-        OrganizationNumber: "",
-        OrganizationAddress: "",
-        OrganizationStartdate:"",
+    const [formDataUSER, setformDataUSER] = useState({
+        UserFullname: "",
+        UserOrgbelongs:"",
+        UserName:"",
+        UserNumber: "",
+        UserEmail: "",
+        UserAddress: "",
+        UserPassword:"",
+        UserConfpassword:"",
    
       });
 
       const {
-        OrganizationName,
-        OrganizationEmail,
-        OrganizationNumber,
-        OrganizationAddress,
-        OrganizationStartdate,
+        UserFullname,
+        UserOrgbelongs,
+        UserName,
+        UserNumber,
+        UserEmail,
+        UserAddress,
+        UserPassword,
+        UserConfpassword,
        
-      } = formDataORG;
+       
+      } = formDataUSER;
 
-      const onORGchange = (e) => {
-        setFormDataORG({
-          ...formDataORG,
+      const onUserchange = (e) => {
+        setformDataUSER({
+          ...formDataUSER,
           [e.target.name]: e.target.value,
         });
       };
@@ -50,43 +57,49 @@ const AddUserModal=({
     }
   };
 
-  const onSubmitORGdata = () => {
+  const onSubmitUSERdata = () => {
 
 // Parse the date string into a Date object
-const originalDate = new Date(OrganizationStartdate);
+//const originalDate = new Date(OrganizationStartdate);
 
 // Add one year to the original date
-const oneYearLater = new Date(originalDate.getFullYear() + 1, originalDate.getMonth(), originalDate.getDate());
+//const oneYearLater = new Date(originalDate.getFullYear() + 1, originalDate.getMonth(), originalDate.getDate());
 
 // Format the date as a string in the desired format
-const oneYearLaterString = `${oneYearLater.getFullYear()}-${("0" + (oneYearLater.getMonth() + 1)).slice(-2)}-${("0" + oneYearLater.getDate()).slice(-2)}`;
+//const oneYearLaterString = `${oneYearLater.getFullYear()}-${("0" + (oneYearLater.getMonth() + 1)).slice(-2)}-${("0" + oneYearLater.getDate()).slice(-2)}`;
 
-console.log(oneYearLaterString); // Output: "2024-02-15"
+//console.log(oneYearLaterString); // Output: "2024-02-15"
 
-    const finalORGdata = {
-      orgName: OrganizationName,
-      email: OrganizationEmail,
-      startDate: OrganizationStartdate,
-      phoneNumber: OrganizationNumber,
-      endDate: oneYearLaterString,
-      address: OrganizationAddress,
-      orgStatus:"Active",
-      orgDeactiveReason:"",
+    const finalUSERdata = {
+      userName: UserName,
+      fullName: UserFullname,
+      email:UserEmail,
+      userGroup:"Admin",
+      orgName:UserOrgbelongs ,
+      phone: UserNumber,
+      address: UserAddress,
+      password:UserConfpassword,
+      userStatus:"Active",
+      userDeactiveReason:"",
       
     };
 
-    AddOrganization(finalORGdata);
-    // console.log(finalORGdata)
-    setFormDataORG({
-      ...formDataORG,
-      orgName: "" /*name*/,
-      email: "",
-      startDate: "",
-      phoneNumber: "",
-      address: "",
-      endDate:"",
-      orgStatus:"Active",
-      orgDeactiveReason:"",
+    AddUser(finalUSERdata);
+    // console.log(finalUSERdata)
+    setformDataUSER({
+      ...formDataUSER,
+      UserFullname: "",
+      UserOrgbelongs:"",
+      UserName:"",
+      UserNumber: "",
+      UserEmail: "",
+      UserAddress: "",
+      UserPassword:"",
+      UserConfpassword:"",
+      userStatus:"Active",
+      userDeactiveReason:"",
+
+     
      
     });
     handleAddClose();
@@ -121,7 +134,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                     centered>
                     <Modal.Header >
 
-                        <Modal.Title className='container'><h1 className='font-weight-bold '>ADD ORGANIZATION</h1></Modal.Title>
+                        <Modal.Title className='container'><h1 className='font-weight-bold '>ADD USER</h1></Modal.Title>
                         <div className="col-lg-2">
               <button onClick={()=>handleAddClose()}className="close">
                 <img
@@ -220,7 +233,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
            <Modal.Footer>
   
                         {/* <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button> */}
-                        <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button>
+                        <button onClick={() => onSubmitUSERdata()} className="btn contact_reg btn_color">  ADD</button>
                     </Modal.Footer>
           </Modal>
        
@@ -234,5 +247,5 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   dag: state.dag,
 });
-export default connect(mapStateToProps, { AddOrganization })(AddUserModal);
+export default connect(mapStateToProps, { AddUser })(AddUserModal);
 

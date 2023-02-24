@@ -10,7 +10,7 @@ connectDB();
 app.use(express.json({ extended: false }));
 
 // Define Routes
-app.use("/api/users", require("../DAG_mongo/routes/api/user"));
+app.use("/api/user", require("../DAG_mongo/routes/api/user"));
 app.use("/api/auth", require("../DAG_mongo/routes/api/auth"));
 app.use("/api/organization", require("../DAG_mongo/routes/api/organization"));
 
