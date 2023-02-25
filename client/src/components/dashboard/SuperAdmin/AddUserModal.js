@@ -60,25 +60,12 @@ const AddUserModal = ({
   const [showAddModal, setShowAddModal] = useState(false);
   const handleAddClose = () => setShowAddModal(false);
   const handleOpen = () => setShowAddModal(true);
-  const onAddStaffModalChange = (e) => {
-    if (e) {
-      handleAddClose();
-    }
-  };
+
+  
 
   const onSubmitUSERdata = () => {
 
-    // Parse the date string into a Date object
-    //const originalDate = new Date(OrganizationStartdate);
-
-    // Add one year to the original date
-    //const oneYearLater = new Date(originalDate.getFullYear() + 1, originalDate.getMonth(), originalDate.getDate());
-
-    // Format the date as a string in the desired format
-    //const oneYearLaterString = `${oneYearLater.getFullYear()}-${("0" + (oneYearLater.getMonth() + 1)).slice(-2)}-${("0" + oneYearLater.getDate()).slice(-2)}`;
-
-    //console.log(oneYearLaterString); // Output: "2024-02-15"
-
+    
     const finalUSERdata = {
       userName: UserName,
       fullName: UserFullname,
@@ -111,7 +98,7 @@ const AddUserModal = ({
 
 
     });
-    //setsubmitAddData(true)
+   
     handleAddClose();
 
   };
@@ -122,17 +109,17 @@ const AddUserModal = ({
 
     <Fragment>
 
-      <div className="col-lg-12 col-md-12 col-sm-12 col-12 text-right">
-        {/* <div className="text-right"> */}
+      <div className="col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-right">
+       
         <img
           className="img_icon_size log"
-          // onClick={() => onClickHandler()}
+         
           onClick={handleOpen}
           src={require("../../../static/images/add-icon.png")}
           alt="Add User"
           title="Add User"
         />
-        {/* </div> */}
+       
       </div><br />
 
 
@@ -175,21 +162,16 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Organization Belongs<span >*</span></label>
                       <div className="controls">
-                        {/* <input name="UserOrgbelongs" id="org_belongs" type="text" className="form-control" onChange={(e)=>onUserchange(e)} /> */}
+                       
+
+
 
                         <select name="UserOrgbelongs" className="form-control" onChange={(e) => onUserchange(e)}>
                           <option>--Select Organization--</option>
                           {allorg &&
-                            allorg.map((org, idx) => {
-                              if (org.orgStatus == "Active") 
-                              {
-                                return (
-                                  <option key={idx} value={org.orgName}>{org.orgName}</option>
-                                )
-                              }
-                            }
-                            )
-                          }
+                            allorg.map((org, idx) =>
+                              <option key={idx} value={org.orgName}>{org.orgName}</option>
+                            )}
 
 
                         </select>
@@ -260,7 +242,7 @@ const AddUserModal = ({
 
         <Modal.Footer>
 
-          {/* <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button> */}
+          
           <button onClick={() => onSubmitUSERdata()} className="btn contact_reg btn_color">  ADD</button>
         </Modal.Footer>
       </Modal>

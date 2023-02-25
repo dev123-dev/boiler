@@ -31,25 +31,8 @@ const EditOrganization = ({
   };
 
   const [inputdata, setinput] = useState("");
-  //   const [items, setitem] = useState(org.Location); 
-
-
-  //   const handleLocationclose = (ele1,index) => {
-
-  //     const delitem = items.filter((ele, ind) => {
-  //       return ele1 != ele;
-  //     });
-  //     setitem(delitem);
-  //   };
-
-  //   const addItem = () => {
-  //     if (!inputdata) {
-  //     } else {
-  //       setitem([...items, inputdata]);
-  //       setinput("");
-  //     }
-  //   };
-  //multiple location end
+  
+  
 
   const [formDataORG, setFormDataORG] = useState({
     OrganizationId: Org._id,
@@ -144,24 +127,11 @@ const EditOrganization = ({
                 </div>
               </div>
               <div className="row form-group">
-                {/* <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                  <label className="control-label">Org Logo</label>
-                  <div className="controls">
-                    <input name="logo_name" id="logo_name" type="file" className="form-control" value="" />
-                    <span id="category_result" className="form-input-info"></span>
-                  </div>
-                </div> */}
+                
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">Start Date </label>
                   <div className="controls">
-                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control" 
-                    
-                    
-                    placeholder="dd/mm/yyyy"
-                    // className="form-control cpp-input datevalidation"
-                    // name="instistartDate"
-                    // value={aggrementStartDate}
-                    
+                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control" placeholder="dd/mm/yyyy"
                     value={OrganizationStartdate} onChange={(e) => onInputChange(e)}  />
                     <span id="category_result" className="form-input-info"></span>
                   </div>
@@ -170,7 +140,7 @@ const EditOrganization = ({
             </div>
           </section>
           <div className="text-right">
-          {/* <button className="btn contact_reg btn_color"  onClick={handleClose}>CANCEL</button> */}
+         
           <button className="btn contact_reg btn_color" onClick={()=>onUpdate()}>UPDATE</button>
 
           </div>
@@ -187,8 +157,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  // UpdateTenantsDetails,
-  // getAllTenants,
-  // tenantsDetailsHistory,
   updateOrganization,
 })(EditOrganization);

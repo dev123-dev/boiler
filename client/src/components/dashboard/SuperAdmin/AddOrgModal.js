@@ -56,7 +56,7 @@ const oneYearLater = new Date(originalDate.getFullYear() + 1, originalDate.getMo
 // Format the date as a string in the desired format
 const oneYearLaterString = `${oneYearLater.getFullYear()}-${("0" + (oneYearLater.getMonth() + 1)).slice(-2)}-${("0" + oneYearLater.getDate()).slice(-2)}`;
 
-console.log(oneYearLaterString); // Output: "2024-02-15"
+console.log(oneYearLaterString);
 
     const finalORGdata = {
       orgName: OrganizationName,
@@ -93,15 +93,17 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
   
       <Fragment>
         
-          <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right">
-          {/* <div className="text-right"> */}
+         
+          <div className="text-right">
             <img
               className="img_icon_size log"
+              
               onClick={handleOpen}
               src={require("../../../static/images/add-icon.png")}
               alt="Add User"
               title="Add User"
             />
+           
             </div><br/>
          
        
@@ -174,16 +176,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Org Logo <span >*</span></label>
-                                                <div className="controls">
-                                                    <input name="logo_name" id="logo_name" type="file" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div>
-                                        </div> */}
-
+                                       
                                         <div className="row form-group ">
                                             <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
                                                 <br /><label className="control-label" >* Indicates mandatory fields.</label>
@@ -198,12 +191,10 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
          
            <Modal.Footer>
   
-                        {/* <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button> */}
+                       
                         <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button>
                     </Modal.Footer>
           </Modal>
-       
-
        
       </Fragment>
   
