@@ -78,7 +78,8 @@ const EditUser = ({
     setFormDataORG({ ...formDataORG, [e.target.name]: e.target.value });
   };
 
-  const onUpdate = () => {
+  const onUpdate = (e) => {
+    e.preventDefault();
     const update = {
         User_id: User_id,
         UserName: UserName,
@@ -97,7 +98,7 @@ const EditUser = ({
 
 
     <Fragment>
-      <form >
+      <form onSubmit={(e)=>onUpdate(e)}>
         <div className="container ">
           <section className="body">
             <div className="body-inner">
@@ -112,7 +113,7 @@ const EditUser = ({
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">User Name</label>
                   <div className="controls">
-                    <input name="UserName" id="category_status" type="text" className="form-control" value={UserName} onChange={(e) => onInputChange(e)} />
+                    <input name="UserName" id="category_status" type="text" className="form-control" value={UserName} onChange={(e) => onInputChange(e)} readOnly />
                     <span className="form-input-info" ></span>
                   </div>
                 </div>
@@ -162,7 +163,7 @@ const EditUser = ({
           </section>
           <div className="text-right">
           {/* <button className="btn contact_reg btn_color"  onClick={handleClose}>CANCEL</button> */}
-          <button className="btn contact_reg btn_color" onClick={()=>onUpdate()}>UPDATE</button>
+          <button className="btn contact_reg btn_color" type="submit" >UPDATE</button>
 
           </div>
          
