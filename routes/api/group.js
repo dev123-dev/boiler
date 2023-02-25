@@ -30,7 +30,7 @@ router.route("/deactivegroup").post((req, res) => {
 
     let data = req.body;
     GroupDetails.updateOne(
-        { _id: data.User_id },
+        { groupName: data.groupName },
         {
             $set: {
                 groupStatus: "Deactive",
@@ -42,7 +42,8 @@ router.route("/deactivegroup").post((req, res) => {
             res.status(200).json(data);
         })
 
-        .catch((err) => res.status(400).json("Error" + err));
+       .catch((err) => res.status(400).json("Error" + err));
+      console.log(data)
 }
 );
 

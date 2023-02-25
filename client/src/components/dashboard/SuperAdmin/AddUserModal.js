@@ -61,7 +61,12 @@ const AddUserModal = ({
   const handleAddClose = () => setShowAddModal(false);
   const handleOpen = () => setShowAddModal(true);
 
+<<<<<<< HEAD
   
+=======
+  const onSubmitUSERdata = (e) => {
+    e.preventDefault()
+>>>>>>> 512f514f284e7f782d0f048436a582fdef7c6d74
 
   const onSubmitUSERdata = (e) => {
     e.preventDefault()
@@ -155,7 +160,11 @@ const AddUserModal = ({
 
 
         <Modal.Body>
+<<<<<<< HEAD
           <form   onSubmit={(e) => onSubmitUSERdata(e)}>
+=======
+          <form onSubmit={(e) => onSubmitUSERdata(e)}>
+>>>>>>> 512f514f284e7f782d0f048436a582fdef7c6d74
 
             <div className="container ">
               <section className="body">
@@ -164,7 +173,11 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Full Name <span >*</span></label>
                       <div className="controls">
+<<<<<<< HEAD
                         <input name="UserFullname" id="full_name" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
+=======
+                        <input name="UserFullname" id="full_name" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
+>>>>>>> 512f514f284e7f782d0f048436a582fdef7c6d74
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
@@ -173,8 +186,11 @@ const AddUserModal = ({
                       <div className="controls">
                        
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 512f514f284e7f782d0f048436a582fdef7c6d74
                         <select name="UserOrgbelongs" className="form-control" onChange={(e) => onUserchange(e)} required>
                           <option>--Select Organization--</option>
                           {allorg &&
@@ -192,7 +208,11 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">UserName <span >*</span></label>
                       <div className="controls">
+<<<<<<< HEAD
                         <input name="UserName" id="username" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
+=======
+                        <input name="UserName" id="username" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
+>>>>>>> 512f514f284e7f782d0f048436a582fdef7c6d74
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
@@ -208,7 +228,11 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Email <span >*</span></label>
                       <div className="controls">
+<<<<<<< HEAD
                         <input name="UserEmail" id="user_email" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
+=======
+                        <input name="UserEmail" id="user_email" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
+>>>>>>> 512f514f284e7f782d0f048436a582fdef7c6d74
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
@@ -245,8 +269,12 @@ const AddUserModal = ({
                   </div>
                 </div>
                 <div className="text-right">
+<<<<<<< HEAD
                 <button className="btn contact_reg btn_color">  ADD</button>
 
+=======
+                <button  className="btn contact_reg btn_color" type="submit">  ADD</button>
+>>>>>>> 512f514f284e7f782d0f048436a582fdef7c6d74
                 </div>
               </section>
             </div>
@@ -255,6 +283,11 @@ const AddUserModal = ({
 
         <Modal.Footer>
 
+<<<<<<< HEAD
+=======
+       
+         
+>>>>>>> 512f514f284e7f782d0f048436a582fdef7c6d74
         </Modal.Footer>
       </Modal>
 

@@ -130,7 +130,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
              <NavItem>   
              {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
                     <NavLink
-                      to="/Category" className='navlink'
+                      to="/category" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
                     >
                       Category

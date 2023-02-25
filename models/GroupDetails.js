@@ -6,7 +6,7 @@ const GroupSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  userStatus: {
+  groupStatus: {
     type: String,
     required: true,
   },

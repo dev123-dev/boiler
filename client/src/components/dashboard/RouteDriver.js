@@ -14,8 +14,15 @@ const RouteDriver = ({ auth: { user }, loadUser,dag: { allorg } }) => {
   }, [loadUser]);
 
   if (user) {
+   if(user.userGroup==="Dev")
+   {
+
    
     return <Redirect to="/superdashboard" />
+  }
+  else if(user.userGroup==="Admin"){
+    return <Redirect to="/category" />
+  }
   }
   return <Fragment>loading...</Fragment>;
 };

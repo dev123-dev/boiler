@@ -78,7 +78,8 @@ const EditUser = ({
     setFormDataORG({ ...formDataORG, [e.target.name]: e.target.value });
   };
 
-  const onUpdate = () => {
+  const onUpdate = (e) => {
+    e.preventDefault()
     const update = {
         User_id: User_id,
         UserName: UserName,
@@ -99,7 +100,7 @@ const EditUser = ({
 
 
     <Fragment>
-      <form >
+      <form onSubmit={(e)=>onUpdate(e)} >
         <div className="container ">
           <section className="body">
             <div className="body-inner">
@@ -107,14 +108,14 @@ const EditUser = ({
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">Full Name </label>
                   <div className="controls">
-                    <input name="fullName" id="cat_name" type="text" className="form-control" value={fullName} onChange={(e) => onInputChange(e)} />
+                    <input name="fullName" id="cat_name" type="text" className="form-control" value={fullName} onChange={(e) => onInputChange(e)} required />
                     <span id="category_result" className="form-input-info"></span>
                   </div>
                 </div>
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">User Name</label>
                   <div className="controls">
-                    <input name="UserName" id="category_status" type="text" className="form-control" value={UserName} onChange={(e) => onInputChange(e)} />
+                    <input name="UserName" id="category_status" type="text" className="form-control" value={UserName} onChange={(e) => onInputChange(e)} required readOnly/>
                     <span className="form-input-info" ></span>
                   </div>
                 </div>
@@ -123,7 +124,7 @@ const EditUser = ({
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">Phone No.</label>
                   <div className="controls">
-                    <input name="UserNumber" id="category_status" type="text" className="form-control" value={UserNumber} onChange={(e) => onInputChange(e)} />
+                    <input name="UserNumber" id="category_status" type="text" className="form-control" value={UserNumber} onChange={(e) => onInputChange(e)} required />
                     <span className="form-input-info" ></span>
                   </div>
 
@@ -132,7 +133,7 @@ const EditUser = ({
                   <label className="control-label">Email </label>
                   <div className="controls">
                     <input name="UserEmail" id="cat_name" type="text" className="form-control"   
-                    value={UserEmail} onChange={(e) => onInputChange(e)}  />
+                    value={UserEmail} onChange={(e) => onInputChange(e)} required />
                     <span id="category_result" className="form-input-info"></span>
                   </div>
                 </div>
@@ -164,7 +165,7 @@ const EditUser = ({
           </section>
           <div className="text-right">
           {/* <button className="btn contact_reg btn_color"  onClick={handleClose}>CANCEL</button> */}
-          <button className="btn contact_reg btn_color" onClick={()=>onUpdate()}>UPDATE</button>
+          <button className="btn contact_reg btn_color" >UPDATE</button>
 
           </div>
          
