@@ -45,7 +45,8 @@ const AddOrgModal=({
   const handleOpen = () => setShowAddModal(true);
   
 
-  const onSubmitORGdata = () => {
+  const onSubmitORGdata = (e) => {
+    e.preventDefault()
 
 // Parse the date string into a Date object
 const originalDate = new Date(OrganizationStartdate);
@@ -128,7 +129,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
 
 
                     <Modal.Body>
-                        <form >
+                        <form onSubmit={(e) => onSubmitORGdata(e)}>
                             <div className="container ">
                                 <section className="body">
                                     <div className="body-inner">
@@ -174,21 +175,16 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                                                 </div>
                                             </div>
                                         </div>
-                                        {/* <div className="row form-group">
-                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                                                <label className="control-label">Org Logo <span >*</span></label>
-                                                <div className="controls">
-                                                    <input name="logo_name" id="logo_name" type="file" className="form-control" value="" />
-                                                    <span id="category_result" className="form-input-info"></span>
-                                                </div>
-                                            </div>
-                                        </div> */}
-
+                                   
                                         <div className="row form-group ">
                                             <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
                                                 <br /><label className="control-label" >* Indicates mandatory fields.</label>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div className="text-right">
+                                         
+                        <button  className="btn contact_reg btn_color">  ADD</button>
                                     </div>
                                 </section>
                             </div>
@@ -198,8 +194,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
          
            <Modal.Footer>
   
-                        {/* <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button> */}
-                        <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button>
+                    
                     </Modal.Footer>
           </Modal>
        

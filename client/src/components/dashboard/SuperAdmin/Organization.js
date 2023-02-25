@@ -108,7 +108,8 @@ const Organization = ({
 
 
 
-  const onAdd = () => {
+  const onAdd = (e) => {
+    e.preventDefault()
     const reason = {
       Org_id: OrgId,
       // org_status: "Deactive",
@@ -299,11 +300,14 @@ const Organization = ({
         <Modal.Body>
 
           <label className="control-label">Reason for Deactivating:</label>
-          <form>
+          <form onSubmit={(e)=>onAdd(e)}>
             <div className="controls">
               <textarea rows="2" name="Organization_DE_Reason"
-                onChange={(e) => onInputchange(e)} id="org_reason" className="form-control" ></textarea>
+                onChange={(e) => onInputchange(e)} id="org_reason" className="form-control" required ></textarea>
               <span className="form-input-info" ></span>
+            </div>
+            <div className="text-right">
+            <button  className="btn contact_reg btn_color" type="submit">  DEACTIVATE</button>
             </div>
 
           </form>
@@ -311,7 +315,7 @@ const Organization = ({
         <Modal.Footer>
 
           {/* <button onClick={handleClose} className="btn contact_reg btn_color"> NO</button> */}
-          <button onClick={onAdd} className="btn contact_reg btn_color">  DEACTIVATE</button>
+         
         </Modal.Footer>
       </Modal>
       {/* edit modal */}

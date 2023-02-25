@@ -73,7 +73,8 @@ const EditOrganization = ({
     setFormDataORG({ ...formDataORG, [e.target.name]: e.target.value });
   };
 
-  const onUpdate = () => {
+  const onUpdate = (e) => {
+    e.preventDefault()
 
 
       // Parse the date string into a Date object
@@ -106,7 +107,7 @@ const EditOrganization = ({
 
 
     <Fragment>
-      <form >
+      <form onSubmit={(e)=>onUpdate(e)}>
         <div className="container ">
           <section className="body">
             <div className="body-inner">
@@ -114,14 +115,14 @@ const EditOrganization = ({
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">Org Name </label>
                   <div className="controls">
-                    <input name="OrganizationName" id="cat_name" type="text" className="form-control" value={OrganizationName} onChange={(e) => onInputChange(e)} />
+                    <input name="OrganizationName" id="cat_name" type="text" className="form-control" value={OrganizationName} onChange={(e) => onInputChange(e)} required readOnly/>
                     <span id="category_result" className="form-input-info"></span>
                   </div>
                 </div>
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">Email</label>
                   <div className="controls">
-                    <input name="OrganizationEmail" id="category_status" type="text" className="form-control" value={OrganizationEmail} onChange={(e) => onInputChange(e)} />
+                    <input name="OrganizationEmail" id="category_status" type="text" className="form-control" value={OrganizationEmail} onChange={(e) => onInputChange(e)} required />
                     <span className="form-input-info" ></span>
                   </div>
                 </div>
@@ -130,7 +131,7 @@ const EditOrganization = ({
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">Phone No.</label>
                   <div className="controls">
-                    <input name="OrganizationNumber" id="category_status" type="text" className="form-control" value={OrganizationNumber} onChange={(e) => onInputChange(e)} />
+                    <input name="OrganizationNumber" id="category_status" type="text" className="form-control" value={OrganizationNumber} onChange={(e) => onInputChange(e)} required />
                     <span className="form-input-info" ></span>
                   </div>
 
@@ -157,7 +158,7 @@ const EditOrganization = ({
                     <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control" 
                     
                     
-                    placeholder="dd/mm/yyyy"
+                    placeholder="dd/mm/yyyy" required
                     // className="form-control cpp-input datevalidation"
                     // name="instistartDate"
                     // value={aggrementStartDate}
@@ -171,7 +172,7 @@ const EditOrganization = ({
           </section>
           <div className="text-right">
           {/* <button className="btn contact_reg btn_color"  onClick={handleClose}>CANCEL</button> */}
-          <button className="btn contact_reg btn_color" onClick={()=>onUpdate()}>UPDATE</button>
+          <button className="btn contact_reg btn_color" type="submit">UPDATE</button>
 
           </div>
          
