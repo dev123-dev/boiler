@@ -53,9 +53,8 @@ router.post(
       let UserDetail = await UserDetails.findOne({
         userName: userName,
         password: password,
+        userStatus:"Active"
       });
-
-
 
       if (!UserDetail) {
         return res.status(STATUS_CODE_400).json({
