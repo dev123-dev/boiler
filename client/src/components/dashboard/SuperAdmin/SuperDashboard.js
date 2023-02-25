@@ -63,7 +63,10 @@ setorgdata(orgObj)
               {allorg &&
 
                 allorg.map((orgVal, idx) => {
+<<<<<<< HEAD
                   
+=======
+>>>>>>> db1784cb34bf447018a8565e7f9756599599c72a
                   // var ED = orgVal.startDate.split(
                   //   /\D/g
                   // );
@@ -78,7 +81,10 @@ setorgdata(orgObj)
                   //   EDE[1],
                   //   EDE[0],
                   // ].join("-");
+<<<<<<< HEAD
 
+=======
+>>>>>>> db1784cb34bf447018a8565e7f9756599599c72a
                   return (
                     <tr key={idx}>
                       <td>{orgVal.orgName}</td>

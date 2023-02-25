@@ -67,6 +67,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
               className="Icon p-2"
               alt="Pinnacle Media"
               src={require("../../static/images/dag_logo1.png")}
+              title="Dashboard"
             />
             </NavLink>
           </Navbar.Brand>
@@ -82,6 +83,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
               className="Icon p-2"
               alt="Pinnacle Media"
               src={require("../../static/images/dag_logo1.png")}
+              title="Dashboard"
             />
             </NavLink>
           </Navbar.Brand>

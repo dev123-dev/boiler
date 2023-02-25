@@ -110,7 +110,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
               onClick={handleOpen}
               src={require("../../../static/images/add-icon.png")}
               alt="Add User"
-              title="Add User"
+              title="Add Org"
             />
             </div><br/>
          
@@ -131,6 +131,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                   src={require("../../../static/images/close.png")}
                   alt="X"
                   style={{ height: "20px", width: "20px" }}
+                
                 />
               </button>
             </div>

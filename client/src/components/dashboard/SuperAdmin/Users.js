@@ -229,7 +229,7 @@ const Users = ({
                             onClick={() => onDelete(userVal._id)}
                             src={require("../../../static/images/delete.png")}
                             alt="delete User"
-                            title="delete User"
+                            title="Deactivate User"
                           /></>):(<></>)}
                           
                             

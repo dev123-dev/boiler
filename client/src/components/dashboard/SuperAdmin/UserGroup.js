@@ -93,7 +93,7 @@ const UserGroup = ({
                                                                 onClick={() => onDelete(grpVal.groupName)}
                                                                 src={require("../../../static/images/delete.png")}
                                                                 alt="delete User"
-                                                                title="delete User"
+                                                                title="delete UserGroup"
                                                             />
                                                         </td>
 
