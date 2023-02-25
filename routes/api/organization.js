@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const OrgDetails = require("../../models/OrganizationDetails");
+const OrgHistroy = require("../../models/OrganizationHistroy");
 const mongoose = require("mongoose");
+
 //add organization
 router.route("/addorganization").post((req, res) => {
     console.log(req.body)
@@ -16,8 +18,8 @@ router.route("/addorganization").post((req, res) => {
 
 //get all details 
 router.route("/").get((req, res) => {
-    OrgDetails.find().sort({orgStatus:1})
 
+    OrgDetails.find().sort({orgStatus:1})
         .then((data) => {
             res.status(200).json(data);
         })
@@ -29,14 +31,18 @@ router.route("/").get((req, res) => {
 router.route("/deactiveorg").post((req, res) => {
 
     let data = req.body;
-    
+   
+
     OrgDetails.updateOne(
         { _id:  data.Org_id },
         {
             $set: {
                 orgStatus: "Deactive",
-                orgDeactiveReason:data.deactive_reason
-            },
+                orgDeactiveReason:data.deactive_reason,
+                DeactiveById: data.DeactiveById,
+                DeactiveByName:data.DeactiveByName,
+                DeactiveByDateTime:data.DeactiveByDateTime,
+                       },
         }
     )
         .then((data) => {
@@ -52,6 +58,9 @@ router.route("/deactiveorg").post((req, res) => {
 router.route("/editorganization").post((req, res) => {
 
     let data = req.body;
+   // console.log(data)
+    let OrgHis = new OrgHistroy(req.body)
+    OrgHis.save(req.body).then(()=>console.log("Histroy entered"))
 
     OrgDetails.updateOne(
         { _id:  data.OrganizationId },
@@ -63,6 +72,10 @@ router.route("/editorganization").post((req, res) => {
                 phoneNumber:data.OrganizationNumber,
                 address:data.OrganizationAddress,
                 endDate:data.OrganizationEnddate,
+                EditById: data.EditById,
+                EditByName:data.EditByName,
+                EditByDateTime:data.EditByDateTime,
+
             },
         }
     )

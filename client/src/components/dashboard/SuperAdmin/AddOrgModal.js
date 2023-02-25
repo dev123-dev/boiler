@@ -67,7 +67,15 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
       address: OrganizationAddress,
       orgStatus:"Active",
       orgDeactiveReason:"",
-
+      EnterById:user._id,
+      EnterByName:user.userName,
+      EnterByDateTime: new Date().toLocaleString("en-GB"),
+      EditById:"",
+      EditByName:"",
+      EditByDateTime:"",
+      DeactiveById:"",
+      DeactiveByName:"",
+      DeactiveByDateTime:"",
       
     };
     AddOrganization(finalORGdata);
@@ -84,6 +92,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
       orgDeactiveReason:"",
      
     });
+    console.log(user)
     handleAddClose();
   };
 

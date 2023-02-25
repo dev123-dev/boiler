@@ -1,36 +1,43 @@
 const mongoose = require("mongoose");
 
-const OrgSchema = new mongoose.Schema({
+const UserHisSchema = new mongoose.Schema({
+  userName: {
+    type: String,
+   
+  },
+  userGroup: {
+    type: String,
+   
+  },
   orgName: {
     type: String,
-    required: true,
-    unique: true,
+   
+  },
+  fullName: {
+    type: String,
+    
   },
   email: {
     type: String,
-    required: true,
+   
   },
-  startDate: {
-    type: String,
-    required: true,
-  },
-  phoneNumber: {
-    type: String,
-    required: true,
-  },
-  endDate: {
+  phone: {
     type: String,
     
   },
   address: {
     type: String,
-    required: true,
+   
   },
-  orgStatus: {
+  password: {
     type: String,
-  
+    
   },
-  orgDeactiveReason:{
+  userStatus: {
+    type: String,
+    
+  },
+  userDeactiveReason:{
     type: String,
   },
   EnterById:{
@@ -60,7 +67,8 @@ const OrgSchema = new mongoose.Schema({
   DeactiveByDateTime:{
     type:String,
   },
+
 });
 
-module.exports = OrgDetails = mongoose.model("Org", OrgSchema);
+module.exports = UserHistroy = mongoose.model("userHistroys", UserHisSchema);
 

@@ -325,6 +325,7 @@ const Users = ({
           <button onClick={onAdd} className="btn contact_reg btn_color">  DEACTIVATE</button>
         </Modal.Footer>
       </Modal>
+      
       {/* edit modal */}
       <Modal
         show={showUpdateModal}

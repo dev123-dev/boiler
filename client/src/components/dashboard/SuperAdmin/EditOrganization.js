@@ -96,9 +96,20 @@ const EditOrganization = ({
       OrganizationStartdate:OrganizationStartdate,
       OrganizationEnddate:oneYearLaterString,
 
+      OrganizationIdOld: Org._id,
+    OrganizationNameOld: Org.orgName,
+    OrganizationEmailOld: Org.email,
+    OrganizationNumberOld: Org.phoneNumber,
+    OrganizationAddressOLd: Org.address,
+    OrganizationStartdateOld:Org.startDate,
+    OrganizationEnddateOld:Org.endDate,
+    
+      EditById: user._id,
+      EditByName:user.userName,
+      EditByDateTime: new Date().toLocaleString("en-GB"),
     }
     closeedit()
-    console.log("main page" + update)
+    
     updateOrganization(update)
     
   };

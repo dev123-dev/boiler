@@ -40,7 +40,35 @@ const UserSchema = new mongoose.Schema({
   },
   userDeactiveReason:{
     type: String,
-  }
+  },
+  EnterById:{
+    type: String,
+  },
+  EnterByName:{
+    type: String,
+  },
+  EnterByDateTime:{
+    type:String,
+  },
+  EditById:{
+    type: String,
+  },
+  EditByName:{
+    type: String,
+  },
+  EditByDateTime:{
+    type:String,
+  },
+  DeactiveById:{
+    type: String,
+  },
+  DeactiveByName:{
+    type: String,
+  },
+  DeactiveByDateTime:{
+    type:String,
+  },
+
 });
 
 module.exports = UserDetails = mongoose.model("users", UserSchema);

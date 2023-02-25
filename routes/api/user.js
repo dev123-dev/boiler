@@ -35,6 +35,9 @@ router.route("/deactiveuser").post((req, res) => {
             $set: {
                 userStatus: "Deactive",
                 userDeactiveReason: data.deactive_reason,
+                DeactiveById: data.EditById,
+                DeactiveByName:data.EditByName,
+                DeactiveByDateTime:data.EditByDateTime,
             },
         }
     )
@@ -50,6 +53,8 @@ router.route("/deactiveuser").post((req, res) => {
 router.route("/edituser").post((req, res) => {
 
     let data = req.body;
+    let UserHis = new UserHistroy(req.body)
+    UserHis.save(req.body).then(()=>console.log("Histroy entered User"))
 
     UserDetails.updateOne(
         { _id: data.User_id },
@@ -60,7 +65,9 @@ router.route("/edituser").post((req, res) => {
                 email: data.UserEmail,
                 phone: data.UserNumber,
                 address:data.UserAddress,
-              
+                EditById: data.EditById,
+                EditByName:data.EditByName,
+                EditByDateTime:data.EditByDateTime,
             },
         }
     )

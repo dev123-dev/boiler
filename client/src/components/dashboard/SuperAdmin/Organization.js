@@ -15,7 +15,7 @@ import EditOrganization from "./EditOrganization"
 const Organization = ({
   //here to connect to action we need to import the function
   //then again we need to mention inside the const function
-  dag: { allorg },
+  dag: { allorg },  auth: { isAuthenticated, user, users },
   deleteOrganization,
   getAllOrganization,
   editOrganization,
@@ -113,6 +113,9 @@ const Organization = ({
       Org_id: OrgId,
       // org_status: "Deactive",
       deactive_reason: Organization_DE_Reason,
+      DeactiveById: user._id,
+      DeactiveByName:user.Name,
+      DeactiveByDateTime: new Date().toLocaleString("en-GB"),
     };
     deleteOrganization(reason);
     handleClose();
@@ -350,6 +353,7 @@ const Organization = ({
 };
 const mapStateToProps = (state) => ({
   dag: state.dag,
+  auth: state.auth,
 });
 export default connect(mapStateToProps, {
   getAllOrganization,
