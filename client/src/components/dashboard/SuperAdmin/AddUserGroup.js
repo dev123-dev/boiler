@@ -87,7 +87,7 @@ const AddUserGroup = ({
                 centered>
                 <Modal.Header >
 
-                    <Modal.Title className='container'><h1 className='font-weight-bold '>ADD ORGANIZATION</h1></Modal.Title>
+                    <Modal.Title className='container'><h1 className='font-weight-bold '>ADD USERGROUP</h1></Modal.Title>
                     <div className="col-lg-2">
                         <button onClick={() => handleAddClose()} className="close">
                             <img
@@ -128,7 +128,7 @@ const AddUserGroup = ({
                                     </div>
                                 </div>
                                 <div className="text-right">
-                                    <button>ADD</button>
+                                    <button  className="btn contact_reg btn_color">ADD</button>
                                 </div>
                             </section>
                         </div>

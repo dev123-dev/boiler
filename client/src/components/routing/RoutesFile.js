@@ -15,6 +15,8 @@ import Organization from "../dashboard/SuperAdmin/Organization";
 import Users from "../dashboard/SuperAdmin/Users";
 import UserGroup from "../dashboard/SuperAdmin/UserGroup";
 
+import Category from "../dashboard/Admin/Category";
+
 const RoutesFile = () => {
   return (
     <section className="container">
@@ -49,6 +51,16 @@ const RoutesFile = () => {
           path="/usergroup"
           component={UserGroup}
         />
+
+        {/* Admin */}
+
+
+        <PrivateRoute
+          exact
+          path="/category"
+          component={Category}
+        />
+
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
 
         <Route component={NotFound} />

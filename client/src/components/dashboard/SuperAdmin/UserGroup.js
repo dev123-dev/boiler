@@ -40,9 +40,6 @@ const UserGroup = ({
         handleShow();
     };
 
-
-
-
     const [showUpdateModal, setShowUpdateModal] = useState(false);
     const handleUpdateModalClose = () => setShowUpdateModal(false);
 
@@ -60,16 +57,9 @@ const UserGroup = ({
 
     };
 
-
     return (
         <div>
-
             <div className="row">
-
-
-
-
-
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
                     <section>
                         <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">User Group Lists</h1>
@@ -78,8 +68,6 @@ const UserGroup = ({
                         <AddUserGroup />
 
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
-
-
                             <table border="1" id="datatable2" className="table-striped table table-bordered table-hover">
                                 <thead>
                                     <tr className='headingsizes'>
@@ -98,13 +86,8 @@ const UserGroup = ({
                                                     <tr key={idx}>
                                                         <td>{grpVal.groupName}</td>
 
-
-
-
                                                         <td>
-
-
-                                                            <img
+                                                  <img
                                                                 className="img_icon_size log"
 
                                                                 onClick={() => onDelete(grpVal.groupName)}
@@ -112,8 +95,6 @@ const UserGroup = ({
                                                                 alt="delete User"
                                                                 title="delete User"
                                                             />
-
-
                                                         </td>
 
                                                     </tr>
@@ -126,12 +107,8 @@ const UserGroup = ({
                         </div>
                     </section>
                 </div>
-
-
             </div>
-
-
-            {/* modal for deactivating start */}
+            {/*DEACTIVATE MODAL */}
 
             <Modal
                 show={show}
@@ -154,10 +131,9 @@ const UserGroup = ({
                 </Modal.Header>
                 <Modal.Body>
 
-
-                    <div>Do You Want to delete User Group?</div>
+                    <div className="h4">Do You Want to DELETE this User Group?</div>
                     <div className="text-right">
-                        <button onClick={(e) => onAdd(e)}>Delete</button>
+                        <button onClick={(e) => onAdd(e)}  className="btn contact_reg btn_color">DELETE</button>
                     </div>
                 </Modal.Body>
 
