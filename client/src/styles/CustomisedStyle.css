@@ -789,6 +789,7 @@ label {
 .fixTableHead {
   overflow-y: auto;
   height: 750px;
+  max-height: 700px;
 }
 
 @media (min-width: 992px) {
@@ -1958,6 +1959,9 @@ background: #877bae;
 }
 table{
 width: 100%;
+margin-bottom: 10%;
+
+
 }
 
 Nav.Link{

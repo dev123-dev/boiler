@@ -175,10 +175,10 @@ const Organization = ({
        
           <AddOrgModal/>
          
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
 
 
-            <table border="1" id="datatable2" >
+            <table border="1" id="datatable2"  className="table-striped table table-bordered table-hover" >
               <thead>
                 <tr className='headingsizes'>
                   <th>Org Name</th>

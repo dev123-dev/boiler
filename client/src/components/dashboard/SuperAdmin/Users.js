@@ -149,6 +149,7 @@ const Users = ({
 
    
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
+        <section>
           <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Users Lists</h1>
           {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
 
@@ -177,10 +178,10 @@ const Users = ({
        
           <AddUserModal />
          
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
 
 
-            <table border="1" id="datatable2" >
+            <table border="1" id="datatable2" className="table-striped table table-bordered table-hover">
               <thead>
                 <tr className='headingsizes'>
                   <th>User Name</th>
@@ -277,7 +278,9 @@ const Users = ({
               </tbody>
             </table>
           </div>
+          </section>
         </div>
+       
         {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-left">
     </div> */}
       </div>
@@ -293,7 +296,7 @@ const Users = ({
         aria-labelledby="contained-modal-title-vcenter"
       >
         <Modal.Header >
-          <Modal.Title className='container'><h1 className='font-weight-bold '>DEACTIVATE ORGANIZATION</h1></Modal.Title>
+          <Modal.Title className='container'><h1 className='font-weight-bold '>DEACTIVATE USERS</h1></Modal.Title>
           <div className="col-lg-2">
             <button onClick={handleClose} className="close">
               <img
@@ -333,7 +336,7 @@ const Users = ({
       >
         <Modal.Header>
           <div className="col-lg-10">
-            <h3 className="modal-title text-center">Edit Organization Details </h3>
+            <h3 className="modal-title text-center">Edit Users Details </h3>
           </div>
           <div className="col-lg-2">
             <button onClick={handleUpdateModalClose} className="close">

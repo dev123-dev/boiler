@@ -74,6 +74,19 @@ const EditOrganization = ({
   };
 
   const onUpdate = () => {
+
+
+      // Parse the date string into a Date object
+      const originalDate = new Date(OrganizationStartdate);
+    
+      // Add one year to the original date
+      const oneYearLater = new Date(originalDate.getFullYear() + 1, originalDate.getMonth(), originalDate.getDate());
+      
+      // Format the date as a string in the desired format
+      const oneYearLaterString = `${oneYearLater.getFullYear()}-${("0" + (oneYearLater.getMonth() + 1)).slice(-2)}-${("0" + oneYearLater.getDate()).slice(-2)}`;
+      
+  
+  
     const update = {
       OrganizationId: OrganizationId,
       OrganizationName: OrganizationName,
@@ -81,6 +94,7 @@ const EditOrganization = ({
       OrganizationNumber: OrganizationNumber,
       OrganizationAddress: OrganizationAddress,
       OrganizationStartdate:OrganizationStartdate,
+      OrganizationEnddate:oneYearLaterString,
 
     }
     console.log("main page" + update)

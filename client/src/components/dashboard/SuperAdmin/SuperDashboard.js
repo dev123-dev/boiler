@@ -76,7 +76,7 @@ setorgdata(orgObj)
                     
                          <button
                           variant="success"
-                          className="btn sub_form"
+                          className="btn contact_reg btn_color"
                           // onClick={() =>
                           //   onRenewal(orgVal, idx)
                           // }
