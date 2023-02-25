@@ -193,4 +193,58 @@ export const updateUser = (updatedata) => async(dispatch)=>{
   } catch (err) {}
   };
   
+  //add usergroup
+export const AddGroup = (grpData)=> async(dispatch)=>{
+  // console.log(UserData)
+  try {
+   await axios.post(
+     `${linkPath}/api/group/addgroup`,
+    grpData,
+     config
+   );
+   //diapatching get function because it should relfex immidiatly after adding
+    dispatch(getAllUserGroup());
+ 
+ } catch (err) {
+   dispatch({
+     type: AUTH_ERROR,
+   });
+ }
+ };
+
+ //gettting UserGroup details
+export const getAllUserGroup = () => async (dispatch) => {
+  try {
+  
+    const res = await axios.get(`${linkPath}/api/group/getgroup`);
+    dispatch({
+      type: GET_ALL_USER,
+      payload: res.data,
+    
+
+    }  );
+    
+    
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
+
+//deleting user group details
+export const deleteUserGroup = (groupName) => async(dispatch)=>{
+  // console.log('INSIDE ACTION')
+  // console.log(id);
+  try {
+    const res = await axios.post(`${linkPath}/api/group/deactivegroup`,groupName,config);
+    dispatch(getAllUserGroup());
+  } catch (err) {
+    console.log("error while sending from action");
+    dispatch({
+      type: TENANT_FEEDBACK_ERROR,
+    });
+  }
+
+};
   
