@@ -4,7 +4,7 @@ import { updateOrganization } from "../../../actions/dag";
 
 const EditOrganization = ({
   auth: { isAuthenticated, user, users },
-  Org,
+  Org,close,
   updateOrganization
 }) => {
   console.log(Org);
@@ -86,6 +86,7 @@ const EditOrganization = ({
     console.log("main page" + update)
     updateOrganization(update)
     handleClose();
+    close()
 
   };
   return !isAuthenticated || !user || !users ? (
@@ -145,8 +146,8 @@ const EditOrganization = ({
             </div>
           </section>
           <div className="text-right">
-       
-          <button className="btn contact_reg btn_color" type="submit">UPDATE</button>
+         
+          <button className="btn contact_reg btn_color" onClick={()=>onUpdate()}>UPDATE</button>
 
           </div>
          

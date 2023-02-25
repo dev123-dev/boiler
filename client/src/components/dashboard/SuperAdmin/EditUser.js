@@ -5,7 +5,7 @@ import { updateUser } from "../../../actions/dag";
 // import { editOrganization } from "../../../actions/dag";
 const EditUser = ({
   auth: { isAuthenticated, user, users },
-  userdata,
+  userdata, closeupdate,
   updateUser
 }) => {
   console.log(userdata);
@@ -54,6 +54,7 @@ const EditUser = ({
     }
     console.log("main page" + update)
     updateUser(update)
+    closeupdate()
   };
   return !isAuthenticated || !user || !users ? (
     <Fragment></Fragment>
