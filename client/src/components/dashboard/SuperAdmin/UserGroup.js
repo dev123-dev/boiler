@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 // import refresh from '../assets/refresh-icon.png';
  import addicon from '../../../static/images/add-icon.png';
 import Modal from 'react-bootstrap/Modal';
+import AddGroupModal from './AddGroupModal';
 // import Button from 'react-bootstrap/Button';
 
 
@@ -46,6 +47,8 @@ export default function UserGroup() {
                 </div>
                 <div className="col-lg-10 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
                     <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">UserGroup Lists</h1><br />
+
+                    <AddGroupModal/>
                     {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
 
                     <div className='text-right'>
