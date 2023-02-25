@@ -1,6 +1,7 @@
 const router = require("express").Router();
 
 const UserDetails = require("../../models/UserDetails");
+const UserHistroy =require("../../models/UserHistroy");
 
 //add user
 router.route("/adduser").post((req, res) => {
@@ -35,9 +36,9 @@ router.route("/deactiveuser").post((req, res) => {
             $set: {
                 userStatus: "Deactive",
                 userDeactiveReason: data.deactive_reason,
-                DeactiveById: data.EditById,
-                DeactiveByName:data.EditByName,
-                DeactiveByDateTime:data.EditByDateTime,
+                DeactiveById: data.DeactiveById,
+                DeactiveByName:data.DeactiveById,
+                DeactiveByDateTime:data.DeactiveById,
             },
         }
     )
@@ -53,8 +54,7 @@ router.route("/deactiveuser").post((req, res) => {
 router.route("/edituser").post((req, res) => {
 
     let data = req.body;
-    let UserHis = new UserHistroy(req.body)
-    UserHis.save(req.body).then(()=>console.log("Histroy entered User"))
+    
 
     UserDetails.updateOne(
         { _id: data.User_id },
@@ -71,11 +71,15 @@ router.route("/edituser").post((req, res) => {
             },
         }
     )
-        .then((data) => {
+    .then((data) => {
             res.status(200).json(data);
         })
-
         .catch((err) => res.status(400).json("Error" + err));
+
+        let UserHis = new UserHistroy(req.body)
+        
+        UserHis.save(req.body).then(()=>console.log("Histroy entered User"))
+        
 }
 );
 

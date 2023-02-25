@@ -1,37 +1,40 @@
 const mongoose = require("mongoose");
 
 const UserHisSchema = new mongoose.Schema({
-  userName: {
+
+  UserName: {
     type: String,
-   
   },
   userGroup: {
     type: String,
-   
   },
   orgName: {
     type: String,
-   
   },
   fullName: {
-    type: String,
-    
+    type: String, 
   },
-  email: {
+  UserEmail: {
     type: String,
-   
   },
-  phone: {
+  UserNumber: {
+    type: String, 
+  },
+  UserAddress: {
     type: String,
-    
   },
-  address: {
-    type: String,
-   
-  },
+  fullNameOld: { 
+    type: String,},
+  UserNameOld:{ 
+    type: String,},
+   UserEmailOld: { 
+    type: String,},
+ UserNumberOld:{ 
+    type: String,},
+   UserAddressOld: { 
+    type: String,},
   password: {
-    type: String,
-    
+    type: String, 
   },
   userStatus: {
     type: String,
