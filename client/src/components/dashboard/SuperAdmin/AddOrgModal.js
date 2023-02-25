@@ -45,8 +45,8 @@ const AddOrgModal=({
   const handleOpen = () => setShowAddModal(true);
   
 
-  const onSubmitORGdata = () => {
-
+  const onSubmitORGdata = (e) => {
+e.preventDefault()
 // Parse the date string into a Date object
 const originalDate = new Date(OrganizationStartdate);
 
@@ -128,10 +128,15 @@ console.log(oneYearLaterString);
             </div>
                     </Modal.Header>
 
-
+                
                     <Modal.Body>
-                        <form >
-                            <div className="container ">
+                    <form  onSubmit={(e) => onSubmitORGdata(e)} >
+                    {/* <div className="row form-group">
+                      <input type="text" name="OrganizationName" onChange={(e) => onORGchange(e)} className="form-control" required></input>
+                      <button type="submit" >ok</button>
+                      </div>
+                        */}
+                             <div className="container ">
                                 <section className="body">
                                     <div className="body-inner">
                                         <div className="row form-group">
@@ -150,6 +155,7 @@ console.log(oneYearLaterString);
                                                 </div>
                                             </div>
                                         </div>
+                                      
                                         <div className="row form-group">
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Start Date <span >*</span></label>
@@ -176,24 +182,45 @@ console.log(oneYearLaterString);
                                                 </div>
                                             </div>
                                         </div>
+<<<<<<< HEAD
                                        
+=======
+                                      
+
+>>>>>>> eca7b0bda0c0c26caeb2bdfd33a7c0d1e23165a3
                                         <div className="row form-group ">
                                             <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
                                                 <br /><label className="control-label" >* Indicates mandatory fields.</label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="text-right">
+                                    {/* <button type="submit"  className="btn contact_reg btn_color"  onClick={() => onSubmitORGdata()}>ok</button> */}
+                                    <button type="submit" className="btn contact_reg btn_color">  ADD</button>
+                                    </div>
                                 </section>
-                            </div>
-                        </form>
+
+
+                              
+                            </div>  
+                            </form>
+
+                       
                     </Modal.Body>
+            
 
          
            <Modal.Footer>
   
+<<<<<<< HEAD
                        
                         <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button>
+=======
+                        {/* <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button> */}
+                        {/* <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button> */}
+>>>>>>> eca7b0bda0c0c26caeb2bdfd33a7c0d1e23165a3
                     </Modal.Footer>
+                   
           </Modal>
        
       </Fragment>

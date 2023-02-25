@@ -30,6 +30,8 @@ const EditOrganization = ({
     handleOpen();
   };
 
+
+
   const [inputdata, setinput] = useState("");
   
   
@@ -56,7 +58,8 @@ const EditOrganization = ({
     setFormDataORG({ ...formDataORG, [e.target.name]: e.target.value });
   };
 
-  const onUpdate = () => {
+  const onUpdate = (e) => {
+    e.preventDefault()
 
 
       // Parse the date string into a Date object
@@ -82,6 +85,8 @@ const EditOrganization = ({
     }
     console.log("main page" + update)
     updateOrganization(update)
+    handleClose();
+
   };
   return !isAuthenticated || !user || !users ? (
     <Fragment></Fragment>
@@ -89,7 +94,7 @@ const EditOrganization = ({
 
 
     <Fragment>
-      <form >
+      <form onSubmit={(e)=>onUpdate(e)}>
         <div className="container ">
           <section className="body">
             <div className="body-inner">
@@ -140,8 +145,13 @@ const EditOrganization = ({
             </div>
           </section>
           <div className="text-right">
+<<<<<<< HEAD
          
           <button className="btn contact_reg btn_color" onClick={()=>onUpdate()}>UPDATE</button>
+=======
+          {/* <button className="btn contact_reg btn_color"  onClick={handleClose}>CANCEL</button> */}
+          <button className="btn contact_reg btn_color" type="submit">UPDATE</button>
+>>>>>>> eca7b0bda0c0c26caeb2bdfd33a7c0d1e23165a3
 
           </div>
          

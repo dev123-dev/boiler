@@ -63,7 +63,8 @@ const AddUserModal = ({
 
   
 
-  const onSubmitUSERdata = () => {
+  const onSubmitUSERdata = (e) => {
+    e.preventDefault()
 
     
     const finalUSERdata = {
@@ -146,7 +147,7 @@ const AddUserModal = ({
 
 
         <Modal.Body>
-          <form >
+          <form   onSubmit={(e) => onSubmitUSERdata(e)}>
 
             <div className="container ">
               <section className="body">
@@ -155,7 +156,7 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Full Name <span >*</span></label>
                       <div className="controls">
-                        <input name="UserFullname" id="full_name" type="text" className="form-control" onChange={(e) => onUserchange(e)} />
+                        <input name="UserFullname" id="full_name" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
@@ -166,7 +167,7 @@ const AddUserModal = ({
 
 
 
-                        <select name="UserOrgbelongs" className="form-control" onChange={(e) => onUserchange(e)}>
+                        <select name="UserOrgbelongs" className="form-control" onChange={(e) => onUserchange(e)} required>
                           <option>--Select Organization--</option>
                           {allorg &&
                             allorg.map((org, idx) =>
@@ -183,14 +184,14 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">UserName <span >*</span></label>
                       <div className="controls">
-                        <input name="UserName" id="username" type="text" className="form-control" onChange={(e) => onUserchange(e)} />
+                        <input name="UserName" id="username" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Phone No.<span >*</span></label>
                       <div className="controls">
-                        <input name="UserNumber" id="user_phone" type="text" className="form-control" onChange={(e) => onUserchange(e)} />
+                        <input name="UserNumber" id="user_phone" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
                         <span className="form-input-info" ></span>
                       </div>
                     </div>
@@ -199,7 +200,7 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Email <span >*</span></label>
                       <div className="controls">
-                        <input name="UserEmail" id="user_email" type="text" className="form-control" onChange={(e) => onUserchange(e)} />
+                        <input name="UserEmail" id="user_email" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
@@ -215,14 +216,14 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Password <span >*</span></label>
                       <div className="controls">
-                        <input name="UserPassword" id="user_password" type="text" className="form-control" onChange={(e) => onUserchange(e)} />
+                        <input name="UserPassword" id="user_password" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Confirm Password <span >*</span></label>
                       <div className="controls">
-                        <input name="UserConfpassword" id="user_confpass" type="text" className="form-control" onChange={(e) => onUserchange(e)} />
+                        <input name="UserConfpassword" id="user_confpass" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
@@ -235,6 +236,10 @@ const AddUserModal = ({
                     </div>
                   </div>
                 </div>
+                <div className="text-right">
+                <button className="btn contact_reg btn_color">  ADD</button>
+
+                </div>
               </section>
             </div>
           </form>
@@ -242,8 +247,13 @@ const AddUserModal = ({
 
         <Modal.Footer>
 
+<<<<<<< HEAD
           
           <button onClick={() => onSubmitUSERdata()} className="btn contact_reg btn_color">  ADD</button>
+=======
+          {/* <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button> */}
+          {/* <button onClick={() => onSubmitUSERdata()} className="btn contact_reg btn_color">  ADD</button> */}
+>>>>>>> eca7b0bda0c0c26caeb2bdfd33a7c0d1e23165a3
         </Modal.Footer>
       </Modal>
 
