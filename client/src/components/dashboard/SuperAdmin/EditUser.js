@@ -12,7 +12,7 @@ import { updateUser } from "../../../actions/dag";
 // import { editOrganization } from "../../../actions/dag";
 const EditUser = ({
   auth: { isAuthenticated, user, users },
-  userdata,
+  userdata, closeedit,
   updateUser
 }) => {
   console.log(userdata);
@@ -88,8 +88,10 @@ const EditUser = ({
         UserAddress: UserAddress,
         
     }
+    closeedit()
     console.log("main page" + update)
     updateUser(update)
+    //closeedit()
   };
   return !isAuthenticated || !user || !users ? (
     <Fragment></Fragment>
