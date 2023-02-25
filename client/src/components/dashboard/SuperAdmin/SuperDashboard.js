@@ -63,13 +63,27 @@ setorgdata(orgObj)
               {allorg &&
 
                 allorg.map((orgVal, idx) => {
+                  var ED = orgVal.startDate.split(
+                    /\D/g
+                  );
+                  var StartDate = [ED[2], ED[1], ED[0]].join(
+                    "-"
+                  );
+                  var EDE = orgVal.endDate.split(
+                    /\D/g
+                  );
+                  var EndDate = [
+                    EDE[2],
+                    EDE[1],
+                    EDE[0],
+                  ].join("-");
                   return (
                     <tr key={idx}>
                       <td>{orgVal.orgName}</td>
                       <td>{orgVal.email}</td>
                       <td>{orgVal.phoneNumber}</td>
-                      <td>{orgVal.startDate}</td>
-                      <td>{orgVal.endDate}</td>
+                      <td>{StartDate}</td>
+                      <td>{EndDate}</td>
                       <td>{orgVal.orgStatus}</td>
                       <td>
                         {orgVal.orgStatus === "Deactive" ? (
