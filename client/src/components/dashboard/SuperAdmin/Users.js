@@ -354,7 +354,7 @@ const Users = ({
         </Modal.Header>
         <Modal.Body>
 
-          <EditUser userdata={orgdata} />
+          <EditUser userdata={orgdata} closeedit={handleUpdateModalClose} />
 
         </Modal.Body>
 

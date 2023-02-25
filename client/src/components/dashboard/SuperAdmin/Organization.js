@@ -343,7 +343,7 @@ const Organization = ({
         </Modal.Header>
         <Modal.Body>
 
-          <EditOrganization Org={orgdata} />
+          <EditOrganization Org={orgdata} closeedit={handleUpdateModalClose}/>
 
         </Modal.Body>
 
