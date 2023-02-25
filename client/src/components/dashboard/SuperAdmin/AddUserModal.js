@@ -247,13 +247,8 @@ const AddUserModal = ({
 
         <Modal.Footer>
 
-<<<<<<< HEAD
           
-          <button onClick={() => onSubmitUSERdata()} className="btn contact_reg btn_color">  ADD</button>
-=======
-          {/* <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button> */}
-          {/* <button onClick={() => onSubmitUSERdata()} className="btn contact_reg btn_color">  ADD</button> */}
->>>>>>> eca7b0bda0c0c26caeb2bdfd33a7c0d1e23165a3
+          
         </Modal.Footer>
       </Modal>
 

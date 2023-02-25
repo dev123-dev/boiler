@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // import refresh from '../assets/refresh-icon.png';
  import addicon from '../../../static/images/add-icon.png';
 import Modal from 'react-bootstrap/Modal';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 
 
 // import '../components/CSS/home1.css'

@@ -145,13 +145,8 @@ const EditOrganization = ({
             </div>
           </section>
           <div className="text-right">
-<<<<<<< HEAD
-         
-          <button className="btn contact_reg btn_color" onClick={()=>onUpdate()}>UPDATE</button>
-=======
-          {/* <button className="btn contact_reg btn_color"  onClick={handleClose}>CANCEL</button> */}
+       
           <button className="btn contact_reg btn_color" type="submit">UPDATE</button>
->>>>>>> eca7b0bda0c0c26caeb2bdfd33a7c0d1e23165a3
 
           </div>
          

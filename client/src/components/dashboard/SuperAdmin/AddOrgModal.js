@@ -182,12 +182,8 @@ console.log(oneYearLaterString);
                                                 </div>
                                             </div>
                                         </div>
-<<<<<<< HEAD
-                                       
-=======
                                       
 
->>>>>>> eca7b0bda0c0c26caeb2bdfd33a7c0d1e23165a3
                                         <div className="row form-group ">
                                             <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
                                                 <br /><label className="control-label" >* Indicates mandatory fields.</label>
@@ -212,13 +208,7 @@ console.log(oneYearLaterString);
          
            <Modal.Footer>
   
-<<<<<<< HEAD
-                       
-                        <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button>
-=======
-                        {/* <button onClick={()=>handleAddClose()} className="btn contact_reg btn_color"> CANCEL</button> */}
-                        {/* <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button> */}
->>>>>>> eca7b0bda0c0c26caeb2bdfd33a7c0d1e23165a3
+                        
                     </Modal.Footer>
                    
           </Modal>
