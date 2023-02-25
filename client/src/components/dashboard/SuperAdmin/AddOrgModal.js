@@ -182,8 +182,7 @@ console.log(oneYearLaterString);
                                                 </div>
                                             </div>
                                         </div>
-                                      
-
+                                       
                                         <div className="row form-group ">
                                             <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
                                                 <br /><label className="control-label" >* Indicates mandatory fields.</label>
@@ -208,7 +207,8 @@ console.log(oneYearLaterString);
          
            <Modal.Footer>
   
-                        
+                       
+                        <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button>
                     </Modal.Footer>
                    
           </Modal>

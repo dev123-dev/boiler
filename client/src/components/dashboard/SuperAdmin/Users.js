@@ -75,6 +75,7 @@ const Users = ({
   const [showEditModal, setShowEditModal] = useState(false);
   const handleEditModalClose = () => setShowEditModal(false);
   const handleOpen = () => setShowEditModal(true);
+  
   const onAddStaffModalChange = (e) => {
     if (e) {
       handleEditModalClose();
@@ -121,22 +122,11 @@ const Users = ({
     handleClose();
     
   };
-  // const onEdit = () => {
-  //     const editdata = {
-  //         Org_id: OrgId,
-  //         orgName:OrganizationName,
-  //         email:OrganizationEmail,
-  //         phoneNumber:OrganizationNumber,
-  //         address:OrganizationAddress,
 
+ 
+  
 
-
-  //     };
-  //     console.log(editdata)
-  //  editOrganization(editdata);
-
-
-  // };
+  
 
 
   return (
@@ -152,28 +142,7 @@ const Users = ({
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
         <section>
           <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Users Lists</h1>
-          {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
-
-          {/* <div className='text-right'>
-            <button onClick={deletehandleShow}>Delete</button>
-            <button onClick={edithandleShow}>edit</button>
-            <img
-                className="img_icon_size log text-right"
-                //   onClick={() => handleAddOrg()}
-                // onClick={handleShow}
-                onClick={addhandleShow}
-                src={addicon}
-                alt="add-icon"
-                title="add icon"
-            /> &nbsp;&nbsp;&nbsp;
-            <img
-                className="img_icon_size log text-right"
-                // onClick={() => onClickReset()}
-                src={refresh}
-                alt="refresh"
-
-            />
-        </div><br /> */}
+        
         
 
        
@@ -333,6 +302,7 @@ const Users = ({
           </Modal.Footer>
          
       </Modal>
+
       {/* edit modal */}
       <Modal
         show={showUpdateModal}
@@ -358,7 +328,7 @@ const Users = ({
         </Modal.Header>
         <Modal.Body>
 
-          <EditUser userdata={orgdata} />
+          <EditUser userdata={orgdata} closeupdate={handleUpdateModalClose} />
 
         </Modal.Body>
 
