@@ -217,7 +217,7 @@ const Organization = ({
                             onClick={() => onedit(orgVal)}
                             src={require("../../../static/images/edit_icon.png")}
                             alt="Edit"
-                            title="Edit User"
+                            title="Edit Organization"
                           />&nbsp;&nbsp;
                           <img
                             className="img_icon_size log"
@@ -225,7 +225,7 @@ const Organization = ({
                             onClick={() => onDelete(orgVal._id)}
                             src={require("../../../static/images/delete.png")}
                             alt="delete User"
-                            title="delete User"
+                            title="Deactivate Organization"
                           />
                         </td>
                         {/* <img
@@ -332,10 +332,10 @@ const Organization = ({
         centered
       >
         <Modal.Header>
-          <div className="col-lg-10">
+          <div className="col-lg-11 " >
             <h3 className="modal-title text-center">Edit Organization Details </h3>
           </div>
-          <div className="col-lg-2">
+          <div className="col-lg-1">
             <button onClick={handleUpdateModalClose} className="close">
               <img
                 src={require("../../../static/images/close.png")}

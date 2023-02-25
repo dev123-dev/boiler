@@ -73,7 +73,7 @@ const AddUserGroup = ({
                     onClick={handleOpen}
                     src={require("../../../static/images/add-icon.png")}
                     alt="Add User"
-                    title="Add User"
+                    title="Add UserGrp"
                 />
             </div><br />
 
