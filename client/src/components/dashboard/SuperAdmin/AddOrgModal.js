@@ -67,9 +67,9 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
       address: OrganizationAddress,
       orgStatus:"Active",
       orgDeactiveReason:"",
+
       
     };
-
     AddOrganization(finalORGdata);
     
     setFormDataORG({
@@ -202,9 +202,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                         <button onClick={() => onSubmitORGdata()} className="btn contact_reg btn_color">  ADD</button>
                     </Modal.Footer>
           </Modal>
-       
-
-       
+     
       </Fragment>
   
   );
