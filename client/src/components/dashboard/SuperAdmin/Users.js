@@ -316,6 +316,7 @@ const Users = ({
               <textarea rows="2" name="User_DE_Reason"
                 onChange={(e) => onInputchange(e)} id="org_reason" className="form-control" required></textarea>
               <span className="form-input-info" ></span>
+              Do You really want to Deactivate this user?
             </div>
             <div className="text-right">
             <button className="btn contact_reg btn_color">  DEACTIVATE</button>
