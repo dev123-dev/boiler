@@ -4,7 +4,7 @@ import { updateOrganization } from "../../../actions/dag";
 
 const EditOrganization = ({
   auth: { isAuthenticated, user, users },
-  Org,
+  Org, closeedit,
   updateOrganization
 }) => {
   console.log(Org);
@@ -98,8 +98,10 @@ const EditOrganization = ({
       OrganizationEnddate:oneYearLaterString,
 
     }
+    closeedit()
     console.log("main page" + update)
     updateOrganization(update)
+    
   };
   return !isAuthenticated || !user || !users ? (
     <Fragment></Fragment>
