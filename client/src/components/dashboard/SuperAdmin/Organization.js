@@ -161,7 +161,7 @@ const Organization = ({
                             src={require("../../../static/images/edit_icon.png")}
                             alt="Edit"
                             title="Edit User"
-                          />
+                          />&nbsp;&nbsp;
                           <img
                             className="img_icon_size log"
                             onClick={() => onDelete(orgVal._id)}
