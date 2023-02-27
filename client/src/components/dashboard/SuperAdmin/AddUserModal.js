@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef} from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { AddUser, getAllOrganization } from "../../../actions/dag";
+//import { use } from "../../../../../routes/api/group";
 
 const AddUserModal = ({
 
@@ -24,6 +25,10 @@ const AddUserModal = ({
 
   const [inputdata, setinput] = useState("");
   const [items, setitem] = useState([]);
+
+
+  const [pas,setpas]=useState('')
+  const[err,seterr]=useState(false)
 
   const [formDataUSER, setformDataUSER] = useState({
     UserFullname: "",
@@ -50,11 +55,43 @@ const AddUserModal = ({
 
   } = formDataUSER;
 
+
+  
+
   const onUserchange = (e) => {
-    setformDataUSER({
-      ...formDataUSER,
-      [e.target.name]: e.target.value,
-    });
+    console.log(e.target.name)
+    // var pass;
+    if(e.target.name=="UserPassword" && e.target.value)
+    {
+      setpas(e.target.value);
+      
+    }
+
+    if(e.target.name=="UserConfpassword" && e.target.value)
+    {
+      if(e.target.value!=pas)
+      {
+        seterr(true)
+
+      }
+      else  if(e.target.value==pas)
+      {
+        seterr(false)
+
+      }
+      
+     
+    }
+      
+     
+      setformDataUSER({
+        ...formDataUSER,
+        [e.target.name]: e.target.value,
+      });
+
+    
+
+    
   };
 
   const [showAddModal, setShowAddModal] = useState(false);
@@ -65,7 +102,7 @@ const AddUserModal = ({
 
   const onSubmitUSERdata = (e) => {
     e.preventDefault()
-
+console.log(formDataUSER)
 
     const finalUSERdata = {
       userName: UserName,
@@ -203,7 +240,7 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Phone No.<span >*</span></label>
                       <div className="controls">
-                        <input name="UserNumber" id="user_phone" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
+                        <input name="UserNumber" id="user_phone" type="number" className="form-control" onChange={(e) => onUserchange(e)} required />
                         <span className="form-input-info" ></span>
                       </div>
                     </div>
@@ -212,7 +249,7 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Email <span >*</span></label>
                       <div className="controls">
-                        <input name="UserEmail" id="user_email" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
+                        <input name="UserEmail" id="user_email" type="email" className="form-control" onChange={(e) => onUserchange(e)} required />
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
@@ -229,7 +266,7 @@ const AddUserModal = ({
                       <label className="control-label">Password <span >*</span></label>
                       <div className="controls">
                         <input name="UserPassword" id="user_password" type="password" autoComplete="off" className="form-control" a onChange={(e) => onUserchange(e)} required />
-                        <span id="category_result" className="form-input-info"></span>
+                       {err ? ( <span id="Passerr" className="form-input-info">password doesnt match</span>):(<></>)}
                       </div>
                     </div>
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
@@ -249,7 +286,7 @@ const AddUserModal = ({
                   </div>
                 </div>
                 <div className="text-right">
-                  <button className="btn contact_reg btn_color" type="submit">  ADD</button>
+                  <button className="btn contact_reg btn_color" type="submit" >  ADD</button>
                 </div>
               </section>
             </div>
