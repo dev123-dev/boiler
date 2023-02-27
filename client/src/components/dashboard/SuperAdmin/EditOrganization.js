@@ -74,6 +74,7 @@ const EditOrganization = ({
   };
 
   const onUpdate = (e) => {
+  
     e.preventDefault()
 
 
@@ -109,7 +110,7 @@ const EditOrganization = ({
       EditByName:user.userName,
       EditByDateTime: new Date().toLocaleString("en-GB"),
     }
-    closeedit()
+     closeedit()
     
     updateOrganization(update)
     
@@ -135,7 +136,7 @@ const EditOrganization = ({
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">Email</label>
                   <div className="controls">
-                    <input name="OrganizationEmail" id="category_status" type="text" className="form-control" value={OrganizationEmail} onChange={(e) => onInputChange(e)} required />
+                    <input name="OrganizationEmail" id="category_status" type="email" className="form-control" value={OrganizationEmail} onChange={(e) => onInputChange(e)} required />
                     <span className="form-input-info" ></span>
                   </div>
                 </div>
@@ -144,7 +145,7 @@ const EditOrganization = ({
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">Phone No.</label>
                   <div className="controls">
-                    <input name="OrganizationNumber" id="category_status" type="text" className="form-control" value={OrganizationNumber} onChange={(e) => onInputChange(e)} required />
+                    <input name="OrganizationNumber" id="category_status" type="number" className="form-control" value={OrganizationNumber} onChange={(e) => onInputChange(e)} required />
                     <span className="form-input-info" ></span>
                   </div>
 

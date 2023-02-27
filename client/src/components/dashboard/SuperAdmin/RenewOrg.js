@@ -4,7 +4,7 @@ import { renewOrganization } from "../../../actions/dag";
 
 const RenewOrg = ({
   auth: { isAuthenticated, user, users },
-  Org,
+  Org,closeedit,
   renewOrganization
 }) => {
 
@@ -32,7 +32,8 @@ const RenewOrg = ({
     setFormDataORG({ ...formDataORG, [e.target.name]: e.target.value });
   };
 
-  const onRenew = () => {
+  const onRenew = (e) => {
+    e.preventDefault()
     // Parse the date string into a Date object
     const originalDate = new Date(OrganizationStartdate);
     
@@ -49,6 +50,7 @@ const RenewOrg = ({
       OrganizationStartdate:OrganizationStartdate,
       OrganizationEnddate:oneYearLaterString,
     }
+    closeedit()
     renewOrganization(Renew)
   };
   return !isAuthenticated || !user || !users ? (
@@ -56,13 +58,19 @@ const RenewOrg = ({
   ) : (
 
     <Fragment>
-      <form >
+      
         <div className="container ">
           <section className="body">
+          <form   onSubmit={(e)=>onRenew(e)}>
             <div className="body-inner">
               <div className="row form-group">
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                  <h3 className="control-label">{OrganizationName}</h3>
+                  <div>
+               <div className="h3 control-label">Org Name:   {OrganizationName}</div>
+                  {/* <h3 className="control-label"></h3> */}
+
+                  </div>
+                 
                  
                 </div>
                 
@@ -70,6 +78,7 @@ const RenewOrg = ({
               
 
               <div className="row form-group">
+                
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">Start Date </label>
                   <div className="controls">
@@ -77,17 +86,21 @@ const RenewOrg = ({
                     <span id="category_result" className="form-input-info"></span>
                   </div>
                 </div>
+               
               </div>
-            </div>
-          </section>
-
-          <div className="text-right">
+              <div className="text-right">
           
-          <button className="btn contact_reg btn_color" onClick={()=>onRenew()}>RENEW</button>
+          <button className="btn contact_reg btn_color">RENEW</button>
 
           </div>
+        
+            </div>
+            </form>
+          </section>
+
+        
         </div>
-      </form>
+      
     </Fragment>
   )
 }

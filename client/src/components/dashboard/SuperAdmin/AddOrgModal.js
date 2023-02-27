@@ -154,7 +154,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Email<span >*</span></label>
                                                 <div className="controls">
-                                                    <input name="OrganizationEmail" id="category_status" type="text" className="form-control"   onChange={(e) => onORGchange(e)} required />
+                                                    <input name="OrganizationEmail" id="category_status" type="email" className="form-control"   onChange={(e) => onORGchange(e)} required />
                                                     <span className="form-input-info" ></span>
                                                 </div>
                                             </div>
@@ -170,7 +170,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
                                             <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                                                 <label className="control-label">Phone No.<span >*</span></label>
                                                 <div className="controls">
-                                                    <input name="OrganizationNumber" id="category_status" type="text" className="form-control"  onChange={(e) => onORGchange(e)} required />
+                                                    <input name="OrganizationNumber" id="category_status" type="number" className="form-control"  onChange={(e) => onORGchange(e)} required />
                                                     <span className="form-input-info" ></span>
                                                 </div>
                                             </div>

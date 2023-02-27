@@ -125,7 +125,7 @@ const EditUser = ({
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">User Name</label>
                   <div className="controls">
-                    <input name="UserName" id="category_status" type="text" className="form-control" value={UserName} onChange={(e) => onInputChange(e)} />
+                    <input name="UserName" id="category_status" type="text" className="form-control" value={UserName} onChange={(e) => onInputChange(e)} readOnly />
                     <span className="form-input-info" ></span>
                   </div>
                 </div>

@@ -32,6 +32,8 @@ setorgdata(orgObj)
 
  }
 
+
+
   return !isAuthenticated || !user ? (
     <NotFound />
   ) : (
@@ -145,7 +147,7 @@ setorgdata(orgObj)
         <Modal.Body>
 
           {/* <EditOrganization Org={orgdata} /> */}
-          <RenewOrg Org={orgdata} />
+          <RenewOrg Org={orgdata}  closeedit={handleClose} />
 
 
         </Modal.Body>

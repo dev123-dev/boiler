@@ -61,12 +61,12 @@ const AddUserModal = ({
   const handleAddClose = () => setShowAddModal(false);
   const handleOpen = () => setShowAddModal(true);
 
-  
+
 
   const onSubmitUSERdata = (e) => {
     e.preventDefault()
 
-    
+
     const finalUSERdata = {
       userName: UserName,
       fullName: UserFullname,
@@ -78,15 +78,15 @@ const AddUserModal = ({
       password: UserConfpassword,
       userStatus: "Active",
       userDeactiveReason: "",
-      EnterById:user._id,
-      EnterByName:user.userName,
+      EnterById: user._id,
+      EnterByName: user.userName,
       EnterByDateTime: new Date().toLocaleString("en-GB"),
-      EditById:"",
-      EditByName:"",
-      EditByDateTime:"",
-      DeactiveById:"",
-      DeactiveByName:"",
-      DeactiveByDateTime:"",
+      EditById: "",
+      EditByName: "",
+      EditByDateTime: "",
+      DeactiveById: "",
+      DeactiveByName: "",
+      DeactiveByDateTime: "",
     };
 
     AddUser(finalUSERdata);
@@ -107,7 +107,7 @@ const AddUserModal = ({
 
 
     });
-   
+
     handleAddClose();
 
   };
@@ -118,17 +118,17 @@ const AddUserModal = ({
 
     <Fragment>
 
-      <div className="col-lg-12 col-md-12 col-sm-12 col-12 py-4 text-right">
-       
+      <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right">
+
         <img
           className="img_icon_size log"
-         
+
           onClick={handleOpen}
           src={require("../../../static/images/add-icon.png")}
           alt="Add User"
           title="Add User"
         />
-       
+
       </div><br />
 
 
@@ -155,7 +155,7 @@ const AddUserModal = ({
 
 
         <Modal.Body>
-          <form   onSubmit={(e) => onSubmitUSERdata(e)}>
+          <form onSubmit={(e) => onSubmitUSERdata(e)} >
 
             <div className="container ">
               <section className="body">
@@ -164,21 +164,27 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Full Name <span >*</span></label>
                       <div className="controls">
-                        <input name="UserFullname" id="full_name" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
+                        <input name="UserFullname" id="full_name" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Organization Belongs<span >*</span></label>
                       <div className="controls">
-                       
 
-                        <select name="UserOrgbelongs" className="form-control" onChange={(e) => onUserchange(e)} required>
+
+                        <select style={{ backgroundcolor: '#877bae' }} name="UserOrgbelongs" className=" selectorgcolor form-control" onChange={(e) => onUserchange(e)} required>
                           <option>--Select Organization--</option>
+
                           {allorg &&
-                            allorg.map((org, idx) =>
-                              <option key={idx} value={org.orgName}>{org.orgName}</option>
-                            )}
+                            allorg.map((org, idx) => {
+
+                              if (org.orgStatus == "Active") {
+                                return (<option key={idx} value={org.orgName}>{org.orgName}</option>)
+                              }
+                            })
+                          }
+
 
 
                         </select>
@@ -188,7 +194,7 @@ const AddUserModal = ({
                   </div>
                   <div className="row form-group">
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">UserName <span >*</span></label>
+                      <label className="control-label"  >UserName <span >*</span></label>
                       <div className="controls">
                         <input name="UserName" id="username" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
                         <span id="category_result" className="form-input-info"></span>
@@ -197,7 +203,7 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Phone No.<span >*</span></label>
                       <div className="controls">
-                        <input name="UserNumber" id="user_phone" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
+                        <input name="UserNumber" id="user_phone" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
                         <span className="form-input-info" ></span>
                       </div>
                     </div>
@@ -206,7 +212,7 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Email <span >*</span></label>
                       <div className="controls">
-                        <input name="UserEmail" id="user_email" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
+                        <input name="UserEmail" id="user_email" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
@@ -222,14 +228,14 @@ const AddUserModal = ({
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Password <span >*</span></label>
                       <div className="controls">
-                        <input name="UserPassword" id="user_password" type="text" className="form-control" onChange={(e) => onUserchange(e)} required />
+                        <input name="UserPassword" id="user_password" type="password" autoComplete="off" className="form-control" a onChange={(e) => onUserchange(e)} required />
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                       <label className="control-label">Confirm Password <span >*</span></label>
                       <div className="controls">
-                        <input name="UserConfpassword" id="user_confpass" type="text" className="form-control" onChange={(e) => onUserchange(e)} required/>
+                        <input name="UserConfpassword" id="user_confpass" type="password" autoComplete="off" className="form-control" onChange={(e) => onUserchange(e)} required />
                         <span id="category_result" className="form-input-info"></span>
                       </div>
                     </div>
@@ -243,7 +249,7 @@ const AddUserModal = ({
                   </div>
                 </div>
                 <div className="text-right">
-                <button  className="btn contact_reg btn_color" type="submit">  ADD</button>
+                  <button className="btn contact_reg btn_color" type="submit">  ADD</button>
                 </div>
               </section>
             </div>

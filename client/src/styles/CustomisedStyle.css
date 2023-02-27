@@ -789,7 +789,7 @@ label {
 .fixTableHead {
   overflow-y: auto;
   height: 750px;
-  max-height: 700px;
+  max-height: 550px;
 }
 
 @media (min-width: 992px) {
@@ -1986,6 +1986,11 @@ background-color: #877bae;
   height: 20px;
   width:160px;
 
+}
+
+.selectorgcolor{
+  color:rgb(100, 72, 192);
+  
 }
 /* div{
   border:1px solid red
