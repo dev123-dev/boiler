@@ -14,9 +14,10 @@ router.route("/addgroup").post((req, res) => {
         .catch((err) => res.status(400).json("Error" + err));
 });
 
-//get all user 
+//get all user group
 router.route("/getgroup").get((req, res) => {
-    GroupDetails.find()
+    GroupDetails.find().sort({groupStatus:1})
+
 
         .then((data) => {
             res.status(200).json(data);
@@ -25,7 +26,7 @@ router.route("/getgroup").get((req, res) => {
         .catch((err) => res.status(400).json("Error" + err));
 });
 
-//deactive user
+//deactive user group
 router.route("/deactivegroup").post((req, res) => {
 
     let data = req.body;

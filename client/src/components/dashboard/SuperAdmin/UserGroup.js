@@ -72,6 +72,7 @@ const UserGroup = ({
                                 <thead>
                                     <tr className='headingsizes'>
                                         <th>Group Name</th>
+                                        <th>Status</th>
 
                                         <th>Operation</th>
                                     </tr>
@@ -80,27 +81,37 @@ const UserGroup = ({
                                     {alluser &&
 
                                         alluser.map((grpVal, idx) => {
-                                            if (grpVal.groupStatus == "Active") {
+                                          
 
                                                 return (
                                                     <tr key={idx}>
                                                         <td>{grpVal.groupName}</td>
+                                                        <td>{grpVal.groupStatus}</td>
+                                                     
+
 
                                                         <td>
-                                                  <img
-                                                                className="img_icon_size log"
+                                                        {grpVal.groupStatus == "Active"?(
+                                                            <>
+                                                              <img
+                                                              className="img_icon_size log"
 
-                                                                onClick={() => onDelete(grpVal.groupName)}
-                                                                src={require("../../../static/images/delete.png")}
-                                                                alt="delete User"
-                                                                title="delete UserGroup"
-                                                            />
+                                                              onClick={() => onDelete(grpVal.groupName)}
+                                                              src={require("../../../static/images/delete.png")}
+                                                              alt="delete User"
+                                                              title="delete UserGroup"
+                                                          />
+                                                            </>
+                                                            ) :(
+                                                                <></>
+                                                            )}
+                                                
                                                         </td>
 
                                                     </tr>
                                                 );
 
-                                            }
+                                            
                                         })}
                                 </tbody>
                             </table>

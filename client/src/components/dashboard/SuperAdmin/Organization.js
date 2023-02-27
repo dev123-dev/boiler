@@ -307,7 +307,7 @@ const Organization = ({
             <div className="controls">
               <textarea rows="2" name="Organization_DE_Reason"
                 onChange={(e) => onInputchange(e)} id="org_reason" className="form-control" required ></textarea>
-                  Do You really want to Deactivate this user?
+                  Do You really want to Deactivate this Organization?
               <span className="form-input-info" ></span>
             </div>
             <div className="text-right">
@@ -347,7 +347,7 @@ const Organization = ({
         </Modal.Header>
         <Modal.Body>
 
-          <EditOrganization Org={orgdata} />
+          <EditOrganization Org={orgdata} closeedit={handleUpdateModalClose} />
 
         </Modal.Body>
 

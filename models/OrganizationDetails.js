@@ -23,7 +23,8 @@ const OrgSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    required: true,
+    
+   
   },
   orgStatus: {
     type: String,
