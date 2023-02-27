@@ -56,12 +56,12 @@ setorgdata(orgObj)
               <th>Start Date</th>
               <th>End Date</th>
               <th>Status</th>
-              <th>Operation</th>
+              <th>Operation</th> 
             </tr>
             </thead>
             <tbody>
+              
               {allorg &&
-
                 allorg.map((orgVal, idx) => {
                   
                   // var ED = orgVal.startDate.split(

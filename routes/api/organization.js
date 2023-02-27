@@ -58,7 +58,6 @@ router.route("/deactiveorg").post((req, res) => {
 router.route("/editorganization").post((req, res) => {
 
     let data = req.body;
-   // console.log(data)
     let OrgHis = new OrgHistroy(req.body)
     OrgHis.save(req.body).then(()=>console.log("Histroy entered"))
 
@@ -75,7 +74,6 @@ router.route("/editorganization").post((req, res) => {
                 EditById: data.EditById,
                 EditByName:data.EditByName,
                 EditByDateTime:data.EditByDateTime,
-
             },
         }
     )
