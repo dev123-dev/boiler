@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 import Login from "../auth/Login";
 
+
+
 const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
   const [showLogin, setShowLogin] = useState(true);
@@ -78,7 +80,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 )}
           {!loading && isAuthenticated && user &&user.userGroup==="Admin" ? (
            <Navbar.Brand>
-            <NavLink to="/usergroup">
+            <NavLink to="/admindashboard">
             <img
               className="Icon p-2"
               alt="Pinnacle Media"
@@ -205,6 +207,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         className="navbar-right "
                       >
                         {user.userGroup}
+                     
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <i className="fa fa-caret-down" />

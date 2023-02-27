@@ -1996,7 +1996,27 @@ background-color: #877bae;
   border:1px solid red
 } */
 
+#shadow-bck{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
 
+
+
+
+
+
+
+.card{
+  
+  width: 300px;
+  height:250px;
+  padding: 10px;
+  border: 2px solid #e79d69;
+  margin: 20px;
+  
+  
+
+}
 
 
 
