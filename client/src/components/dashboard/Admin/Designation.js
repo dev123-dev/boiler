@@ -1,4 +1,18 @@
 import React, { useEffect } from 'react'
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+
+// import refresh from '../assets/refresh-icon.png';
+// import addicon from '../assets/add-icon.png';
+import Modal from 'react-bootstrap/Modal';
+// import Button from 'react-bootstrap/Button';
+
+
+
+// import '../components/CSS/home1.css'
+// import Headersuper from './Layout/Headersuper';
+// import Addorg from './Modals/Addorg';
+
 
 
 export default function Designation() {
@@ -51,20 +65,20 @@ export default function Designation() {
                             alt="add-icon"
                             title="add icon"
                         /> &nbsp;&nbsp;&nbsp;
-                        <img
+                        {/* <img
                             className="img_icon_size log text-right"
                             // onClick={() => onClickReset()}
                             src={refresh}
                             alt="refresh"
 
-                        />
+                        /> */}
                     </div><br />
                   
 
                   
 
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
-                    <table  border="1"  id="datatable2" className="table-striped table table-bordered table-hover" >
+                    <table  border="1"  id="datatable2"   className="table-striped table table-bordered table-hover" >
                         <tr className='headingsizes'>
                             <th>Designation Name</th>
                            
@@ -113,7 +127,7 @@ export default function Designation() {
                                             <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
                                                 <br /><label className="control-label" >* Indicates mandatory fields.</label>
                                             </div>
-                                        </div>
+                                        </div>  
                                     </div>
                                     <div className='text-right'>
                                     <button onClick={handleClose} className="btn contact_reg btn_color "> CANCEL</button>

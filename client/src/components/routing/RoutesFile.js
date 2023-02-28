@@ -21,6 +21,7 @@ import AdminDashboard from "../dashboard/Admin/AdminDashboard";
 //import JoinLeaveCategory from "../dashboard/Admin/JoinLeaveCategory";
 import AddIndividual from "../dashboard/Admin/AddIndividual"
 import AddInstitution from "../dashboard/Admin/AddInstitution";
+import Designation from "../dashboard/Admin/Designation";
 
 const RoutesFile = () => {
   return (
@@ -74,6 +75,11 @@ const RoutesFile = () => {
           exact
           path="/addinstitute"
           component={AddInstitution}
+        />
+         <PrivateRoute
+          exact
+          path="/designation"
+          component={Designation}
         />
 
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />

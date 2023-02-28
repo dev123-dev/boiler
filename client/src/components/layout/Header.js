@@ -197,8 +197,11 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
              </Nav>
 
-            {!loading && isAuthenticated && user ? (
-              <Nav>
+            {!loading && isAuthenticated && user  ? (
+              <>
+              {user.userGroup=="Dev"?(
+                <>
+                <Nav>
                  <ul className="top-level-menu text-left">
                     <li>
                       <Link
@@ -238,7 +241,59 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
 
                 </Nav>
-    
+                </>
+              ):(
+              <>
+              <Nav>
+                 <ul className="top-level-menu text-left">
+                    <li>
+                      <Link
+                        to="#"
+                        onClick={() => openSecondLevelMenu2()}
+                        className="navbar-right "
+                      >
+                        {user.userGroup}
+                     
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <i className="fa fa-caret-down" />
+                      </Link>
+
+                      <ul className="dropdown-menu second-level-menu ">
+                        <li className="hwhite">
+                          <Link to="/designation" className="navlinkitem" >Designation Setting</Link>
+                        </li>
+                        <li className="hwhite">
+                          <Link to="/usersetting" className="navlinkitem" >User Setting</Link>
+                        </li>
+                        <li className="hwhite">
+                          <Link to="/usergroup" className="navlinkitem" >Reset Password</Link>
+                        </li>
+
+                        {/* <li>
+                          <Link                                  if modal is required
+                            to="#"
+                            // onClick={() => handleTenantSettingModalShow()}
+                          >
+                            Tenant Setting
+                          </Link>
+                        </li> */}
+                        <li className="hwhite">
+                          <Link to="#" className="navlinkitem" onClick={() => handleLogoutModalShow()}>
+                            Logout
+                          </Link>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+              
+
+
+                </Nav>
+              
+              </>)}
+              
+                </>
               
             ) : (
               <Fragment>
