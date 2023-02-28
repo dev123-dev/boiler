@@ -6,6 +6,7 @@ import AddUserModal from "./AddUserModal";
 // import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { getAllUser } from "../../../actions/dag";
+import { getAllOrganization } from "../../../actions/dag";
 import { deleteUser} from "../../../actions/dag";
 // import { editOrganization } from "../../../actions/dag";
 import EditUser from "./EditUser"
@@ -16,12 +17,15 @@ const Users = ({
   //here to connect to action we need to import the function
   //then again we need to mention inside the const function
   dag: { alluser },
+  dag: { allorg },
+
   deleteUser,
   getAllUser,
-  editOrganization,
+  getAllOrganization,
 }) => {
   useEffect(() => {
     getAllUser();
+    getAllOrganization();
     // console.log(alluser)
   }, []);
 
@@ -152,6 +156,19 @@ const Users = ({
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
         <section>
           <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Users Lists</h1>
+
+          <select>
+            <option>-select Org name-</option>
+            {allorg &&
+                            allorg.map((org, idx) => {
+
+                              if (org.orgStatus == "Active") {
+                                return (<option key={idx} value={org.orgName}>{org.orgName}</option>)
+                              }
+                            })
+                          }
+
+          </select>
           {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
 
           {/* <div className='text-right'>
@@ -371,5 +388,6 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getAllUser,
   deleteUser,
+  getAllOrganization,
 
 })(Users);
