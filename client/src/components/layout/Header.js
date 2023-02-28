@@ -146,7 +146,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
              <NavItem>   
              {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
                     <NavLink
-                      to="/InstInd" className='navlink'
+                      to="/addinstitute" className='navlink'
                       activeStyle={{ color: "#e79d69", textDecoration: "none" }}
                     >
                       Institution/Individual

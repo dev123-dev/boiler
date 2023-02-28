@@ -17,7 +17,10 @@ import UserGroup from "../dashboard/SuperAdmin/UserGroup";
 
 import AdminDashboard from "../dashboard/Admin/AdminDashboard";
 
-import Category from "../dashboard/Admin/Category";
+// import Category from "../dashboard/Admin/Category";
+//import JoinLeaveCategory from "../dashboard/Admin/JoinLeaveCategory";
+import AddIndividual from "../dashboard/Admin/AddIndividual"
+import AddInstitution from "../dashboard/Admin/AddInstitution";
 
 const RoutesFile = () => {
   return (
@@ -65,7 +68,12 @@ const RoutesFile = () => {
         <PrivateRoute
           exact
           path="/category"
-          component={Category}
+          component={AddIndividual}
+        />
+         <PrivateRoute
+          exact
+          path="/addinstitute"
+          component={AddInstitution}
         />
 
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
