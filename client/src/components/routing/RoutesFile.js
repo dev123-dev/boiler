@@ -15,6 +15,8 @@ import Organization from "../dashboard/SuperAdmin/Organization";
 import Users from "../dashboard/SuperAdmin/Users";
 import UserGroup from "../dashboard/SuperAdmin/UserGroup";
 
+import AdminDashboard from "../dashboard/Admin/AdminDashboard";
+
 import Category from "../dashboard/Admin/Category";
 
 const RoutesFile = () => {
@@ -53,6 +55,11 @@ const RoutesFile = () => {
         />
 
         {/* Admin */}
+        <PrivateRoute
+          exact
+          path="/admindashboard"
+          component={AdminDashboard}
+        />
 
 
         <PrivateRoute
