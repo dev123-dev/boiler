@@ -10,7 +10,6 @@ const RouteDriver = ({ auth: { user }, loadUser,dag: { allorg } }) => {
 
   useEffect(() => {
     loadUser();
-   
   }, [loadUser]);
 
   if (user) {

@@ -32,18 +32,19 @@ const {
 // @access   Public
 router.post(
   "/login",
-  [
-    check(USERNAME, USERNAME_REQUIRED_INVALID).exists(),
-    check(PASSWORD, PASSWORD_INVALID).exists(),
-  ],
+   [
+   check(USERNAME, USERNAME_REQUIRED_INVALID).exists(),
+   check(PASSWORD, PASSWORD_INVALID).exists(),
+ ],
 
   async (req, res) => {
+    
     const errors = "";
 
     // if (!errors.isEmpty()) {
     //   return res.status(STATUS_CODE_400).json({ errors: errors.array() });
     // }
-
+console.log(req.body)
     //retriving Data
     const { userName, password } = req.body;
 
