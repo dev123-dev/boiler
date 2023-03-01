@@ -8,6 +8,8 @@ import {
     GET_DOORNOS,
     GET_DOORNUMBER,
     GET_ALL_ORGANIZATION,
+    GET_ALL_ORGANIZATION_DETAILS,
+
     GET_ALL_SUPERUSER,
     GET_ALL_USER
   } from "../actions/types";
@@ -30,6 +32,7 @@ import {
     yearExpCnt: [],
     expReport: [],
     allorg : [""],
+    // allorgdetails : [""],
     alluser:[""],
     allsuperuser : [""],
   };
@@ -70,6 +73,11 @@ import {
           allTenantSetting: payload,
         };
         case GET_ALL_ORGANIZATION:
+          return{
+            ...state,
+            allorg : payload,
+          }
+          case GET_ALL_ORGANIZATION_DETAILS:
           return{
             ...state,
             allorg : payload,

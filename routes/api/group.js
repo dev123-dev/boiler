@@ -4,7 +4,7 @@ const GroupDetails = require("../../models/GroupDetails");
 
 //add user
 router.route("/addgroup").post((req, res) => {
-    console.log(req.body)
+   // console.log(req.body)
     let Group = new GroupDetails(req.body)
 
     Group.save(req.body)
@@ -44,7 +44,7 @@ router.route("/deactivegroup").post((req, res) => {
         })
 
        .catch((err) => res.status(400).json("Error" + err));
-      console.log(data)
+     // console.log(data)
 }
 );
 

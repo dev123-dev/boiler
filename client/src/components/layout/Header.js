@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Container, Navbar, Nav, NavItem, Modal } from "react-bootstrap";
+import { Navbar, Nav, NavItem, Modal } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
@@ -25,32 +25,22 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     logout();
   };
   const openSecondLevelMenu2 = () => {
-    const menu = document.getElementById("second-level-menu2");
-    if (window.innerWidth <= 992) {
-      if (menu) {
-        if (menu.style.display === "block") {
-          menu.style.display = "none";
-        } else {
-          menu.style.display = "block";
-        }
-      } else {
-        menu.style.display = "none";
-      }
-    }
-    // if (window.innerWidth <= 508) {
-    //   if (menu) {
-    //     if (menu.style.display === "block") {
-    //       menu.style.display = "none";
-    //     } else {
-    //       menu.style.display = "block";
-    //     }
-    //   } else {
-    //     menu.style.display = "none";
-    //   }
-    // }
+   // const menu = document.getElementById("second-level-menu2");
+   // if (window.innerWidth <= 992) {
+      // if (menu) {
+      //   if (menu.style.display === "block") {
+      //     menu.style.display = "none";
+      //   } else {
+      //     menu.style.display = "block";
+      //   }
+      // } else {
+      //   menu.style.display = "none";
+      // }
+   // }
+    
     
   };
-  console.log(user)
+  //console.log(user)
   return (
     <Fragment>
       <header>
@@ -199,7 +189,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
             {!loading && isAuthenticated && user  ? (
               <>
-              {user.userGroup=="Dev"?(
+              {user.userGroup==="Dev"?(
                 <>
                 <Nav>
                  <ul className="top-level-menu text-left">
@@ -210,6 +200,13 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                         className="navbar-right "
                       >
                         {user.userGroup}
+                        {/* <img
+              className="Icon p-2"
+              style={{background:"transparent"}}
+              alt="Pinnacle Media"
+              src={require("../../static/images/drpdown.png")} 
+              
+            /> */}
                      
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

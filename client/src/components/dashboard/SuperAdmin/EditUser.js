@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState,  Fragment } from "react";
 import { connect } from "react-redux";
 // import AddOrgModal from "./AddOrgModal";
 // import { Props } from "react";
@@ -15,29 +15,29 @@ const EditUser = ({
   userdata, closeedit,
   updateUser
 }) => {
-  console.log(userdata);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const handleEditModalClose = () => setShowEditModal(false);
-  const handleOpen = () => setShowEditModal(true);
-  const onAddStaffModalChange = (e) => {
-    if (e) {
-      handleEditModalClose();
-    }
-  };
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  //console.log(userdata);
+  // const [showEditModal, setShowEditModal] = useState(false);
+  // const handleEditModalClose = () => setShowEditModal(false);
+  // const handleOpen = () => setShowEditModal(true);
+  // const onAddStaffModalChange = (e) => {
+  //   if (e) {
+  //     handleEditModalClose();
+  //   }
+  // };
+  // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
 
-  const [OrgId, setId] = useState("");
+  // const [OrgId, setId] = useState("");
 
   //  console.log(org.Location)
 
-  const onedit = (id) => {
-    setId(id);
-    handleOpen();
-  };
+  // const onedit = (id) => {
+  //   setId(id);
+  //   handleOpen();
+  // };
 
-  const [inputdata, setinput] = useState("");
+  // const [inputdata, setinput] = useState("");
   //   const [items, setitem] = useState(org.Location); 
 
 
@@ -100,7 +100,7 @@ const EditUser = ({
 
     }
     closeedit()
-    console.log("main page" + update)
+    //console.log("main page" + update)
     updateUser(update)
     //closeedit()
   };

@@ -1,11 +1,13 @@
 const router = require("express").Router();
 
+const { distinct } = require("../../models/UserDetails");
 const UserDetails = require("../../models/UserDetails");
 const UserHistroy =require("../../models/UserHistroy");
+// const auth = require("../../middleware/auth");
 
 //add user
 router.route("/adduser").post((req, res) => {
-    console.log(req.body)
+   // console.log(req.body)
     let User = new UserDetails(req.body)
 
     User.save(req.body)
@@ -16,10 +18,16 @@ router.route("/adduser").post((req, res) => {
 });
 
 //get all user 
-router.route("/getuser").get((req, res) => {
-    UserDetails.find().select("-password").sort({userStatus:1})
+router.route("/getuser").post((req, res) => {
+    const { oraganisationIdVal } = req.body;
+    let query ={
+        orgId: oraganisationIdVal,
+        userGroup:{$ne:"Dev"}
+    }
+    UserDetails.find(query).select("-password").sort({userStatus:1})
 
         .then((data) => {
+            //console.log(data)
             res.status(200).json(data);
         })
 
