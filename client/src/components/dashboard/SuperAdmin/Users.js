@@ -139,6 +139,12 @@ const Users = ({
           </select> */}
             <div style={{ width: "250px" }}>
               <Select
+                styles={{
+                  control: (baseStyles, state) => ({
+                    ...baseStyles,
+                    borderColor: state.isFocused ? "grey" : "purple",
+                  }),
+                }}
                 name="institutionName"
                 options={allOraganisation}
                 isSearchable={true}
