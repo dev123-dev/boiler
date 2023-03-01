@@ -66,6 +66,7 @@ const AddOrgModal = ({
       endDate: oneYearLaterString,
       address: OrganizationAddress,
       orgStatus: "Active",
+      // expStatus:"Active",
       orgDeactiveReason: "",
       EnterById: user._id,
       EnterByName: user.userName,

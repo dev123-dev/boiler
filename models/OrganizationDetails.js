@@ -27,6 +27,9 @@ const OrgSchema = new mongoose.Schema({
   orgStatus: {
     type: String,
   },
+  // expStatus: {
+  //   type: String,
+  // },
   orgDeactiveReason: {
     type: String,
   },

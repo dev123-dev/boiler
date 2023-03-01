@@ -4,20 +4,17 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loadUser } from "../../actions/auth";
 import { getAllOrganization } from "../../actions/dag";
-//import { getAllOrganization } from "../../actions/dag";
+
 
 const RouteDriver = ({ auth: { user }, loadUser,dag: { allorg } }) => {
 
   useEffect(() => {
     loadUser();
-   
   }, [loadUser]);
 
   if (user) {
    if(user.userGroup==="Dev")
    {
-
-   
     return <Redirect to="/superdashboard" />
   }
   else if(user.userGroup==="Admin"){

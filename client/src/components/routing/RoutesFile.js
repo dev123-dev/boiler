@@ -83,7 +83,6 @@ const RoutesFile = () => {
         />
 
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
-
         <Route component={NotFound} />
       </Switch>
     </section>
