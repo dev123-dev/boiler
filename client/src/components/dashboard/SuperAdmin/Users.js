@@ -158,7 +158,6 @@ const Users = ({
                 className="img_icon_size log text-right"
                 src={require("../../../static/images/refresh-icon.png")}
                 onClick={() => onClickReset()}
-                // src={refresh}
                 alt="refresh"
               />{" "}
               &nbsp;

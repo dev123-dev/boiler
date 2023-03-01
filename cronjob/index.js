@@ -2,10 +2,8 @@ const express = require("express");
 
 const cron = require("node-cron");
 
-
 //const TenentAgreement = require("../server/models/TenantAgreementDetails");
-const org = require("../models/OrganizationDetails")
-
+const org = require("../models/OrganizationDetails");
 
 async function updateExpiryStatus() {
   console.log("Running Cron Job");
@@ -16,18 +14,19 @@ async function updateExpiryStatus() {
   if (dd < 10) dd = "0" + dd;
   if (mm < 10) mm = "0" + mm;
   var todayDateymd = yyyy + "-" + mm + "-" + dd;
-  
+
   try {
-    console.log("hit")
-     org.updateMany(
-      { endDate: { $lte: todayDateymd }, orgStatus: "Active" },
-      {
-        $set: {
+    console.log("hit");
+    org
+      .updateMany(
+        { endDate: { $lte: todayDateymd }, orgStatus: "Active" },
+        {
+          $set: {
             orgStatus: "Expired",
-        },
-      }
-    )
-    .then((res)=>console.log(res))
+          },
+        }
+      )
+      .then((res) => console.log(res));
     console.log("Status updated as Expired");
   } catch (error) {
     console.error("Error Here");
