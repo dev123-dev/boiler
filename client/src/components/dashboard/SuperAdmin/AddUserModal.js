@@ -32,7 +32,7 @@ const AddUserModal = ({
   );
 
   const onOraganisationChange = (e) => {
-    console.log(e);
+    //console.log(e);
     var oraganisationId = "";
     var oraganisationName = "";
     getOraganisationData(e);
