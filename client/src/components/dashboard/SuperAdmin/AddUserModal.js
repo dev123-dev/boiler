@@ -89,8 +89,10 @@ const AddUserModal = ({
     if (e.target.name === "UserConfpassword" && e.target.value) {
       if (e.target.value !== pas) {
         seterr(true);
+        setDisabled(true);
       } else if (e.target.value === pas) {
         seterr(false);
+        setDisabled(false);
       }
     }
 
@@ -99,6 +101,8 @@ const AddUserModal = ({
       [e.target.name]: e.target.value,
     });
   };
+
+  const [disabled, setDisabled] = useState(true);
 
   const [showAddModal, setShowAddModal] = useState(false);
   const handleAddClose = () => setShowAddModal(false);
@@ -379,7 +383,11 @@ const AddUserModal = ({
                   </div>
                 </div>
                 <div className="text-right">
-                  <button className="btn contact_reg btn_color" type="submit">
+                  <button
+                    disabled={disabled}
+                    className="btn contact_reg btn_color"
+                    type="submit"
+                  >
                     {" "}
                     ADD
                   </button>
