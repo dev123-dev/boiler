@@ -1,29 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import AddOrgModal from "./AddOrgModal";
-// import { Props } from "react";
-// import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
+
 import Modal from "react-bootstrap/Modal";
 import { getAllOrganization } from "../../../actions/dag";
 import { deleteOrganization } from "../../../actions/dag";
-import { editOrganization } from "../../../actions/dag";
-import EditOrganization from "./EditOrganization"
-// import "../../../../client/src/styles/CustomisedStyle.css";
-// import "../../styles/CustomisedStyle.css";
+
+import EditOrganization from "./EditOrganization";
 
 const Organization = ({
   //here to connect to action we need to import the function
   //then again we need to mention inside the const function
-  dag: { allorg },  auth: { isAuthenticated, user, users },
+  dag: { allorg },
+  auth: { isAuthenticated, user, users },
   deleteOrganization,
   getAllOrganization,
-  editOrganization,
 }) => {
   useEffect(() => {
     getAllOrganization();
   }, []);
 
+  // const onClickReset = () => {
+
+  //   // setCurrentData(1);
+  //   // getbatchsData("");
+  //   getAllOrganization("");
+  // };
 
   //deactivate
   const [formData, setFormData] = useState({
@@ -36,33 +38,6 @@ const Organization = ({
   const onInputchange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-
-  //edit
-  const onORGchange = (e) => {
-    setFormDataORG({ ...formData, [e.target.name]: e.target.value });
-  };
-
-
-  const [formDataORG, setFormDataORG] = useState({
-    OrganizationName: "",
-    OrganizationEmail: "",
-    OrganizationNumber: "",
-    OrganizationAddress: "",
-    OrganizationStartdate: "",
-
-
-  });
-  const {
-    OrganizationName,
-    OrganizationEmail,
-    OrganizationNumber,
-    OrganizationAddress,
-    OrganizationStartdate,
-
-  } = formDataORG;
-
-
 
   //deactivate modal
   const [show, setShow] = useState(false);
@@ -89,102 +64,65 @@ const Organization = ({
   const [orgdata, setorgdata] = useState(null);
   const onedit = (org) => {
     setShowUpdateModal(true);
-    //setId(id);
-    setorgdata(org)
+
+    setorgdata(org);
     handleOpen();
-
   };
-
-
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const handleUpdateModalClose = () => setShowUpdateModal(false);
 
-  const onUpdateModalChange = (e) => {
-    if (e) {
-      handleUpdateModalClose();
-    }
-  };
-
-
-
   const onAdd = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const reason = {
       Org_id: OrgId,
-      // org_status: "Deactive",
+
       deactive_reason: Organization_DE_Reason,
       DeactiveById: user._id,
-      DeactiveByName:user.Name,
+      DeactiveByName: user.Name,
       DeactiveByDateTime: new Date().toLocaleString("en-GB"),
     };
     deleteOrganization(reason);
     handleClose();
-    
   };
-  // const onEdit = () => {
-  //     const editdata = {
-  //         Org_id: OrgId,
-  //         orgName:OrganizationName,
-  //         email:OrganizationEmail,
-  //         phoneNumber:OrganizationNumber,
-  //         address:OrganizationAddress,
-
-
-
-  //     };
-  //     console.log(editdata)
-  //  editOrganization(editdata);
-
-
-  // };
-
 
   return (
     <div>
-
       <div className="row">
         {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-center">
     </div> */}
-   
-    
 
-   
-        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
-          <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Organisation Lists</h1>
-          {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
+        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+          <br />
+          <br />
+          <h1
+            style={{ fontFamily: "Serif", color: "#877bae" }}
+            className="font-weight-bold "
+          >
+            Organisation Lists
+          </h1>
 
-          {/* <div className='text-right'>
-            <button onClick={deletehandleShow}>Delete</button>
-            <button onClick={edithandleShow}>edit</button>
+          {/* <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
             <img
-                className="img_icon_size log text-right"
-                //   onClick={() => handleAddOrg()}
-                // onClick={handleShow}
-                onClick={addhandleShow}
-                src={addicon}
-                alt="add-icon"
-                title="add icon"
-            /> &nbsp;&nbsp;&nbsp;
-            <img
-                className="img_icon_size log text-right"
-                // onClick={() => onClickReset()}
-                src={refresh}
-                alt="refresh"
+              className="img_icon_size log text-right"
+              src={require("../../../static/images/refresh-icon.png")}
+              onClick={() => onClickReset()}
+              // src={refresh}
+              alt="refresh"
+            />{" "}
+            &nbsp;
+            <AddOrgModal />
+          </div> */}
+          <AddOrgModal />
 
-            />
-        </div><br /> */}
-        
-
-       
-          <AddOrgModal/>
-         
           <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
-
-
-            <table border="1" id="datatable2"  className="table-striped table table-bordered table-hover" >
+            <table
+              border="1"
+              id="datatable2"
+              className="table-striped table table-bordered table-hover"
+            >
               <thead>
-                <tr className='headingsizes'>
+                <tr className="headingsizes">
                   <th>Org Name</th>
                   <th>Email</th>
                   <th>Phone No.</th>
@@ -196,90 +134,44 @@ const Organization = ({
               </thead>
               <tbody>
                 {allorg &&
-
                   allorg.map((orgVal, idx) => {
-                    if(orgVal.orgStatus=="Active")
-                    {
-                    return (
-                      <tr key={idx}>
-                        <td>{orgVal.orgName}</td>
-                        <td>{orgVal.email}</td>
-                        <td>{orgVal.phoneNumber}</td>
-                        <td>{orgVal.address}</td>
+                    if (orgVal.orgStatus == "Active") {
+                      return (
+                        <tr key={idx}>
+                          <td>{orgVal.orgName}</td>
+                          <td>{orgVal.email}</td>
+                          <td>{orgVal.phoneNumber}</td>
+                          <td>{orgVal.address}</td>
 
-                        <td>{orgVal.orgStatus}</td>
-                        <td>
-                          <img
-                            className="img_icon_size log"
-                            // onClick={() => onClickHandler()}
-                            // onClick={() => clicking()}
-                            // onClick={handleOpen}
-                            onClick={() => onedit(orgVal)}
-                            src={require("../../../static/images/edit_icon.png")}
-                            alt="Edit"
-                            title="Edit Organization"
-                          />&nbsp;&nbsp;
-                          <img
-                            className="img_icon_size log"
-                            // onClick={() => onClickHandler()}
-                            onClick={() => onDelete(orgVal._id)}
-                            src={require("../../../static/images/delete.png")}
-                            alt="delete User"
-                            title="Deactivate Organization"
-                          />
-                        </td>
-                        {/* <img
-                                                        className="img_icon_size log"
-                                                        // onClick={() => onClickHandler()}
-                                                        // onClick={() => clicking()}
-                                                        // onClick={handleOpen}
-                                                        // onClick={() => onedit(orgVal)}
-                                                        src={require("../../../static/images/edit_icon.png")}
-                                                        alt="Edit"
-                                                        title="Edit User"
-                                                    /> */}
-                        {/* <img
-                                                        className="img_icon_size log"
-                                                        // onClick={() => onClickHandler()}
-                                                        // onClick={() => onDelete(orgVal._id)}
-                                                        src={require("../../../static/images/delete.png")}
-                                                        alt="delete User"
-                                                        title="delete User"
-                                                    /> */}
-
-
-                        {/* {orgVal.AgreementStatus === "Expired" ? (
-                    <td>
-                      <center>
-                         <button
-                          variant="success"
-                          className="btn sub_form"
-                          // onClick={() =>
-                          //   onRenewal(orgVal, idx)
-                          // }
-                        >
-                          Renewal
-                        </button> 
-                      </center>
-                    </td>
-                  
-                  ) : (
-                    <td></td>
-                  )} */}
-                      </tr>
-                    );
-                }
+                          <td>{orgVal.orgStatus}</td>
+                          <td>
+                            <img
+                              className="img_icon_size log"
+                              onClick={() => onedit(orgVal)}
+                              src={require("../../../static/images/edit_icon.png")}
+                              alt="Edit"
+                              title="Edit Organization"
+                            />
+                            &nbsp;&nbsp;
+                            <img
+                              className="img_icon_size log"
+                              onClick={() => onDelete(orgVal._id)}
+                              src={require("../../../static/images/delete.png")}
+                              alt="delete User"
+                              title="Deactivate Organization"
+                            />
+                          </td>
+                        </tr>
+                      );
+                    }
                   })}
               </tbody>
             </table>
           </div>
         </div>
-        {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-left">
-    </div> */}
       </div>
 
-
-      {/* modal for deactivating start */}
+      {/*deactivating  */}
 
       <Modal
         show={show}
@@ -288,8 +180,10 @@ const Organization = ({
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
       >
-        <Modal.Header >
-          <Modal.Title className='container'><h1 className='font-weight-bold '>DEACTIVATE ORGANIZATION</h1></Modal.Title>
+        <Modal.Header>
+          <Modal.Title className="container">
+            <h1 className="font-weight-bold ">DEACTIVATE ORGANIZATION</h1>
+          </Modal.Title>
           <div className="col-lg-2">
             <button onClick={handleClose} className="close">
               <img
@@ -301,26 +195,29 @@ const Organization = ({
           </div>
         </Modal.Header>
         <Modal.Body>
-
           <label className="control-label">Reason for Deactivating:</label>
-          <form onSubmit={(e)=>onAdd(e)}>
+          <form onSubmit={(e) => onAdd(e)}>
             <div className="controls">
-              <textarea rows="2" name="Organization_DE_Reason"
-                onChange={(e) => onInputchange(e)} id="org_reason" className="form-control" required ></textarea>
-                  Do You really want to Deactivate this Organization?
-              <span className="form-input-info" ></span>
+              <textarea
+                rows="2"
+                name="Organization_DE_Reason"
+                onChange={(e) => onInputchange(e)}
+                id="org_reason"
+                className="form-control"
+                required
+              ></textarea>
+              Do You really want to Deactivate this Organization?
+              <span className="form-input-info"></span>
             </div>
             <div className="text-right">
-            <button  className="btn contact_reg btn_color" type="submit">  DEACTIVATE</button>
+              <button className="btn contact_reg btn_color" type="submit">
+                {" "}
+                DEACTIVATE
+              </button>
             </div>
-
           </form>
         </Modal.Body>
-        <Modal.Footer>
-
-          {/* <button onClick={handleClose} className="btn contact_reg btn_color"> NO</button> */}
-         
-        </Modal.Footer>
+        <Modal.Footer></Modal.Footer>
       </Modal>
       {/* edit modal */}
       <Modal
@@ -332,8 +229,10 @@ const Organization = ({
         centered
       >
         <Modal.Header>
-          <div className="col-lg-11 " >
-            <h3 className="modal-title text-center">Edit Organization Details </h3>
+          <div className="col-lg-11 ">
+            <h3 className="modal-title text-center">
+              Edit Organization Details{" "}
+            </h3>
           </div>
           <div className="col-lg-1">
             <button onClick={handleUpdateModalClose} className="close">
@@ -346,13 +245,9 @@ const Organization = ({
           </div>
         </Modal.Header>
         <Modal.Body>
-
           <EditOrganization Org={orgdata} closeedit={handleUpdateModalClose} />
-
         </Modal.Body>
-
       </Modal>
-
     </div>
   );
 };
@@ -363,5 +258,4 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getAllOrganization,
   deleteOrganization,
-
 })(Organization);

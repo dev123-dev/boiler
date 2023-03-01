@@ -20,48 +20,43 @@ const OrgSchema = new mongoose.Schema({
   },
   endDate: {
     type: String,
-    
   },
   address: {
     type: String,
-    
-   
   },
   orgStatus: {
     type: String,
-  
   },
-  orgDeactiveReason:{
+  orgDeactiveReason: {
     type: String,
   },
-  EnterById:{
+  EnterById: {
     type: String,
   },
-  EnterByName:{
+  EnterByName: {
     type: String,
   },
-  EnterByDateTime:{
-    type:String,
-  },
-  EditById:{
+  EnterByDateTime: {
     type: String,
   },
-  EditByName:{
+  EditById: {
     type: String,
   },
-  EditByDateTime:{
-    type:String,
-  },
-  DeactiveById:{
+  EditByName: {
     type: String,
   },
-  DeactiveByName:{
+  EditByDateTime: {
     type: String,
   },
-  DeactiveByDateTime:{
-    type:String,
+  DeactiveById: {
+    type: String,
+  },
+  DeactiveByName: {
+    type: String,
+  },
+  DeactiveByDateTime: {
+    type: String,
   },
 });
 
 module.exports = OrgDetails = mongoose.model("Org", OrgSchema);
-
