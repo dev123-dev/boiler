@@ -58,7 +58,6 @@ router.route("/deactiveorg").post((req, res) => {
     })
     .catch((err) => res.status(400).json("Error" + err));
 
-   
     UserDetail.updateMany({ orgId:data.Org_id },
         {
           $set: {
@@ -70,6 +69,7 @@ router.route("/deactiveorg").post((req, res) => {
 // 
 
 //edit Org
+
 router.route("/editorganization").post((req, res) => {
   let data = req.body;
   let OrgHis = new OrgHistroy(req.body);
@@ -94,7 +94,6 @@ router.route("/editorganization").post((req, res) => {
     .then((data) => {
       res.status(200).json(data);
     })
-
     .catch((err) => res.status(400).json("Error" + err));
 });
 
