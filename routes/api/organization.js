@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 
 //add organization
 router.route("/addorganization").post((req, res) => {
-    console.log(req.body)
+    
+    //console.log(req.body)
 
     let Org = new OrgDetails(req.body)
 
@@ -16,10 +17,32 @@ router.route("/addorganization").post((req, res) => {
         .catch((err) => res.status(400).json("Error" + err));
 });
 
-//get all details 
-router.route("/").get((req, res) => {
+//get all organization
 
+router.route("/allorganizationdetails").get((req, res) => {
+   
+   
     OrgDetails.find().sort({orgStatus:1})
+        .then((data) => {
+            res.status(200).json(data);
+        })
+
+        .catch((err) => res.status(400).json("Error" + err));
+});
+
+
+
+
+
+
+//get all details with status active for dropdown
+router.route("/").get((req, res) => {
+    // const {  oraganisationIdVal } = req.body;
+    // let query = {
+    //     _id: oraganisationIdVal,
+    //     // orgStatus: "Active",
+    //   };
+    OrgDetails.find({ orgStatus: "Active",}).sort({orgStatus:1})
         .then((data) => {
             res.status(200).json(data);
         })

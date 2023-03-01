@@ -21,7 +21,8 @@ import {
   GET_ALL_USER,
   FINAL_DATA_REP,
   GET_ALL_ORGANIZATION,
-  GET_ALL_SUPERUSER
+  GET_ALL_SUPERUSER,
+  GET_ALL_ORGANIZATION_DETAILS
 } from "./types";
 
 var linkPath = "";
@@ -52,10 +53,47 @@ export const AddOrganization = (OrganizationData)=> async(dispatch)=>{
 }
 };
 
-//gettting organization details
-export const getAllOrganization = () => async (dispatch) => {
-  try {
+//getting all organization
+
+
+export const getAllOrganizationDetails = () => async (dispatch) => {
   
+  
+  try {
+
+    const res = await axios.get(`${linkPath}/api/organization/allorganizationdetails`);
+    dispatch({
+      type: GET_ALL_ORGANIZATION_DETAILS,
+      payload: res.data,
+    
+
+    }  );
+  
+    
+    
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+//gettting organization details Active  for dropdown 
+export const getAllOrganization = () => async (dispatch) => {
+
+  
+  try {
+
     const res = await axios.get(`${linkPath}/api/organization/`);
     dispatch({
       type: GET_ALL_ORGANIZATION,
@@ -111,7 +149,7 @@ export const renewOrganization = (renewdata) => async(dispatch)=>{
      renewdata,
       
     );
-    dispatch(getAllOrganization());
+    dispatch(getAllOrganizationDetails());
   } catch (err) {}
   };
 
@@ -141,10 +179,13 @@ export const AddUser = (UserData)=> async(dispatch)=>{
  };
 
  //gettting User details
-export const getAllUser = () => async (dispatch) => {
+export const getAllUser = (changeData) => async (dispatch) => {
+  console.log("changeData",changeData)
   try {
   
-    const res = await axios.get(`${linkPath}/api/user/getuser`);
+    const res = await axios.post(`${linkPath}/api/user/getuser`,{
+      ...changeData,
+    });
     dispatch({
       type: GET_ALL_USER,
       payload: res.data,

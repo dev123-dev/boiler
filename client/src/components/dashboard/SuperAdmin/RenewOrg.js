@@ -82,7 +82,7 @@ const RenewOrg = ({
                 <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
                   <label className="control-label">Start Date </label>
                   <div className="controls">
-                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control"   placeholder="dd/mm/yyyy" value={OrganizationStartdate} onChange={(e) => onInputChange(e)}  />
+                    <input name="OrganizationStartdate" id="cat_name" type="date" className="form-control"   placeholder="yyyy/mm/dd" value={OrganizationStartdate} onChange={(e) => onInputChange(e)}  />
                     <span id="category_result" className="form-input-info"></span>
                   </div>
                 </div>
