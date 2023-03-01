@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal} from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { AddOrganization } from "../../../actions/dag";
@@ -11,10 +11,10 @@ const AddOrgModal=({
   }) => {
     const [show, setshow] = useState("");
     const handleClose = () => setshow("false");
-    const handleShow = () => setshow("true");
+    //const handleShow = () => setshow("true");
 
-    const [inputdata, setinput] = useState("");
-    const [items, setitem] = useState([]);
+    // const [inputdata, setinput] = useState("");
+    // const [items, setitem] = useState([]);
 
     const [formDataORG, setFormDataORG] = useState({
         OrganizationName: "",
@@ -57,7 +57,7 @@ const oneYearLater = new Date(originalDate.getFullYear() + 1, originalDate.getMo
 // Format the date as a string in the desired format
 const oneYearLaterString = `${oneYearLater.getFullYear()}-${("0" + (oneYearLater.getMonth() + 1)).slice(-2)}-${("0" + oneYearLater.getDate()).slice(-2)}`;
 
-console.log(oneYearLaterString); // Output: "2024-02-15"
+//console.log(oneYearLaterString); // Output: "2024-02-15"
 
     const finalORGdata = {
       orgName: OrganizationName,
@@ -93,7 +93,7 @@ console.log(oneYearLaterString); // Output: "2024-02-15"
       orgDeactiveReason:"",
      
     });
-    console.log(user)
+   // console.log(user)
     handleAddClose();
   };
 

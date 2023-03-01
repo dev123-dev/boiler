@@ -1,9 +1,10 @@
-import React, { useEffect, useState ,useRef} from "react";
-import { Modal, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Modal} from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { AddUser, getAllOrganization } from "../../../actions/dag";
 //import { use } from "../../../../../routes/api/group";
+import Select from "react-select";
 
 const AddUserModal = ({
 
@@ -16,19 +17,53 @@ const AddUserModal = ({
     getAllOrganization();
   }, []);
 
+  const [oraganisation, getOraganisationData] = useState();
+  const [oraganisationId, setOraganisationId] = useState();
+  const [oraganisationName, setOraganisationName] = useState();
+
+  const allOraganisation = [];
+  // console.log("allOraganisation",allOraganisation)
+  allorg.map((oraganisation) =>
+    allOraganisation.push({
+      oraganisationId: oraganisation._id,
+      label: oraganisation.orgName,
+      value: oraganisation.orgName,
+    })
+  );
+
+  const onOraganisationChange = (e) => {
+    console.log(e);
+    var oraganisationId = "";
+    var oraganisationName = "";
+    getOraganisationData(e);
+
+    oraganisationId = e.oraganisationId;
+    oraganisationName = e.value;
+
+    setOraganisationId(oraganisationId);
+    setOraganisationName(oraganisationName);
+    const changeData = {
+      oraganisationIdVal: e.oraganisationId,
+    };
+    getAllOrganization(changeData);
+    // getAllBatchesDropdown(changeData);
+    // getAllParish(changeData);
+    // getbatchsData("");
+    // getParishData("");
+  };
 
 
 
   const [show, setshow] = useState("");
   const handleClose = () => setshow("false");
-  const handleShow = () => setshow("true");
+  //const handleShow = () => setshow("true");
 
-  const [inputdata, setinput] = useState("");
-  const [items, setitem] = useState([]);
+  // const [inputdata, setinput] = useState("");
+  // const [items, setitem] = useState([]);
 
 
-  const [pas,setpas]=useState('')
-  const[err,seterr]=useState(false)
+  const [pas,setpas]=useState("")
+  const[err,seterr]=useState(null)
 
   const [formDataUSER, setformDataUSER] = useState({
     UserFullname: "",
@@ -49,7 +84,7 @@ const AddUserModal = ({
     UserNumber,
     UserEmail,
     UserAddress,
-    UserPassword,
+   
     UserConfpassword,
 
 
@@ -59,22 +94,22 @@ const AddUserModal = ({
   
 
   const onUserchange = (e) => {
-    console.log(e.target.name)
+   // console.log(e.target.name)
     // var pass;
-    if(e.target.name=="UserPassword" && e.target.value)
+    if(e.target.name==="UserPassword" && e.target.value)
     {
       setpas(e.target.value);
       
     }
 
-    if(e.target.name=="UserConfpassword" && e.target.value)
+    if(e.target.name==="UserConfpassword" && e.target.value)
     {
-      if(e.target.value!=pas)
+      if(e.target.value!==pas)
       {
         seterr(true)
 
       }
-      else  if(e.target.value==pas)
+      else  if(e.target.value===pas)
       {
         seterr(false)
 
@@ -102,14 +137,16 @@ const AddUserModal = ({
 
   const onSubmitUSERdata = (e) => {
     e.preventDefault()
-console.log(formDataUSER)
+//console.log(formDataUSER)
 
     const finalUSERdata = {
       userName: UserName,
       fullName: UserFullname,
       email: UserEmail,
       userGroup: "Admin",
-      orgName: UserOrgbelongs,
+      //orgId
+      orgId: oraganisationId,
+      orgName:oraganisationName,
       phone: UserNumber,
       address: UserAddress,
       password: UserConfpassword,
@@ -155,7 +192,7 @@ console.log(formDataUSER)
 
     <Fragment>
 
-      <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right">
+      {/* <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right"> */}
 
         <img
           className="img_icon_size log"
@@ -166,7 +203,8 @@ console.log(formDataUSER)
           title="Add User"
         />
 
-      </div><br />
+      {/* </div> */}
+      <br />
 
 
       {/* Adding Organization */}
@@ -209,22 +247,29 @@ console.log(formDataUSER)
                       <label className="control-label">Organization Belongs<span >*</span></label>
                       <div className="controls">
 
+                      <Select
+              name="UserOrgbelongs"
+              options={allOraganisation}
+              isSearchable={true}
+              value={oraganisation}
+              placeholder="Select Oraganisation"
+              onChange={(e) => onOraganisationChange(e)}
+            />
 
-                        <select style={{ backgroundcolor: '#877bae' }} name="UserOrgbelongs" className=" selectorgcolor form-control" onChange={(e) => onUserchange(e)} required>
+
+                        {/* <select style={{ backgroundcolor: '#877bae' }} name="UserOrgbelongs" className=" selectorgcolor form-control" onChange={(e) => onUserchange(e)} required>
                           <option>--Select Organization--</option>
 
                           {allorg &&
                             allorg.map((org, idx) => {
 
-                              if (org.orgStatus == "Active") {
+                              if (org.orgStatus === "Active") {
                                 return (<option key={idx} value={org.orgName}>{org.orgName}</option>)
                               }
                             })
                           }
+                        </select> */}
 
-
-
-                        </select>
                         <span className="form-input-info" ></span>
                       </div>
                     </div>

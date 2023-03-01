@@ -7,9 +7,10 @@ import AddUserModal from "./AddUserModal";
 import Modal from "react-bootstrap/Modal";
 import { getAllUser } from "../../../actions/dag";
 import { getAllOrganization } from "../../../actions/dag";
-import { deleteUser} from "../../../actions/dag";
+import { deleteUser } from "../../../actions/dag";
 // import { editOrganization } from "../../../actions/dag";
 import EditUser from "./EditUser"
+import Select from "react-select";
 // import "../../../../client/src/styles/CustomisedStyle.css";
 // import "../../styles/CustomisedStyle.css";
 
@@ -29,7 +30,7 @@ const Users = ({
     // console.log(alluser)
   }, []);
 
-  
+
 
   //deactivate
   const [formData, setFormData] = useState({
@@ -37,7 +38,7 @@ const Users = ({
     isSubmitted: false,
   });
 
-  const {User_DE_Reason } = formData;
+  const { User_DE_Reason } = formData;
 
   const onInputchange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -45,28 +46,28 @@ const Users = ({
 
 
   //edit
-  const onORGchange = (e) => {
-    setFormDataORG({ ...formData, [e.target.name]: e.target.value });
-  };
+  // const onORGchange = (e) => {
+  //   setFormDataORG({ ...formData, [e.target.name]: e.target.value });
+  // };
 
 
-  const [formDataORG, setFormDataORG] = useState({
-    OrganizationName: "",
-    OrganizationEmail: "",
-    OrganizationNumber: "",
-    OrganizationAddress: "",
-    OrganizationStartdate: "",
+  // const [formDataORG, setFormDataORG] = useState({
+  //   OrganizationName: "",
+  //   OrganizationEmail: "",
+  //   OrganizationNumber: "",
+  //   OrganizationAddress: "",
+  //   OrganizationStartdate: "",
 
 
-  });
-  const {
-    OrganizationName,
-    OrganizationEmail,
-    OrganizationNumber,
-    OrganizationAddress,
-    OrganizationStartdate,
+  // });
+  // const {
+  //   OrganizationName,
+  //   OrganizationEmail,
+  //   OrganizationNumber,
+  //   OrganizationAddress,
+  //   OrganizationStartdate,
 
-  } = formDataORG;
+  // } = formDataORG;
 
 
 
@@ -79,11 +80,11 @@ const Users = ({
   const [showEditModal, setShowEditModal] = useState(false);
   const handleEditModalClose = () => setShowEditModal(false);
   const handleOpen = () => setShowEditModal(true);
-  const onAddStaffModalChange = (e) => {
-    if (e) {
-      handleEditModalClose();
-    }
-  };
+  // const onAddStaffModalChange = (e) => {
+  //   if (e) {
+  //     handleEditModalClose();
+  //   }
+  // };
 
   const [UserId, setId] = useState("");
 
@@ -101,19 +102,58 @@ const Users = ({
 
   };
 
+  const onClickReset = () => {
+    // setCurrentData(1);
+    // getbatchsData("");
+    getAllUser("");
+  };
 
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const handleUpdateModalClose = () => setShowUpdateModal(false);
 
-  const onUpdateModalChange = (e) => {
-    if (e) {
-      handleUpdateModalClose();
-    }
+  // const onUpdateModalChange = (e) => {
+  //   if (e) {
+  //     handleUpdateModalClose();
+  //   }
+  // };
+  const [oraganisation, getOraganisationData] = useState();
+  const [oraganisationId, setOraganisationId] = useState();
+  const [oraganisationName, setOraganisationName] = useState();
+
+  const allOraganisation = [];
+  // console.log("allOraganisation",allOraganisation)
+  allorg.map((oraganisation) =>
+    allOraganisation.push({
+      oraganisationId: oraganisation._id,
+      label: oraganisation.orgName,
+      value: oraganisation.orgName,
+    })
+  );
+
+  const onOraganisationChange = (e) => {
+    console.log(e);
+    var oraganisationId = "";
+    var oraganisationName = "";
+    getOraganisationData(e);
+
+    oraganisationId = e.oraganisationId;
+    oraganisationName = e.value;
+
+    setOraganisationId(oraganisationId);
+    setOraganisationName(oraganisationName);
+    const changeData = {
+      oraganisationIdVal: e.oraganisationId,
+    };
+    getAllUser(changeData);
+    // getAllBatchesDropdown(changeData);
+    // getAllParish(changeData);
+    // getbatchsData("");
+    // getParishData("");
   };
 
 
-//deactivate
+  //deactivate
   const onAdd = (e) => {
     e.preventDefault()
     const reason = {
@@ -123,7 +163,7 @@ const Users = ({
     };
     deleteUser(reason);
     handleClose();
-    
+
   };
   // const onEdit = () => {
   //     const editdata = {
@@ -149,29 +189,54 @@ const Users = ({
       <div className="row">
         {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-center">
     </div> */}
-   
-    
 
-   
+
+
+
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left"><br /><br />
-        <section>
-          <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Users Lists</h1>
+          <section>
+            <h1 style={{ fontFamily: "Serif", color: "#877bae" }} className="font-weight-bold ">Users Lists</h1>
 
-          <select>
+            {/* <select>
             <option>-select Org name-</option>
             {allorg &&
                             allorg.map((org, idx) => {
 
-                              if (org.orgStatus == "Active") {
+                              if (org.orgStatus === "Active") {
                                 return (<option key={idx} value={org.orgName}>{org.orgName}</option>)
                               }
                             })
                           }
 
-          </select>
-          {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
+          </select> */}
+          <div style={{width:"250px"}}>
 
-          {/* <div className='text-right'>
+            <Select
+              name="institutionName"
+              options={allOraganisation}
+              isSearchable={true}
+              value={oraganisation}
+              placeholder="Select Oraganisation"
+              onChange={(e) => onOraganisationChange(e)}
+            />
+            </div>
+            <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
+
+            <img
+                className="img_icon_size log text-right"
+                src={require("../../../static/images/refresh-icon.png")}
+                onClick={() => onClickReset()}
+                // src={refresh}
+                alt="refresh"
+
+            /> &nbsp;
+             <AddUserModal />
+             </div>
+           
+           
+            {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
+
+            {/* <div className='text-right'>
             <button onClick={deletehandleShow}>Delete</button>
             <button onClick={edithandleShow}>edit</button>
             <img
@@ -183,75 +248,69 @@ const Users = ({
                 alt="add-icon"
                 title="add icon"
             /> &nbsp;&nbsp;&nbsp;
-            <img
-                className="img_icon_size log text-right"
-                // onClick={() => onClickReset()}
-                src={refresh}
-                alt="refresh"
-
-            />
+            
         </div><br /> */}
-        
-
-       
-          <AddUserModal />
-         
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
 
 
-            <table border="1" id="datatable2" className="table-striped table table-bordered table-hover">
-              <thead>
-                <tr className='headingsizes'>
-                  <th>User Name</th>
-                  <th>Org Name</th>
-                  <th>User Group</th>
-                  <th>Email</th>
-                  <th>Phone No.</th>
-                  <th>Address</th>
-                  <th>Status</th>
-                  <th>Operation</th>
-                </tr>
-              </thead>
-              <tbody>
-                {alluser &&
 
-                  alluser.map((userVal, idx) => {
-                   
-                    return (
-                      <tr key={idx}>
-                        <td>{userVal.fullName}</td>
-                        <td>{userVal.orgName}</td>
-                        <td>{userVal.userGroup}</td>
-                        <td>{userVal.email}</td>
-                        <td>{userVal.phone}</td>
-                        <td>{userVal.address}</td>
+           
 
-                        <td>{userVal.userStatus}</td>
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
 
-                        <td>
-                        {userVal.userStatus==="Active" ? (<>
-                            <img
-                            className="img_icon_size log"
-                            // onClick={() => onClickHandler()}
-                            // onClick={() => clicking()}
-                            // onClick={handleOpen}
-                            onClick={() => onedit(userVal)}
-                            src={require("../../../static/images/edit_icon.png")}
-                            alt="Edit"
-                            title="Edit User"
-                          />&nbsp;&nbsp;
-                          <img
-                            className="img_icon_size log"
-                            // onClick={() => onClickHandler()}
-                            onClick={() => onDelete(userVal._id)}
-                            src={require("../../../static/images/delete.png")}
-                            alt="delete User"
-                            title="Deactivate User"
-                          /></>):(<></>)}
-                          
-                            
-                        </td>
-                        {/* <img
+
+              <table border="1" id="datatable2" className="table-striped table table-bordered table-hover">
+                <thead>
+                  <tr className='headingsizes'>
+                    <th>Full Name</th>
+                    <th>Org Name</th>
+                    <th>User Group</th>
+                    <th>Email</th>
+                    <th>Phone No.</th>
+                    <th>Address</th>
+                    {/* <th>Status</th> */}
+                    <th>Operation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {alluser &&
+
+                    alluser.map((userVal, idx) => {
+
+                      return (
+                        <tr key={idx}>
+                          <td>{userVal.fullName}</td>
+                          <td>{userVal.orgName}</td>
+                          <td>{userVal.userGroup}</td>
+                          <td>{userVal.email}</td>
+                          <td>{userVal.phone}</td>
+                          <td>{userVal.address}</td>
+
+                          {/* <td>{userVal.userStatus}</td> */}
+
+                          <td>
+                            {userVal.userStatus === "Active" ? (<>
+                              <img
+                                className="img_icon_size log"
+                                // onClick={() => onClickHandler()}
+                                // onClick={() => clicking()}
+                                // onClick={handleOpen}
+                                onClick={() => onedit(userVal)}
+                                src={require("../../../static/images/edit_icon.png")}
+                                alt="Edit"
+                                title="Edit User"
+                              />&nbsp;&nbsp;
+                              <img
+                                className="img_icon_size log"
+                                // onClick={() => onClickHandler()}
+                                onClick={() => onDelete(userVal._id)}
+                                src={require("../../../static/images/delete.png")}
+                                alt="delete User"
+                                title="Deactivate User"
+                              /></>) : (<>Deactivated</>)}
+
+
+                          </td>
+                          {/* <img
                                                         className="img_icon_size log"
                                                         // onClick={() => onClickHandler()}
                                                         // onClick={() => clicking()}
@@ -261,7 +320,7 @@ const Users = ({
                                                         alt="Edit"
                                                         title="Edit User"
                                                     /> */}
-                        {/* <img
+                          {/* <img
                                                         className="img_icon_size log"
                                                         // onClick={() => onClickHandler()}
                                                         // onClick={() => onDelete(orgVal._id)}
@@ -271,7 +330,7 @@ const Users = ({
                                                     /> */}
 
 
-                        {/* {orgVal.AgreementStatus === "Expired" ? (
+                          {/* {orgVal.AgreementStatus === "Expired" ? (
                     <td>
                       <center>
                          <button
@@ -289,16 +348,16 @@ const Users = ({
                   ) : (
                     <td></td>
                   )} */}
-                      </tr>
-                    );
-                
-                  })}
-              </tbody>
-            </table>
-          </div>
+                        </tr>
+                      );
+
+                    })}
+                </tbody>
+              </table>
+            </div>
           </section>
         </div>
-       
+
         {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-left">
     </div> */}
       </div>
@@ -328,7 +387,7 @@ const Users = ({
         <Modal.Body>
 
           <label className="control-label">Reason for Deactivating:</label>
-          <form onSubmit={(e)=>onAdd(e)} >
+          <form onSubmit={(e) => onAdd(e)} >
             <div className="controls">
               <textarea rows="2" name="User_DE_Reason"
                 onChange={(e) => onInputchange(e)} id="org_reason" className="form-control" required></textarea>
@@ -336,7 +395,7 @@ const Users = ({
               Do You really want to Deactivate this user?
             </div>
             <div className="text-right">
-            <button className="btn contact_reg btn_color">  DEACTIVATE</button>
+              <button className="btn contact_reg btn_color">  DEACTIVATE</button>
             </div>
 
           </form>
@@ -344,10 +403,10 @@ const Users = ({
         <Modal.Footer>
 
           {/* <button onClick={handleClose} className="btn contact_reg btn_color"> NO</button> */}
-      
+
         </Modal.Footer>
       </Modal>
-      
+
       {/* edit modal */}
       <Modal
         show={showUpdateModal}

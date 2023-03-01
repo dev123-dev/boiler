@@ -6,18 +6,19 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import refresh from "../../../static/images/download.png"
-import { getAllOrganization } from "../../../actions/dag";
+import { getAllOrganizationDetails } from "../../../actions/dag";
 import RenewOrg from "./RenewOrg";
 
 const SuperDashboard = ({
   auth: { isAuthenticated, user, users },
-  dag: { allorg },getAllOrganization
+  dag: { allorg },
+  getAllOrganizationDetails
 
 }) => {
 
 
   useEffect(() => {
-    getAllOrganization();
+    getAllOrganizationDetails();
   }, []);
 
  //deactivate modal
@@ -66,27 +67,27 @@ setorgdata(orgObj)
 
                 allorg.map((orgVal, idx) => {
                   
-                  // var ED = orgVal.startDate.split(
-                  //   /\D/g
-                  // );
-                  // var StartDate = [ED[2], ED[1], ED[0]].join(
-                  //   "-"
-                  // );
-                  // var EDE = orgVal.endDate.split(
-                  //   /\D/g
-                  // );
-                  // var EndDate = [
-                  //   EDE[2],
-                  //   EDE[1],
-                  //   EDE[0],
-                  // ].join("-");
+                  var ED = orgVal.startDate.split(
+                    /\D/g
+                  );
+                  var StartDate = [ED[2], ED[1], ED[0]].join(
+                    "-"
+                  );
+                  var EDE = orgVal.endDate.split(
+                    /\D/g
+                  );
+                  var EndDate = [
+                    EDE[2],
+                    EDE[1],
+                    EDE[0],
+                  ].join("-");
                   return (
                     <tr key={idx}>
                       <td>{orgVal.orgName}</td>
                       <td>{orgVal.email}</td>
                       <td>{orgVal.phoneNumber}</td>
-                      <td>{orgVal.startDate}</td>
-                      <td>{orgVal.endDate}</td>
+                      <td>{StartDate}</td>
+                      <td>{EndDate}</td>
                       <td>{orgVal.orgStatus}</td>
                       <td>
                         {orgVal.orgStatus === "Deactive" ? (
@@ -169,7 +170,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getAllOrganization,
+  getAllOrganizationDetails,
 })(SuperDashboard);
 
 
