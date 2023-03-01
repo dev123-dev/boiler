@@ -67,13 +67,13 @@ setorgdata(orgObj)
               {allorg &&
                 allorg.map((orgVal, idx) => {
                   
-                  var ED = orgVal.startDate.split(
+                  var ED = orgVal && orgVal.startDate.split(
                     /\D/g
                   );
                   var StartDate = [ED[2], ED[1], ED[0]].join(
                     "-"
                   );
-                  var EDE = orgVal.endDate.split(
+                  var EDE = orgVal && orgVal.endDate.split(
                     /\D/g
                   );
                   var EndDate = [

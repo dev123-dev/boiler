@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import AddUserModal from "./AddUserModal";
-// import { Props } from "react";
-// import Button from "react-bootstrap/Button";
-// import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { getAllUser } from "../../../actions/dag";
 import { getAllOrganization } from "../../../actions/dag";
 import { deleteUser } from "../../../actions/dag";
-// import { editOrganization } from "../../../actions/dag";
 import EditUser from "./EditUser"
 import Select from "react-select";
-// import "../../../../client/src/styles/CustomisedStyle.css";
-// import "../../styles/CustomisedStyle.css";
+
 
 const Users = ({
   //here to connect to action we need to import the function
@@ -31,7 +26,6 @@ const Users = ({
   }, []);
 
 
-
   //deactivate
   const [formData, setFormData] = useState({
     User_DE_Reason: "",
@@ -39,36 +33,9 @@ const Users = ({
   });
 
   const { User_DE_Reason } = formData;
-
   const onInputchange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-
-  //edit
-  // const onORGchange = (e) => {
-  //   setFormDataORG({ ...formData, [e.target.name]: e.target.value });
-  // };
-
-
-  // const [formDataORG, setFormDataORG] = useState({
-  //   OrganizationName: "",
-  //   OrganizationEmail: "",
-  //   OrganizationNumber: "",
-  //   OrganizationAddress: "",
-  //   OrganizationStartdate: "",
-
-
-  // });
-  // const {
-  //   OrganizationName,
-  //   OrganizationEmail,
-  //   OrganizationNumber,
-  //   OrganizationAddress,
-  //   OrganizationStartdate,
-
-  // } = formDataORG;
-
 
 
   //deactivate modal
@@ -80,11 +47,7 @@ const Users = ({
   const [showEditModal, setShowEditModal] = useState(false);
   const handleEditModalClose = () => setShowEditModal(false);
   const handleOpen = () => setShowEditModal(true);
-  // const onAddStaffModalChange = (e) => {
-  //   if (e) {
-  //     handleEditModalClose();
-  //   }
-  // };
+ 
 
   const [UserId, setId] = useState("");
 
@@ -96,7 +59,6 @@ const Users = ({
   const [orgdata, setorgdata] = useState(null);
   const onedit = (user2) => {
     setShowUpdateModal(true);
-    //setId(id);
     setorgdata(user2)
     handleOpen();
 
@@ -112,17 +74,12 @@ const Users = ({
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const handleUpdateModalClose = () => setShowUpdateModal(false);
 
-  // const onUpdateModalChange = (e) => {
-  //   if (e) {
-  //     handleUpdateModalClose();
-  //   }
-  // };
+
   const [oraganisation, getOraganisationData] = useState();
   const [oraganisationId, setOraganisationId] = useState();
   const [oraganisationName, setOraganisationName] = useState();
 
   const allOraganisation = [];
-  // console.log("allOraganisation",allOraganisation)
   allorg.map((oraganisation) =>
     allOraganisation.push({
       oraganisationId: oraganisation._id,
@@ -132,7 +89,7 @@ const Users = ({
   );
 
   const onOraganisationChange = (e) => {
-    console.log(e);
+    //console.log(e);
     var oraganisationId = "";
     var oraganisationName = "";
     getOraganisationData(e);
@@ -251,9 +208,6 @@ const Users = ({
             
         </div><br /> */}
 
-
-
-           
 
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
 

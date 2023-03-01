@@ -180,7 +180,7 @@ export const AddUser = (UserData)=> async(dispatch)=>{
 
  //gettting User details
 export const getAllUser = (changeData) => async (dispatch) => {
-  console.log("changeData",changeData)
+ // console.log("changeData",changeData)
   try {
   
     const res = await axios.post(`${linkPath}/api/user/getuser`,{
