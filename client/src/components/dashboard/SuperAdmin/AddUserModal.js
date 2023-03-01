@@ -3,19 +3,19 @@ import { Modal } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { AddUser, getAllOrganization } from "../../../actions/dag";
-//import { use } from "../../../../../routes/api/group";
+
 import Select from "react-select";
 
 const AddUserModal = ({
   dag: { allorg },
-  auth: { isAuthenticated, user, users, finalDataRep },
+  auth: { isAuthenticated, user, users},
   AddUser,
   getAllOrganization,
 }) => {
   useEffect(() => {
     getAllOrganization();
   }, []);
-
+  
   const [oraganisation, getOraganisationData] = useState();
   const [oraganisationId, setOraganisationId] = useState();
   const [oraganisationName, setOraganisationName] = useState();
@@ -105,6 +105,7 @@ const AddUserModal = ({
   const handleOpen = () => setShowAddModal(true);
 
   const onSubmitUSERdata = (e) => {
+
     e.preventDefault();
     //console.log(formDataUSER)
 

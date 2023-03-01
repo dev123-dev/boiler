@@ -78,7 +78,7 @@ const SuperDashboard = ({
                         <td>{EndDate}</td>
                         <td>{orgVal.orgStatus}</td>
                         <td>
-                          {orgVal.orgStatus === "Deactive" ? (
+                          {orgVal.orgStatus === "Expired" ? (
                             <button
                               className="btn contact_reg btn_color"
                               onClick={() => onRenewal(orgVal, idx)}

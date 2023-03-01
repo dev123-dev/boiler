@@ -23,7 +23,7 @@ async function updateExpiryStatus() {
       { endDate: { $lte: todayDateymd }, orgStatus: "Active" },
       {
         $set: {
-            orgStatus: "Deactive",
+            orgStatus: "Expired",
         },
       }
     )
@@ -36,7 +36,7 @@ async function updateExpiryStatus() {
 }
 
 function expairyNotif() {
-  cron.schedule("19 * * * *", function () {
+  cron.schedule("* * * * *", function () {
     updateExpiryStatus();
   });
 }
