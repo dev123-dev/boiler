@@ -3,11 +3,11 @@ const mongoose = require("mongoose");
 const CategorySchema = new mongoose.Schema({
   categoryName: {
     type: String,
-    required: true
+    required: true,
   },
   categoryDesp: {
     type: String,
-    required: true,
+    //required: true,
   },
   orgId: {
     type: String,
@@ -17,11 +17,10 @@ const CategorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  catogoryStatus: {
+  categoryStatus: {
     type: String,
     required: true,
   },
 });
 
 module.exports = CategoryDetails = mongoose.model("categorys", CategorySchema);
-
