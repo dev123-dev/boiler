@@ -17,7 +17,7 @@ app.use("/api/user", require("../DAG_mongo/routes/api/user"));
 app.use("/api/auth", require("../DAG_mongo/routes/api/auth"));
 app.use("/api/organization", require("../DAG_mongo/routes/api/organization"));
 app.use("/api/group", require("../DAG_mongo/routes/api/group"));
-
+app.use("/api/category", require("../DAG_mongo/routes/api/category"));
 
 // Set static folder for client build Serve static assets in production
 //app.use(express.static('client/build'));
