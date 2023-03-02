@@ -58,15 +58,16 @@ router.route("/deactiveorg").post((req, res) => {
     })
     .catch((err) => res.status(400).json("Error" + err));
 
-    UserDetail.updateMany({ orgId:data.Org_id },
-        {
-          $set: {
-            userStatus: "Deactiveee111",
-        },
-        })
-        .then((res)=>console.log("deleted all user in that org"))
-        });
-// 
+  UserDetail.updateMany(
+    { orgId: data.Org_id },
+    {
+      $set: {
+        userStatus: "Deactive",
+      },
+    }
+  ).then((res) => console.log("deleted all user in that org"));
+});
+//
 
 //edit Org
 
