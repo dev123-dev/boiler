@@ -25,25 +25,25 @@ router.route("/getcategory").get((req, res) => {
 });
 
 //deactive user group
-// router.route("/deactivegroup").post((req, res) => {
+router.route("/deactivecategory").post((req, res) => {
 
-//     let data = req.body;
-//     CategoryDetails.updateOne(
-//         { groupName: data.groupName },
-//         {
-//             $set: {
-//                 groupStatus: "Deactive",
-//                 //userDeactiveReason: data.deactive_reason,
-//             },
-//         }
-//     )
-//         .then((data) => {
-//             res.status(200).json(data);
-//         })
+    let data = req.body;
+    CategoryDetails.updateOne(
+        { categoryId: data.categoryId, orgId:data.orgId },
+        {
+            $set: {
+                categoryStatus: "Deactive",
+                //userDeactiveReason: data.deactive_reason,
+            },
+        }
+    )
+        .then((data) => {
+            res.status(200).json(data);
+        })
 
-//        .catch((err) => res.status(400).json("Error" + err));
-//      // console.log(data)
-// }
-// );
+       .catch((err) => res.status(400).json("Error" + err));
+     // console.log(data)
+}
+);
 
 module.exports = router;
