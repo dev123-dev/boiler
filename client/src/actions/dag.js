@@ -238,7 +238,7 @@ export const addCategory = (UserData) => async (dispatch) => {
   try {
     await axios.post(`${linkPath}/api/category/addcategory`, UserData, config);
     //diapatching get function because it should relfex immidiatly after adding
-    //dispatch(getAllUser());
+    //  dispatch(getAllCategory());
   } catch (err) {
     dispatch({
       type: AUTH_ERROR,
@@ -248,9 +248,11 @@ export const addCategory = (UserData) => async (dispatch) => {
 
 //getting all category
 
-export const getAllCategory = () => async (dispatch) => {
+export const getAllCategory = (userdata) => async (dispatch) => {
+  // console.log(userdata);
+  let body = { orgId: userdata };
   try {
-    const res = await axios.get(`${linkPath}/api/category/getcategory`);
+    const res = await axios.post(`${linkPath}/api/category/getcategory`, body);
     console.log(res);
     dispatch({
       type: GET_ALL_CATEGORY,
@@ -259,6 +261,25 @@ export const getAllCategory = () => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: GET_ALL_CATEGORY,
+    });
+  }
+};
+
+//deleting category details
+export const deleteCategory = (id) => async (dispatch) => {
+  // console.log('INSIDE ACTION')
+  // console.log("delete", id);
+  try {
+    const res = await axios.post(
+      `${linkPath}/api/category/deactivecategory`,
+      id,
+      config
+    );
+    //dispatch(getAllCategory());
+  } catch (err) {
+    console.log("error while sending from action");
+    dispatch({
+      type: TENANT_FEEDBACK_ERROR,
     });
   }
 };

@@ -21,6 +21,9 @@ const CategorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  categoryReason: {
+    type: String,
+  },
 });
 
 module.exports = CategoryDetails = mongoose.model("categorys", CategorySchema);

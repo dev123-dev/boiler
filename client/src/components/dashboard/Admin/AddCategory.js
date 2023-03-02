@@ -3,10 +3,12 @@ import { Modal, Button } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { addCategory } from "../../../actions/dag";
+import { getAllCategory } from "../../../actions/dag";
 
 const AddCategory = ({
   auth: { isAuthenticated, user, users, finalDataRep },
   addCategory,
+  getAllCategory,
 }) => {
   const [show, setshow] = useState("");
   const handleClose = () => setshow("false");
@@ -43,9 +45,10 @@ const AddCategory = ({
       categoryStatus: "Active",
       orgId: catOrgId,
       orgName: catOrgName,
+      categoryReason: "",
     };
     addCategory(finalCATdata);
-
+    getAllCategory(user.orgId);
     setformDataCAT({
       ...formDataCAT,
       catName: "",
@@ -59,15 +62,14 @@ const AddCategory = ({
     <Fragment></Fragment>
   ) : (
     <Fragment>
-      <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right">
-        <img
-          className="img_icon_size log"
-          onClick={handleOpen}
-          src={require("../../../static/images/add-icon.png")}
-          alt="Add Category"
-          title="Add Category"
-        />
-      </div>
+      <img
+        className="img_icon_size log"
+        onClick={handleOpen}
+        src={require("../../../static/images/add-icon.png")}
+        alt="Add Category"
+        title="Add Category"
+      />
+
       <br />
 
       {/* Adding Organization */}
@@ -174,4 +176,6 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   dag: state.dag,
 });
-export default connect(mapStateToProps, { addCategory })(AddCategory);
+export default connect(mapStateToProps, { addCategory, getAllCategory })(
+  AddCategory
+);

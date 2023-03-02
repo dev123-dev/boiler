@@ -1,37 +1,55 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
-// import { getallcatGroup } from "../../../actions/dag";
+import { deleteCategory } from "../../../actions/dag";
 import { getAllCategory } from "../../../actions/dag";
 import Addcategory from "./AddCategory";
+//import { loadUser } from "../../../actions/auth";
 
 const Category = ({
+  auth: { isAuthenticated, user, users, finalDataRep },
   //here to connect to action we need to import the function
   //then again we need to mention inside the const function
   dag: { allcat },
-  //deleteCategory,
+  deleteCategory,
+  //loadUser,
   getAllCategory,
 }) => {
   useEffect(() => {
-    getAllCategory();
+    //loadUser();
+    // if (user) {
+    //   console.log("inside");
+    getAllCategory(user.orgId);
+    // getAllCategory();
+    // }
   }, []);
+
+  const onClickReset = () => {
+    // setCurrentData(1);
+    // getbatchsData("");
+    getAllCategory(user.orgId);
+  };
 
   //deactivate
   const [formData, setFormData] = useState({
-    User_DE_Reason: "",
+    category_DE_Reason: "",
     isSubmitted: false,
   });
+  const { category_DE_Reason } = formData;
 
   //deactivate modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [groupname, setname] = useState("");
+  const [catId, setCatId] = useState("");
 
-  const onDelete = (grpname) => {
-    setname(grpname);
+  const onDelete = (id) => {
+    setCatId(id);
     handleShow();
+  };
+  const onInputchange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -41,9 +59,12 @@ const Category = ({
   const onAdd = (e) => {
     e.preventDefault();
     const reason = {
-      groupName: groupname,
+      catid: catId,
+      catdeletereason: category_DE_Reason,
+      orgId: user.orgId,
     };
-    //deleteUserGroup(reason);
+    deleteCategory(reason);
+    getAllCategory(user.orgId);
     handleClose();
   };
 
@@ -61,7 +82,16 @@ const Category = ({
               Category Lists
             </h1>
 
-            <Addcategory />
+            <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
+              <img
+                className="img_icon_size log text-right"
+                src={require("../../../static/images/refresh-icon.png")}
+                onClick={() => onClickReset()}
+                alt="refresh"
+              />{" "}
+              &nbsp;
+              <Addcategory />
+            </div>
 
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
               <table
@@ -73,7 +103,6 @@ const Category = ({
                   <tr className="headingsizes">
                     <th>Category Name</th>
                     <th>Description</th>
-                    <th>Status</th>
 
                     <th>Operation</th>
                   </tr>
@@ -85,7 +114,6 @@ const Category = ({
                         <tr key={idx}>
                           <td>{catVal.categoryName}</td>
                           <td>{catVal.categoryDesp}</td>
-                          <td>{catVal.categoryStatus}</td>
 
                           <td>
                             {catVal.categoryStatus == "Active" ? (
@@ -100,14 +128,14 @@ const Category = ({
                                 &nbsp;&nbsp;
                                 <img
                                   className="img_icon_size log"
-                                  onClick={() => onDelete(catVal.categoryName)}
+                                  onClick={() => onDelete(catVal._id)}
                                   src={require("../../../static/images/delete.png")}
                                   alt="delete User"
                                   title="delete UserGroup"
                                 />
                               </>
                             ) : (
-                              <></>
+                              <>Deactivated</>
                             )}
                           </td>
                         </tr>
@@ -144,25 +172,39 @@ const Category = ({
           </div>
         </Modal.Header>
         <Modal.Body>
-          <div className="h4">Do You Want to DELETE this User Group?</div>
-          <div className="text-right">
-            <button
-              onClick={(e) => onAdd(e)}
-              className="btn contact_reg btn_color"
-            >
-              DELETE
-            </button>
-          </div>
+          <label className="control-label">Reason for Deactivating:</label>
+          <form onSubmit={(e) => onAdd(e)}>
+            <div className="controls">
+              <textarea
+                rows="2"
+                name="category_DE_Reason"
+                onChange={(e) => onInputchange(e)}
+                id="org_reason"
+                className="form-control"
+                required
+              ></textarea>
+              Do You really want to Deactivate this Organization?
+              <span className="form-input-info"></span>
+            </div>
+            <div className="text-right">
+              <button className="btn contact_reg btn_color" type="submit">
+                {" "}
+                DEACTIVATE
+              </button>
+            </div>
+          </form>
         </Modal.Body>
       </Modal>
     </div>
   );
 };
 const mapStateToProps = (state) => ({
+  auth: state.auth,
   dag: state.dag,
 });
 export default connect(mapStateToProps, {
   //   getallcatGroup,
-  //   deleteUserGroup,
+  deleteCategory,
+  // loadUser,
   getAllCategory,
 })(Category);

@@ -4,6 +4,7 @@ const CategoryDetails = require("../../models/CategoryDetails");
 //add user
 router.route("/addcategory").post((req, res) => {
   // console.log(req.body)
+  console.log("hitt");
   let Category = new CategoryDetails(req.body);
 
   Category.save(req.body)
@@ -13,9 +14,11 @@ router.route("/addcategory").post((req, res) => {
     .catch((err) => res.status(400).json("Error" + err));
 });
 
-//get all user group
-router.route("/getcategory").get((req, res) => {
-  CategoryDetails.find() //.sort({groupStatus:1})
+//get all cat
+router.route("/getcategory").post((req, res) => {
+  let body = req.body;
+  //   console.log("hitt");
+  CategoryDetails.find({ orgId: body.orgId }) //.sort({groupStatus:1})
 
     .then((data) => {
       console.log(data);
@@ -25,15 +28,17 @@ router.route("/getcategory").get((req, res) => {
     .catch((err) => res.status(400).json("Error" + err));
 });
 
-//deactive user group
+//deactive  category
 router.route("/deactivecategory").post((req, res) => {
   let data = req.body;
+  console.log("request", req.body);
+  console.log("backend", data.orgId);
   CategoryDetails.updateOne(
-    { categoryId: data.categoryId, orgId: data.orgId },
+    { _id: data.catid, orgId: data.orgId },
     {
       $set: {
         categoryStatus: "Deactive",
-        //userDeactiveReason: data.deactive_reason,
+        categoryReason: data.deactive_reason,
       },
     }
   )
