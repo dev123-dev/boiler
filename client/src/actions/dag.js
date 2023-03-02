@@ -19,6 +19,7 @@ import {
   GET_DELAYS,
   GET_DOORNUMBER,
   GET_ALL_USER,
+  GET_ALL_CATEGORY,
   FINAL_DATA_REP,
   GET_ALL_ORGANIZATION,
   GET_ALL_SUPERUSER,
@@ -241,6 +242,23 @@ export const addCategory = (UserData) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: AUTH_ERROR,
+    });
+  }
+};
+
+//getting all category
+
+export const getAllCategory = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`${linkPath}/api/category/getcategory`);
+    console.log(res);
+    dispatch({
+      type: GET_ALL_CATEGORY,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ALL_CATEGORY,
     });
   }
 };

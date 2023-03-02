@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
-import { getAllUserGroup } from "../../../actions/dag";
-import { deleteUserGroup } from "../../../actions/dag";
+// import { getallcatGroup } from "../../../actions/dag";
+import { getAllCategory } from "../../../actions/dag";
 import Addcategory from "./AddCategory";
 
-const Category = (
-  {
-    //here to connect to action we need to import the function
-    //then again we need to mention inside the const function
-    // dag: { alluser },
-    //deleteCategory,
-    //   getAllCategory,
-  }
-) => {
+const Category = ({
+  //here to connect to action we need to import the function
+  //then again we need to mention inside the const function
+  dag: { allcat },
+  //deleteCategory,
+  getAllCategory,
+}) => {
   useEffect(() => {
-    // getAllCategory();
+    getAllCategory();
   }, []);
 
   //deactivate
@@ -45,7 +43,7 @@ const Category = (
     const reason = {
       groupName: groupname,
     };
-    deleteUserGroup(reason);
+    //deleteUserGroup(reason);
     handleClose();
   };
 
@@ -81,19 +79,28 @@ const Category = (
                   </tr>
                 </thead>
                 <tbody>
-                  {/* {alluser &&
-                    alluser.map((grpVal, idx) => {
+                  {allcat &&
+                    allcat.map((catVal, idx) => {
                       return (
                         <tr key={idx}>
-                          <td>{grpVal.groupName}</td>
-                          <td>{grpVal.groupStatus}</td>
+                          <td>{catVal.categoryName}</td>
+                          <td>{catVal.categoryDesp}</td>
+                          <td>{catVal.categoryStatus}</td>
 
                           <td>
-                            {grpVal.groupStatus == "Active" ? (
+                            {catVal.categoryStatus == "Active" ? (
                               <>
                                 <img
                                   className="img_icon_size log"
-                                  onClick={() => onDelete(grpVal.groupName)}
+                                  //onClick={() => onedit(catVal)}
+                                  src={require("../../../static/images/edit_icon.png")}
+                                  alt="Edit"
+                                  title="Edit Organization"
+                                />
+                                &nbsp;&nbsp;
+                                <img
+                                  className="img_icon_size log"
+                                  onClick={() => onDelete(catVal.categoryName)}
                                   src={require("../../../static/images/delete.png")}
                                   alt="delete User"
                                   title="delete UserGroup"
@@ -105,7 +112,7 @@ const Category = (
                           </td>
                         </tr>
                       );
-                    })} */}
+                    })}
                 </tbody>
               </table>
             </div>
@@ -155,6 +162,7 @@ const mapStateToProps = (state) => ({
   dag: state.dag,
 });
 export default connect(mapStateToProps, {
-  //   getAllUserGroup,
+  //   getallcatGroup,
   //   deleteUserGroup,
+  getAllCategory,
 })(Category);
