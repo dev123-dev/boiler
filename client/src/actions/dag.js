@@ -229,3 +229,18 @@ export const deleteUserGroup = (groupName) => async (dispatch) => {
     });
   }
 };
+
+////////////////////////////////////
+//add category
+export const addCategory = (UserData) => async (dispatch) => {
+  console.log(UserData);
+  try {
+    await axios.post(`${linkPath}/api/category/addcategory`, UserData, config);
+    //diapatching get function because it should relfex immidiatly after adding
+    //dispatch(getAllUser());
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};

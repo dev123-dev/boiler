@@ -1,110 +1,133 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-// import refresh from '../assets/refresh-icon.png';
-import addicon from "../../../static/images/add-icon.png";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
-import AddCategory from "./AddCategory";
+import { getAllUserGroup } from "../../../actions/dag";
+import { deleteUserGroup } from "../../../actions/dag";
+import Addcategory from "./AddCategory";
 
-// import '../components/CSS/home1.css'
-// import Headersuper from './Layout/Headersuper';
-// import Addorg from './Modals/Addorg';
+const Category = (
+  {
+    //here to connect to action we need to import the function
+    //then again we need to mention inside the const function
+    // dag: { alluser },
+    //deleteCategory,
+    //   getAllCategory,
+  }
+) => {
+  useEffect(() => {
+    // getAllCategory();
+  }, []);
 
-export default function Category() {
-  // const navigate = useNavigate();
+  //deactivate
+  const [formData, setFormData] = useState({
+    User_DE_Reason: "",
+    isSubmitted: false,
+  });
 
+  //deactivate modal
   const [show, setShow] = useState(false);
-  const [editshow, editsetShow] = useState(false);
-  const [deleteshow, deletesetShow] = useState(false);
-
   const handleClose = () => setShow(false);
-  const edithandleClose = () => editsetShow(false);
-  const deletehandleClose = () => deletesetShow(false);
-
   const handleShow = () => setShow(true);
-  const edithandleShow = () => editsetShow(true);
-  const deletehandleShow = () => deletesetShow(true);
 
-  const handleAddOrg = (e) => {
-    alert("yi");
-    e.preventDefault();
-    // console.log('The add was clicked.');
+  const [groupname, setname] = useState("");
+
+  const onDelete = (grpname) => {
+    setname(grpname);
+    handleShow();
   };
+
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const handleUpdateModalClose = () => setShowUpdateModal(false);
+
+  //deactivate
+  const onAdd = (e) => {
+    e.preventDefault();
+    const reason = {
+      groupName: groupname,
+    };
+    deleteUserGroup(reason);
+    handleClose();
+  };
+
   return (
     <div>
-      {/* <Headersuper /> */}
       <div className="row">
-        <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-center"></div>
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
           <br />
           <br />
-          <h1
-            style={{ fontFamily: "Serif", color: "#877bae" }}
-            className="font-weight-bold "
-          >
-            Category
-          </h1>
-          <br />
-          <AddCategory />
-          {/* <button><img src={refresh} alt="my image" style={{border:"none"}} /></button> */}
-
-          <div className="text-right">
-            <button onClick={deletehandleShow}>Delete</button>
-            <button onClick={edithandleShow}>edit</button>
-            <img
-              className="img_icon_size log text-right"
-              //   onClick={() => handleAddOrg()}
-              // onClick={handleShow}
-              onClick={handleShow}
-              src={addicon}
-              alt="add-icon"
-              title="add icon"
-            />{" "}
-            &nbsp;&nbsp;&nbsp;
-            {/* <img
-                            className="img_icon_size log text-right"
-                            // onClick={() => onClickReset()}
-                            src={refresh}
-                            alt="refresh"
-
-                        /> */}
-          </div>
-          <br />
-
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
-            <table
-              border="1"
-              id="datatable2"
-              className="table-striped table table-bordered table-hover"
+          <section>
+            <h1
+              style={{ fontFamily: "Serif", color: "#877bae" }}
+              className="font-weight-bold "
             >
-              <tr className="headingsizes">
-                <th>Category Name</th>
-                <th>No. of Inst/Ind</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Operation</th>
-              </tr>
-            </table>
-          </div>
-          <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-left"></div>
+              Category Lists
+            </h1>
+
+            <Addcategory />
+
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
+              <table
+                border="1"
+                id="datatable2"
+                className="table-striped table table-bordered table-hover"
+              >
+                <thead>
+                  <tr className="headingsizes">
+                    <th>Category Name</th>
+                    <th>Description</th>
+                    <th>Status</th>
+
+                    <th>Operation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {/* {alluser &&
+                    alluser.map((grpVal, idx) => {
+                      return (
+                        <tr key={idx}>
+                          <td>{grpVal.groupName}</td>
+                          <td>{grpVal.groupStatus}</td>
+
+                          <td>
+                            {grpVal.groupStatus == "Active" ? (
+                              <>
+                                <img
+                                  className="img_icon_size log"
+                                  onClick={() => onDelete(grpVal.groupName)}
+                                  src={require("../../../static/images/delete.png")}
+                                  alt="delete User"
+                                  title="delete UserGroup"
+                                />
+                              </>
+                            ) : (
+                              <></>
+                            )}
+                          </td>
+                        </tr>
+                      );
+                    })} */}
+                </tbody>
+              </table>
+            </div>
+          </section>
         </div>
       </div>
 
+      {/*DEACTIVATE MODAL */}
+
       <Modal
         show={show}
-        onHide={handleClose}
+        // onHide={handleClose}
+        centered
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
-        centered
       >
         <Modal.Header>
           <Modal.Title className="container">
-            <h1 className="font-weight-bold ">ADD CATEGORY</h1>
+            <h1 className="font-weight-bold ">DEACTIVATE USERS</h1>
           </Modal.Title>
           <div className="col-lg-2">
-            <button onClick={() => handleClose()} className="close">
+            <button onClick={handleClose} className="close">
               <img
                 src={require("../../../static/images/close.png")}
                 alt="X"
@@ -114,218 +137,24 @@ export default function Category() {
           </div>
         </Modal.Header>
         <Modal.Body>
-          <form>
-            <div className="container ">
-              <section className="body">
-                <div className="body-inner">
-                  <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">
-                        Category Name <span>*</span>
-                      </label>
-                      <div className="controls">
-                        <input
-                          name="CategoryName"
-                          id="full_name"
-                          type="text"
-                          className="form-control"
-                        />
-                        <span
-                          id="category_result"
-                          className="form-input-info"
-                        ></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">
-                        Description<span>*</span>
-                      </label>
-                      <div className="controls">
-                        <input
-                          name="CategoryDescription"
-                          id="username"
-                          type="text"
-                          className="form-control"
-                          value=""
-                        />
-                        <span
-                          id="category_result"
-                          className="form-input-info"
-                        ></span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="row form-group ">
-                    <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
-                      <br />
-                      <label className="control-label">
-                        * Indicates mandatory fields.
-                      </label>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <button
-                    onClick={handleClose}
-                    className="btn contact_reg btn_color "
-                  >
-                    {" "}
-                    CANCEL
-                  </button>
-                  <button
-                    onClick={handleClose}
-                    className="btn contact_reg btn_color"
-                  >
-                    {" "}
-                    ADD
-                  </button>
-                </div>
-              </section>
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          {/* <Button  onClick={handleClose}>
-                            CANCEL
-                        </Button>
-                        <Button variant="primary" onClick={handleClose}>
-                            ADD
-                        </Button> */}
-        </Modal.Footer>
-      </Modal>
-
-      {/* edit modal */}
-      <Modal
-        show={editshow}
-        onHide={edithandleClose}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header>
-          <Modal.Title className="container">
-            <h1 className="font-weight-bold ">EDIT CATEGORY</h1>
-          </Modal.Title>
-          <div className="col-lg-2">
-            <button onClick={() => edithandleClose()} className="close">
-              <img
-                src={require("../../../static/images/close.png")}
-                alt="X"
-                style={{ height: "20px", width: "20px" }}
-              />
+          <div className="h4">Do You Want to DELETE this User Group?</div>
+          <div className="text-right">
+            <button
+              onClick={(e) => onAdd(e)}
+              className="btn contact_reg btn_color"
+            >
+              DELETE
             </button>
           </div>
-        </Modal.Header>
-        <Modal.Body>
-          <form>
-            <div className="container ">
-              <section className="body">
-                <div className="body-inner">
-                  <div className="row form-group">
-                    <div className="control-group col-md-12 col-lg-6 col-sm-12 col-xs-12">
-                      <label className="control-label">Category Name</label>
-                      <div className="controls">
-                        <input
-                          name="user_fullname"
-                          id="user_fullname"
-                          type="text"
-                          className="form-control"
-                          value=""
-                        />
-                        <span
-                          id="category_result"
-                          className="form-input-info"
-                        ></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row form-group">
-                    <div className="control-group col-md-12 col-lg-6 col-sm-12 col-xs-12">
-                      <label className="control-label">Description</label>
-                      <div className="controls">
-                        <input
-                          name="username"
-                          id="username"
-                          type="text"
-                          className="form-control"
-                        />
-                        <span className="form-input-info"></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-right">
-                  {/* <button onClick={edithandleClose} className="btn contact_reg btn_color"> CANCEL</button> */}
-                  <button
-                    onClick={edithandleClose}
-                    className="btn contact_reg btn_color"
-                  >
-                    {" "}
-                    UPDATE
-                  </button>
-                </div>
-              </section>
-            </div>
-          </form>
         </Modal.Body>
-        <Modal.Footer></Modal.Footer>
-      </Modal>
-
-      {/* delete modal */}
-      <Modal
-        show={deleteshow}
-        onHide={deletehandleClose}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header>
-          <Modal.Title className="container">
-            <h1 className="font-weight-bold ">DEACTIVATE CATEGORY</h1>
-          </Modal.Title>
-          <div className="col-lg-2">
-            <button onClick={() => deletehandleClose()} className="close">
-              <img
-                src={require("../../../static/images/close.png")}
-                alt="X"
-                style={{ height: "20px", width: "20px" }}
-              />
-            </button>
-          </div>
-        </Modal.Header>
-        <Modal.Body>
-          <label className="control-label">Reason for Deactivating:</label>
-          <form>
-            <div className="controls">
-              <textarea
-                rows="2"
-                name="org_reason"
-                id="org_reason"
-                className="form-control"
-              ></textarea>
-              <span className="form-input-info"></span>
-            </div>
-            <label className="control-label">
-              Do you want to Deactivate this Category?
-            </label>
-            <div className="text-right">
-              <button
-                onClick={deletehandleClose}
-                className="btn contact_reg btn_color"
-              >
-                {" "}
-                DEACTIVATE
-              </button>
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          {/* <button onClick={deletehandleClose} className="btn contact_reg btn_color"> NO</button> */}
-        </Modal.Footer>
       </Modal>
     </div>
   );
-}
+};
+const mapStateToProps = (state) => ({
+  dag: state.dag,
+});
+export default connect(mapStateToProps, {
+  //   getAllUserGroup,
+  //   deleteUserGroup,
+})(Category);
