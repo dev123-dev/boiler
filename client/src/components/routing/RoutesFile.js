@@ -48,6 +48,8 @@ const RoutesFile = () => {
 
         <PrivateRoute exact path="/category" component={Category} />
         <PrivateRoute exact path="/addinstitute" component={AddInstitution} />
+
+        <PrivateRoute exact path="/generatelabel" component={AddIndividual} />
         <PrivateRoute exact path="/designation" component={Designation} />
 
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />

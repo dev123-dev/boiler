@@ -139,15 +139,23 @@ const Category = ({
                                   onClick={() => onedit(catVal)}
                                   src={require("../../../static/images/edit_icon.png")}
                                   alt="Edit"
-                                  title="Edit Organization"
+                                  title="Edit Category"
                                 />
                                 &nbsp;&nbsp;
                                 <img
                                   className="img_icon_size log"
                                   onClick={() => onDelete(catVal._id)}
                                   src={require("../../../static/images/delete.png")}
-                                  alt="delete User"
-                                  title="delete UserGroup"
+                                  alt="Delete User"
+                                  title="Delete Category"
+                                />
+                                &nbsp;&nbsp;
+                                <img
+                                  className="img_icon_size log"
+                                  onClick={() => onDelete(catVal._id)}
+                                  src={require("../../../static/images/account1.png")}
+                                  alt="Join Leave"
+                                  title="Join Leave Page"
                                 />
                               </>
                             ) : (

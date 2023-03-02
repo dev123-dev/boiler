@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { AddGroup } from "../../../actions/dag";
@@ -17,7 +17,7 @@ const AddUserGroup = ({
     groupStatus: "",
   });
 
-  const { groupName, groupStatus } = formDataGRP;
+  const { groupName } = formDataGRP;
 
   const onGRPchange = (e) => {
     setformDataGRP({

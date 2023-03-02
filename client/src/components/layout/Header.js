@@ -7,10 +7,7 @@ import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 import Login from "../auth/Login";
 
-
-
 const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
-
   const [showLogin, setShowLogin] = useState(true);
   const [showLogout, setShowLogout] = useState(false);
 
@@ -25,200 +22,210 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     logout();
   };
   const openSecondLevelMenu2 = () => {
-   // const menu = document.getElementById("second-level-menu2");
-   // if (window.innerWidth <= 992) {
-      // if (menu) {
-      //   if (menu.style.display === "block") {
-      //     menu.style.display = "none";
-      //   } else {
-      //     menu.style.display = "block";
-      //   }
-      // } else {
-      //   menu.style.display = "none";
-      // }
-   // }
-    
-    
+    // const menu = document.getElementById("second-level-menu2");
+    // if (window.innerWidth <= 992) {
+    // if (menu) {
+    //   if (menu.style.display === "block") {
+    //     menu.style.display = "none";
+    //   } else {
+    //     menu.style.display = "block";
+    //   }
+    // } else {
+    //   menu.style.display = "none";
+    // }
+    // }
   };
   //console.log(user)
   return (
     <Fragment>
       <header>
-        
         <Navbar
           className="navbar_height top_menu"
           expand="lg"
           fixed="top"
           style={{ padding: "0px 1em" }}
         >
-
-{!loading && isAuthenticated && user &&user.userGroup==="Dev" ? (
-           <Navbar.Brand>
-            <NavLink to="/superdashboard">
-            <img
-              className="Icon p-2"
-              alt="Pinnacle Media"
-              src={require("../../static/images/dag_logo1.png")}
-              title="Dashboard"
-            />
-            </NavLink>
-          </Navbar.Brand>
-):(
-  <Navbar.Brand>
-            
-          </Navbar.Brand>
-)}
-          {!loading && isAuthenticated && user &&user.userGroup==="Admin" ? (
-           <Navbar.Brand>
-            <NavLink to="/admindashboard">
-            <img
-              className="Icon p-2"
-              alt="Pinnacle Media"
-              src={require("../../static/images/dag_logo1.png")}
-              title="Dashboard"
-            />
-            </NavLink>
-          </Navbar.Brand>
-):(
-  <Navbar.Brand>
-           
-          </Navbar.Brand>
-)}
-
-           
+          {!loading && isAuthenticated && user && user.userGroup === "Dev" ? (
+            <Navbar.Brand>
+              <NavLink to="/superdashboard">
+                <img
+                  className="Icon p-2"
+                  alt="Pinnacle Media"
+                  src={require("../../static/images/dag_logo1.png")}
+                  title="Dashboard"
+                />
+              </NavLink>
+            </Navbar.Brand>
+          ) : (
+            <Navbar.Brand></Navbar.Brand>
+          )}
+          {!loading && isAuthenticated && user && user.userGroup === "Admin" ? (
+            <Navbar.Brand>
+              <NavLink to="/admindashboard">
+                <img
+                  className="Icon p-2"
+                  alt="Pinnacle Media"
+                  src={require("../../static/images/dag_logo1.png")}
+                  title="Dashboard"
+                />
+              </NavLink>
+            </Navbar.Brand>
+          ) : (
+            <Navbar.Brand></Navbar.Brand>
+          )}
 
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto navbar_Collapse_content">
+              <NavItem>
+                {!loading &&
+                isAuthenticated &&
+                user &&
+                user.userGroup === "Dev" ? (
+                  <NavLink
+                    to="/organization"
+                    className="navlink"
+                    activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                  >
+                    Organization
+                  </NavLink>
+                ) : (
+                  <NavItem></NavItem>
+                )}
+              </NavItem>
 
-       
+              <NavItem>
+                {!loading &&
+                isAuthenticated &&
+                user &&
+                user.userGroup === "Dev" ? (
+                  <NavLink
+                    to="/users"
+                    className="navlink"
+                    activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                  >
+                    Users
+                  </NavLink>
+                ) : (
+                  <NavItem></NavItem>
+                )}
+              </NavItem>
 
-            <NavItem>
-            {!loading && isAuthenticated && user &&user.userGroup==="Dev" ? (
-                    <NavLink
-                      to="/organization" className='navlink'
-                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
-                    >
-                      Organization
-                    </NavLink>
-                  ) : (
-                    <NavItem></NavItem>
-                  )}
-                   </NavItem>
+              <NavItem>
+                {!loading &&
+                isAuthenticated &&
+                user &&
+                user.userGroup === "Admin" ? (
+                  <NavLink
+                    to="/category"
+                    className="navlink"
+                    activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                  >
+                    Category
+                  </NavLink>
+                ) : (
+                  <NavItem></NavItem>
+                )}
+              </NavItem>
+              <NavItem>
+                {!loading &&
+                isAuthenticated &&
+                user &&
+                user.userGroup === "Admin" ? (
+                  <NavLink
+                    to="/addinstitute"
+                    className="navlink"
+                    activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                  >
+                    Institution/Individual
+                  </NavLink>
+                ) : (
+                  <NavItem></NavItem>
+                )}
+              </NavItem>
+              <NavItem>
+                {!loading &&
+                isAuthenticated &&
+                user &&
+                user.userGroup === "Admin" ? (
+                  <NavLink
+                    to="/generatelabel"
+                    className="navlink"
+                    activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                  >
+                    Generate Label
+                  </NavLink>
+                ) : (
+                  <NavItem></NavItem>
+                )}
+              </NavItem>
+              <NavItem>
+                {!loading &&
+                isAuthenticated &&
+                user &&
+                user.userGroup === "Admin" ? (
+                  <NavLink
+                    to="/EmptyCategory"
+                    className="navlink"
+                    activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                  >
+                    Empty Category
+                  </NavLink>
+                ) : (
+                  <NavItem></NavItem>
+                )}
+              </NavItem>
+              <NavItem>
+                {!loading &&
+                isAuthenticated &&
+                user &&
+                user.userGroup === "Admin" ? (
+                  <NavLink
+                    to="/EmptyInstInd"
+                    className="navlink"
+                    activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                  >
+                    Empty Inst/Ind
+                  </NavLink>
+                ) : (
+                  <NavItem></NavItem>
+                )}
+              </NavItem>
+            </Nav>
 
-             <NavItem>   
-             {!loading && isAuthenticated && user&&user.userGroup==="Dev" ? (
-                    <NavLink
-                      to="/users" className='navlink'
-                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
-                    >
-                      Users
-                    </NavLink>
-                  ) : (
-                    <NavItem></NavItem>
-                  )}
-             </NavItem>
-
-
-           
-             <NavItem>   
-             {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
-                    <NavLink
-                      to="/category" className='navlink'
-                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
-                    >
-                      Category
-                    </NavLink>
-                  ) : (
-                    <NavItem></NavItem>
-                  )}
-             </NavItem>
-             <NavItem>   
-             {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
-                    <NavLink
-                      to="/addinstitute" className='navlink'
-                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
-                    >
-                      Institution/Individual
-                    </NavLink>
-                  ) : (
-                    <NavItem></NavItem>
-                  )}
-             </NavItem>
-             <NavItem>   
-             {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
-                    <NavLink
-                      to="/GenerateLabel" className='navlink'
-                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
-                    >
-                      Generate Label
-                    </NavLink>
-                  ) : (
-                    <NavItem></NavItem>
-                  )}
-             </NavItem>
-             <NavItem>   
-             {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
-                    <NavLink
-                      to="/EmptyCategory" className='navlink'
-                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
-                    >
-                      Empty Category
-                    </NavLink>
-                  ) : (
-                    <NavItem></NavItem>
-                  )}
-             </NavItem>
-             <NavItem>   
-             {!loading && isAuthenticated && user&&user.userGroup==="Admin" ? (
-                    <NavLink
-                      to="/EmptyInstInd" className='navlink'
-                      activeStyle={{ color: "#e79d69", textDecoration: "none" }}
-                    >
-                      Empty Inst/Ind
-                    </NavLink>
-                  ) : (
-                    <NavItem></NavItem>
-                  )}
-             </NavItem>
-
-
-
-
-             </Nav>
-
-            {!loading && isAuthenticated && user  ? (
+            {!loading && isAuthenticated && user ? (
               <>
-              {user.userGroup==="Dev"?(
-                <>
-                <Nav>
-                 <ul className="top-level-menu text-left">
-                    <li>
-                      <Link
-                        to="#"
-                        onClick={() => openSecondLevelMenu2()}
-                        className="navbar-right "
-                      >
-                        {user.userGroup}
-                        {/* <img
+                {user.userGroup === "Dev" ? (
+                  <>
+                    <Nav>
+                      <ul className="top-level-menu text-left">
+                        <li>
+                          <Link
+                            to="#"
+                            onClick={() => openSecondLevelMenu2()}
+                            className="navbar-right "
+                          >
+                            {user.userGroup}
+                            {/* <img
               className="Icon p-2"
               style={{background:"transparent"}}
               alt="Pinnacle Media"
               src={require("../../static/images/drpdown.png")} 
               
             /> */}
-                     
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <i className="fa fa-caret-down" />
-                      </Link>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-caret-down" />
+                          </Link>
 
-                      <ul className="dropdown-menu second-level-menu ">
-                        <li className="hwhite">
-                          <Link to="/usergroup" className="navlinkitem" >User Group</Link>
-                        </li>
+                          <ul className="dropdown-menu second-level-menu ">
+                            <li className="hwhite">
+                              <Link to="/usergroup" className="navlinkitem">
+                                User Group
+                              </Link>
+                            </li>
 
-                        {/* <li>
+                            {/* <li>
                           <Link                                  if modal is required
                             to="#"
                             // onClick={() => handleTenantSettingModalShow()}
@@ -226,48 +233,54 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             Tenant Setting
                           </Link>
                         </li> */}
-                        <li className="hwhite">
-                          <Link to="#" className="navlinkitem" onClick={() => handleLogoutModalShow()}>
-                            Logout
-                          </Link>
+                            <li className="hwhite">
+                              <Link
+                                to="#"
+                                className="navlinkitem"
+                                onClick={() => handleLogoutModalShow()}
+                              >
+                                Logout
+                              </Link>
+                            </li>
+                          </ul>
                         </li>
                       </ul>
-                    </li>
-                  </ul>
-              
+                    </Nav>
+                  </>
+                ) : (
+                  <>
+                    <Nav>
+                      <ul className="top-level-menu text-left">
+                        <li>
+                          <Link
+                            to="#"
+                            onClick={() => openSecondLevelMenu2()}
+                            className="navbar-right "
+                          >
+                            {user.userGroup}
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <i className="fa fa-caret-down" />
+                          </Link>
 
+                          <ul className="dropdown-menu second-level-menu ">
+                            <li className="hwhite">
+                              <Link to="/designation" className="navlinkitem">
+                                Designation Setting
+                              </Link>
+                            </li>
+                            <li className="hwhite">
+                              <Link to="/usersetting" className="navlinkitem">
+                                User Setting
+                              </Link>
+                            </li>
+                            <li className="hwhite">
+                              <Link to="/usergroup" className="navlinkitem">
+                                Reset Password
+                              </Link>
+                            </li>
 
-                </Nav>
-                </>
-              ):(
-              <>
-              <Nav>
-                 <ul className="top-level-menu text-left">
-                    <li>
-                      <Link
-                        to="#"
-                        onClick={() => openSecondLevelMenu2()}
-                        className="navbar-right "
-                      >
-                        {user.userGroup}
-                     
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <i className="fa fa-caret-down" />
-                      </Link>
-
-                      <ul className="dropdown-menu second-level-menu ">
-                        <li className="hwhite">
-                          <Link to="/designation" className="navlinkitem" >Designation Setting</Link>
-                        </li>
-                        <li className="hwhite">
-                          <Link to="/usersetting" className="navlinkitem" >User Setting</Link>
-                        </li>
-                        <li className="hwhite">
-                          <Link to="/usergroup" className="navlinkitem" >Reset Password</Link>
-                        </li>
-
-                        {/* <li>
+                            {/* <li>
                           <Link                                  if modal is required
                             to="#"
                             // onClick={() => handleTenantSettingModalShow()}
@@ -275,23 +288,22 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             Tenant Setting
                           </Link>
                         </li> */}
-                        <li className="hwhite">
-                          <Link to="#" className="navlinkitem" onClick={() => handleLogoutModalShow()}>
-                            Logout
-                          </Link>
+                            <li className="hwhite">
+                              <Link
+                                to="#"
+                                className="navlinkitem"
+                                onClick={() => handleLogoutModalShow()}
+                              >
+                                Logout
+                              </Link>
+                            </li>
+                          </ul>
                         </li>
                       </ul>
-                    </li>
-                  </ul>
-              
-
-
-                </Nav>
-              
-              </>)}
-              
-                </>
-              
+                    </Nav>
+                  </>
+                )}
+              </>
             ) : (
               <Fragment>
                 <Nav>
@@ -319,13 +331,12 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                           alt="X"
                         />
                       </button> */}
-                       <Login /> 
+                      <Login />
                     </Modal.Body>
                   </Modal>
                 </Nav>
               </Fragment>
             )}
-                       
           </Navbar.Collapse>
         </Navbar>
 
@@ -345,7 +356,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           </Modal.Body>
           <Modal.Footer>
             <button
-               className="btn contact_reg btn_color"
+              className="btn contact_reg btn_color"
               onClick={() => LogoutModalClose()}
             >
               YES
@@ -372,5 +383,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { logout })(Header);
-
-

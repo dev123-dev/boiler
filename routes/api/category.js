@@ -18,7 +18,8 @@ router.route("/addcategory").post((req, res) => {
 router.route("/getcategory").post((req, res) => {
   let body = req.body;
   //   console.log("hitt");
-  CategoryDetails.find({ orgId: body.orgId }) //.sort({groupStatus:1})
+  CategoryDetails.find({ orgId: body.orgId })
+    .sort({ categoryStatus: 1 })
 
     .then((data) => {
       // console.log(data);
