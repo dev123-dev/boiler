@@ -283,3 +283,14 @@ export const deleteCategory = (id) => async (dispatch) => {
     });
   }
 };
+
+//edit user details
+export const updateCategory = (updatedata) => async (dispatch) => {
+  console.log("cat action", updatedata);
+  console.log("inside action");
+  // console.log(updatedata);
+  try {
+    axios.post(`${linkPath}/api/category/editcategory`, updatedata);
+    // dispatch(getAllCategory());
+  } catch (err) {}
+};

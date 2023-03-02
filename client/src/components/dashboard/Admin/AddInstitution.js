@@ -1,6 +1,15 @@
 import React from "react";
+import Modal from "react-bootstrap/Modal";
+import { useState } from "react";
 
 export default function AddInstitution() {
+  const [show, setShow] = useState(false);
+  const [editshow, editsetShow] = useState(false);
+  const [deleteshow, deletesetShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+
+  const handleShow = () => setShow(true);
   return (
     <div>
       <h2> Add Institution</h2>
@@ -304,6 +313,16 @@ export default function AddInstitution() {
             </div>
           </div>
         </div>
+        <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12 h3 ">
+          Details of Institution Heads
+          <img
+            className="img_icon_size log text-right"
+            onClick={handleShow}
+            src={require("../../../static/images/add-icon.png")}
+            alt="add-icon"
+            title="add icon"
+          />
+        </div>
 
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHeadinst">
           <table
@@ -379,6 +398,216 @@ title="Deactivate User"
           <button className="btn contact_reg btn_color">ADD</button>
         </div>
       </div>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title className="container">
+            <h1 className="font-weight-bold ">ADD INSTITUTION HEAD</h1>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form>
+            <div className="container ">
+              <section className="body">
+                <div className="body-inner">
+                  <div className="row form-group">
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                      <label className="control-label">
+                        Name <span>*</span>
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="full_name"
+                          id="full_name"
+                          type="text"
+                          className="form-control"
+                          value=""
+                        />
+                        <span
+                          id="category_result"
+                          className="form-input-info"
+                        ></span>
+                      </div>
+                    </div>
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                      <label className="control-label">
+                        Designation<span>*</span>
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="org_belongs"
+                          id="org_belongs"
+                          type="text"
+                          className="form-control"
+                          readonly
+                        />
+                        <span className="form-input-info"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row form-group">
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                      <label className="control-label">
+                        Email<span>*</span>
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="username"
+                          id="username"
+                          type="text"
+                          className="form-control"
+                          value=""
+                        />
+                        <span
+                          id="category_result"
+                          className="form-input-info"
+                        ></span>
+                      </div>
+                    </div>
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                      <label className="control-label">
+                        Phone No.<span>*</span>
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="user_phone"
+                          id="user_phone"
+                          type="text"
+                          className="form-control"
+                          readonly
+                        />
+                        <span className="form-input-info"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row form-group">
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                      <label className="control-label">Additional Email</label>
+                      <div className="controls">
+                        <input
+                          name="user_email"
+                          id="user_email"
+                          type="text"
+                          className="form-control"
+                          value=""
+                        />
+                        <span
+                          id="category_result"
+                          className="form-input-info"
+                        ></span>
+                      </div>
+                    </div>
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                      <label className="control-label">
+                        Additional Phone No.
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="user_phone"
+                          id="user_phone"
+                          type="text"
+                          className="form-control"
+                          value=""
+                        />
+                        <span className="form-input-info"></span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <div className="row form-group">
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                      <label className="control-label">
+                        Password <span>*</span>
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="user_password"
+                          id="user_password"
+                          type="text"
+                          className="form-control"
+                          value=""
+                        />
+                        <span
+                          id="category_result"
+                          className="form-input-info"
+                        ></span>
+                      </div>
+                    </div>
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                      <label className="control-label">
+                        Confirm Password <span>*</span>
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="user_confpass"
+                          id="user_confpass"
+                          type="text"
+                          className="form-control"
+                          value=""
+                        />
+                        <span
+                          id="category_result"
+                          className="form-input-info"
+                        ></span>
+                      </div>
+                    </div>
+                  </div> */}
+
+                  {/* <div className="row form-group">
+                                        <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                                                <label className="control-label">End Date <span >*</span></label>
+                                                <div className="controls">
+                                                    <input name="cat_name" id="cat_name" type="text" className="form-control" value="" />
+                                                    <span id="category_result" className="form-input-info"></span>
+                                                </div>
+                                            </div>
+                                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                                                <br /><label className="control-label">Address</label>
+                                                <div className="controls">
+                                                    <textarea rows="2"  name="category_description" id="category_description" className="form-control" ></textarea>
+                                                    <span className="form-input-info" ></span>
+                                                </div>
+                                            </div>
+                                        </div> */}
+                  <div className="row form-group ">
+                    <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
+                      <br />
+                      <label className="control-label">
+                        * Indicates mandatory fields.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="text-right">
+                  <button
+                    onClick={handleClose}
+                    className="btn contact_reg btn_color "
+                  >
+                    CANCEL
+                  </button>
+                  <button className="btn contact_reg btn_color">ADD</button>
+                </div>
+              </section>
+            </div>
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          {/* <button onClick={handleClose} className="btn contact_reg btn_color ">
+            {" "}
+            CANCEL
+          </button>
+          <button onClick={handleClose} className="btn contact_reg btn_color">
+            {" "}
+            ADD
+          </button> */}
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

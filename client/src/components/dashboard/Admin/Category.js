@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { deleteCategory } from "../../../actions/dag";
 import { getAllCategory } from "../../../actions/dag";
 import Addcategory from "./AddCategory";
+import EditCategory from "./EditCategory";
 //import { loadUser } from "../../../actions/auth";
 
 const Category = ({
@@ -52,9 +53,6 @@ const Category = ({
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const handleUpdateModalClose = () => setShowUpdateModal(false);
-
   //deactivate
   const onAdd = (e) => {
     e.preventDefault();
@@ -66,6 +64,24 @@ const Category = ({
     deleteCategory(reason);
     getAllCategory(user.orgId);
     handleClose();
+  };
+
+  //edit modal
+  const [showEditModal, setShowEditModal] = useState(false);
+  const handleEditModalClose = () => setShowEditModal(false);
+  const handleOpen = () => setShowEditModal(true);
+
+  const [catdata, setcatdata] = useState(null);
+  const onedit = (user2) => {
+    setShowUpdateModal(true);
+    setcatdata(user2);
+    handleOpen();
+  };
+
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const handleUpdateModalClose = () => {
+    setShowUpdateModal(false);
+    getAllCategory(user.orgId);
   };
 
   return (
@@ -120,7 +136,7 @@ const Category = ({
                               <>
                                 <img
                                   className="img_icon_size log"
-                                  //onClick={() => onedit(catVal)}
+                                  onClick={() => onedit(catVal)}
                                   src={require("../../../static/images/edit_icon.png")}
                                   alt="Edit"
                                   title="Edit Organization"
@@ -148,6 +164,38 @@ const Category = ({
         </div>
       </div>
 
+      {/* edit modal */}
+      <Modal
+        show={showUpdateModal}
+        backdrop="static"
+        keyboard={false}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header>
+          <div className="col-lg-10">
+            <h3 className="modal-title text-center">Edit Category</h3>
+          </div>
+          <div className="col-lg-2">
+            <button onClick={handleUpdateModalClose} className="close">
+              <img
+                src={require("../../../static/images/close.png")}
+                alt="X"
+                style={{ height: "20px", width: "20px" }}
+              />
+            </button>
+          </div>
+        </Modal.Header>
+        <Modal.Body>
+          {/* <EditUser userdata={orgdata} closeedit={handleUpdateModalClose} /> */}
+          <EditCategory
+            categorydata={catdata}
+            closeedit={handleUpdateModalClose}
+          />
+        </Modal.Body>
+      </Modal>
+
       {/*DEACTIVATE MODAL */}
 
       <Modal
@@ -159,7 +207,7 @@ const Category = ({
       >
         <Modal.Header>
           <Modal.Title className="container">
-            <h1 className="font-weight-bold ">DEACTIVATE USERS</h1>
+            <h1 className="font-weight-bold ">DEACTIVATE CATEGORY</h1>
           </Modal.Title>
           <div className="col-lg-2">
             <button onClick={handleClose} className="close">
@@ -183,7 +231,7 @@ const Category = ({
                 className="form-control"
                 required
               ></textarea>
-              Do You really want to Deactivate this Organization?
+              Do You really want to Deactivate this Category?
               <span className="form-input-info"></span>
             </div>
             <div className="text-right">

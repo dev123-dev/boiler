@@ -21,7 +21,7 @@ router.route("/getcategory").post((req, res) => {
   CategoryDetails.find({ orgId: body.orgId }) //.sort({groupStatus:1})
 
     .then((data) => {
-      console.log(data);
+      // console.log(data);
       res.status(200).json(data);
     })
 
@@ -38,7 +38,7 @@ router.route("/deactivecategory").post((req, res) => {
     {
       $set: {
         categoryStatus: "Deactive",
-        categoryReason: data.deactive_reason,
+        categoryReason: data.catdeletereason,
       },
     }
   )
@@ -50,4 +50,27 @@ router.route("/deactivecategory").post((req, res) => {
   // console.log(data)
 });
 
+//edit
+
+router.route("/editcategory").post((req, res) => {
+  let data = req.body;
+  // console.log("request", req.body);
+  // console.log("backend", data.orgId);
+  console.log("api ", data);
+  CategoryDetails.updateOne(
+    { _id: data.catId, orgId: data.orgId },
+    {
+      $set: {
+        categoryName: data.categoryName,
+        categoryDesp: data.categoryDesp,
+      },
+    }
+  )
+    .then((data) => {
+      res.status(200).json(data);
+    })
+
+    .catch((err) => res.status(400).json("Error" + err));
+  // console.log(data)
+});
 module.exports = router;
