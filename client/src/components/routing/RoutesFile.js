@@ -19,9 +19,10 @@ import AdminDashboard from "../dashboard/Admin/AdminDashboard";
 
 // import Category from "../dashboard/Admin/Category";
 //import JoinLeaveCategory from "../dashboard/Admin/JoinLeaveCategory";
-import AddIndividual from "../dashboard/Admin/AddIndividual"
+import AddIndividual from "../dashboard/Admin/AddIndividual";
 import AddInstitution from "../dashboard/Admin/AddInstitution";
 import Designation from "../dashboard/Admin/Designation";
+import Category from "../dashboard/Admin/Category";
 
 const RoutesFile = () => {
   return (
@@ -37,50 +38,17 @@ const RoutesFile = () => {
           path="/add-staff-feedBack"
           component={AddStaffFeedBack}
         /> */}
-         <PrivateRoute
-          exact
-          path="/superdashboard"
-          component={SuperDashboard}
-        />
-        <PrivateRoute
-          exact
-          path="/organization"
-          component={Organization}
-        />
-         <PrivateRoute
-          exact
-          path="/users"
-          component={Users}
-        />
-         <PrivateRoute
-          exact
-          path="/usergroup"
-          component={UserGroup}
-        />
+        <PrivateRoute exact path="/superdashboard" component={SuperDashboard} />
+        <PrivateRoute exact path="/organization" component={Organization} />
+        <PrivateRoute exact path="/users" component={Users} />
+        <PrivateRoute exact path="/usergroup" component={UserGroup} />
 
         {/* Admin */}
-        <PrivateRoute
-          exact
-          path="/admindashboard"
-          component={AdminDashboard}
-        />
+        <PrivateRoute exact path="/admindashboard" component={AdminDashboard} />
 
-
-        <PrivateRoute
-          exact
-          path="/category"
-          component={AddIndividual}
-        />
-         <PrivateRoute
-          exact
-          path="/addinstitute"
-          component={AddInstitution}
-        />
-         <PrivateRoute
-          exact
-          path="/designation"
-          component={Designation}
-        />
+        <PrivateRoute exact path="/category" component={Category} />
+        <PrivateRoute exact path="/addinstitute" component={AddInstitution} />
+        <PrivateRoute exact path="/designation" component={Designation} />
 
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
         <Route component={NotFound} />
