@@ -4,6 +4,7 @@ const DesignationSchema = new mongoose.Schema({
   designationName: {
     type: String,
     required: true,
+    //unique: true,
   },
   orgId: {
     type: String,
@@ -46,4 +47,7 @@ const DesignationSchema = new mongoose.Schema({
   },
 });
 
-module.exports = DesignationDetails = mongoose.model("Designations", DesignationSchema);
+module.exports = DesignationDetails = mongoose.model(
+  "Designations",
+  DesignationSchema
+);

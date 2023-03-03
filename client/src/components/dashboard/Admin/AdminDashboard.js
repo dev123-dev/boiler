@@ -8,86 +8,118 @@ import { Modal } from "react-bootstrap";
 
 import { getAllOrganization } from "../../../actions/dag";
 
-
-
 const AdminDashboard = ({
   auth: { isAuthenticated, user, users },
-  dag: { allorg },getAllOrganization
-
+  dag: { allorg },
+  getAllOrganization,
 }) => {
-
-
   useEffect(() => {
     getAllOrganization();
   }, []);
 
- //deactivate modal
+  //deactivate modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const [orgdata, setorgdata] = useState(null);
- const onRenewal=(orgObj, id)=>{
-  handleShow()
-setorgdata(orgObj)
-
- }
-
-
+  const onRenewal = (orgObj, id) => {
+    handleShow();
+    setorgdata(orgObj);
+  };
 
   return !isAuthenticated || !user ? (
     <NotFound />
   ) : (
+    <>
+      <div className="container container_align ">
+        <section className="sub_reg">
+          <div className="row col-lg-12 col-md-12 col-sm-12 col-12 no_padding">
+            <h1
+              style={{
+                fontFamily: "Serif",
+                color: "#877bae",
+                fontSize: "45px",
+              }}
+              className="font-weight-bold "
+            >
+              Dashboard
+            </h1>
+            <br />
+            <br />
+          </div>
 
-<>
-<div className="container container_align ">
-          <section className="sub_reg">
-            <div className="row col-lg-12 col-md-12 col-sm-12 col-12 no_padding">
-              {/* <div className="col-lg-10 col-md-11 col-sm-11 col-11 "> */}
-              <h1  style={{ fontFamily: "Serif", color: "#877bae",fontSize:"45px" }} className="font-weight-bold ">Dashboard</h1><br/><br/>
-              {/* </div> */}
+          {/* <div className="row">
+            <div className="col-lg-1"></div>
+            <div className="col-lg-10">
+              <h1
+                style={{
+                  fontFamily: "Serif",
+                  color: "#877bae",
+                  fontSize: "45px",
+                }}
+                className="font-weight-bold "
+              >
+                Dashboard
+              </h1>
+              <br />
+              <br />
             </div>
-            {/* <div className="container-fluid mt-5"> */}
-              <div className="row">
-                <div className="col-lg-1"></div>
-                <div
-                  className="col-lg-4 card h2 text-center pt-5 "
-                  id="shadow-bck"
-                >
-                Category
-                </div>
-                <div
-                  className="col-lg-4 card  h2 text-center pt-5"
-                  id="shadow-bck"
-                >
-                  Institution/Individual
-                </div>
-                <div className="col-lg-1"></div>
+
+            <div className="col-lg-1"></div>
+          </div> */}
+
+          {/* <div className="container-fluid mt-5"> */}
+          <div className="row">
+            <div className="col-lg-1"></div>
+            <div className="col-lg-5 card h2 text-center pt-5 " id="shadow-bck">
+              <div className="text-center">
+                <img
+                  className="img_icon_sizeDashboard log "
+                  src={require("../../../static/images/category.png")}
+                  alt="category"
+                />
               </div>
-              <div className="row">
-                <div className="col-lg-1"></div>
-                <div
-                  className="col-lg-4 card h2 text-center pt-5"
-                  id="shadow-bck"
-                >
-                  Empty Category
-                </div>
-                <div
-                  className="col-lg-4 card h2 text-center pt-5 "
-                  id="shadow-bck"
-                >
-                  Empty Institution/Individual
-                </div>
-                <div className="col-lg-1"></div>
+              <div>
+                <h2>Category</h2>
+                <h4> 555</h4>
               </div>
-            {/* </div> */}
-          </section>
-        </div>
-      
-
-
-</>
-
+            </div>
+            <div className="col-lg-5 card  h2 text-center pt-5" id="shadow-bck">
+              <div className="text-center">
+                <img
+                  className="img_icon_sizeDashboard log "
+                  src={require("../../../static/images/institution.png")}
+                  alt="category"
+                />
+              </div>
+              <div>
+                <h2>Instit/Individal</h2>
+                <h4> 555</h4>
+              </div>
+            </div>
+            <div className="col-lg-1"></div>
+          </div>
+          <div className="row">
+            <div className="col-lg-1"></div>
+            <div className="col-lg-5 card h2 text-center pt-5" id="shadow-bck">
+              <div>
+                <h2> Empty Category</h2>
+                <h4> 555</h4>
+              </div>{" "}
+            </div>
+            <div className="col-lg-5 card h2 text-center pt-5 " id="shadow-bck">
+              <div>
+                <h2> Empty Instit/Individual</h2>
+                <h4> 555</h4>
+              </div>{" "}
+            </div>
+            <div className="col-lg-1"></div>
+          </div>
+          {/* </div> */}
+        </section>
+      </div>
+    </>
   );
 };
 
@@ -104,6 +136,3 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   getAllOrganization,
 })(AdminDashboard);
-
-
-

@@ -205,7 +205,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             onClick={() => openSecondLevelMenu2()}
                             className="navbar-right "
                           >
-                            {user.userGroup}
+                            {user.userName}
                             {/* <img
               className="Icon p-2"
               style={{background:"transparent"}}
@@ -257,7 +257,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             onClick={() => openSecondLevelMenu2()}
                             className="navbar-right "
                           >
-                            {user.userGroup}
+                            {user.userName}
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <i className="fa fa-caret-down" />

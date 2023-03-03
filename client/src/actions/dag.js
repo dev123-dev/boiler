@@ -324,7 +324,7 @@ export const getalldesignation = (userdata) => async (dispatch) => {
       `${linkPath}/api/designation/getDesignation`,
       body
     );
-    console.log(res);
+
     dispatch({
       type: GET_ALL_DESIGNATION,
       payload: res.data,
