@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { AddOrganization } from "../../../actions/dag";
 
 const AddOrgModal = ({
-  auth: { isAuthenticated, user, users, finalDataRep },
+  auth: { isAuthenticated, user },
   AddOrganization,
 }) => {
   const [show, setshow] = useState("");
@@ -95,7 +95,7 @@ const AddOrgModal = ({
     handleAddClose();
   };
 
-  return !isAuthenticated || !user || !users ? (
+  return !isAuthenticated || !user ? (
     <Fragment></Fragment>
   ) : (
     <Fragment>

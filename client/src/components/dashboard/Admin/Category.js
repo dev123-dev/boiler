@@ -60,6 +60,9 @@ const Category = ({
       catid: catId,
       catdeletereason: category_DE_Reason,
       orgId: user.orgId,
+      DeactiveById: user._id,
+      DeactiveByName: user.Name,
+      DeactiveByDateTime: new Date().toLocaleString("en-GB"),
     };
     deleteCategory(reason);
     getAllCategory(user.orgId);

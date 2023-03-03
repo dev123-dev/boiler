@@ -1,13 +1,13 @@
 const mongoose = require("mongoose");
 
-const CategoryHistroySchema = new mongoose.Schema({
-  categoryName: {
+const DesignationHistroySchema = new mongoose.Schema({
+  designationName: {
     type: String,
     required: true,
   },
-  categoryDesp: {
+  designationNameOld: {
     type: String,
-    //required: true,
+    required: true,
   },
   orgId: {
     type: String,
@@ -17,18 +17,9 @@ const CategoryHistroySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  categoryStatus: {
+  designationStatus: {
     type: String,
     required: true,
-  },
-  categoryReason: {
-    type: String,
-  },
-  categoryNameOld: {
-    type: String,
-  },
-  categoryDespOLd: {
-    type: String,
   },
   EnterById: {
     type: String,
@@ -59,4 +50,4 @@ const CategoryHistroySchema = new mongoose.Schema({
   },
 });
 
-module.exports = CategoryHistroy = mongoose.model("categoryHistroys", CategoryHistroySchema);
+module.exports = DesignationHistroy = mongoose.model("DesignationHistorys", DesignationHistroySchema);

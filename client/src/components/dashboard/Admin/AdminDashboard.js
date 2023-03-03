@@ -2,43 +2,26 @@ import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NotFound from "../../layout/NotFound";
-import Select from "react-select";
-import { Link } from "react-router-dom";
-import { Modal } from "react-bootstrap";
 
-import { getAllOrganization } from "../../../actions/dag";
-
-
-
+//import { getAllOrganization } from "../../../actions/dag";
+import { getAllCategory } from "../../../actions/dag";
 const AdminDashboard = ({
-  auth: { isAuthenticated, user, users },
-  dag: { allorg },getAllOrganization
 
+  auth: { isAuthenticated, user},
+  dag: { allcat },getAllCategory
+  
 }) => {
-
-
   useEffect(() => {
-    getAllOrganization();
+    //getAllOrganization();
+    getAllCategory(user.orgId);
   }, []);
 
- //deactivate modal
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const [orgdata, setorgdata] = useState(null);
- const onRenewal=(orgObj, id)=>{
-  handleShow()
-setorgdata(orgObj)
-
- }
-
-
+  const[catcount,setCatcount]=useState(null)
+allcat.map((ele,index)=>setCatcount(index+1))
 
   return !isAuthenticated || !user ? (
     <NotFound />
   ) : (
-
 <>
 <div className="container container_align ">
           <section className="sub_reg">
@@ -54,7 +37,8 @@ setorgdata(orgObj)
                   className="col-lg-4 card h2 text-center pt-5 "
                   id="shadow-bck"
                 >
-                Category
+                Category<br></br>
+                {catcount}
                 </div>
                 <div
                   className="col-lg-4 card  h2 text-center pt-5"
@@ -83,9 +67,7 @@ setorgdata(orgObj)
             {/* </div> */}
           </section>
         </div>
-      
-
-
+ 
 </>
 
   );
@@ -102,7 +84,7 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getAllOrganization,
+ getAllCategory,
 })(AdminDashboard);
 
 

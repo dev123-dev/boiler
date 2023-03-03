@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const CategoryDetails = require("../../models/CategoryDetails");
+const CategoryHistroy = require("../../models/CategoryHistroy");
 
 //add user
 router.route("/addcategory").post((req, res) => {
@@ -55,9 +56,10 @@ router.route("/deactivecategory").post((req, res) => {
 
 router.route("/editcategory").post((req, res) => {
   let data = req.body;
-  // console.log("request", req.body);
-  // console.log("backend", data.orgId);
-  console.log("api ", data);
+ 
+  let CatHis = new CategoryHistroy(req.body);
+  CatHis.save(req.body).then(() => console.log("Histroy entered for CAtegory"));
+
   CategoryDetails.updateOne(
     { _id: data.catId, orgId: data.orgId },
     {
@@ -72,6 +74,7 @@ router.route("/editcategory").post((req, res) => {
     })
 
     .catch((err) => res.status(400).json("Error" + err));
-  // console.log(data)
+
+
 });
 module.exports = router;
