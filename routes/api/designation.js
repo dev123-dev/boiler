@@ -29,7 +29,6 @@ router.route("/getDesignation").post((req, res) => {
     .catch((err) => res.status(400).json("Error" + err));
 });
 
-
 //edit
 
 router.route("/editdesignation").post((req, res) => {
@@ -38,7 +37,7 @@ router.route("/editdesignation").post((req, res) => {
   // console.log("backend", data.orgId);
   console.log("api ", data);
   DesignationDetails.updateOne(
-    { _id: data.desId, orgId: data.orgId },
+    { _id: data.desigId, orgId: data.orgId },
     {
       $set: {
         designationName: data.designationName,
