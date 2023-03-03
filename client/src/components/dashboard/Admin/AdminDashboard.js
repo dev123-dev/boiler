@@ -2,19 +2,19 @@ import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NotFound from "../../layout/NotFound";
-
-//import { getAllOrganization } from "../../../actions/dag";
+import Select from "react-select";
+import { Link } from "react-router-dom";
+import { Modal } from "react-bootstrap";
 import { getAllCategory } from "../../../actions/dag";
+
 const AdminDashboard = ({
-
-  auth: { isAuthenticated, user},
-  dag: { allcat },getAllCategory
-
+  auth: { isAuthenticated, user },
+  dag: { allcat },
+ 
 }) => {
   useEffect(() => {
     if (user) {
     getAllCategory(user.orgId);
-  
     }
     getcatcount()
   }, []);
@@ -29,60 +29,100 @@ const AdminDashboard = ({
   return !isAuthenticated || !user ? (
     <NotFound />
   ) : (
-<>
-<div className="container container_align ">
-          <section className="sub_reg">
-            <div className="row col-lg-12 col-md-12 col-sm-12 col-12 no_padding">
-             
-              <h1  style={{ fontFamily: "Serif", color: "#877bae",fontSize:"45px" }} className="font-weight-bold ">Dashboard</h1><br/><br/>
-             
-            </div>
-            
-              <div className="row">
-                <div className="col-lg-1"></div>
-                <div
-                  className="col-lg-4 card h2 text-center pt-5 "
-                  id="shadow-bck"
-                >
-                Category<br></br>
-                {catcount}
-                </div>
-                <div
-                  className="col-lg-4 card  h2 text-center pt-5"
-                  id="shadow-bck"
-                >
-                  Institution/Individual
-                </div>
-                <div className="col-lg-1"></div>
-              </div>
-              <div className="row">
-                <div className="col-lg-1"></div>
-                <div
-                  className="col-lg-4 card h2 text-center pt-5"
-                  id="shadow-bck"
-                >
-                  Empty Category
-                </div>
-                <div
-                  className="col-lg-4 card h2 text-center pt-5 "
-                  id="shadow-bck"
-                >
-                  Empty Institution/Individual
-                </div>
-                <div className="col-lg-1"></div>
-              </div>
-            {/* </div> */}
-          </section>
-        </div>
-</>
+    <>
+      <div className="container container_align ">
+        <section className="sub_reg">
+          <div className="row col-lg-12 col-md-12 col-sm-12 col-12 no_padding">
+            <h1
+              style={{
+                fontFamily: "Serif",
+                color: "#877bae",
+                fontSize: "45px",
+              }}
+              className="font-weight-bold "
+            >
+              Dashboard
+            </h1>
+            <br />
+            <br />
+          </div>
 
+          {/* <div className="row">
+            <div className="col-lg-1"></div>
+            <div className="col-lg-10">
+              <h1
+                style={{
+                  fontFamily: "Serif",
+                  color: "#877bae",
+                  fontSize: "45px",
+                }}
+                className="font-weight-bold "
+              >
+                Dashboard
+              </h1>
+              <br />
+              <br />
+            </div>
+
+            <div className="col-lg-1"></div>
+          </div> */}
+
+          {/* <div className="container-fluid mt-5"> */}
+          <div className="row">
+            <div className="col-lg-1"></div>
+            <div className="col-lg-5 card h2 text-center pt-5 " id="shadow-bck">
+              <div className="text-center">
+                <img
+                  className="img_icon_sizeDashboard log "
+                  src={require("../../../static/images/category.png")}
+                  alt="category"
+                />
+              </div>
+              <div>
+                <h2>Category</h2>
+                <h4>{catcount}</h4>
+              </div>
+            </div>
+            <div className="col-lg-5 card  h2 text-center pt-5" id="shadow-bck">
+              <div className="text-center">
+                <img
+                  className="img_icon_sizeDashboard log "
+                  src={require("../../../static/images/institution.png")}
+                  alt="category"
+                />
+              </div>
+              <div>
+                <h2>Instit/Individal</h2>
+                <h4> 555</h4>
+              </div>
+            </div>
+            <div className="col-lg-1"></div>
+          </div>
+          <div className="row">
+            <div className="col-lg-1"></div>
+            <div className="col-lg-5 card h2 text-center pt-5" id="shadow-bck">
+              <div>
+                <h2> Empty Category</h2>
+                <h4> 555</h4>
+              </div>{" "}
+            </div>
+            <div className="col-lg-5 card h2 text-center pt-5 " id="shadow-bck">
+              <div>
+                <h2> Empty Instit/Individual</h2>
+                <h4> 555</h4>
+              </div>{" "}
+            </div>
+            <div className="col-lg-1"></div>
+          </div>
+          {/* </div> */}
+        </section>
+      </div>
+    </>
   );
 };
 
 AdminDashboard.propTypes = {
   auth: PropTypes.object.isRequired,
-  // getAllUsers: PropTypes.func.isRequired,
-  // getSearchUsersByFilter: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
@@ -92,6 +132,3 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
  getAllCategory,
 })(AdminDashboard);
-
-
-

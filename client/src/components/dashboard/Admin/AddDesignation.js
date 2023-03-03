@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
-import { addDesignation } from "../../../actions/dag";
+import { addDesignation, getalldesignation } from "../../../actions/dag";
 //import { getAllCategory } from "../../../actions/dag";
 
 const AddDesignation = ({
   auth: { isAuthenticated, user },
   addDesignation,
-  //getAllCategory,
+  getalldesignation,
 }) => {
   const [show, setshow] = useState("");
   const handleClose = () => setshow("false");
@@ -21,7 +21,6 @@ const AddDesignation = ({
     designationName: "",
     designationStatus: "",
   });
-  
   const { designationName, designationStatus } = formDataDesig;
 
   const onDESGchange = (e) => {
@@ -49,7 +48,7 @@ const AddDesignation = ({
       EnterByDateTime: new Date().toLocaleString("en-GB"),
     };
     addDesignation(finalDESGdata);
-    // getAllCategory(user.orgId);
+    getalldesignation(user.orgId);
     setformDataDesig({
       ...formDataDesig,
       designationName: "",
@@ -157,12 +156,6 @@ const AddDesignation = ({
                   </div>
                 </div>
                 <div className="text-right">
-                  <button
-                    onClick={handleClose}
-                    className="btn contact_reg btn_color "
-                  >
-                    CANCEL
-                  </button>
                   <button className="btn contact_reg btn_color">ADD</button>
                 </div>
               </section>
@@ -177,5 +170,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   dag: state.dag,
 });
-export default connect(mapStateToProps, { addDesignation })(AddDesignation);
+export default connect(mapStateToProps, { addDesignation, getalldesignation })(
+  AddDesignation
+);
 //, getAllCategory
