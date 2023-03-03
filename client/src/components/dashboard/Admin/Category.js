@@ -141,7 +141,7 @@ const Category = ({
                                   alt="Edit"
                                   title="Edit Category"
                                 />
-                                &nbsp;&nbsp;
+                                &nbsp;
                                 <img
                                   className="img_icon_size log"
                                   onClick={() => onDelete(catVal._id)}
@@ -149,7 +149,7 @@ const Category = ({
                                   alt="Delete User"
                                   title="Delete Category"
                                 />
-                                &nbsp;&nbsp;
+                                &nbsp;
                                 <img
                                   className="img_icon_size log"
                                   onClick={() => onDelete(catVal._id)}
