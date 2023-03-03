@@ -270,7 +270,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                               </Link>
                             </li>
                             <li className="hwhite">
-                              <Link to="/usersetting" className="navlinkitem">
+                              <Link to="/userlist" className="navlinkitem">
                                 User Setting
                               </Link>
                             </li>

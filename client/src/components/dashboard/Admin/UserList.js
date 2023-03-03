@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import AddUserModal from "./AddUserModal";
+//import AddUserModal from "./AddUserModal";
 import Modal from "react-bootstrap/Modal";
 import { getAllUser } from "../../../actions/dag";
 import { getAllOrganization } from "../../../actions/dag";
 import { deleteUser } from "../../../actions/dag";
-import EditUser from "./EditUser";
+//import EditUser from "./EditUser";
 import Select from "react-select";
 import { useHistory } from "react-router-dom";
+import AddUserList from "./AddUserList";
 
-const Users = ({
+const UserList = ({
   //here to connect to action we need to import the function
   //then again we need to mention inside the const function
   dag: { alluser },
@@ -137,7 +138,7 @@ const Users = ({
                           }
 
           </select> */}
-            <div style={{ width: "250px" }}>
+            {/* <div style={{ width: "250px" }}>
               <Select
                 styles={{
                   control: (baseStyles, state) => ({
@@ -152,7 +153,7 @@ const Users = ({
                 placeholder="Select Oraganisation"
                 onChange={(e) => onOraganisationChange(e)}
               />
-            </div>
+            </div> */}
             <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
               <img
                 className="img_icon_size log text-right"
@@ -161,7 +162,8 @@ const Users = ({
                 alt="refresh"
               />{" "}
               &nbsp;
-              <AddUserModal />
+              {/* <AddUserModal /> */}
+              <AddUserList />
             </div>
 
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
@@ -222,9 +224,6 @@ const Users = ({
                     })}
                 </tbody>
               </table>
-              <div className="text-right">
-                <label>No. of Users :{alluser && alluser.length}</label>
-              </div>
             </div>
           </section>
         </div>
@@ -299,7 +298,7 @@ const Users = ({
           </div>
         </Modal.Header>
         <Modal.Body>
-          <EditUser userdata={orgdata} closeedit={handleUpdateModalClose} />
+          {/* <EditUser userdata={orgdata} closeedit={handleUpdateModalClose} /> */}
         </Modal.Body>
       </Modal>
     </div>
@@ -312,4 +311,4 @@ export default connect(mapStateToProps, {
   getAllUser,
   deleteUser,
   getAllOrganization,
-})(Users);
+})(UserList);

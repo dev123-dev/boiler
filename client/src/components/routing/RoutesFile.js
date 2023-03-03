@@ -23,6 +23,7 @@ import AddIndividual from "../dashboard/Admin/AddIndividual";
 import AddInstitution from "../dashboard/Admin/AddInstitution";
 import Designation from "../dashboard/Admin/Designation";
 import Category from "../dashboard/Admin/Category";
+import UserList from "../dashboard/Admin/UserList";
 
 const RoutesFile = () => {
   return (
@@ -51,6 +52,7 @@ const RoutesFile = () => {
 
         <PrivateRoute exact path="/generatelabel" component={AddIndividual} />
         <PrivateRoute exact path="/designation" component={Designation} />
+        <PrivateRoute exact path="/userlist" component={UserList} />
 
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
         <Route component={NotFound} />

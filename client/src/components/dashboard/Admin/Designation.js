@@ -14,14 +14,13 @@ const Designation = ({
   dag: { alldesg },
   getalldesignation,
 }) => {
-
-  useEffect(() => {  
-    if (user) {  
-    getalldesignation(user.orgId);
-   }
+  useEffect(() => {
+    if (user) {
+      getalldesignation(user.orgId);
+    }
   }, []);
 
-console.log(user)
+  console.log(user);
   const onClickReset = () => {
     // setCurrentData(1);
     // getbatchsData("");
@@ -122,6 +121,10 @@ console.log(user)
                     })}
                 </tbody>
               </table>
+
+              <div className="text-right ">
+                No. of Designation: {alldesg && alldesg.length}
+              </div>
             </div>
           </section>
         </div>

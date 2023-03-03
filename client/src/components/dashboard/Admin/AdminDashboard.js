@@ -8,23 +8,34 @@ import { getAllCategory } from "../../../actions/dag";
 const AdminDashboard = ({
   auth: { isAuthenticated, user },
   dag: { allcat },
+<<<<<<< HEAD
   loadUser,
  
+=======
+>>>>>>> deca65bcaa5e453a413775ea204b88ae977a3310
 }) => {
   useEffect(() => {
     loadUser()
     if (user) {
-    getAllCategory(user.orgId);
+      getAllCategory(user.orgId);
+      getcatcount();
     }
-    getcatcount()
   }, []);
+<<<<<<< HEAD
 console.log(allcat)
   const[catcount,setCatcount]=useState(null)
 
   const getcatcount=()=>{
     allcat.map((ele,index)=>setCatcount(index+1))
   }
+=======
 
+  const [catcount, setCatcount] = useState(null);
+>>>>>>> deca65bcaa5e453a413775ea204b88ae977a3310
+
+  const getcatcount = () => {
+    allcat.map((ele, index) => setCatcount(index + 1));
+  };
 
   return !isAuthenticated || !user ? (
     <NotFound />
@@ -130,5 +141,9 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
+<<<<<<< HEAD
  getAllCategory,loadUser,
+=======
+  getAllCategory,
+>>>>>>> deca65bcaa5e453a413775ea204b88ae977a3310
 })(AdminDashboard);
