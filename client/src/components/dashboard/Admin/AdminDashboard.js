@@ -8,34 +8,27 @@ import { getAllCategory } from "../../../actions/dag";
 const AdminDashboard = ({
   auth: { isAuthenticated, user },
   dag: { allcat },
-<<<<<<< HEAD
   loadUser,
  
-=======
->>>>>>> deca65bcaa5e453a413775ea204b88ae977a3310
 }) => {
+
   useEffect(() => {
+
     loadUser()
     if (user) {
       getAllCategory(user.orgId);
-      getcatcount();
+      console.log("run get allcat")
     }
+    getcatcount();
+
   }, []);
-<<<<<<< HEAD
-console.log(allcat)
+  
+console.log(user)
   const[catcount,setCatcount]=useState(null)
 
   const getcatcount=()=>{
     allcat.map((ele,index)=>setCatcount(index+1))
   }
-=======
-
-  const [catcount, setCatcount] = useState(null);
->>>>>>> deca65bcaa5e453a413775ea204b88ae977a3310
-
-  const getcatcount = () => {
-    allcat.map((ele, index) => setCatcount(index + 1));
-  };
 
   return !isAuthenticated || !user ? (
     <NotFound />
@@ -58,27 +51,6 @@ console.log(allcat)
             <br />
           </div>
 
-          {/* <div className="row">
-            <div className="col-lg-1"></div>
-            <div className="col-lg-10">
-              <h1
-                style={{
-                  fontFamily: "Serif",
-                  color: "#877bae",
-                  fontSize: "45px",
-                }}
-                className="font-weight-bold "
-              >
-                Dashboard
-              </h1>
-              <br />
-              <br />
-            </div>
-
-            <div className="col-lg-1"></div>
-          </div> */}
-
-          {/* <div className="container-fluid mt-5"> */}
           <div className="row">
             <div className="col-lg-1"></div>
             <div className="col-lg-5 card h2 text-center pt-5 " id="shadow-bck">
@@ -89,7 +61,7 @@ console.log(allcat)
                   alt="category"
                 />
               </div>
-              <div>
+              <div onClick={()=> getAllCategory(user.orgId)}>
                 <h2>Category</h2>
                 <h4>{catcount}</h4>
               </div>
@@ -141,9 +113,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-<<<<<<< HEAD
  getAllCategory,loadUser,
-=======
-  getAllCategory,
->>>>>>> deca65bcaa5e453a413775ea204b88ae977a3310
 })(AdminDashboard);
