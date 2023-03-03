@@ -30,8 +30,7 @@ const {
 // @route    POST api/auth
 // @desc     Authenticate user & get token
 // @access   Public
-router.post(
-  "/login",
+router.post("/login",
    [
    check(USERNAME, USERNAME_REQUIRED_INVALID).exists(),
    check(PASSWORD, PASSWORD_INVALID).exists(),
@@ -119,28 +118,28 @@ router.get(GET_ALL_USERS, auth, async (req, res) => {
   }
 });
 
-// @route    POST api/auth
-// @desc     POST Filtered Users Based on Search
-// @access   Private
-router.post(FILTER_USERS, auth, async (req, res) => {
-  const { alphaSearch } = req.body;
-  console;
-  try {
-    let query = {};
-    if (alphaSearch !== "") {
-      query = {
-        sdName: {
-          $regex: new RegExp("^" + alphaSearch, "i"),
-        },
-      };
-    }
-    staffDetails = await UserDetails.find(query).select("-password");
+// // @route    POST api/auth
+// // @desc     POST Filtered Users Based on Search
+// // @access   Private
+// router.post(FILTER_USERS, auth, async (req, res) => {
+//   const { alphaSearch } = req.body;
+//   console;
+//   try {
+//     let query = {};
+//     if (alphaSearch !== "") {
+//       query = {
+//         sdName: {
+//           $regex: new RegExp("^" + alphaSearch, "i"),
+//         },
+//       };
+//     }
+//     staffDetails = await UserDetails.find(query).select("-password");
 
-    res.json(staffDetails);
-  } catch (err) {
-    console.error(err.message);
-    res.status(STATUS_CODE_500).send(SERVER_ERROR);
-  }
-});
+//     res.json(staffDetails);
+//   } catch (err) {
+//     console.error(err.message);
+//     res.status(STATUS_CODE_500).send(SERVER_ERROR);
+//   }
+// });
 
 module.exports = router;
