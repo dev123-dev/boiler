@@ -4,8 +4,7 @@ const CategoryHistroy = require("../../models/CategoryHistroy");
 
 //add user
 router.route("/addcategory").post((req, res) => {
-  // console.log(req.body)
-  console.log("hitt");
+ 
   let Category = new CategoryDetails(req.body);
 
   Category.save(req.body)
@@ -18,12 +17,12 @@ router.route("/addcategory").post((req, res) => {
 //get all cat
 router.route("/getcategory").post((req, res) => {
   let body = req.body;
-  //   console.log("hitt");
+  
   CategoryDetails.find({ orgId: body.orgId })
     .sort({ categoryStatus: 1 })
 
     .then((data) => {
-      // console.log(data);
+     
       res.status(200).json(data);
     })
 
@@ -41,6 +40,9 @@ router.route("/deactivecategory").post((req, res) => {
       $set: {
         categoryStatus: "Deactive",
         categoryReason: data.catdeletereason,
+        DeactiveById: data.DeactiveById,
+        DeactiveByName: data.DeactiveByName,
+        DeactiveByDateTime: data.DeactiveByDateTime,
       },
     }
   )
@@ -66,6 +68,9 @@ router.route("/editcategory").post((req, res) => {
       $set: {
         categoryName: data.categoryName,
         categoryDesp: data.categoryDesp,
+        EditById: data.EditById,
+        EditByName: data.EditByName,
+        EditByDateTime: data.EditByDateTime,
       },
     }
   )

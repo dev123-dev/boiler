@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { loadUser } from "../../actions/auth";
 import { getAllOrganization } from "../../actions/dag";
 
-
 const RouteDriver = ({ auth: { user }, loadUser,dag: { allorg } }) => {
 
   useEffect(() => {

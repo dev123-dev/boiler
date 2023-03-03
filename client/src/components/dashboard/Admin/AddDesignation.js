@@ -6,7 +6,7 @@ import { addDesignation } from "../../../actions/dag";
 //import { getAllCategory } from "../../../actions/dag";
 
 const AddDesignation = ({
-  auth: { isAuthenticated, user, users, finalDataRep },
+  auth: { isAuthenticated, user },
   addDesignation,
   //getAllCategory,
 }) => {
@@ -14,16 +14,14 @@ const AddDesignation = ({
   const handleClose = () => setshow("false");
   const handleShow = () => setshow("true");
 
-  const desigOrgId = user.orgId;
-  const desigOrgName = user.orgName;
+  const desigOrgId =user ? user.orgId : "";
+  const desigOrgName =user ? user.orgName: "";
 
   const [formDataDesig, setformDataDesig] = useState({
     designationName: "",
-
     designationStatus: "",
   });
-  console.log("dddddd", user);
-
+  
   const { designationName, designationStatus } = formDataDesig;
 
   const onDESGchange = (e) => {
@@ -61,7 +59,7 @@ const AddDesignation = ({
     handleAddClose();
   };
 
-  return !isAuthenticated || !user || !users ? (
+  return !isAuthenticated || !user ? (
     <Fragment></Fragment>
   ) : (
     <Fragment>

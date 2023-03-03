@@ -39,6 +39,9 @@ router.route("/editdesignation").post((req, res) => {
     {
       $set: {
         designationName: data.designationName,
+        EditById: data.EditById,
+        EditByName: data.EditByName,
+        EditByDateTime: data.EditByDateTime,
       },
     }
   )

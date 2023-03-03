@@ -76,10 +76,9 @@ const Organization = ({
     e.preventDefault();
     const reason = {
       Org_id: OrgId,
-
       deactive_reason: Organization_DE_Reason,
       DeactiveById: user._id,
-      DeactiveByName: user.Name,
+      DeactiveByName: user.fullName,
       DeactiveByDateTime: new Date().toLocaleString("en-GB"),
     };
     deleteOrganization(reason);

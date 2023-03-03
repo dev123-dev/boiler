@@ -3,23 +3,20 @@ const mongoose = require("mongoose");
 const DesignationHistroySchema = new mongoose.Schema({
   designationName: {
     type: String,
-    required: true,
   },
   designationNameOld: {
     type: String,
-    required: true,
   },
   orgId: {
     type: String,
-    required: true,
+   
   },
   orgName: {
     type: String,
-    required: true,
+   
   },
   designationStatus: {
     type: String,
-    required: true,
   },
   EnterById: {
     type: String,

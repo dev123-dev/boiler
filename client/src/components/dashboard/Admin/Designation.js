@@ -10,23 +10,18 @@ import EditDesignation from "./EditDesignation";
 //import { loadUser } from "../../../actions/auth";
 
 const Designation = ({
-  auth: { isAuthenticated, user, users, finalDataRep },
-  //here to connect to action we need to import the function
-  //then again we need to mention inside the const function
+  auth: { isAuthenticated, user },
   dag: { alldesg },
-  //   deleteCategory,
-  //loadUser,
   getalldesignation,
 }) => {
-  useEffect(() => {
-    //loadUser();
-    // if (user) {
-    //   console.log("inside");
+
+  useEffect(() => {  
+    if (user) {  
     getalldesignation(user.orgId);
-    // getalldesignation();
-    // }
+   }
   }, []);
 
+console.log(user)
   const onClickReset = () => {
     // setCurrentData(1);
     // getbatchsData("");
@@ -45,35 +40,13 @@ const Designation = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [catId, setCatId] = useState("");
-
-  const onDelete = (id) => {
-    setCatId(id);
-    handleShow();
-  };
-  const onInputchange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  //deactivate
-  const onAdd = (e) => {
-    e.preventDefault();
-    const reason = {
-      catid: catId,
-      catdeletereason: category_DE_Reason,
-      orgId: user.orgId,
-    };
-
-    getalldesignation(user.orgId);
-    handleClose();
-  };
-
   //edit modal
   const [showEditModal, setShowEditModal] = useState(false);
   const handleEditModalClose = () => setShowEditModal(false);
   const handleOpen = () => setShowEditModal(true);
 
   const [designationdata, setdesgdata] = useState(null);
+
   const onedit = (user2) => {
     setShowUpdateModal(true);
     setdesgdata(user2);
@@ -81,6 +54,7 @@ const Designation = ({
   };
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
+
   const handleUpdateModalClose = () => {
     setShowUpdateModal(false);
     getalldesignation(user.orgId);

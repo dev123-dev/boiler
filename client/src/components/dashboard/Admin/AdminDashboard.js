@@ -9,15 +9,22 @@ const AdminDashboard = ({
 
   auth: { isAuthenticated, user},
   dag: { allcat },getAllCategory
-  
+
 }) => {
   useEffect(() => {
-    //getAllOrganization();
+    if (user) {
     getAllCategory(user.orgId);
+  
+    }
+    getcatcount()
   }, []);
 
   const[catcount,setCatcount]=useState(null)
-allcat.map((ele,index)=>setCatcount(index+1))
+
+  const getcatcount=()=>{
+    allcat.map((ele,index)=>setCatcount(index+1))
+  }
+
 
   return !isAuthenticated || !user ? (
     <NotFound />
@@ -26,11 +33,11 @@ allcat.map((ele,index)=>setCatcount(index+1))
 <div className="container container_align ">
           <section className="sub_reg">
             <div className="row col-lg-12 col-md-12 col-sm-12 col-12 no_padding">
-              {/* <div className="col-lg-10 col-md-11 col-sm-11 col-11 "> */}
+             
               <h1  style={{ fontFamily: "Serif", color: "#877bae",fontSize:"45px" }} className="font-weight-bold ">Dashboard</h1><br/><br/>
-              {/* </div> */}
+             
             </div>
-            {/* <div className="container-fluid mt-5"> */}
+            
               <div className="row">
                 <div className="col-lg-1"></div>
                 <div
@@ -67,7 +74,6 @@ allcat.map((ele,index)=>setCatcount(index+1))
             {/* </div> */}
           </section>
         </div>
- 
 </>
 
   );

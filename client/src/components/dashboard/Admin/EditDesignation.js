@@ -13,7 +13,6 @@ const EditDesignation = ({
   const [formDataDESG, setformDataDESG] = useState({
     desig_id: desigdata._id,
     desigName: desigdata.designationName,
-
     orgId: desigdata.orgId,
   });
 
@@ -27,15 +26,8 @@ const EditDesignation = ({
     const update = {
       desigId: desig_id,
       designationName: desigName,
-
+      designationNameOld: desigdata.designationName,
       orgId: orgId,
-
-      //   fullNameOld: desigdata.fullName,
-      //   UserNameOld: desigdata.userName,
-      //   UserEmailOld: desigdata.email,
-      //   UserNumberOld: desigdata.phone,
-      //   UserAddressOld: desigdata.address,
-
       EditById: user._id,
       EditByName: user.userName,
       EditByDateTime: new Date().toLocaleString("en-GB"),
