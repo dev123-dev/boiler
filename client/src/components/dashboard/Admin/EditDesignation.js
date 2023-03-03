@@ -67,7 +67,10 @@ const EditDesignation = ({
               </div>
             </div>
             <div className="text-right">
-              <button className="btn contact_reg btn_color"> UPDATE</button>
+              <button className="btn btn-outline-secondary btnall">
+                {" "}
+                UPDATE
+              </button>
             </div>
           </section>
         </div>

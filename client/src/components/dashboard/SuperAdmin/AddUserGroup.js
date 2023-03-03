@@ -126,7 +126,9 @@ const AddUserGroup = ({
                   </div>
                 </div>
                 <div className="text-right">
-                  <button className="btn contact_reg btn_color">ADD</button>
+                  <button className="btn btn-outline-secondary btnall">
+                    ADD
+                  </button>
                 </div>
               </section>
             </div>

@@ -267,7 +267,10 @@ const UserList = ({
               Do You really want to Deactivate this user?
             </div>
             <div className="text-right">
-              <button className="btn contact_reg btn_color"> DEACTIVATE</button>
+              <button className="btn btn-outline-secondary btnall">
+                {" "}
+                DEACTIVATE
+              </button>
             </div>
           </form>
         </Modal.Body>

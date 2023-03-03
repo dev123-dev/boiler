@@ -2001,3 +2001,13 @@ th {
 /* div {
   border: 1px solid red;
 } */
+.btn:hover {
+  background-color: #877bae !important;
+}
+.btnall {
+  border: 1px solid black;
+  border-radius: 5px;
+
+  width: 100px;
+  height: 50px;
+}

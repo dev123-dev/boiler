@@ -14,8 +14,8 @@ const AddDesignation = ({
   const handleClose = () => setshow("false");
   const handleShow = () => setshow("true");
 
-  const desigOrgId =user ? user.orgId : "";
-  const desigOrgName =user ? user.orgName: "";
+  const desigOrgId = user ? user.orgId : "";
+  const desigOrgName = user ? user.orgName : "";
 
   const [formDataDesig, setformDataDesig] = useState({
     designationName: "",
@@ -156,7 +156,9 @@ const AddDesignation = ({
                   </div>
                 </div>
                 <div className="text-right">
-                  <button className="btn contact_reg btn_color">ADD</button>
+                  <button className="btn btn-outline-secondary btnall">
+                    ADD
+                  </button>
                 </div>
               </section>
             </div>

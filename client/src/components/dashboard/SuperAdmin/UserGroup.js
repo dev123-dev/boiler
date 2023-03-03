@@ -137,7 +137,7 @@ const UserGroup = ({
           <div className="text-right">
             <button
               onClick={(e) => onAdd(e)}
-              className="btn contact_reg btn_color"
+              className="btn btn-outline-secondary btnall"
             >
               DELETE
             </button>

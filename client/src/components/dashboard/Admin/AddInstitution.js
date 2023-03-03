@@ -417,7 +417,9 @@ title="Deactivate User"
 
                 <div className="text-right mb-5 pt-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   {/* <button className="btn contact_reg btn_color">CANCEL</button> */}
-                  <button className="btn contact_reg btn_color">ADD</button>
+                  <button className="btn btn-outline-secondary btnall">
+                    ADD
+                  </button>
                 </div>
               </div>
             </form>
@@ -540,7 +542,10 @@ title="Deactivate User"
                 </div>
                 <div className="text-right my-4">
                   {/* <button className="btn contact_reg btn_color">CANCEL</button> */}
-                  <button className="btn contact_reg btn_color" type="submit">
+                  <button
+                    className="btn btn-outline-secondary btnall"
+                    type="submit"
+                  >
                     ADD
                   </button>
                 </div>
@@ -741,11 +746,13 @@ title="Deactivate User"
                   <div className="text-right">
                     <button
                       onClick={handleClose}
-                      className="btn contact_reg btn_color "
+                      className="btn btn-outline-secondary btnall "
                     >
                       CANCEL
                     </button>
-                    <button className="btn contact_reg btn_color">ADD</button>
+                    <button className="btn btn-outline-secondary btnall">
+                      ADD
+                    </button>
                   </div>
                 </section>
               </div>

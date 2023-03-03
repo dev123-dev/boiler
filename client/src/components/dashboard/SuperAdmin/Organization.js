@@ -212,7 +212,10 @@ const Organization = ({
               <span className="form-input-info"></span>
             </div>
             <div className="text-right">
-              <button className="btn contact_reg btn_color" type="submit">
+              <button
+                className="btn btn-outline-secondary btnall"
+                type="submit"
+              >
                 {" "}
                 DEACTIVATE
               </button>

@@ -94,7 +94,9 @@ const RenewOrg = ({
                 </div>
               </div>
               <div className="text-right">
-                <button className="btn contact_reg btn_color">RENEW</button>
+                <button className="btn btn-outline-secondary btnall">
+                  RENEW
+                </button>
               </div>
             </div>
           </form>

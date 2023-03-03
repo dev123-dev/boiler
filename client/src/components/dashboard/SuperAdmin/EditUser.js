@@ -142,7 +142,7 @@ const EditUser = ({
           </section>
           <div className="text-right">
             <button
-              className="btn contact_reg btn_color"
+              className="btn btn-outline-secondary btnall"
               onClick={() => onUpdate()}
             >
               UPDATE

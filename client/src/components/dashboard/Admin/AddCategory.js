@@ -14,8 +14,8 @@ const AddCategory = ({
   const handleClose = () => setshow("false");
   const handleShow = () => setshow("true");
 
-  const catOrgId =user ? user.orgId :"";
-  const catOrgName =user ? user.orgName : "";
+  const catOrgId = user ? user.orgId : "";
+  const catOrgName = user ? user.orgName : "";
 
   const [formDataCAT, setformDataCAT] = useState({
     catName: "",
@@ -46,7 +46,7 @@ const AddCategory = ({
       orgId: catOrgId,
       orgName: catOrgName,
       categoryReason: "",
-      EnterById: user._id, 
+      EnterById: user._id,
       EnterByName: user.userName,
       EnterByDateTime: new Date().toLocaleString("en-GB"),
       EditById: "",
@@ -169,11 +169,14 @@ const AddCategory = ({
                 <div className="text-right">
                   <button
                     onClick={handleClose}
-                    className="btn contact_reg btn_color "
+                    className="btn btn-outline-secondary btnall"
                   >
                     CANCEL
                   </button>
-                  <button className="btn contact_reg btn_color">ADD</button>
+
+                  <button className="btn btn-outline-secondary btnall">
+                    ADD
+                  </button>
                 </div>
               </section>
             </div>

@@ -8,14 +8,14 @@ import Select from "react-select";
 
 const AddUserModal = ({
   dag: { allorg },
-  auth: { isAuthenticated, user, users},
+  auth: { isAuthenticated, user, users },
   AddUser,
   getAllOrganization,
 }) => {
   useEffect(() => {
     getAllOrganization();
   }, []);
-  
+
   const [oraganisation, getOraganisationData] = useState();
   const [oraganisationId, setOraganisationId] = useState();
   const [oraganisationName, setOraganisationName] = useState();
@@ -109,7 +109,6 @@ const AddUserModal = ({
   const handleOpen = () => setShowAddModal(true);
 
   const onSubmitUSERdata = (e) => {
-
     e.preventDefault();
     //console.log(formDataUSER)
 
@@ -385,7 +384,7 @@ const AddUserModal = ({
                 <div className="text-right">
                   <button
                     disabled={disabled}
-                    className="btn contact_reg btn_color"
+                    className="btn btn-outline-secondary btnall"
                     type="submit"
                   >
                     {" "}

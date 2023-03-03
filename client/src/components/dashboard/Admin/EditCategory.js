@@ -32,9 +32,9 @@ const EditCategory = ({
       categoryNameOld: categorydata.categoryName,
       categoryDespOLd: categorydata.categoryDesp,
 
-        EditById: user._id,
-        EditByName: user.userName,
-        EditByDateTime: new Date().toLocaleString("en-GB"),
+      EditById: user._id,
+      EditByName: user.userName,
+      EditByDateTime: new Date().toLocaleString("en-GB"),
     };
     closeedit();
 
@@ -89,7 +89,10 @@ const EditCategory = ({
             </div>
             <div className="text-right">
               {/* <button onClick={edithandleClose} className="btn contact_reg btn_color"> CANCEL</button> */}
-              <button className="btn contact_reg btn_color"> UPDATE</button>
+              <button className="btn btn-outline-secondary btnall">
+                {" "}
+                UPDATE
+              </button>
             </div>
           </section>
         </div>

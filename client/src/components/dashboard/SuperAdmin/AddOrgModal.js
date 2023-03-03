@@ -4,10 +4,7 @@ import { Fragment } from "react";
 import { connect } from "react-redux";
 import { AddOrganization } from "../../../actions/dag";
 
-const AddOrgModal = ({
-  auth: { isAuthenticated, user },
-  AddOrganization,
-}) => {
+const AddOrgModal = ({ auth: { isAuthenticated, user }, AddOrganization }) => {
   const [show, setshow] = useState("");
   const handleClose = () => setshow("false");
   const [formDataORG, setFormDataORG] = useState({
@@ -239,7 +236,10 @@ const AddOrgModal = ({
                   </div>
                 </div>
                 <div className="text-right">
-                  <button className="btn contact_reg btn_color"> ADD</button>
+                  <button className="btn btn-outline-secondary btnall">
+                    {" "}
+                    ADD
+                  </button>
                 </div>
               </section>
             </div>
