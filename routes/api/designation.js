@@ -35,7 +35,7 @@ router.route("/editdesignation").post((req, res) => {
   DegHis.save(req.body).then(() => console.log("Histroy entered for CAtegory"));
 
   DesignationDetails.updateOne(
-    { _id: data.desId, orgId: data.orgId },
+    { _id: data.desigId, orgId: data.orgId },
     {
       $set: {
         designationName: data.designationName,

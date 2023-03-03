@@ -22,6 +22,7 @@ import {
   GET_ALL_CATEGORY,
   FINAL_DATA_REP,
   GET_ALL_ORGANIZATION,
+  GET_ALL_DESIGNATION,
   GET_ALL_SUPERUSER,
   GET_ALL_ORGANIZATION_DETAILS,
 } from "./types";
@@ -284,7 +285,7 @@ export const deleteCategory = (id) => async (dispatch) => {
   }
 };
 
-//edit user details
+//edit category details
 export const updateCategory = (updatedata) => async (dispatch) => {
   console.log("cat action", updatedata);
   console.log("inside action");
@@ -292,5 +293,56 @@ export const updateCategory = (updatedata) => async (dispatch) => {
   try {
     axios.post(`${linkPath}/api/category/editcategory`, updatedata);
     // dispatch(getAllCategory());
+  } catch (err) {}
+};
+
+//add Designation
+export const addDesignation = (UserData) => async (dispatch) => {
+  console.log(UserData);
+  try {
+    await axios.post(
+      `${linkPath}/api/designation/adddesignation`,
+      UserData,
+      config
+    );
+    //diapatching get function because it should relfex immidiatly after adding
+    //dispatch(getAllCategory());
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
+
+//getting all designation
+
+export const getalldesignation = (userdata) => async (dispatch) => {
+  // console.log(userdata);
+  let body = { orgId: userdata };
+  try {
+    const res = await axios.post(
+      `${linkPath}/api/designation/getDesignation`,
+      body
+    );
+    console.log(res);
+    dispatch({
+      type: GET_ALL_DESIGNATION,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ALL_DESIGNATION,
+    });
+  }
+};
+
+//edit designation details
+export const updateDesignation = (updatedata) => async (dispatch) => {
+  console.log("cat action", updatedata);
+  console.log("inside action");
+  // console.log(updatedata);
+  try {
+    axios.post(`${linkPath}/api/designation/editdesignation`, updatedata);
+    //dispatch(getalldesignation());
   } catch (err) {}
 };
