@@ -51,135 +51,143 @@ export default function AddInstitution() {
 
         {showins ? (
           <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12">
-            <div className="h2"> ADD Institution</div>
-            <div
-              className="row form-group  col-md-12 col-lg-12 col-sm-12 col-xs-12"
-              id="eventDiv"
-            >
-              <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <label className="control-label" id="ent_order_desg_lbl">
-                  Institution Name
-                </label>
-                <label className="control-label" id="ent_name_label">
-                  {" "}
-                </label>
-                <div className="controls">
-                  <input
-                    name="ent_name"
-                    id="ent_name"
-                    type="text"
-                    className="form-control required"
-                    value=""
-                  />
-                </div>
-              </div>
+            <form>
+              <div className="h3 px-4"> ADD Institution</div>
               <div
-                className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12"
-                id="orderDiv"
+                className="row form-group  col-md-12 col-lg-12 col-sm-12 col-xs-12"
+                id="eventDiv"
               >
-                <label className="control-label" id="ent_order_desg_lbl">
-                  Order
-                </label>
-                <div className="controls">
-                  <input
-                    name="ent_order_desg"
-                    id="ent_order_desg"
-                    type="text"
-                    className="form-control"
-                    value=""
-                  />
+                <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                  <label className="control-label" id="ent_order_desg_lbl">
+                    Institution Name
+                  </label>
+                  <label className="control-label" id="ent_name_label">
+                    {" "}
+                  </label>
+                  <div className="controls">
+                    <input
+                      name="ent_name"
+                      id="ent_name"
+                      type="text"
+                      className="form-control required"
+                      value=""
+                      required
+                    />
+                  </div>
+                </div>
+                <div
+                  className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12"
+                  id="orderDiv"
+                >
+                  <label className="control-label" id="ent_order_desg_lbl">
+                    Order
+                  </label>
+                  <div className="controls">
+                    <input
+                      name="ent_order_desg"
+                      id="ent_order_desg"
+                      type="text"
+                      className="form-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                  <label className="control-label">Email </label>
+                  <div className="controls">
+                    <input
+                      name="ent_email"
+                      id="ent_email"
+                      type="text"
+                      className="form-control validEmail"
+                      value=""
+                      required
+                    />
+                    <span className="form-input-info positioning "></span>
+                  </div>
+                </div>
+                <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                  <label className="control-label">Additional Email </label>
+                  <div className="controls">
+                    <input
+                      name="ent_addl_email"
+                      id="ent_addl_email"
+                      type="text"
+                      className="form-control validEmail"
+                      value=""
+                    />
+                    <span className="form-input-info positioning"></span>
+                  </div>
+                </div>
+
+                <div
+                  className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12"
+                  id="orderDiv"
+                >
+                  <label className="control-label" id="ent_order_desg_lbl">
+                    Institution URL
+                  </label>
+                  <div className="controls">
+                    <input
+                      name="ent_order_desg"
+                      id="ent_order_desg"
+                      type="text"
+                      className="form-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                  <label className="control-label">Additional Url</label>
+                  <div className="controls">
+                    <input
+                      name="ent_addl_url"
+                      id="ent_addl_url"
+                      type="text"
+                      className="form-control"
+                      value=""
+                    />
+                  </div>
+                </div>
+
+                <div
+                  className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12"
+                  id="orderDiv"
+                >
+                  <label className="control-label" id="ent_order_desg_lbl">
+                    Contact No.
+                  </label>
+                  <div className="controls">
+                    <input
+                      name="ent_order_desg"
+                      id="ent_order_desg"
+                      type="text"
+                      className="form-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                  <label className="control-label">
+                    Additional Contact No.
+                  </label>
+                  <div className="controls">
+                    <input
+                      name="ent_addl_url"
+                      id="ent_addl_url"
+                      type="text"
+                      className="form-control"
+                      value=""
+                    />
+                  </div>
                 </div>
               </div>
 
-              <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <label className="control-label">Email </label>
-                <div className="controls">
-                  <input
-                    name="ent_email"
-                    id="ent_email"
-                    type="text"
-                    className="form-control validEmail"
-                    value=""
-                  />
-                  <span className="form-input-info positioning "></span>
-                </div>
-              </div>
-              <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <label className="control-label">Additional Email </label>
-                <div className="controls">
-                  <input
-                    name="ent_addl_email"
-                    id="ent_addl_email"
-                    type="text"
-                    className="form-control validEmail"
-                    value=""
-                  />
-                  <span className="form-input-info positioning"></span>
-                </div>
-              </div>
-
-              <div
-                className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12"
-                id="orderDiv"
-              >
-                <label className="control-label" id="ent_order_desg_lbl">
-                  Institution URL
-                </label>
-                <div className="controls">
-                  <input
-                    name="ent_order_desg"
-                    id="ent_order_desg"
-                    type="text"
-                    className="form-control"
-                    value=""
-                  />
-                </div>
-              </div>
-              <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <label className="control-label">Additional Url</label>
-                <div className="controls">
-                  <input
-                    name="ent_addl_url"
-                    id="ent_addl_url"
-                    type="text"
-                    className="form-control"
-                    value=""
-                  />
-                </div>
-              </div>
-
-              <div
-                className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12"
-                id="orderDiv"
-              >
-                <label className="control-label" id="ent_order_desg_lbl">
-                  Contact No.
-                </label>
-                <div className="controls">
-                  <input
-                    name="ent_order_desg"
-                    id="ent_order_desg"
-                    type="text"
-                    className="form-control"
-                    value=""
-                  />
-                </div>
-              </div>
-              <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                <label className="control-label">Additional Contact No.</label>
-                <div className="controls">
-                  <input
-                    name="ent_addl_url"
-                    id="ent_addl_url"
-                    type="text"
-                    className="form-control"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-
-            {/* <div class="row form-group col-md-12 col-lg-12 col-sm-12 col-xs-12" id="postageDiv" >
+              {/* <div class="row form-group col-md-12 col-lg-12 col-sm-12 col-xs-12" id="postageDiv" >
             <div class="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
 					<label class="txtcolor"><b>Postal Address</b></label>
 				</div>
@@ -199,7 +207,7 @@ export default function AddInstitution() {
 
                 </div> */}
 
-            {/* <div className="row form-group  col-md-12 col-lg-12 col-sm-12 col-xs-12"  >
+              {/* <div className="row form-group  col-md-12 col-lg-12 col-sm-12 col-xs-12"  >
 				<div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
 					<label className="txtcolor"><b>Contact Details</b></label>
 				</div>
@@ -224,136 +232,141 @@ export default function AddInstitution() {
 					</div>
 				</div> 
 			</div> */}
-            <div
-              class="row form-group col-md-12 col-lg-12 col-sm-12 col-xs-12"
-              id="postageDiv"
-            >
-              <div class="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
-                <label class="txtcolor">
-                  <b>Postal Address</b>
-                </label>
-              </div>
+              <div
+                class="row form-group col-md-12 col-lg-12 col-sm-12 col-xs-12"
+                id="postageDiv"
+              >
+                <div class="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                  <label class="txtcolor">
+                    <b>Postal Address</b>
+                  </label>
+                </div>
 
-              <div class="control-group col-md-8 col-lg-8 col-sm-8 col-xs-12">
-                <label class="control-label">
-                  Address line1 <span style={{ color: "#800000" }}>*</span>
-                </label>
-                <div class="controls">
-                  <input
-                    name="ent_addl1"
-                    id="ent_addl1"
-                    type="text"
-                    class="form-control required"
-                    value=""
-                    maxlength="38"
-                  />
+                <div class="control-group col-md-8 col-lg-8 col-sm-8 col-xs-12">
+                  <label class="control-label">
+                    Address line1 <span style={{ color: "#800000" }}>*</span>
+                  </label>
+                  <div class="controls">
+                    <input
+                      name="ent_addl1"
+                      id="ent_addl1"
+                      type="text"
+                      class="form-control required"
+                      value=""
+                      maxlength="38"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                  <label class="control-label">
+                    District <span style={{ color: "#800000" }}>*</span>
+                  </label>
+                  <div class="controls">
+                    <input
+                      name="ent_district"
+                      id="ent_district"
+                      type="text"
+                      class="form-control required"
+                      value=""
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="control-group col-md-8 col-lg-8 col-sm-8 col-xs-12">
+                  <label class="control-label">
+                    Address line2 <span style={{ color: "#800000" }}>*</span>
+                  </label>
+                  <div class="controls">
+                    <input
+                      name="ent_addl2"
+                      id="ent_addl2"
+                      type="text"
+                      class="form-control required"
+                      value=""
+                      maxlength="38"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                  <label class="control-label">State </label>
+                  <div class="controls">
+                    <input
+                      name="ent_state"
+                      id="ent_state"
+                      type="text"
+                      class="form-control"
+                      value=""
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="control-group col-md-8 col-lg-8 col-sm-8 col-xs-12">
+                  <label class="control-label">Address line3 </label>
+                  <div class="controls">
+                    <input
+                      name="ent_addl3"
+                      id="ent_addl3"
+                      type="text"
+                      class="form-control"
+                      value=""
+                      maxlength="38"
+                    />
+                  </div>
+                </div>
+                <div class="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12 ">
+                  <label class="control-label">
+                    Pincode <span style={{ color: "#800000;" }}>*</span>
+                  </label>
+                  <div class="controls ">
+                    <input
+                      name="ent_pincode"
+                      id="ent_pincode"
+                      maxlength="6"
+                      type="text"
+                      class="form-control required"
+                      value=""
+                      required
+                    />
+                  </div>
                 </div>
               </div>
-              <div class="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12">
-                <label class="control-label">
-                  District <span style={{ color: "#800000" }}>*</span>
-                </label>
-                <div class="controls">
-                  <input
-                    name="ent_district"
-                    id="ent_district"
-                    type="text"
-                    class="form-control required"
-                    value=""
+              {/* </div> */}
+
+              <div>
+                <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12 h4 ">
+                  Details of Institution Heads
+                  <img
+                    className="img_icon_size log text-right"
+                    onClick={handleShow}
+                    src={require("../../../static/images/add-icon.png")}
+                    alt="add-icon"
+                    title="add icon"
                   />
                 </div>
-              </div>
-              <div class="control-group col-md-8 col-lg-8 col-sm-8 col-xs-12">
-                <label class="control-label">
-                  Address line2 <span style={{ color: "#800000" }}>*</span>
-                </label>
-                <div class="controls">
-                  <input
-                    name="ent_addl2"
-                    id="ent_addl2"
-                    type="text"
-                    class="form-control required"
-                    value=""
-                    maxlength="38"
-                  />
-                </div>
-              </div>
-              <div class="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12">
-                <label class="control-label">State </label>
-                <div class="controls">
-                  <input
-                    name="ent_state"
-                    id="ent_state"
-                    type="text"
-                    class="form-control"
-                    value=""
-                  />
-                </div>
-              </div>
-              <div class="control-group col-md-8 col-lg-8 col-sm-8 col-xs-12">
-                <label class="control-label">Address line3 </label>
-                <div class="controls">
-                  <input
-                    name="ent_addl3"
-                    id="ent_addl3"
-                    type="text"
-                    class="form-control"
-                    value=""
-                    maxlength="38"
-                  />
-                </div>
-              </div>
-              <div class="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12 ">
-                <label class="control-label">
-                  Pincode <span style={{ color: "#800000;" }}>*</span>
-                </label>
-                <div class="controls ">
-                  <input
-                    name="ent_pincode"
-                    id="ent_pincode"
-                    maxlength="6"
-                    type="text"
-                    class="form-control required"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-            {/* </div> */}
 
-            <div>
-              <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12 h4 ">
-                Details of Institution Heads
-                <img
-                  className="img_icon_size log text-right"
-                  onClick={handleShow}
-                  src={require("../../../static/images/add-icon.png")}
-                  alt="add-icon"
-                  title="add icon"
-                />
-              </div>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHeadinst">
+                  <table
+                    border="1"
+                    id="datatable2"
+                    className="table-striped table table-bordered table-hover"
+                  >
+                    <thead>
+                      <tr className="headingsizes">
+                        <th>Name</th>
+                        <th>Designation</th>
 
-              <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHeadinst">
-                <table
-                  border="1"
-                  id="datatable2"
-                  className="table-striped table table-bordered table-hover"
-                >
-                  <thead>
-                    <tr className="headingsizes">
-                      <th>Name</th>
-                      <th>Designation</th>
+                        <th>Email</th>
+                        <th>Phone No.</th>
 
-                      <th>Email</th>
-                      <th>Phone No.</th>
+                        <th>Operation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr></tr>
 
-                      <th>Operation</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr></tr>
-
-                    {/* {alluser &&
+                      {/* {alluser &&
 
 alluser.map((userVal, idx) => {
 
@@ -392,27 +405,28 @@ title="Deactivate User"
 
 </td> */}
 
-                    {/* 
+                      {/* 
 
 
 );
 
 })} */}
-                  </tbody>
-                </table>
-              </div>
+                    </tbody>
+                  </table>
+                </div>
 
-              <div className="text-right mb-5 pt-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <button className="btn contact_reg btn_color">CANCEL</button>
-                <button className="btn contact_reg btn_color">ADD</button>
+                <div className="text-right mb-5 pt-3 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  {/* <button className="btn contact_reg btn_color">CANCEL</button> */}
+                  <button className="btn contact_reg btn_color">ADD</button>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
         ) : (
           <>
             <div class="container">
-              <div className="h2"> ADD Individual</div>
-              <div className="text-right">
+              <div className="h2 px-3"> ADD Individual</div>
+              {/* <div className="text-right">
                 <img
                   className="img_icon_size log"
                   //   onClick={handleOpen}
@@ -420,13 +434,13 @@ title="Deactivate User"
                   alt="Add User"
                   title="Back"
                 />
-              </div>
+              </div> */}
 
               <form>
-                <div className="row form-group mt-5" id="eventDiv">
+                <div className="row form-group mt-4" id="eventDiv">
                   <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
                     <label className="control-label" id="ent_name_label">
-                      Individal's Name{" "}
+                      Individual's Name{" "}
                     </label>
                     <span>*</span>
                     <div className="controls">
@@ -524,10 +538,10 @@ title="Deactivate User"
 					</div>
 				</div> */}
                 </div>
-                <div className="text-right mt-5">
-                  <button className="btn contact_reg btn_color">CANCEL</button>
+                <div className="text-right my-4">
+                  {/* <button className="btn contact_reg btn_color">CANCEL</button> */}
                   <button className="btn contact_reg btn_color" type="submit">
-                    SAVE
+                    ADD
                   </button>
                 </div>
               </form>
@@ -564,6 +578,7 @@ title="Deactivate User"
                             type="text"
                             className="form-control"
                             value=""
+                            required
                           />
                           <span
                             id="category_result"
@@ -581,7 +596,7 @@ title="Deactivate User"
                             id="org_belongs"
                             type="text"
                             className="form-control"
-                            readonly
+                            required
                           />
                           <span className="form-input-info"></span>
                         </div>
@@ -599,6 +614,7 @@ title="Deactivate User"
                             type="text"
                             className="form-control"
                             value=""
+                            required
                           />
                           <span
                             id="category_result"
@@ -616,7 +632,7 @@ title="Deactivate User"
                             id="user_phone"
                             type="text"
                             className="form-control"
-                            readonly
+                            required
                           />
                           <span className="form-input-info"></span>
                         </div>

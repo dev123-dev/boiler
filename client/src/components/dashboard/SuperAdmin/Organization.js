@@ -166,6 +166,9 @@ const Organization = ({
                   })}
               </tbody>
             </table>
+            <div className="text-right ">
+              <label>No. of Users :{allorg && allorg.length}</label>
+            </div>
           </div>
         </div>
       </div>

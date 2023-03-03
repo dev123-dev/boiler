@@ -10,21 +10,19 @@ import { getAllCategory } from "../../../actions/dag";
 const AdminDashboard = ({
   auth: { isAuthenticated, user },
   dag: { allcat },
- 
 }) => {
   useEffect(() => {
     if (user) {
-    getAllCategory(user.orgId);
+      getAllCategory(user.orgId);
+      getcatcount();
     }
-    getcatcount()
   }, []);
 
-  const[catcount,setCatcount]=useState(null)
+  const [catcount, setCatcount] = useState(null);
 
-  const getcatcount=()=>{
-    allcat.map((ele,index)=>setCatcount(index+1))
-  }
-
+  const getcatcount = () => {
+    allcat.map((ele, index) => setCatcount(index + 1));
+  };
 
   return !isAuthenticated || !user ? (
     <NotFound />
@@ -130,5 +128,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
- getAllCategory,
+  getAllCategory,
 })(AdminDashboard);

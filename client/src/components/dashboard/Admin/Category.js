@@ -16,16 +16,16 @@ const Category = ({
   //loadUser,
   getAllCategory,
 }) => {
-  useEffect(() => { 
-     if (user) {
-    getAllCategory(user.orgId);
-     }
+  useEffect(() => {
+    if (user) {
+      getAllCategory(user.orgId);
+    }
   }, []);
 
   const onClickReset = () => {
     if (user) {
       getAllCategory(user.orgId);
-       }
+    }
     // getAllCategory(user.orgId);
   };
 
@@ -168,6 +168,9 @@ const Category = ({
                     })}
                 </tbody>
               </table>
+              <div className="text-right ">
+                No. of Categories:{allcat && allcat.length}
+              </div>
             </div>
           </section>
         </div>
