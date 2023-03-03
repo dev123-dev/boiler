@@ -219,7 +219,7 @@ const Category = ({
       >
         <Modal.Header>
           <Modal.Title className="container">
-            <h1 className="font-weight-bold ">DEACTIVATE CATEGORY</h1>
+            <h1 className="font-weight-bold ">DEACTIVATE </h1>
           </Modal.Title>
           <div className="col-lg-2">
             <button onClick={handleClose} className="close">
@@ -232,29 +232,65 @@ const Category = ({
           </div>
         </Modal.Header>
         <Modal.Body>
-          <label className="control-label">Reason for Deactivating:</label>
           <form onSubmit={(e) => onAdd(e)}>
-            <div className="controls">
-              <textarea
-                rows="2"
-                name="category_DE_Reason"
-                onChange={(e) => onInputchange(e)}
-                id="org_reason"
-                className="form-control"
-                required
-              ></textarea>
+            <div className="row col-lg-12 col-md-9 col-sm-9 col-12 ">
+              <div className="col-lg-12 col-md-4 col-sm-4 col-12">
+                <label>Reason for deactivation</label>
+              </div>
+              <div className="col-lg-12 col-md-4 col-sm-4 col-12 text-center">
+                <textarea
+                  rows="3"
+                  name="category_DE_Reason"
+                  onChange={(e) => onInputchange(e)}
+                  id="org_reason"
+                  className="textarea form-control"
+                  required
+                ></textarea>
+              </div>
+              <div className="col-lg-12 col-md-4 col-sm-4 col-12 py-2">
+                <label>Are you sure you want to deactive ?</label>
+              </div>
+              <div className=" col-lg-12 col-md-9 col-sm-9 col-12 text-right">
+                <button
+                  className="btn btn-outline-secondary btnall"
+                  type="submit"
+                >
+                  {" "}
+                  DEACTIVATE
+                </button>
+              </div>
+            </div>
+            {/* <div className="controls col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+              <div
+                className="col-lg-2 col-md-12 col-sm-12 col-xs-12"
+                style={{ border: "1px solid green" }}
+              ></div>
+              <div
+                className="col-lg-8 col-md-12 col-sm-12 col-xs-12 text-center"
+                style={{ border: "1px solid blue" }}
+              >
+                <textarea
+                  rows="2"
+                  name="category_DE_Reason"
+                  onChange={(e) => onInputchange(e)}
+                  id="org_reason"
+                  className="form-control"
+                  required
+                ></textarea>
+              </div>
+              <div
+                className="col-lg-2 col-md-12 col-sm-12 col-xs-12"
+                style={{ border: "1px solid green" }}
+              ></div>
               Do You really want to Deactivate this Category?
               <span className="form-input-info"></span>
-            </div>
-            <div className="text-right">
-              <button
-                className="btn btn-outline-secondary btnall"
-                type="submit"
-              >
-                {" "}
-                DEACTIVATE
-              </button>
-            </div>
+              <div className="text-right">
+                <button className="btn contact_reg btn_color" type="submit">
+                  {" "}
+                  DEACTIVATE
+                </button>
+              </div>
+            </div> */}
           </form>
         </Modal.Body>
       </Modal>
