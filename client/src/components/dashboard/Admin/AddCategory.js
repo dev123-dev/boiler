@@ -14,8 +14,8 @@ const AddCategory = ({
   const handleClose = () => setshow("false");
   const handleShow = () => setshow("true");
 
-  const catOrgId = user.orgId;
-  const catOrgName = user.orgName;
+  const catOrgId =user ? user.orgId :"";
+  const catOrgName =user ? user.orgName : "";
 
   const [formDataCAT, setformDataCAT] = useState({
     catName: "",
@@ -46,9 +46,20 @@ const AddCategory = ({
       orgId: catOrgId,
       orgName: catOrgName,
       categoryReason: "",
+      EnterById: user._id, 
+      EnterByName: user.userName,
+      EnterByDateTime: new Date().toLocaleString("en-GB"),
+      EditById: "",
+      EditByName: "",
+      EditByDateTime: "",
+      DeactiveById: "",
+      DeactiveByName: "",
+      DeactiveByDateTime: "",
     };
+
     addCategory(finalCATdata);
     getAllCategory(user.orgId);
+
     setformDataCAT({
       ...formDataCAT,
       catName: "",

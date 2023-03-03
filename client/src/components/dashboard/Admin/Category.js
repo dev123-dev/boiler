@@ -16,19 +16,17 @@ const Category = ({
   //loadUser,
   getAllCategory,
 }) => {
-  useEffect(() => {
-    //loadUser();
-    // if (user) {
-    //   console.log("inside");
+  useEffect(() => { 
+     if (user) {
     getAllCategory(user.orgId);
-    // getAllCategory();
-    // }
+     }
   }, []);
 
   const onClickReset = () => {
-    // setCurrentData(1);
-    // getbatchsData("");
-    getAllCategory(user.orgId);
+    if (user) {
+      getAllCategory(user.orgId);
+       }
+    // getAllCategory(user.orgId);
   };
 
   //deactivate
@@ -60,6 +58,9 @@ const Category = ({
       catid: catId,
       catdeletereason: category_DE_Reason,
       orgId: user.orgId,
+      DeactiveById: user._id,
+      DeactiveByName: user.fullName,
+      DeactiveByDateTime: new Date().toLocaleString("en-GB"),
     };
     deleteCategory(reason);
     getAllCategory(user.orgId);

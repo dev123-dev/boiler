@@ -74,6 +74,7 @@ router.route("/deactiveorg").post((req, res) => {
 
 router.route("/editorganization").post((req, res) => {
   let data = req.body;
+  
   let OrgHis = new OrgHistroy(req.body);
   OrgHis.save(req.body).then(() => console.log("Histroy entered"));
 

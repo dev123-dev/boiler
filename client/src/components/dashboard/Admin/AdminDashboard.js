@@ -5,28 +5,26 @@ import NotFound from "../../layout/NotFound";
 import Select from "react-select";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
-
-import { getAllOrganization } from "../../../actions/dag";
+import { getAllCategory } from "../../../actions/dag";
 
 const AdminDashboard = ({
-  auth: { isAuthenticated, user, users },
-  dag: { allorg },
-  getAllOrganization,
+  auth: { isAuthenticated, user },
+  dag: { allcat },
+ 
 }) => {
   useEffect(() => {
-    getAllOrganization();
+    if (user) {
+    getAllCategory(user.orgId);
+    }
+    getcatcount()
   }, []);
 
-  //deactivate modal
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const[catcount,setCatcount]=useState(null)
 
-  const [orgdata, setorgdata] = useState(null);
-  const onRenewal = (orgObj, id) => {
-    handleShow();
-    setorgdata(orgObj);
-  };
+  const getcatcount=()=>{
+    allcat.map((ele,index)=>setCatcount(index+1))
+  }
+
 
   return !isAuthenticated || !user ? (
     <NotFound />
@@ -82,7 +80,7 @@ const AdminDashboard = ({
               </div>
               <div>
                 <h2>Category</h2>
-                <h4> 555</h4>
+                <h4>{catcount}</h4>
               </div>
             </div>
             <div className="col-lg-5 card  h2 text-center pt-5" id="shadow-bck">
@@ -125,8 +123,6 @@ const AdminDashboard = ({
 
 AdminDashboard.propTypes = {
   auth: PropTypes.object.isRequired,
-  // getAllUsers: PropTypes.func.isRequired,
-  // getSearchUsersByFilter: PropTypes.func.isRequired,
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
@@ -134,5 +130,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
-  getAllOrganization,
+ getAllCategory,
 })(AdminDashboard);

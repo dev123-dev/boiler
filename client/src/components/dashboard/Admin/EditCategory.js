@@ -29,15 +29,12 @@ const EditCategory = ({
       categoryDesp: catDesp,
       orgId: orgId,
 
-      //   fullNameOld: categorydata.fullName,
-      //   UserNameOld: categorydata.userName,
-      //   UserEmailOld: categorydata.email,
-      //   UserNumberOld: categorydata.phone,
-      //   UserAddressOld: categorydata.address,
+      categoryNameOld: categorydata.categoryName,
+      categoryDespOLd: categorydata.categoryDesp,
 
-      //   EditById: user._id,
-      //   EditByName: user.userName,
-      //   EditByDateTime: new Date().toLocaleString("en-GB"),
+        EditById: user._id,
+        EditByName: user.userName,
+        EditByDateTime: new Date().toLocaleString("en-GB"),
     };
     closeedit();
 

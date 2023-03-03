@@ -1,27 +1,21 @@
 const mongoose = require("mongoose");
 
-const CategorySchema = new mongoose.Schema({
-  categoryName: {
+const DesignationHistroySchema = new mongoose.Schema({
+  designationName: {
     type: String,
-    required: true,
   },
-  categoryDesp: {
+  designationNameOld: {
     type: String,
-    //required: true,
   },
   orgId: {
     type: String,
-    required: true,
+   
   },
   orgName: {
     type: String,
-    required: true,
+   
   },
-  categoryStatus: {
-    type: String,
-    required: true,
-  },
-  categoryReason: {
+  designationStatus: {
     type: String,
   },
   EnterById: {
@@ -53,4 +47,4 @@ const CategorySchema = new mongoose.Schema({
   },
 });
 
-module.exports = CategoryDetails = mongoose.model("categorys", CategorySchema);
+module.exports = DesignationHistroy = mongoose.model("DesignationHistorys", DesignationHistroySchema);
