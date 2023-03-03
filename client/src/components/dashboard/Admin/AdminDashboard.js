@@ -2,23 +2,23 @@ import React, { Fragment, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NotFound from "../../layout/NotFound";
-import Select from "react-select";
-import { Link } from "react-router-dom";
-import { Modal } from "react-bootstrap";
+import { loadUser } from "../../../actions/auth";
 import { getAllCategory } from "../../../actions/dag";
 
 const AdminDashboard = ({
   auth: { isAuthenticated, user },
   dag: { allcat },
+  loadUser,
  
 }) => {
   useEffect(() => {
+    loadUser()
     if (user) {
     getAllCategory(user.orgId);
     }
     getcatcount()
   }, []);
-
+console.log(allcat)
   const[catcount,setCatcount]=useState(null)
 
   const getcatcount=()=>{
@@ -130,5 +130,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
- getAllCategory,
+ getAllCategory,loadUser,
 })(AdminDashboard);
