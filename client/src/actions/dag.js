@@ -254,7 +254,7 @@ export const getAllCategory = (userdata) => async (dispatch) => {
   let body = { orgId: userdata };
   try {
     const res = await axios.post(`${linkPath}/api/category/getcategory`, body);
-    console.log(res);
+    console.log("res data",res.data);
     dispatch({
       type: GET_ALL_CATEGORY,
       payload: res.data,
