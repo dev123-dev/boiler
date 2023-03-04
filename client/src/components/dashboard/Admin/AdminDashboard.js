@@ -8,19 +8,24 @@ import { getAllCategory } from "../../../actions/dag";
 const AdminDashboard = ({
   auth: { isAuthenticated, user },
   dag: { allcat },
+  getAllCategory,
   loadUser,
- 
 }) => {
 
   useEffect(() => {
-    if (user) {
-      getAllCategory(user.orgId);
-    }
-    getcatcount();
 
+    const myuser=JSON.parse(localStorage.getItem("user"))
+   
+    if (myuser) {
+      
+      getAllCategory(myuser.orgId);
+       console.log("called get cat",allcat)
+      getcatcount();
+    }
+   
   }, []);
   
-console.log("user data ",user)
+//console.log("user data ",user)
   const[catcount,setCatcount]=useState(null)
 
   const getcatcount=()=>{
@@ -60,7 +65,7 @@ console.log("user data ",user)
               </div>
               <div onClick={()=> console.log("clicked")}>
                 <h2>Category</h2>
-                <h4>{catcount}</h4>
+                <h4>{allcat && allcat.length}</h4>
               </div>
             </div>
             <div className="col-lg-5 card  h2 text-center pt-5" id="shadow-bck">
@@ -103,7 +108,8 @@ console.log("user data ",user)
 
 AdminDashboard.propTypes = {
   auth: PropTypes.object.isRequired,
-};
+  getAllCategory:PropTypes.func.isRequired,
+}
 const mapStateToProps = (state) => ({
   auth: state.auth,
   dag: state.dag,

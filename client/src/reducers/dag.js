@@ -95,6 +95,7 @@ const dagreducer = (state = initialState, action) => {
         alluser: payload,
       };
     case GET_ALL_CATEGORY:
+      // localStorage.setItem("category", JSON.stringify(payload))
       return {
         ...state,
         allcat: payload,

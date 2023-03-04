@@ -4,7 +4,6 @@ const CategoryHistroy = require("../../models/CategoryHistroy");
 
 //add user
 router.route("/addcategory").post((req, res) => {
- 
   let Category = new CategoryDetails(req.body);
 
   Category.save(req.body)
@@ -16,8 +15,7 @@ router.route("/addcategory").post((req, res) => {
 
 //get all cat
 router.route("/getcategory").post((req, res) => {
-  let body = req.body;
-  
+  let body = req.body; 
   CategoryDetails.find({ orgId: body.orgId })
     .sort({ categoryStatus: 1 })
 
@@ -49,9 +47,8 @@ router.route("/deactivecategory").post((req, res) => {
     .then((data) => {
       res.status(200).json(data);
     })
-
     .catch((err) => res.status(400).json("Error" + err));
-  // console.log(data)
+  
 });
 
 //edit

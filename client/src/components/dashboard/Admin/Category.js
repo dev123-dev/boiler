@@ -14,16 +14,17 @@ const Category = ({
   getAllCategory,
 }) => {
   useEffect(() => {
+   
+    
     if (user) {
       getAllCategory(user.orgId);
     }
   }, []);
-  console.log("user data on cat",user)
+  
   const onClickReset = () => {
     if (user) {
       getAllCategory(user.orgId);
     }
-    
   };
 
   //deactivate
