@@ -13,6 +13,7 @@ import {
   GET_ALL_CATEGORY,
   GET_ALL_USER,
   GET_ALL_DESIGNATION,
+  GET_ALL_ENTITY,
 } from "../actions/types";
 
 const initialState = {
@@ -36,6 +37,7 @@ const initialState = {
   allcat: [""],
   // allorgdetails : [""],
   alluser: [""],
+  allent: [""],
   allsuperuser: [""],
 };
 
@@ -104,6 +106,12 @@ const dagreducer = (state = initialState, action) => {
       return {
         ...state,
         alldesg: payload,
+      };
+
+    case GET_ALL_ENTITY:
+      return {
+        ...state,
+        allent: payload,
       };
     default:
       return state;

@@ -2,47 +2,51 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import { deleteCategory } from "../../../actions/dag";
-import { getAllCategory } from "../../../actions/dag";
-import Addcategory from "./AddCategory";
+import { getAllEntity, deleteEntity } from "../../../actions/dag";
+import { Link, NavLink } from "react-router-dom";
 import EditCategory from "./EditCategory";
+// import AddInstitution from "./AddInstitution";
 //import { loadUser } from "../../../actions/auth";
 
-const Category = ({
-  auth: { user },
-  dag: { allcat },
-  deleteCategory,
-  getAllCategory,
+const Entity = ({
+  auth: { isAuthenticated, user, users, finalDataRep },
+  //here to connect to action we need to import the function
+  //then again we need to mention inside the const function
+  dag: { allent },
+  //deleteCategory,
+  deleteEntity,
+  //loadUser,
+  getAllEntity,
 }) => {
   useEffect(() => {
-   
-    
     if (user) {
-      getAllCategory(user.orgId);
+      getAllEntity(user.orgId);
     }
   }, []);
-  // console.log("user data on cat",user)
+
   const onClickReset = () => {
     if (user) {
-      getAllCategory(user.orgId);
+      getAllEntity(user.orgId);
     }
+    // getAllEntity(user.orgId);
   };
 
   //deactivate
   const [formData, setFormData] = useState({
-    category_DE_Reason: "",
+    Entity_DE_Reason: "",
     isSubmitted: false,
   });
-  const { category_DE_Reason } = formData;
+  const { Entity_DE_Reason } = formData;
 
   //deactivate modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [catId, setCatId] = useState("");
+  const [entId, setentId] = useState("");
 
   const onDelete = (id) => {
-    setCatId(id);
+    setentId(id);
     handleShow();
   };
   const onInputchange = (e) => {
@@ -53,15 +57,15 @@ const Category = ({
   const onAdd = (e) => {
     e.preventDefault();
     const reason = {
-      catid: catId,
-      catdeletereason: category_DE_Reason,
+      entId: entId,
+      entdeletereason: Entity_DE_Reason,
       orgId: user.orgId,
       DeactiveById: user._id,
       DeactiveByName: user.fullName,
       DeactiveByDateTime: new Date().toLocaleString("en-GB"),
     };
-    deleteCategory(reason);
-    getAllCategory(user.orgId);
+    deleteEntity(reason);
+    getAllEntity(user.orgId);
     handleClose();
   };
 
@@ -80,7 +84,7 @@ const Category = ({
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const handleUpdateModalClose = () => {
     setShowUpdateModal(false);
-    getAllCategory(user.orgId);
+    getAllEntity(user.orgId);
   };
 
   return (
@@ -94,7 +98,7 @@ const Category = ({
               style={{ fontFamily: "Serif", color: "#877bae" }}
               className="font-weight-bold "
             >
-              Category Lists
+              Institution/Individual Details
             </h1>
 
             <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
@@ -105,7 +109,15 @@ const Category = ({
                 alt="refresh"
               />{" "}
               &nbsp;
-              <Addcategory />
+              {/* <AddInstitution /> */}
+              <Link to="/addinstitute">
+                <img
+                  className="img_icon_size log"
+                  src={require("../../../static/images/add-icon.png")}
+                  alt="Add Designation"
+                  title="Add Designation"
+                />
+              </Link>
             </div>
 
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
@@ -116,26 +128,32 @@ const Category = ({
               >
                 <thead>
                   <tr className="headingsizes">
-                    <th>Category Name</th>
-                    <th>Description</th>
+                    <th>Institution/Individual Name</th>
+                    <th>Type</th>
+                    <th>Address</th>
 
                     <th>Operation</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {allcat &&
-                    allcat.map((catVal, idx) => {
+                  {allent &&
+                    allent.map((entVal, idx) => {
                       return (
                         <tr key={idx}>
-                          <td>{catVal.categoryName}</td>
-                          <td>{catVal.categoryDesp}</td>
+                          <td>{entVal.entName}</td>
+                          <td>{entVal.entType}</td>
+                          <td>
+                            {entVal.entAddress1}&nbsp;
+                            {entVal.entAddress2}&nbsp;
+                            {entVal.entAddress3}&nbsp;
+                          </td>
 
                           <td>
-                            {catVal.categoryStatus == "Active" ? (
+                            {entVal.entStatus == "Active" ? (
                               <>
                                 <img
                                   className="img_icon_size log"
-                                  onClick={() => onedit(catVal)}
+                                  onClick={() => onedit(entVal)}
                                   src={require("../../../static/images/edit_icon.png")}
                                   alt="Edit"
                                   title="Edit Category"
@@ -143,18 +161,10 @@ const Category = ({
                                 &nbsp;
                                 <img
                                   className="img_icon_size log"
-                                  onClick={() => onDelete(catVal._id)}
+                                  onClick={() => onDelete(entVal._id)}
                                   src={require("../../../static/images/delete.png")}
                                   alt="Delete User"
                                   title="Delete Category"
-                                />
-                                &nbsp;
-                                <img
-                                  className="img_icon_size log"
-                                  onClick={() => onDelete(catVal._id)}
-                                  src={require("../../../static/images/account1.png")}
-                                  alt="Join Leave"
-                                  title="Join Leave Page"
                                 />
                               </>
                             ) : (
@@ -166,9 +176,9 @@ const Category = ({
                     })}
                 </tbody>
               </table>
-              <div className="text-right ">
-                No. of Categories:{allcat && allcat.length}
-              </div>
+            </div>
+            <div className="text-right ">
+              No. of Institution/Individual:{allent && allent.length}
             </div>
           </section>
         </div>
@@ -238,7 +248,7 @@ const Category = ({
               <div className="col-lg-12 col-md-4 col-sm-4 col-12 text-center">
                 <textarea
                   rows="3"
-                  name="category_DE_Reason"
+                  name="Entity_DE_Reason"
                   onChange={(e) => onInputchange(e)}
                   id="org_reason"
                   className="textarea form-control"
@@ -258,7 +268,37 @@ const Category = ({
                 </button>
               </div>
             </div>
-            
+            {/* <div className="controls col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+              <div
+                className="col-lg-2 col-md-12 col-sm-12 col-xs-12"
+                style={{ border: "1px solid green" }}
+              ></div>
+              <div
+                className="col-lg-8 col-md-12 col-sm-12 col-xs-12 text-center"
+                style={{ border: "1px solid blue" }}
+              >
+                <textarea
+                  rows="2"
+                  name="Entity_DE_Reason"
+                  onChange={(e) => onInputchange(e)}
+                  id="org_reason"
+                  className="form-control"
+                  required
+                ></textarea>
+              </div>
+              <div
+                className="col-lg-2 col-md-12 col-sm-12 col-xs-12"
+                style={{ border: "1px solid green" }}
+              ></div>
+              Do You really want to Deactivate this Category?
+              <span className="form-input-info"></span>
+              <div className="text-right">
+                <button className="btn contact_reg btn_color" type="submit">
+                  {" "}
+                  DEACTIVATE
+                </button>
+              </div>
+            </div> */}
           </form>
         </Modal.Body>
       </Modal>
@@ -270,8 +310,9 @@ const mapStateToProps = (state) => ({
   dag: state.dag,
 });
 export default connect(mapStateToProps, {
-  //   getallcatGroup,
-  deleteCategory,
+  //   getallentGroup,
+  //deleteCategory,
   // loadUser,
-  getAllCategory,
-})(Category);
+  getAllEntity,
+  deleteEntity,
+})(Entity);

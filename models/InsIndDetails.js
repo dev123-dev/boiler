@@ -4,29 +4,31 @@ const IndInsSchema = new mongoose.Schema({
   entName: {
     type: String,
   },
-entOrderDesg:{
+  entOrderDesg: {
     type: String,
-},
-entEmail: {
+  },
+  entEmail: {
     type: String,
   },
   entAddEmail: {
     type: String,
   },
-
+  InstHead: {
+    type: Array,
+  },
   entUrl: {
     type: String,
   },
   entAddurl: {
     type: String,
   },
-    entPhone: {
+  entPhone: {
     type: String,
   },
   entAddPhone: {
     type: String,
   },
-entAddress1: {
+  entAddress1: {
     type: String,
   },
   entAddress2: {
@@ -35,58 +37,59 @@ entAddress1: {
   entAddress3: {
     type: String,
   },
-entDistrict: {
+  entDistrict: {
     type: String,
   },
   entState: {
     type: String,
   },
- entPinCode:{
+  entPinCode: {
     type: String,
   },
-  entType:{
+  entType: {
     type: String,
   },
-  entStatus:{
+  entStatus: {
     type: String,
-},
-  orgId:{
+  },
+  orgId: {
     type: String,
-    required:true,
+    required: true,
   },
   orgName: {
     type: String,
     required: true,
   },
-  EnterById:{
+  entReason: {
     type: String,
   },
-  EnterByName:{
+  EnterById: {
     type: String,
   },
-  EnterByDateTime:{
-    type:String,
-  },
-  EditById:{
+  EnterByName: {
     type: String,
   },
-  EditByName:{
+  EnterByDateTime: {
     type: String,
   },
-  EditByDateTime:{
-    type:String,
-  },
-  DeactiveById:{
+  EditById: {
     type: String,
   },
-  DeactiveByName:{
+  EditByName: {
     type: String,
   },
-  DeactiveByDateTime:{
-    type:String,
+  EditByDateTime: {
+    type: String,
   },
-
+  DeactiveById: {
+    type: String,
+  },
+  DeactiveByName: {
+    type: String,
+  },
+  DeactiveByDateTime: {
+    type: String,
+  },
 });
 
 module.exports = EntDetails = mongoose.model("Entities", IndInsSchema);
-
