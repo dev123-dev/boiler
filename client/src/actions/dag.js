@@ -25,6 +25,7 @@ import {
   GET_ALL_DESIGNATION,
   GET_ALL_SUPERUSER,
   GET_ALL_ORGANIZATION_DETAILS,
+  GET_ALL_ENTITY,
 } from "./types";
 
 var linkPath = "";
@@ -254,7 +255,7 @@ export const getAllCategory = (userdata) => async (dispatch) => {
   let body = { orgId: userdata };
   try {
     const res = await axios.post(`${linkPath}/api/category/getcategory`, body);
-    console.log("res data",res.data);
+    console.log("res data", res.data);
     dispatch({
       type: GET_ALL_CATEGORY,
       payload: res.data,
@@ -287,8 +288,8 @@ export const deleteCategory = (id) => async (dispatch) => {
 
 //edit category details
 export const updateCategory = (updatedata) => async (dispatch) => {
-  console.log("cat action", updatedata);
-  console.log("inside action");
+  //console.log("cat action", updatedata);
+  //console.log("inside action");
   // console.log(updatedata);
   try {
     axios.post(`${linkPath}/api/category/editcategory`, updatedata);
@@ -345,4 +346,57 @@ export const updateDesignation = (updatedata) => async (dispatch) => {
     axios.post(`${linkPath}/api/designation/editdesignation`, updatedata);
     //dispatch(getalldesignation());
   } catch (err) {}
+};
+
+//Add institiion
+
+export const AddInst = (UserData) => async (dispatch) => {
+  //console.log("inserted to database");
+  try {
+    await axios.post(`${linkPath}/api/entity/addinsind`, UserData, config);
+    //diapatching get function because it should relfex immidiatly after adding
+    //dispatch(getAllCategory());
+  } catch (err) {
+    dispatch({
+      type: AUTH_ERROR,
+    });
+  }
+};
+
+//getting all inst/indvi
+
+export const getAllEntity = (userdata) => async (dispatch) => {
+  // console.log(userdata);
+  let body = { orgId: userdata };
+  try {
+    const res = await axios.post(`${linkPath}/api/entity/getinsind`, body);
+
+    dispatch({
+      type: GET_ALL_ENTITY,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: GET_ALL_ENTITY,
+    });
+  }
+};
+
+//deleting entity details
+export const deleteEntity = (id) => async (dispatch) => {
+  // console.log('INSIDE ACTION')
+  // console.log("delete", id);
+  try {
+    const res = await axios.post(
+      `${linkPath}/api/entity/deactiveinstind`,
+      id,
+      config
+    );
+    //dispatch(getAllCategory());
+  } catch (err) {
+    console.log("error while sending from action");
+    dispatch({
+      type: TENANT_FEEDBACK_ERROR,
+    });
+  }
 };

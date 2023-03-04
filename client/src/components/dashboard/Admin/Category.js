@@ -8,7 +8,7 @@ import EditCategory from "./EditCategory";
 //import { loadUser } from "../../../actions/auth";
 
 const Category = ({
-  auth: { user},
+  auth: { user },
   dag: { allcat },
   deleteCategory,
   getAllCategory,
@@ -18,12 +18,11 @@ const Category = ({
       getAllCategory(user.orgId);
     }
   }, []);
-  console.log("user data on cat",user)
+  // console.log("user data on cat",user)
   const onClickReset = () => {
     if (user) {
       getAllCategory(user.orgId);
     }
-    
   };
 
   //deactivate
