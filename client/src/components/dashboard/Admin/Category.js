@@ -8,12 +8,9 @@ import EditCategory from "./EditCategory";
 //import { loadUser } from "../../../actions/auth";
 
 const Category = ({
-  auth: { isAuthenticated, user, users, finalDataRep },
-  //here to connect to action we need to import the function
-  //then again we need to mention inside the const function
+  auth: { user},
   dag: { allcat },
   deleteCategory,
-  //loadUser,
   getAllCategory,
 }) => {
   useEffect(() => {
@@ -21,12 +18,12 @@ const Category = ({
       getAllCategory(user.orgId);
     }
   }, []);
-
+  console.log("user data on cat",user)
   const onClickReset = () => {
     if (user) {
       getAllCategory(user.orgId);
     }
-    // getAllCategory(user.orgId);
+    
   };
 
   //deactivate

@@ -24,6 +24,7 @@ const auth = (state = initialState, action) => {
 
   switch (type) {
     case USER_LOADED:
+      localStorage.setItem("user",payload)
       return {
         ...state,
         isAuthenticated: true,

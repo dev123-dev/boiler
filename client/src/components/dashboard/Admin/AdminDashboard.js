@@ -13,21 +13,18 @@ const AdminDashboard = ({
 }) => {
 
   useEffect(() => {
-
-    loadUser()
     if (user) {
       getAllCategory(user.orgId);
-      console.log("run get allcat")
     }
     getcatcount();
 
   }, []);
   
-console.log(user)
+console.log("user data ",user)
   const[catcount,setCatcount]=useState(null)
 
   const getcatcount=()=>{
-    allcat.map((ele,index)=>setCatcount(index+1))
+   allcat && allcat.map((ele,index)=>setCatcount(index+1))
   }
 
   return !isAuthenticated || !user ? (
@@ -61,7 +58,7 @@ console.log(user)
                   alt="category"
                 />
               </div>
-              <div onClick={()=> getAllCategory(user.orgId)}>
+              <div onClick={()=> console.log("clicked")}>
                 <h2>Category</h2>
                 <h4>{catcount}</h4>
               </div>
@@ -76,7 +73,7 @@ console.log(user)
               </div>
               <div>
                 <h2>Instit/Individal</h2>
-                <h4> 555</h4>
+                <h4> 5</h4>
               </div>
             </div>
             <div className="col-lg-1"></div>
@@ -86,13 +83,13 @@ console.log(user)
             <div className="col-lg-5 card h2 text-center pt-5" id="shadow-bck">
               <div>
                 <h2> Empty Category</h2>
-                <h4> 555</h4>
+                <h4> 5</h4>
               </div>{" "}
             </div>
             <div className="col-lg-5 card h2 text-center pt-5 " id="shadow-bck">
               <div>
                 <h2> Empty Instit/Individual</h2>
-                <h4> 555</h4>
+                <h4> 5</h4>
               </div>{" "}
             </div>
             <div className="col-lg-1"></div>
