@@ -133,7 +133,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 user &&
                 user.userGroup === "Admin" ? (
                   <NavLink
-                    to="/addinstitute"
+                    to="/entity"
                     className="navlink"
                     activeStyle={{ color: "#e79d69", textDecoration: "none" }}
                   >

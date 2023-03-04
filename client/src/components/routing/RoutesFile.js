@@ -24,6 +24,7 @@ import AddInstitution from "../dashboard/Admin/AddInstitution";
 import Designation from "../dashboard/Admin/Designation";
 import Category from "../dashboard/Admin/Category";
 import UserList from "../dashboard/Admin/UserList";
+import Entity from "../dashboard/Admin/Entity";
 
 const RoutesFile = () => {
   return (
@@ -48,6 +49,7 @@ const RoutesFile = () => {
         <PrivateRoute exact path="/admindashboard" component={AdminDashboard} />
 
         <PrivateRoute exact path="/category" component={Category} />
+        <PrivateRoute exact path="/entity" component={Entity} />
         <PrivateRoute exact path="/addinstitute" component={AddInstitution} />
 
         <PrivateRoute exact path="/generatelabel" component={AddIndividual} />

@@ -440,7 +440,7 @@ title="Deactivate User"
 
               <form>
                 <div className="row form-group mt-4" id="eventDiv">
-                  <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                  {/* <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
                     <label className="control-label" id="ent_name_label">
                       Individual's Name{" "}
                     </label>
@@ -481,7 +481,7 @@ title="Deactivate User"
                     id="orderDiv"
                   >
                     <label className="control-label" id="ent_order_desg_lbl">
-                      Phone
+                      Email
                     </label>
                     <span>*</span>
                     <div className="controls">
@@ -497,7 +497,7 @@ title="Deactivate User"
                   </div>
 
                   <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                    <label className="control-label">Email </label>
+                    <label className="control-label">Additional Email </label>
                     <span>*</span>
                     <div className="controls">
                       <input
@@ -510,7 +510,216 @@ title="Deactivate User"
                       />
                       <span className="form-input-info positioning "></span>
                     </div>
+                  </div> */}
+                  <div
+                    className="row form-group  col-md-12 col-lg-12 col-sm-12 col-xs-12"
+                    id="eventDiv"
+                  >
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                      <label className="control-label" id="ent_order_desg_lbl">
+                        Individual's Name<span>*</span>
+                      </label>
+                      <label className="control-label" id="ent_name_label">
+                        {" "}
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="ent_name"
+                          id="ent_name"
+                          type="text"
+                          className="form-control required"
+                          value=""
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12"
+                      id="orderDiv"
+                    >
+                      <label className="control-label" id="ent_order_desg_lbl">
+                        Designation<span>*</span>
+                      </label>
+                      <div className="controls">
+                        <select
+                          className="form-control"
+                          id="desg_menu"
+                          name="desg_menu"
+                          required
+                        >
+                          <option selected value="">
+                            --Select Designation--
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                      <label className="control-label">
+                        Email <span>*</span>
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="ent_email"
+                          id="ent_email"
+                          type="text"
+                          className="form-control validEmail"
+                          value=""
+                          required
+                        />
+                        <span className="form-input-info positioning "></span>
+                      </div>
+                    </div>
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                      <label className="control-label">Additional Email </label>
+                      <div className="controls">
+                        <input
+                          name="ent_addl_email"
+                          id="ent_addl_email"
+                          type="text"
+                          className="form-control validEmail"
+                          value=""
+                        />
+                        <span className="form-input-info positioning"></span>
+                      </div>
+                    </div>
+
+                    <div
+                      className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12"
+                      id="orderDiv"
+                    >
+                      <label className="control-label" id="ent_order_desg_lbl">
+                        Contact No.<span>*</span>
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="ent_order_desg"
+                          id="ent_order_desg"
+                          type="text"
+                          className="form-control"
+                          value=""
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
+                      <label className="control-label">
+                        Additional Contact No.
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="ent_addl_url"
+                          id="ent_addl_url"
+                          type="text"
+                          className="form-control"
+                          value=""
+                        />
+                      </div>
+                    </div>
                   </div>
+
+                  <div
+                    class="row form-group col-md-12 col-lg-12 col-sm-12 col-xs-12"
+                    id="postageDiv"
+                  >
+                    <div class="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                      <label class="txtcolor">
+                        <b>Postal Address</b>
+                      </label>
+                    </div>
+
+                    <div class="control-group col-md-8 col-lg-8 col-sm-8 col-xs-12">
+                      <label class="control-label">
+                        Address line1 <span>*</span>
+                      </label>
+                      <div class="controls">
+                        <input
+                          name="ent_addl1"
+                          id="ent_addl1"
+                          type="text"
+                          class="form-control required"
+                          value=""
+                          maxlength="38"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                      <label class="control-label">
+                        District <span>*</span>
+                      </label>
+                      <div class="controls">
+                        <input
+                          name="ent_district"
+                          id="ent_district"
+                          type="text"
+                          class="form-control required"
+                          value=""
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="control-group col-md-8 col-lg-8 col-sm-8 col-xs-12">
+                      <label class="control-label">
+                        Address line2 <span>*</span>
+                      </label>
+                      <div class="controls">
+                        <input
+                          name="ent_addl2"
+                          id="ent_addl2"
+                          type="text"
+                          class="form-control required"
+                          value=""
+                          maxlength="38"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12">
+                      <label class="control-label">State </label>
+                      <div class="controls">
+                        <input
+                          name="ent_state"
+                          id="ent_state"
+                          type="text"
+                          class="form-control"
+                          value=""
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="control-group col-md-8 col-lg-8 col-sm-8 col-xs-12">
+                      <label class="control-label">Address line3 </label>
+                      <div class="controls">
+                        <input
+                          name="ent_addl3"
+                          id="ent_addl3"
+                          type="text"
+                          class="form-control"
+                          value=""
+                          maxlength="38"
+                        />
+                      </div>
+                    </div>
+                    <div class="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12 ">
+                      <label class="control-label">
+                        Pincode <span>*</span>
+                      </label>
+                      <div class="controls ">
+                        <input
+                          name="ent_pincode"
+                          id="ent_pincode"
+                          maxlength="6"
+                          type="text"
+                          class="form-control required"
+                          value=""
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 
                   <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
                     <label className="control-label">Address </label>
                     <div className="controls">
@@ -523,22 +732,7 @@ title="Deactivate User"
                       />
                       <span className="form-input-info positioning"></span>
                     </div>
-                  </div>
-
-                  {/* <div id="ent_url_div">
-					<div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-						<label className="control-label" >Institution Url</label>
-						<div className="controls">
-							<input name="ent_url" id="ent_url" type="text" className="form-control" value=""/>
-						</div>
-					</div>
-					<div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-						<label className="control-label" >Additional Url</label>
-						<div className="controls">
-							<input name="ent_addl_url" id="ent_addl_url" type="text" className="form-control" value=""/>
-						</div>
-					</div>
-				</div> */}
+                  </div> */}
                 </div>
                 <div className="text-right my-4">
                   {/* <button className="btn contact_reg btn_color">CANCEL</button> */}
