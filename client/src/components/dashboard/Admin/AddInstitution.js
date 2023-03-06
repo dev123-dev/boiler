@@ -43,7 +43,7 @@ const AddInstitution = ({
     entStatus: "",
     entType: "",
   });
-
+  console.log("array", addhead);
   const {
     entName,
     entOrderDesg,
@@ -450,7 +450,7 @@ const AddInstitution = ({
                             <>
                               <tr key={index}>
                                 <td>{headVal.headName}</td>
-                                <td>{headVal.headDesgBelongs}</td>
+                                <td>{headVal.desigbelongs}</td>
                                 <td>{headVal.headEmail}</td>
                                 <td>{headVal.headPhone}</td>
                                 <td>
