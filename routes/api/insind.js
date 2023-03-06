@@ -4,7 +4,6 @@ const EntDetails = require("../../models/InsIndDetails");
 
 //add indins
 router.route("/addinsind").post((req, res) => {
- 
   let Ent = new EntDetails(req.body);
 
   Ent.save(req.body)
@@ -17,21 +16,44 @@ router.route("/addinsind").post((req, res) => {
 //get all entity
 router.route("/getinsind").post((req, res) => {
   let body = req.body;
-  
+
   EntDetails.find({ orgId: body.orgId })
     .sort({ entStatus: 1 })
 
     .then((data) => {
-     
       res.status(200).json(data);
     })
     .catch((err) => res.status(400).json("Error" + err));
 });
 
+//deactive  entity
+router.route("/deactiveinstind").post((req, res) => {
+  let data = req.body;
+
+  EntDetails.updateOne(
+    { _id: data.entId, orgId: data.orgId },
+    {
+      $set: {
+        entStatus: "Deactive",
+        entReason: data.entdeletereason,
+        DeactiveById: data.DeactiveById,
+        DeactiveByName: data.DeactiveByName,
+        DeactiveByDateTime: data.DeactiveByDateTime,
+      },
+    }
+  )
+    .then((data) => {
+      res.status(200).json(data);
+    })
+
+    .catch((err) => res.status(400).json("Error" + err));
+  // console.log(data)
+});
+
 // //deactive  category
 // router.route("/deactivecategory").post((req, res) => {
 //   let data = req.body;
-  
+
 //   CategoryDetails.updateOne(
 //     { _id: data.catid, orgId: data.orgId },
 //     {
@@ -56,7 +78,7 @@ router.route("/getinsind").post((req, res) => {
 
 // router.route("/editcategory").post((req, res) => {
 //   let data = req.body;
- 
+
 //   let CatHis = new CategoryHistroy(req.body);
 //   CatHis.save(req.body).then(() => console.log("Histroy entered for CAtegory"));
 
@@ -78,8 +100,6 @@ router.route("/getinsind").post((req, res) => {
 
 //     .catch((err) => res.status(400).json("Error" + err));
 
-
 // });
-
 
 module.exports = router;
