@@ -261,7 +261,7 @@ export const getAllCategory = (userdata) => async (dispatch) => {
       type: GET_ALL_CATEGORY,
       payload: res.data,
     });
-    console.log("res",res.data);
+    console.log("res", res.data);
   } catch (err) {
     dispatch({
       type: GET_ALL_CATEGORY,
@@ -401,4 +401,15 @@ export const deleteEntity = (id) => async (dispatch) => {
       type: TENANT_FEEDBACK_ERROR,
     });
   }
+};
+
+//edit Institution details
+export const UpdateInst = (updatedata) => async (dispatch) => {
+  //console.log("cat action", updatedata);
+  //console.log("inside action");
+  // console.log(updatedata);
+  try {
+    axios.post(`${linkPath}/api/entity/editinstind`, updatedata);
+    // dispatch(getAllCategory());
+  } catch (err) {}
 };

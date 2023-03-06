@@ -74,32 +74,45 @@ router.route("/deactiveinstind").post((req, res) => {
 //   // console.log(data)
 // });
 
-// //edit
+//edit
 
-// router.route("/editcategory").post((req, res) => {
-//   let data = req.body;
+router.route("/editinstind").post((req, res) => {
+  let data = req.body;
 
-//   let CatHis = new CategoryHistroy(req.body);
-//   CatHis.save(req.body).then(() => console.log("Histroy entered for CAtegory"));
+  // let CatHis = new CategoryHistroy(req.body);
+  // CatHis.save(req.body).then(() => console.log("Histroy entered for CAtegory"));
+  console.log(data);
 
-//   CategoryDetails.updateOne(
-//     { _id: data.catId, orgId: data.orgId },
-//     {
-//       $set: {
-//         categoryName: data.categoryName,
-//         categoryDesp: data.categoryDesp,
-//         EditById: data.EditById,
-//         EditByName: data.EditByName,
-//         EditByDateTime: data.EditByDateTime,
-//       },
-//     }
-//   )
-//     .then((data) => {
-//       res.status(200).json(data);
-//     })
+  EntDetails.updateOne(
+    { _id: data.entId, orgId: data.orgId },
+    {
+      $set: {
+        entName: data.entName,
+        entOrderDesgId: data.entOrderDesgId,
+        entOrderDesg: data.entOrderDesg,
+        entEmail: data.entEmail,
+        entAddEmail: data.entAddEmail,
+        entUrl: data.entUrl,
+        entAddurl: data.entAddurl,
+        entPhone: data.entPhone,
+        entAddPhone: data.entAddPhone,
+        entAddress1: data.entAddress1,
+        entAddress2: data.entAddress2,
+        entAddress3: data.entAddress3,
+        entDistrict: data.entDistrict,
+        entState: data.entState,
+        entPinCode: data.entPinCode,
+        EditById: data.EditById,
+        EditByName: data.EditByName,
+        EditByDateTime: data.EditByDateTime,
+      },
+    }
+  )
+    .then((data) => {
+      res.status(200).json(data);
+    })
 
-//     .catch((err) => res.status(400).json("Error" + err));
-
-// });
+    .catch((err) => res.status(400).json("Error" + err));
+});
 
 module.exports = router;

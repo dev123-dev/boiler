@@ -6,7 +6,6 @@ import NotFound from "../layout/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import RouteDriver from "../dashboard/RouteDriver";
 
-
 import SuperDashboard from "../dashboard/SuperAdmin/SuperDashboard";
 import Organization from "../dashboard/SuperAdmin/Organization";
 import Users from "../dashboard/SuperAdmin/Users";
@@ -21,6 +20,7 @@ import Designation from "../dashboard/Admin/Designation";
 import Category from "../dashboard/Admin/Category";
 import UserList from "../dashboard/Admin/UserList";
 import Entity from "../dashboard/Admin/Entity";
+import EditEntity from "../dashboard/Admin/EditEntity";
 
 const RoutesFile = () => {
   return (
@@ -47,10 +47,11 @@ const RoutesFile = () => {
         <PrivateRoute exact path="/category" component={Category} />
         <PrivateRoute exact path="/entity" component={Entity} />
         <PrivateRoute exact path="/addinstitute" component={AddInstitution} />
-        
-      
+
         <PrivateRoute exact path="/designation" component={Designation} />
         <PrivateRoute exact path="/userlist" component={UserList} />
+
+        <PrivateRoute exact path="/editentity" component={EditEntity} />
 
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
         <Route component={NotFound} />

@@ -5,6 +5,8 @@ import { deleteCategory } from "../../../actions/dag";
 import { getAllEntity, deleteEntity } from "../../../actions/dag";
 import { Link, NavLink } from "react-router-dom";
 import EditCategory from "./EditCategory";
+
+import { useHistory } from "react-router-dom";
 // import AddInstitution from "./AddInstitution";
 //import { loadUser } from "../../../actions/auth";
 
@@ -24,6 +26,7 @@ const Entity = ({
     }
   }, []);
 
+  let history = useHistory();
   const onClickReset = () => {
     if (user) {
       getAllEntity(user.orgId);
@@ -74,11 +77,17 @@ const Entity = ({
   const handleEditModalClose = () => setShowEditModal(false);
   const handleOpen = () => setShowEditModal(true);
 
-  const [catdata, setcatdata] = useState(null);
+  const [catdata, setcatdata] = useState({});
+  const [data, setdata] = useState(null);
   const onedit = (user2) => {
-    setShowUpdateModal(true);
-    setcatdata(user2);
-    handleOpen();
+    //console.log("user2", user2);
+    localStorage.setItem("editEnity", JSON.stringify(user2));
+
+    history.push("/editentity");
+
+    //setShowUpdateModal(true);
+    // setcatdata(user2);
+    // handleOpen();
   };
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
