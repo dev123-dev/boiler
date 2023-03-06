@@ -7,6 +7,9 @@ const IndInsSchema = new mongoose.Schema({
   entOrderDesg: {
     type: String,
   },
+  entOrderDesgId: {
+    type: String,
+  },
   entEmail: {
     type: String,
   },

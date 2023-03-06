@@ -13,12 +13,12 @@ router.route("/addinsind").post((req, res) => {
     .catch((err) => res.status(400).json("Error" + err));
 });
 
-//get all cat
+//get all entity
 router.route("/getinsind").post((req, res) => {
   let body = req.body;
 
   EntDetails.find({ orgId: body.orgId })
-    .sort({ categoryStatus: 1 })
+    .sort({ entStatus: 1 })
 
     .then((data) => {
       res.status(200).json(data);

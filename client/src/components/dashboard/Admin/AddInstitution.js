@@ -3,24 +3,65 @@ import React, { useEffect, useState } from "react";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { AddInst } from "../../../actions/dag";
+import { AddInst, getalldesignation } from "../../../actions/dag";
 import Modal from "react-bootstrap/Modal";
-//import { getAllCategory } from "../../../actions/dag";
+
 import AddInstHead from "./AddInstHead";
+import Select from "react-select";
 
 import { useHistory } from "react-router-dom";
 
 const AddInstitution = ({
   auth: { isAuthenticated, user, users, finalDataRep },
+  dag: { alldesg },
   AddInst,
-  // getAllCategory,
+  getalldesignation,
 }) => {
+  useEffect(() => {
+    if (user) {
+      getalldesignation(user.orgId);
+    }
+  }, []);
+
+  console.log("indiv", alldesg);
   let history = useHistory();
   const [show, setshow] = useState("");
   const handleClose = () => setshow("false");
   const handleShow = () => setshow("true");
 
   const [showins, setShowins] = useState(true);
+
+  const [designation, getdesignationData] = useState();
+  const [designationId, setdesignationId] = useState();
+  const [designationName, setdesignationName] = useState();
+
+  const alldesignation = [];
+  // console.log("alldesignation",alldesignation)
+  alldesg &&
+    alldesg.map((designation) =>
+      alldesignation.push({
+        designationId: designation._id,
+        label: designation.designationName,
+        value: designation.designationName,
+      })
+    );
+
+  const ondesignationChange = (e) => {
+    //console.log(e);
+    var designationId = "";
+    var designationName = "";
+    getdesignationData(e);
+
+    designationId = e.designationId;
+    designationName = e.value;
+
+    setdesignationId(designationId);
+    setdesignationName(designationName);
+    const changeData = {
+      designationIdVal: e.designationId,
+    };
+    //getalldesignation(changeData);
+  };
 
   const entOrgId = user ? user.orgId : "";
   const entOrgName = user ? user.orgName : "";
@@ -84,6 +125,7 @@ const AddInstitution = ({
 
     const finalENTdata = {
       entName: entName,
+      entOrderDesgId: "",
       entOrderDesg: entOrderDesg,
       entEmail: entEmail,
       entAddEmail: entAddEmail,
@@ -116,6 +158,7 @@ const AddInstitution = ({
     };
 
     AddInst(finalENTdata);
+    console.log("final", finalENTdata);
     // getAllCategory(user.orgId);
 
     setformDataENT({
@@ -189,7 +232,8 @@ const AddInstitution = ({
 
     const finalINDdata = {
       entName: indName,
-      entOrderDesg: indDesg,
+      entOrderDesgId: designationId,
+      entOrderDesg: designationName,
       entEmail: indEmail,
       entAddEmail: indAddEmail,
       entUrl: "",
@@ -636,6 +680,14 @@ const AddInstitution = ({
                         >
                           Designation<span>*</span>
                         </label>
+                        <Select
+                          name="desigbelongs"
+                          options={alldesignation}
+                          isSearchable={true}
+                          value={designation}
+                          // placeholder={desigbelongs}
+                          onChange={(e) => ondesignationChange(e)}
+                        />
                         {/* <div className="controls">
                           <select
                             className="form-control"
@@ -648,14 +700,14 @@ const AddInstitution = ({
                             </option>
                           </select>
                         </div> */}
-                        <input
+                        {/* <input
                           name="indDesg"
                           id="ent_email"
                           type="text"
                           onChange={(e) => onINDchange(e)}
                           className="form-control validEmail"
                           required
-                        />
+                        /> */}
                       </div>
 
                       <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
@@ -845,6 +897,8 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   dag: state.dag,
 });
-export default connect(mapStateToProps, { AddInst })(AddInstitution);
+export default connect(mapStateToProps, { AddInst, getalldesignation })(
+  AddInstitution
+);
 
 // AddInstitution, getAllCategory;
