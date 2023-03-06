@@ -43,7 +43,7 @@ const AddInstitution = ({
     entStatus: "",
     entType: "",
   });
-
+  console.log("array", addhead);
   const {
     entName,
     entOrderDesg,
@@ -191,7 +191,7 @@ const AddInstitution = ({
                 >
                   <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
                     <label className="control-label" id="ent_order_desg_lbl">
-                      Institution Name
+                      Institution Name<span>*</span>
                     </label>
                     <label className="control-label" id="ent_name_label">
                       {" "}
@@ -212,7 +212,7 @@ const AddInstitution = ({
                     id="orderDiv"
                   >
                     <label className="control-label" id="ent_order_desg_lbl">
-                      Order
+                      Order<span>*</span>
                     </label>
                     <div className="controls">
                       <input
@@ -227,7 +227,9 @@ const AddInstitution = ({
                   </div>
 
                   <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
-                    <label className="control-label">Email </label>
+                    <label className="control-label">
+                      Email <span>*</span>
+                    </label>
                     <div className="controls">
                       <input
                         name="entEmail"
@@ -268,7 +270,6 @@ const AddInstitution = ({
                         type="url"
                         className="form-control"
                         onChange={(e) => onENTchange(e)}
-                        required
                       />
                     </div>
                   </div>
@@ -290,7 +291,7 @@ const AddInstitution = ({
                     id="orderDiv"
                   >
                     <label className="control-label" id="ent_order_desg_lbl">
-                      Contact No.
+                      Contact No.<span>*</span>
                     </label>
                     <div className="controls">
                       <input
@@ -340,14 +341,13 @@ const AddInstitution = ({
                         type="text"
                         className="form-control required"
                         onChange={(e) => onENTchange(e)}
-                        maxlength="38"
                         required
                       />
                     </div>
                   </div>
                   <div className="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12">
                     <label className="control-label">
-                      District <span style={{ color: "#800000" }}>*</span>
+                      District <span>*</span>
                     </label>
                     <div className="controls">
                       <input
@@ -371,7 +371,6 @@ const AddInstitution = ({
                         type="text"
                         className="form-control required"
                         onChange={(e) => onENTchange(e)}
-                        maxlength="38"
                         required
                       />
                     </div>
@@ -398,19 +397,18 @@ const AddInstitution = ({
                         type="text"
                         className="form-control"
                         onChange={(e) => onENTchange(e)}
-                        maxlength="38"
+                        // maxlength="38"
                       />
                     </div>
                   </div>
                   <div className="control-group col-md-4 col-lg-4 col-sm-4 col-xs-12 ">
                     <label className="control-label">
-                      Pincode <span style={{ color: "#800000;" }}>*</span>
+                      Pincode <span>*</span>
                     </label>
                     <div className="controls ">
                       <input
                         name="entPincode"
                         id="ent_pincode"
-                        maxlength="6"
                         type="text"
                         className="form-control required"
                         onChange={(e) => onENTchange(e)}
@@ -452,7 +450,7 @@ const AddInstitution = ({
                             <>
                               <tr key={index}>
                                 <td>{headVal.headName}</td>
-                                <td>{headVal.headDesgBelongs}</td>
+                                <td>{headVal.desigbelongs}</td>
                                 <td>{headVal.headEmail}</td>
                                 <td>{headVal.headPhone}</td>
                                 <td>
@@ -629,7 +627,6 @@ const AddInstitution = ({
                             id="ent_addl1"
                             type="text"
                             className="form-control required"
-                            maxlength="38"
                             required
                           />
                         </div>
@@ -658,7 +655,6 @@ const AddInstitution = ({
                             id="ent_addl2"
                             type="text"
                             className="form-control required"
-                            maxlength="38"
                             required
                           />
                         </div>
@@ -683,7 +679,6 @@ const AddInstitution = ({
                             id="ent_addl3"
                             type="text"
                             className="form-control"
-                            maxlength="38"
                           />
                         </div>
                       </div>
@@ -695,7 +690,6 @@ const AddInstitution = ({
                           <input
                             name="ent_pincode"
                             id="ent_pincode"
-                            maxlength="6"
                             type="text"
                             className="form-control required"
                             required

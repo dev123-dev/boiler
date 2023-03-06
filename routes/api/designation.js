@@ -3,7 +3,6 @@ const DesignationDetails = require("../../models/DesignationDetails");
 const DesignationHistroy = require("../../models/DesignationHistroy");
 //add user
 router.route("/adddesignation").post((req, res) => {
- 
   let Designation = new DesignationDetails(req.body);
 
   Designation.save(req.body)
@@ -13,14 +12,14 @@ router.route("/adddesignation").post((req, res) => {
     .catch((err) => res.status(400).json("Error" + err));
 });
 
-//get all cat
+//get all desg
 router.route("/getDesignation").post((req, res) => {
   let body = req.body;
- 
+
   DesignationDetails.find({ orgId: body.orgId })
     .sort({ designationStatus: 1 })
 
-    .then((data) => { 
+    .then((data) => {
       res.status(200).json(data);
     })
 
@@ -50,7 +49,6 @@ router.route("/editdesignation").post((req, res) => {
     })
 
     .catch((err) => res.status(400).json("Error" + err));
- 
 });
 
 module.exports = router;

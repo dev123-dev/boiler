@@ -1,21 +1,70 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 //import { addDesignation, getalldesignation } from "../../../actions/dag";
 //import { getAllCategory } from "../../../actions/dag";
-//import Select from "react-select";
+import Select from "react-select";
+import { getalldesignation } from "../../../actions/dag";
 
 const AddInstHead = ({
   auth: { isAuthenticated, user },
+  dag: { alldesg },
   //addDesignation,
   setaddhead,
   addhead,
-  // getalldesignation,
+  getalldesignation,
 }) => {
+  useEffect(() => {
+    if (user) {
+      getalldesignation(user.orgId);
+    }
+  }, []);
   const [show, setshow] = useState("");
   const handleClose = () => setshow("false");
   const handleShow = () => setshow("true");
+
+  //select dropdown
+
+  const [designation, getdesignationData] = useState();
+  const [designationId, setdesignationId] = useState();
+  const [designationName, setdesignationName] = useState();
+
+  const alldesignation = [];
+  //console.log("alldesg", alldesg);
+
+  alldesg &&
+    alldesg.map((designation) =>
+      alldesignation.push({
+        designationId: designation._id,
+        label: designation.designationName,
+        value: designation.designationName,
+      })
+    );
+
+  const [desigbelongs, setdesigbelongs] = useState("");
+  const [desigbelongsId, setdesigbelongsId] = useState("");
+
+  const ondesignationChange = (e) => {
+    // console.log("dropdown", e);
+    // console.log("dropdownvalue", e.value);
+    setdesigbelongs(e.value);
+
+    setdesigbelongsId(e.designationId);
+    // var designationId = "";
+    // var designationName = "";
+    // getdesignationData(e);
+
+    // designationId = e.designationId;
+    // designationName = e.value;
+
+    // setdesignationId(designationId);
+    // setdesignationName(designationName);
+    // const changeData = {
+    //   designationIdVal: e.designationId,
+    // };
+  };
+  //console.log("desigbelongs", desigbelongs);
 
   //   const desigOrgId = user ? user.orgId : "";
   //   const desigOrgName = user ? user.orgName : "";
@@ -27,6 +76,7 @@ const AddInstHead = ({
     headAddEmail: "",
     headAddPhone: "",
     headDesgBelongs: "",
+    desigbelongs: "",
 
     headStatus: "",
   });
@@ -51,14 +101,32 @@ const AddInstHead = ({
 
   const [showAddModal, setShowAddModal] = useState(false);
   const handleAddClose = () => setShowAddModal(false);
-  const handleOpen = () => setShowAddModal(true);
+
+  const handleOpen = (e) => {
+    e.preventDefault();
+    setShowAddModal(true);
+    console.log("e", e);
+
+    var designationId = "";
+    var designationName = "";
+    getdesignationData(e);
+
+    designationId = e.designationId;
+    designationName = e.value;
+
+    setdesignationId(designationId);
+    setdesignationName(designationName);
+    const changeData = {
+      designationIdVal: e.designationId,
+    };
+  };
 
   const onSubmitDESGdata = (e) => {
     if (
       e.target.name === headName ||
       e.target.name === headEmail ||
-      e.target.name === headPhone ||
-      e.target.name === headDesgBelongs
+      e.target.name === headPhone
+      // e.target.name === headDesgBelongs
     ) {
       if (e.target.value === "") {
         alert("enter all fierlds");
@@ -74,7 +142,10 @@ const AddInstHead = ({
         headPhone: headPhone,
         headAddEmail: headAddEmail,
         headAddPhone: headAddPhone,
-        headDesgBelongs: headDesgBelongs,
+        desigbelongs: desigbelongs,
+        desgId: designationId,
+        headDesgBelongs: designationName,
+        desigbelongsId: desigbelongsId,
 
         // designationStatus: "Active",
         //orgId: desigOrgId,
@@ -83,6 +154,7 @@ const AddInstHead = ({
         // EnterByName: user.userName,
         //EnterByDateTime: new Date().toLocaleString("en-GB"),
       };
+      //  console.log("final", finalDESGdata);
       setaddhead([...addhead, finalDESGdata]);
       //addDesignation(finalDESGdata);
       // getalldesignation(user.orgId);
@@ -99,6 +171,8 @@ const AddInstHead = ({
       });
       handleAddClose();
     }
+    // setdesigbelongs("");
+    // setdesigbelongsId("");
   };
 
   return !isAuthenticated || !user ? (
@@ -172,22 +246,22 @@ const AddInstHead = ({
                         Designation<span>*</span>
                       </label>
                       <div className="controls">
-                        {/* <Select
-                          name="headDesgBelongs"
-                          //options={allOraganisation}
+                        <Select
+                          name="desigbelongs"
+                          options={alldesignation}
                           isSearchable={true}
-                          // value={oraganisation}
-                          placeholder="Select Designation"
-                          onChange={(e) => onInputChange(e)}
-                        /> */}
-                        <input
+                          value={desigbelongs}
+                          placeholder={desigbelongs}
+                          onChange={(e) => ondesignationChange(e)}
+                        />
+                        {/* <input
                           name="headDesgBelongs"
                           id="full_name"
                           type="text"
                           className="form-control"
                           onChange={(e) => onInputChange(e)}
                           required
-                        />
+                        /> */}
 
                         {/* <select style={{ backgroundcolor: '#877bae' }} name="UserOrgbelongs" className=" selectorgcolor form-control" onChange={(e) => onUserchange(e)} required>
                           <option>--Select Organization--</option>
@@ -313,7 +387,7 @@ const mapStateToProps = (state) => ({
   auth: state.auth,
   dag: state.dag,
 });
-export default connect(mapStateToProps, {})(AddInstHead);
+export default connect(mapStateToProps, { getalldesignation })(AddInstHead);
 //, getAllCategory
 
 //addDesignation, getalldesignation;

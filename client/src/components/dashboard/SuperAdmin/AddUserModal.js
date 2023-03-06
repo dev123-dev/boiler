@@ -16,6 +16,8 @@ const AddUserModal = ({
     getAllOrganization();
   }, []);
 
+  console.log("allorg", allorg);
+
   const [oraganisation, getOraganisationData] = useState();
   const [oraganisationId, setOraganisationId] = useState();
   const [oraganisationName, setOraganisationName] = useState();
