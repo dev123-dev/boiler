@@ -3,14 +3,15 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NotFound from "../../layout/NotFound";
 import { loadUser } from "../../../actions/auth";
-import { getAllCategory } from "../../../actions/dag";
+import { getAllCategory, getAllEntity } from "../../../actions/dag";
 
 const AdminDashboard = ({
   auth: { isAuthenticated, user },
-  dag: { allcat },
-  getAllCategory,
+  dag: { allcat, allent },
+  getAllCategory, getAllEntity,
   loadUser,
 }) => {
+
 
   useEffect(() => {
 
@@ -19,19 +20,13 @@ const AdminDashboard = ({
     if (myuser) {
       
       getAllCategory(myuser.orgId);
+      getAllEntity(myuser.orgId);
        console.log("called get cat",allcat)
-      getcatcount();
+
     }
    
   }, []);
   
-//console.log("user data ",user)
-  const[catcount,setCatcount]=useState(null)
-
-  const getcatcount=()=>{
-   allcat && allcat.map((ele,index)=>setCatcount(index+1))
-  }
-
   return !isAuthenticated || !user ? (
     <NotFound />
   ) : (
@@ -63,9 +58,12 @@ const AdminDashboard = ({
                   alt="category"
                 />
               </div>
-              <div onClick={()=> console.log("clicked")}>
+              <div>
                 <h2>Category</h2>
-                <h4>{allcat && allcat.length}</h4>
+                <h4>{allcat && allcat.length
+                }
+                
+                </h4>
               </div>
             </div>
             <div className="col-lg-5 card  h2 text-center pt-5" id="shadow-bck">
@@ -78,7 +76,7 @@ const AdminDashboard = ({
               </div>
               <div>
                 <h2>Instit/Individal</h2>
-                <h4> 5</h4>
+                <h4>{allent && allent.length}</h4>
               </div>
             </div>
             <div className="col-lg-1"></div>
@@ -116,5 +114,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, {
- getAllCategory,loadUser,
+ getAllCategory, getAllEntity,loadUser,
 })(AdminDashboard);
