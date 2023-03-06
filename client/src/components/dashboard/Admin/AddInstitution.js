@@ -140,6 +140,113 @@ const AddInstitution = ({
 
     history.push("/entity");
   };
+
+  //Indidual setdata
+
+  const [formDataIND, setformDataIND] = useState({
+    indName: "",
+    indDesg: "",
+    indEmail: "",
+    indAddEmail: "",
+
+    indPhone: "",
+    indAddPhone: "",
+    indAddr1: "",
+    indAddr2: "",
+    indAddr3: "",
+    indDistrict: "",
+    indState: "",
+    indPincode: "",
+    indStatus: "",
+  });
+
+  const {
+    indName,
+    indDesg,
+    indEmail,
+    indAddEmail,
+
+    indPhone,
+    indAddPhone,
+    indAddr1,
+    indAddr2,
+    indAddr3,
+    indDistrict,
+    indState,
+    indPincode,
+    indStatus,
+  } = formDataIND;
+
+  const onINDchange = (e) => {
+    setformDataIND({
+      ...formDataIND,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const onSubmitINDdata = (e) => {
+    e.preventDefault();
+
+    const finalINDdata = {
+      entName: indName,
+      entOrderDesg: indDesg,
+      entEmail: indEmail,
+      entAddEmail: indAddEmail,
+      entUrl: "",
+      entAddUrl: "",
+
+      entPhone: indPhone,
+      entAddPhone: indAddPhone,
+      entAddress1: indAddr1,
+      entAddress2: indAddr2,
+      entAddress3: indAddr3,
+      entDistrict: indDistrict,
+      entState: indState,
+      entPinCode: indPincode,
+      entStatus: "Active",
+      entType: "Individual",
+      // InstHead: addhead,
+
+      orgId: entOrgId,
+      orgName: entOrgName,
+      EntReason: "",
+      EnterById: user._id,
+      EnterByName: user.userName,
+      EnterByDateTime: new Date().toLocaleString("en-GB"),
+      EditById: "",
+      EditByName: "",
+      EditByDateTime: "",
+      DeactiveById: "",
+      DeactiveByName: "",
+      DeactiveByDateTime: "",
+    };
+
+    AddInst(finalINDdata);
+    // getAllCategory(user.orgId);
+
+    setformDataIND({
+      ...formDataIND,
+      indName: "",
+      indDesg: "",
+      indEmail: "",
+      indAddEmail: "",
+
+      indPhone: "",
+      indAddPhone: "",
+      indAddr1: "",
+      indAddr2: "",
+      indAddr3: "",
+      indDistrict: "",
+      indState: "",
+      indPincode: "",
+
+      indStatus: "Active",
+      entType: "Individual",
+    });
+
+    history.push("/entity");
+  };
+
   // console.log(addhead);
   return !isAuthenticated || !user || !users ? (
     <Fragment></Fragment>
@@ -492,7 +599,7 @@ const AddInstitution = ({
                 />
               </div> */}
 
-                <form>
+                <form onSubmit={(e) => onSubmitINDdata(e)}>
                   <div className="row form-group mt-4" id="eventDiv">
                     <div
                       className="row form-group  col-md-12 col-lg-12 col-sm-12 col-xs-12"
@@ -510,9 +617,10 @@ const AddInstitution = ({
                         </label>
                         <div className="controls">
                           <input
-                            name="ent_name"
+                            name="indName"
                             id="ent_name"
                             type="text"
+                            onChange={(e) => onINDchange(e)}
                             className="form-control required"
                             required
                           />
@@ -528,18 +636,26 @@ const AddInstitution = ({
                         >
                           Designation<span>*</span>
                         </label>
-                        <div className="controls">
+                        {/* <div className="controls">
                           <select
                             className="form-control"
                             id="desg_menu"
-                            name="desg_menu"
+                            name="indDesg"
                             required
                           >
                             <option selected value="">
                               --Select Designation--
                             </option>
                           </select>
-                        </div>
+                        </div> */}
+                        <input
+                          name="indDesg"
+                          id="ent_email"
+                          type="text"
+                          onChange={(e) => onINDchange(e)}
+                          className="form-control validEmail"
+                          required
+                        />
                       </div>
 
                       <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
@@ -548,9 +664,10 @@ const AddInstitution = ({
                         </label>
                         <div className="controls">
                           <input
-                            name="ent_email"
+                            name="indEmail"
                             id="ent_email"
                             type="text"
+                            onChange={(e) => onINDchange(e)}
                             className="form-control validEmail"
                             required
                           />
@@ -563,8 +680,9 @@ const AddInstitution = ({
                         </label>
                         <div className="controls">
                           <input
-                            name="ent_addl_email"
+                            name="indAddEmail"
                             id="ent_addl_email"
+                            onChange={(e) => onINDchange(e)}
                             type="text"
                             className="form-control validEmail"
                           />
@@ -584,8 +702,9 @@ const AddInstitution = ({
                         </label>
                         <div className="controls">
                           <input
-                            name="ent_order_desg"
+                            name="indPhone"
                             id="ent_order_desg"
+                            onChange={(e) => onINDchange(e)}
                             type="text"
                             className="form-control"
                             required
@@ -598,8 +717,9 @@ const AddInstitution = ({
                         </label>
                         <div className="controls">
                           <input
-                            name="ent_addl_url"
+                            name="indAddPhone"
                             id="ent_addl_url"
+                            onChange={(e) => onINDchange(e)}
                             type="text"
                             className="form-control"
                           />
@@ -623,9 +743,10 @@ const AddInstitution = ({
                         </label>
                         <div className="controls">
                           <input
-                            name="ent_addl1"
+                            name="indAddr1"
                             id="ent_addl1"
                             type="text"
+                            onChange={(e) => onINDchange(e)}
                             className="form-control required"
                             required
                           />
@@ -637,9 +758,10 @@ const AddInstitution = ({
                         </label>
                         <div className="controls">
                           <input
-                            name="ent_district"
+                            name="indDistrict"
                             id="ent_district"
                             type="text"
+                            onChange={(e) => onINDchange(e)}
                             className="form-control required"
                             required
                           />
@@ -651,9 +773,10 @@ const AddInstitution = ({
                         </label>
                         <div className="controls">
                           <input
-                            name="ent_addl2"
+                            name="indAddr2"
                             id="ent_addl2"
                             type="text"
+                            onChange={(e) => onINDchange(e)}
                             className="form-control required"
                             required
                           />
@@ -663,9 +786,10 @@ const AddInstitution = ({
                         <label className="control-label">State </label>
                         <div className="controls">
                           <input
-                            name="ent_state"
+                            name="indState"
                             id="ent_state"
                             type="text"
+                            onChange={(e) => onINDchange(e)}
                             className="form-control"
                             required
                           />
@@ -675,9 +799,10 @@ const AddInstitution = ({
                         <label className="control-label">Address line3 </label>
                         <div className="controls">
                           <input
-                            name="ent_addl3"
+                            name="indAddr3"
                             id="ent_addl3"
                             type="text"
+                            onChange={(e) => onINDchange(e)}
                             className="form-control"
                           />
                         </div>
@@ -688,9 +813,10 @@ const AddInstitution = ({
                         </label>
                         <div className="controls ">
                           <input
-                            name="ent_pincode"
+                            name="indPincode"
                             id="ent_pincode"
                             type="text"
+                            onChange={(e) => onINDchange(e)}
                             className="form-control required"
                             required
                           />
