@@ -6,10 +6,7 @@ import NotFound from "../layout/NotFound";
 import PrivateRoute from "./PrivateRoute";
 import RouteDriver from "../dashboard/RouteDriver";
 
-//DashBoard
-// import AllStaffDetails from "../dashboard/AllStaffDetails";
-// import AddStaffFeedBack from "../dashboard/AddStaffFeedBack";
-// import Home from "../dashboard/Home";
+
 import SuperDashboard from "../dashboard/SuperAdmin/SuperDashboard";
 import Organization from "../dashboard/SuperAdmin/Organization";
 import Users from "../dashboard/SuperAdmin/Users";
@@ -19,7 +16,6 @@ import AdminDashboard from "../dashboard/Admin/AdminDashboard";
 
 // import Category from "../dashboard/Admin/Category";
 //import JoinLeaveCategory from "../dashboard/Admin/JoinLeaveCategory";
-import AddIndividual from "../dashboard/Admin/AddIndividual";
 import AddInstitution from "../dashboard/Admin/AddInstitution";
 import Designation from "../dashboard/Admin/Designation";
 import Category from "../dashboard/Admin/Category";
@@ -51,8 +47,8 @@ const RoutesFile = () => {
         <PrivateRoute exact path="/category" component={Category} />
         <PrivateRoute exact path="/entity" component={Entity} />
         <PrivateRoute exact path="/addinstitute" component={AddInstitution} />
-
-        <PrivateRoute exact path="/generatelabel" component={AddIndividual} />
+        
+      
         <PrivateRoute exact path="/designation" component={Designation} />
         <PrivateRoute exact path="/userlist" component={UserList} />
 

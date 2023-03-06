@@ -10,7 +10,7 @@ import Login from "../auth/Login";
 const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const [showLogin, setShowLogin] = useState(true);
   const [showLogout, setShowLogout] = useState(false);
-
+  const[showrestpassword,setshowrestpassword] = useState(false);
   // const handleLoginModalClose = () => setShowLogin(false);
   // const handleLoginModalShow = () => setShowLogin(true);
 
@@ -225,14 +225,8 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                               </Link>
                             </li>
 
-                            {/* <li>
-                          <Link                                  if modal is required
-                            to="#"
-                            // onClick={() => handleTenantSettingModalShow()}
-                          >
-                            Tenant Setting
-                          </Link>
-                        </li> */}
+                           
+                           
                             <li className="hwhite">
                               <Link
                                 to="#"
@@ -242,6 +236,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                                 Logout
                               </Link>
                             </li>
+
                           </ul>
                         </li>
                       </ul>
@@ -274,20 +269,14 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                                 User Setting
                               </Link>
                             </li>
+
                             <li className="hwhite">
-                              <Link to="/usergroup" className="navlinkitem">
+                            <Link to="#" className="navlinkitem"
+                             onClick={()=>setshowrestpassword(true)}>
                                 Reset Password
                               </Link>
                             </li>
 
-                            {/* <li>
-                          <Link                                  if modal is required
-                            to="#"
-                            // onClick={() => handleTenantSettingModalShow()}
-                          >
-                            Tenant Setting
-                          </Link>
-                        </li> */}
                             <li className="hwhite">
                               <Link
                                 to="#"
@@ -297,6 +286,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                                 Logout
                               </Link>
                             </li>
+
                           </ul>
                         </li>
                       </ul>
@@ -369,7 +359,127 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             </button>
           </Modal.Footer>
         </Modal>
+
+//reset password 
+      <Modal
+        show={showrestpassword}
+        backdrop="static"
+        //keyboard={false}
+        //onHide={handleClose}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header>
+          <Modal.Title className="container">
+            <h1 className="font-weight-bold ">Reset password</h1>
+          </Modal.Title>
+          <div className="col-lg-2">
+            <button className="close"
+            onClick={()=>setshowrestpassword(false)}
+            >
+              <img
+                // src={require("../../../static/images/close.png");
+               src= {require("../../static/images/close.png")}
+                alt="X"
+                style={{ height: "20px", width: "20px" }}
+              />
+            </button>
+          </div>
+        </Modal.Header>
+
+        {/* <Modal.Body> */}
+        <Modal.Body>
+          <form >
+            <div className="container ">
+                
+              <section className="body">
+                <div className="body-inner">
+
+                  <div className="row form-group">
+
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+
+                      <label className="control-label">
+                        Old password <span>*</span>
+                      </label>
+
+                      <div className="controls">
+
+                        <input
+                          name="oldpassword"
+                          type="text"
+                          className="form-control"
+                          required
+                        />
+                       
+                      </div>
+                    </div>
+
+                  </div>
+                 
+
+                  <div className="row form-group">
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                      <label className="control-label">
+                        New password <span>*</span>
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="newpassword"
+                          type="text"
+                          className="form-control"
+                          required
+                        />
+                        
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div className="row form-group">
+                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                      <label className="control-label">
+                        Confirm password <span>*</span>
+                      </label>
+                      <div className="controls">
+                        <input
+                          name="newpassword"
+                          type="text"
+                          className="form-control"
+                          required
+                        />
+                        
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div className="row form-group ">
+                    <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
+                      <br />
+                      <label className="control-label">
+                        * Indicates mandatory fields.
+                      </label>
+                    </div>
+                  </div>
+
+                </div>
+                <div className="text-right">
+                  <button className="btn btn-outline-secondary btnall">
+                    ADD
+                  </button>
+                </div>
+              </section>
+            </div>
+          </form>
+        </Modal.Body>
+
+      </Modal>
+
       </header>
+
+
     </Fragment>
   );
 };
