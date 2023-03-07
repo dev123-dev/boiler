@@ -9,6 +9,7 @@ import { deleteUser } from "../../../actions/dag";
 import Select from "react-select";
 import { useHistory } from "react-router-dom";
 import AddUserList from "./AddUserList";
+import EditUserList from "./EditUserList";
 
 const UserList = ({
   auth: { isAuthenticated, user, users, finalDataRep },
@@ -53,10 +54,10 @@ const UserList = ({
     handleShow();
   };
 
-  const [orgdata, setorgdata] = useState(null);
+  const [userlistdata, setuserlistdata] = useState(null);
   const onedit = (user2) => {
     setShowUpdateModal(true);
-    setorgdata(user2);
+    setuserlistdata(user2);
     handleOpen();
   };
 
@@ -301,7 +302,11 @@ const UserList = ({
           </div>
         </Modal.Header>
         <Modal.Body>
-          {/* <EditUser userdata={orgdata} closeedit={handleUpdateModalClose} /> */}
+          {/* <EditUser userdata={userlistdata} closeedit={handleUpdateModalClose} /> */}
+          <EditUserList
+            userlistdata={userlistdata}
+            closeedit={handleUpdateModalClose}
+          ></EditUserList>
         </Modal.Body>
       </Modal>
     </div>
