@@ -82,6 +82,13 @@ router.route("/edituser").post((req, res) => {
     .catch((err) => res.status(400).json("Error" + err));
 
   let UserHis = new UserHistroy(req.body);
+  UserHis.save(req.body).then(() => console.log("Histroy entered User"));
+
+
+
+//module.exports = router;
+ 
+});
 
   //reset password
   router.route("/resetpassword").post((req, res) => {
@@ -95,19 +102,20 @@ router.route("/edituser").post((req, res) => {
         },
       }
     )
-      .then((data) => {
-        if (data.modifiedCount == 0) {
-          res.status(200).json("Please Check you old password");
-        } else {
-          res.status(200).json("Password Updated");
-        }
-      })
-      .catch((err) => res.status(400).json("Error" + err));
-    UserHis.save(req.body).then(() => console.log("Histroy entered User"));
-  });
+        .then((data) => {
+            if(data.modifiedCount==0){
+                res.status(200).json("Please Check you old password");
+            }
+            else{
+                res.status(200).json("Password Updated");
+            }
+            
+        })
+        .catch((err) => res.status(400).json("Error" + err));
+       
+}
+);
 
-  //module.exports = router;
-});
 
 //get all cat
 router.route("/getalluseradmin").post((req, res) => {
