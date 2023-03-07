@@ -14,6 +14,7 @@ import {
   GET_ALL_USER,
   GET_ALL_DESIGNATION,
   GET_ALL_ENTITY,
+  GET_ALL_User_Admin,
 } from "../actions/types";
 
 const initialState = {
@@ -39,6 +40,7 @@ const initialState = {
   alluser: [""],
   allent: [""],
   allsuperuser: [""],
+  alluseradmin: [""],
 };
 
 const dagreducer = (state = initialState, action) => {
@@ -113,6 +115,12 @@ const dagreducer = (state = initialState, action) => {
         ...state,
         allent: payload,
       };
+    case GET_ALL_User_Admin:
+      return {
+        ...state,
+        alluseradmin: payload,
+      };
+
     default:
       return state;
   }
