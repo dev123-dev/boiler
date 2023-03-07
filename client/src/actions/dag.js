@@ -26,6 +26,7 @@ import {
   GET_ALL_SUPERUSER,
   GET_ALL_ORGANIZATION_DETAILS,
   GET_ALL_ENTITY,
+  GET_ALL_User_Admin,
 } from "./types";
 
 var linkPath = "";
@@ -412,4 +413,26 @@ export const UpdateInst = (updatedata) => async (dispatch) => {
     axios.post(`${linkPath}/api/entity/editinstind`, updatedata);
     // dispatch(getAllCategory());
   } catch (err) {}
+};
+
+//getalluser for admin
+export const getAllUserAdmin = (userdata) => async (dispatch) => {
+  // console.log("action user", userdata);
+  let body = { orgId: userdata };
+  // console.log("run with ",userdata )
+  console.log(" action body", body);
+
+  try {
+    const res = await axios.post(`${linkPath}/api/user/getalluseradmin`, body);
+    console.log("res data", res.data);
+    dispatch({
+      type: GET_ALL_User_Admin,
+      payload: res.data,
+    });
+    console.log("res", res.data);
+  } catch (err) {
+    dispatch({
+      type: GET_ALL_User_Admin,
+    });
+  }
 };

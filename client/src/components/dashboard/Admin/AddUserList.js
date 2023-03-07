@@ -2,14 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
-import { AddUserListAdmin } from "../../../actions/dag";
+import { AddUser, getAllUserAdmin } from "../../../actions/dag";
 //, getAllOrganization
 import Select from "react-select";
 
 const AddUserList = ({
   //dag: { allorg },
   auth: { isAuthenticated, user, users },
-  AddUserListAdmin,
+  AddUser,
+  getAllUserAdmin,
   //getAllOrganization,
 }) => {
   useEffect(() => {
@@ -51,8 +52,8 @@ const AddUserList = ({
   const handleClose = () => setshow("false");
   const handleShow = () => setshow("true");
 
-  const catOrgId = user ? user.orgId : "";
-  const catOrgName = user ? user.orgName : "";
+  const userOrgId = user ? user.orgId : "";
+  const userOrgName = user ? user.orgName : "";
   // const [inputdata, setinput] = useState("");
   // const [items, setitem] = useState([]);
 
@@ -118,10 +119,10 @@ const AddUserList = ({
       userName: UserName,
       fullName: UserFullname,
       email: UserEmail,
-      userGroup: "Admin",
+      userGroup: UserOrgbelongs,
       //orgId
-      orgId: oraganisationId,
-      orgName: oraganisationName,
+      orgId: userOrgId,
+      orgName: userOrgName,
       phone: UserNumber,
       address: UserAddress,
       password: UserConfpassword,
@@ -138,7 +139,7 @@ const AddUserList = ({
       DeactiveByDateTime: "",
     };
 
-    AddUserListAdmin(finalUSERdata);
+    AddUser(finalUSERdata);
     // console.log(finalUSERdata)
     setformDataUSER({
       ...formDataUSER,
@@ -155,6 +156,7 @@ const AddUserList = ({
     });
 
     handleAddClose();
+    getAllUserAdmin(user.orgId);
   };
 
   return !isAuthenticated || !user || !users ? (
@@ -230,14 +232,22 @@ const AddUserList = ({
                         User Group<span>*</span>
                       </label>
                       <div className="controls">
-                        <Select
+                        <input
+                          name="UserOrgbelongs"
+                          id="full_name"
+                          type="text"
+                          className="form-control"
+                          onChange={(e) => onUserchange(e)}
+                          required
+                        />
+                        {/* <Select
                           name="UserOrgbelongs"
                           // options={allOraganisation}
                           isSearchable={true}
                           // value={oraganisation}
                           placeholder="Select UserGroup"
                           // onChange={(e) => onOraganisationChange(e)}
-                        />
+                        /> */}
 
                         {/* <select style={{ backgroundcolor: '#877bae' }} name="UserOrgbelongs" className=" selectorgcolor form-control" onChange={(e) => onUserchange(e)} required>
                           <option>--Select Organization--</option>
@@ -408,6 +418,6 @@ const mapStateToProps = (state) => ({
   dag: state.dag,
 });
 export default connect(mapStateToProps, {
-  // AddUserListAdmin,
-  // getAllOrganization,
+  AddUser,
+  getAllUserAdmin,
 })(AddUserList);

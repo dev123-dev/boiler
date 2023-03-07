@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 //import AddUserModal from "./AddUserModal";
 import Modal from "react-bootstrap/Modal";
-import { getAllUser } from "../../../actions/dag";
+import { getAllUserAdmin } from "../../../actions/dag";
 import { getAllOrganization } from "../../../actions/dag";
 import { deleteUser } from "../../../actions/dag";
 //import EditUser from "./EditUser";
@@ -11,19 +11,18 @@ import { useHistory } from "react-router-dom";
 import AddUserList from "./AddUserList";
 
 const UserList = ({
+  auth: { isAuthenticated, user, users, finalDataRep },
   //here to connect to action we need to import the function
   //then again we need to mention inside the const function
-  dag: { alluser },
-  dag: { allorg },
+  dag: { alluseradmin },
 
   deleteUser,
-  getAllUser,
-  getAllOrganization,
+  getAllUserAdmin,
 }) => {
   useEffect(() => {
-    getAllUser();
-    getAllOrganization();
-    // console.log(alluser)
+    if (user) {
+      getAllUserAdmin(user.orgId);
+    }
   }, []);
 
   //deactivate
@@ -62,9 +61,9 @@ const UserList = ({
   };
 
   const onClickReset = () => {
-    // setCurrentData(1);
-    // getbatchsData("");
-    getAllUser("");
+    if (user) {
+      getAllUserAdmin(user.orgId);
+    }
   };
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -74,14 +73,14 @@ const UserList = ({
   const [oraganisationId, setOraganisationId] = useState();
   const [oraganisationName, setOraganisationName] = useState();
 
-  const allOraganisation = [];
-  allorg.map((oraganisation) =>
-    allOraganisation.push({
-      oraganisationId: oraganisation._id,
-      label: oraganisation.orgName,
-      value: oraganisation.orgName,
-    })
-  );
+  // const allOraganisation = [];
+  // allorg.map((oraganisation) =>
+  //   allOraganisation.push({
+  //     oraganisationId: oraganisation._id,
+  //     label: oraganisation.orgName,
+  //     value: oraganisation.orgName,
+  //   })
+  // );
 
   const onOraganisationChange = (e) => {
     //console.log(e);
@@ -97,7 +96,7 @@ const UserList = ({
     const changeData = {
       oraganisationIdVal: e.oraganisationId,
     };
-    getAllUser(changeData);
+    getAllUserAdmin(changeData);
   };
 
   //deactivate
@@ -109,6 +108,7 @@ const UserList = ({
       deactive_reason: User_DE_Reason,
     };
     deleteUser(reason);
+    getAllUserAdmin(user.orgId);
     handleClose();
   };
 
@@ -185,8 +185,8 @@ const UserList = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {alluser &&
-                    alluser.map((userVal, idx) => {
+                  {alluseradmin &&
+                    alluseradmin.map((userVal, idx) => {
                       return (
                         <tr key={idx}>
                           <td>{userVal.fullName}</td>
@@ -309,9 +309,9 @@ const UserList = ({
 };
 const mapStateToProps = (state) => ({
   dag: state.dag,
+  auth: state.auth,
 });
 export default connect(mapStateToProps, {
-  getAllUser,
+  getAllUserAdmin,
   deleteUser,
-  getAllOrganization,
 })(UserList);
