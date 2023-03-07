@@ -6,16 +6,17 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
 import Login from "../auth/Login";
+import axios from "axios";
 
 const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const [showLogin, setShowLogin] = useState(true);
   const [showLogout, setShowLogout] = useState(false);
   const[showrestpassword,setshowrestpassword] = useState(false);
-  // const handleLoginModalClose = () => setShowLogin(false);
-  // const handleLoginModalShow = () => setShowLogin(true);
+ 
 
   const handleLogoutModalClose = () => setShowLogout(false);
   const handleLogoutModalShow = () => setShowLogout(true);
+
 
   const LogoutModalClose = () => {
     handleLogoutModalClose();
@@ -36,6 +37,35 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     // }
   };
   //console.log(user)
+
+  //handel reset password
+  const [oldpassword,setOldPassword]=useState("");
+  const [newpassword,setnewPassword]=useState("");
+  const [confrimNewPassword,setConfirmNewPassword]=useState("");
+  const [passwordError,setPassworderror]=useState("");
+
+ const resetPassword =(e)=>{
+  e.preventDefault();
+  if(newpassword===confrimNewPassword){
+    var linkPath = "";
+    axios.post(
+      `${linkPath}/api/user/resetpassword`,
+     {"User_id":user && user._id,
+      "oldpassword":oldpassword,
+      "newpassword":confrimNewPassword},
+    )
+    .then((data)=>{
+      console.log("password set data ",data.data)
+      setPassworderror(data.data)
+    })
+    setPassworderror("")
+  }
+  else{
+    setPassworderror("please check password")
+  }
+
+ }
+
   return (
     <Fragment>
       <header>
@@ -298,9 +328,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
               <Fragment>
                 <Nav>
                   <NavItem>
-                    {/* <Link to="#" onClick={() => handleLoginModalShow()}>
-                      LOGIN
-                    </Link> */}
+                    
                   </NavItem>
 
                   <Modal
@@ -312,15 +340,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                   >
                     <Modal.Header></Modal.Header>
                     <Modal.Body>
-                      {/* <button
-                        onClick={() => handleLoginModalClose()}
-                        className="close"
-                      >
-                        <img
-                          src={require("../../static/images/close.png")}
-                          alt="X"
-                        />
-                      </button> */}
+                      
                       <Login />
                     </Modal.Body>
                   </Modal>
@@ -364,8 +384,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
       <Modal
         show={showrestpassword}
         backdrop="static"
-        //keyboard={false}
-        //onHide={handleClose}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -390,7 +408,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
         {/* <Modal.Body> */}
         <Modal.Body>
-          <form >
+          <form onSubmit={(e)=>resetPassword(e)}>
             <div className="container ">
                 
               <section className="body">
@@ -410,6 +428,8 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                           name="oldpassword"
                           type="text"
                           className="form-control"
+                          value={oldpassword}
+                          onChange={(e)=>{setOldPassword(e.target.value)}}
                           required
                         />
                        
@@ -427,8 +447,10 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                       <div className="controls">
                         <input
                           name="newpassword"
-                          type="text"
+                          type="password"
                           className="form-control"
+                          value={newpassword}
+                          onChange={(e)=>{setnewPassword(e.target.value)}}
                           required
                         />
                         
@@ -444,9 +466,11 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                       </label>
                       <div className="controls">
                         <input
-                          name="newpassword"
+                          name="confirmpassword"
                           type="text"
                           className="form-control"
+                          value={confrimNewPassword}
+                          onChange={(e)=>{setConfirmNewPassword(e.target.value)}}
                           required
                         />
                         
@@ -461,12 +485,13 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                       <label className="control-label">
                         * Indicates mandatory fields.
                       </label>
+                      <h3>{passwordError}</h3>
                     </div>
                   </div>
 
                 </div>
                 <div className="text-right">
-                  <button className="btn btn-outline-secondary btnall">
+                  <button className="btn btn-outline-secondary btnall" >
                     ADD
                   </button>
                 </div>
