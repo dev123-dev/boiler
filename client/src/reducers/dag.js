@@ -12,6 +12,7 @@ import {
   GET_ALL_SUPERUSER,
   GET_ALL_CATEGORY,
   GET_ALL_USER,
+  GET_ALL_USERGRP,
   GET_ALL_DESIGNATION,
   GET_ALL_ENTITY,
   GET_ALL_User_Admin,
@@ -38,6 +39,7 @@ const initialState = {
   allcat: [""],
   // allorgdetails : [""],
   alluser: [""],
+  allusergrp: [""],
   allent: [""],
   allsuperuser: [""],
   alluseradmin: [""],
@@ -97,6 +99,11 @@ const dagreducer = (state = initialState, action) => {
       return {
         ...state,
         alluser: payload,
+      };
+    case GET_ALL_USERGRP:
+      return {
+        ...state,
+        allusergrp: payload,
       };
     case GET_ALL_CATEGORY:
       // localStorage.setItem("category", JSON.stringify(payload))

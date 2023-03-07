@@ -59,9 +59,15 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
       setPassworderror(data.data)
     })
     setPassworderror("")
+    setOldPassword("")
+    setnewPassword("")
+    setConfirmNewPassword("")
   }
   else{
     setPassworderror("please check password")
+    setOldPassword("")
+    setnewPassword("")
+    setConfirmNewPassword("")
   }
 
  }
@@ -492,7 +498,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 </div>
                 <div className="text-right">
                   <button className="btn btn-outline-secondary btnall" >
-                    ADD
+                    RESET
                   </button>
                 </div>
               </section>

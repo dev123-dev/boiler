@@ -90,19 +90,17 @@ router.route("/edituser").post((req, res) => {
  
 });
 
-//reset password 
-router.route("/resetpassword").post((req, res) => {
-
+  //reset password
+  router.route("/resetpassword").post((req, res) => {
     let data = req.body;
 
-     
     UserDetails.updateOne(
-        { _id: data.User_id, password:data.oldpassword },
-        {
-            $set: {
-                password:data.newpassword,
-            },
-        }
+      { _id: data.User_id, password: data.oldpassword },
+      {
+        $set: {
+          password: data.newpassword,
+        },
+      }
     )
         .then((data) => {
             if(data.modifiedCount==0){

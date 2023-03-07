@@ -8,7 +8,7 @@ import AddUserGroup from "./AddUserGroup";
 const UserGroup = ({
   //here to connect to action we need to import the function
   //then again we need to mention inside the const function
-  dag: { alluser },
+  dag: { allusergrp },
   deleteUserGroup,
   getAllUserGroup,
 }) => {
@@ -78,8 +78,8 @@ const UserGroup = ({
                   </tr>
                 </thead>
                 <tbody>
-                  {alluser &&
-                    alluser.map((grpVal, idx) => {
+                  {allusergrp &&
+                    allusergrp.map((grpVal, idx) => {
                       return (
                         <tr key={idx}>
                           <td>{grpVal.groupName}</td>
