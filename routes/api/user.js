@@ -90,7 +90,6 @@ router.route("/edituser").post((req, res) => {
  
 });
 
-
 //reset password 
 router.route("/resetpassword").post((req, res) => {
 
