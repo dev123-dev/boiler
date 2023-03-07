@@ -122,6 +122,7 @@ const AddInstHead = ({
   };
 
   const onSubmitDESGdata = (e) => {
+    console.log("cliecked");
     if (
       e.target.name === headName ||
       e.target.name === headEmail ||

@@ -91,6 +91,7 @@ router.route("/editinstind").post((req, res) => {
         entOrderDesgId: data.entOrderDesgId,
         entOrderDesg: data.entOrderDesg,
         entEmail: data.entEmail,
+        InstHead: data.InstHead,
         entAddEmail: data.entAddEmail,
         entUrl: data.entUrl,
         entAddurl: data.entAddurl,

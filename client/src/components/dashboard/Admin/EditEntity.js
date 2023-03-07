@@ -11,6 +11,8 @@ import Select from "react-select";
 import { Link } from "react-router-dom";
 
 import { useHistory } from "react-router-dom";
+import AddInstHead from "./AddInstHead";
+import { Modal } from "react-bootstrap";
 
 const EditEntity = ({
   auth: { isAuthenticated, user, users, finalDataRep },
@@ -27,9 +29,10 @@ const EditEntity = ({
 
   // console.log("indiv", alldesg);
   let history = useHistory();
-  const [show, setshow] = useState("");
-  const handleClose = () => setshow("false");
-  const handleShow = () => setshow("true");
+  const [show, setshow] = useState(false);
+  const handleClose = () => setshow(false);
+  const handleShow = () => setshow(true);
+
   const [mydata, setmydata] = useState(
     JSON.parse(localStorage.getItem("editEnity"))
   );
@@ -51,6 +54,22 @@ const EditEntity = ({
       })
     );
 
+  //deactivate modal
+  const [headid, setheadid] = useState("");
+  const onDelete = (headid) => {
+    setheadid(headid);
+    handleShow();
+  };
+  //delete inst head array
+  const onAdd = (e) => {
+    e.preventDefault();
+    const deletehead = addhead1.filter((ele, index) => {
+      return index != headid;
+    });
+    setaddhead1(deletehead);
+    handleClose();
+  };
+
   const ondesignationChange = (e) => {
     //console.log(e);
     var designationId = "";
@@ -70,7 +89,7 @@ const EditEntity = ({
 
   const entOrgId = user ? user.orgId : "";
   const entOrgName = user ? user.orgName : "";
-  const [addhead, setaddhead] = useState();
+  // const [addhead, setaddhead] = useState();
   const [addhead1, setaddhead1] = useState(mydata.InstHead);
   console.log(mydata);
   const [formDataENT, setformDataENT] = useState({
@@ -122,13 +141,6 @@ const EditEntity = ({
 
   //delete inst head array
 
-  const onDelete = (id) => {
-    const deletehead = addhead.filter((ele, index) => {
-      return index != id;
-    });
-    setaddhead(deletehead);
-  };
-
   const onUpdateENTdata = (e) => {
     e.preventDefault();
 
@@ -136,6 +148,7 @@ const EditEntity = ({
       entId: entId,
       entName: entName,
       entOrderDesgId: "",
+      InstHead: addhead1,
       entOrderDesg: entOrderDesg,
       entEmail: entEmail,
       entAddEmail: entAddEmail,
@@ -324,12 +337,14 @@ const EditEntity = ({
                   <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <form onSubmit={(e) => onUpdateENTdata(e)}>
                       {/* <div className="h3 px-4"> ADD Institution</div> */}
-                      <h1
-                        style={{ fontFamily: "Serif", color: "#877bae" }}
-                        className="font-weight-bold"
-                      >
-                        EDIT Institution
-                      </h1>
+                      <div className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                        <h1
+                          style={{ fontFamily: "Serif", color: "#877bae" }}
+                          className="font-weight-bold"
+                        >
+                          EDIT Institution
+                        </h1>
+                      </div>
                       <div className="text-right col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                         <Link to="/entity">
                           <img
@@ -610,10 +625,14 @@ const EditEntity = ({
                       <div>
                         <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12 h4 ">
                           Details of Institution Heads .
-                          {/* <UpdateInstHead
+                          {/* <AddInstHead
                         setaddhead={setaddhead}
                         addhead={addhead}
                       /> */}
+                          <AddInstHead
+                            setaddhead={setaddhead1}
+                            addhead={addhead1}
+                          />
                         </div>
 
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHeadinst">
@@ -628,7 +647,9 @@ const EditEntity = ({
                                 <th>Designation</th>
 
                                 <th>Email</th>
+                                <th>Addl. Email</th>
                                 <th>Phone No.</th>
+                                <th>Addl. Phone </th>
 
                                 <th>Operation</th>
                               </tr>
@@ -643,7 +664,9 @@ const EditEntity = ({
                                       <td>{headVal.headName}</td>
                                       <td>{headVal.desigbelongs}</td>
                                       <td>{headVal.headEmail}</td>
+                                      <td>{headVal.headAddEmail}</td>
                                       <td>{headVal.headPhone}</td>
+                                      <td>{headVal.headAddPhone}</td>
                                       <td>
                                         <img
                                           className="img_icon_size log"
@@ -680,12 +703,14 @@ const EditEntity = ({
                 <br />
                 <br />
                 <section>
-                  <h1
-                    style={{ fontFamily: "Serif", color: "#877bae" }}
-                    className="font-weight-bold"
-                  >
-                    EDIT Individual
-                  </h1>
+                  <div className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                    <h1
+                      style={{ fontFamily: "Serif", color: "#877bae" }}
+                      className="font-weight-bold"
+                    >
+                      EDIT Individual
+                    </h1>
+                  </div>
                   {/* <div className="h2 px-3"> ADD Individual</div> */}
 
                   <form onSubmit={(e) => onUpdateINDdata(e)}>
@@ -993,6 +1018,40 @@ const EditEntity = ({
           </div> */}
 
         {/* {showins ? <h1>hiii</h1> : <></>} */}
+
+        <Modal
+          show={show}
+          // onHide={handleClose}
+          centered
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+        >
+          <Modal.Header>
+            <Modal.Title className="container">
+              <h1 className="font-weight-bold ">DEACTIVATE</h1>
+            </Modal.Title>
+            <div className="col-lg-2">
+              <button onClick={handleClose} className="close">
+                <img
+                  src={require("../../../static/images/close.png")}
+                  alt="X"
+                  style={{ height: "20px", width: "20px" }}
+                />
+              </button>
+            </div>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="h4">Do You Want to DELETE this Institute Head?</div>
+            <div className="text-right">
+              <button
+                onClick={(e) => onAdd(e)}
+                className="btn btn-outline-secondary btnall"
+              >
+                DELETE
+              </button>
+            </div>
+          </Modal.Body>
+        </Modal>
       </div>
     </Fragment>
   );

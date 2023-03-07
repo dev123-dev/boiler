@@ -25,9 +25,9 @@ const AddInstitution = ({
 
   console.log("indiv", alldesg);
   let history = useHistory();
-  const [show, setshow] = useState("");
-  const handleClose = () => setshow("false");
-  const handleShow = () => setshow("true");
+  const [show, setshow] = useState(false);
+  const handleClose = () => setshow(false);
+  const handleShow = () => setshow(true);
 
   const [showins, setShowins] = useState(true);
 
@@ -113,13 +113,21 @@ const AddInstitution = ({
 
   //delete inst head array
 
-  const onDelete = (id) => {
-    const deletehead = addhead.filter((ele, index) => {
-      return index != id;
-    });
-    setaddhead(deletehead);
+  //deactivate modal
+  const [headid, setheadid] = useState("");
+  const onDelete = (headid) => {
+    setheadid(headid);
+    handleShow();
   };
 
+  const onAdd = (e) => {
+    e.preventDefault();
+    const deletehead = addhead.filter((ele, index) => {
+      return index != headid;
+    });
+    setaddhead(deletehead);
+    handleClose();
+  };
   const onSubmitENTdata = (e) => {
     e.preventDefault();
 
@@ -586,9 +594,10 @@ const AddInstitution = ({
                         <tr className="headingsizes">
                           <th>Name</th>
                           <th>Designation</th>
-
+                          <th>Addl. Email</th>
                           <th>Email</th>
                           <th>Phone No.</th>
+                          <th>Addl. Phone</th>
 
                           <th>Operation</th>
                         </tr>
@@ -603,7 +612,9 @@ const AddInstitution = ({
                                 <td>{headVal.headName}</td>
                                 <td>{headVal.desigbelongs}</td>
                                 <td>{headVal.headEmail}</td>
+                                <td>{headVal.headAddEmail}</td>
                                 <td>{headVal.headPhone}</td>
+                                <td>{headVal.headAddPhone}</td>
                                 <td>
                                   <img
                                     className="img_icon_size log"
@@ -889,6 +900,42 @@ const AddInstitution = ({
             </>
           )}
         </div>
+
+        {/*DEACTIVATE MODAL */}
+
+        <Modal
+          show={show}
+          // onHide={handleClose}
+          centered
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+        >
+          <Modal.Header>
+            <Modal.Title className="container">
+              <h1 className="font-weight-bold ">DEACTIVATE </h1>
+            </Modal.Title>
+            <div className="col-lg-2">
+              <button onClick={handleClose} className="close">
+                <img
+                  src={require("../../../static/images/close.png")}
+                  alt="X"
+                  style={{ height: "20px", width: "20px" }}
+                />
+              </button>
+            </div>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="h4">Do You Want to DELETE this Institute Head?</div>
+            <div className="text-right">
+              <button
+                onClick={(e) => onAdd(e)}
+                className="btn btn-outline-secondary btnall"
+              >
+                DELETE
+              </button>
+            </div>
+          </Modal.Body>
+        </Modal>
       </div>
     </Fragment>
   );
@@ -900,5 +947,3 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { AddInst, getalldesignation })(
   AddInstitution
 );
-
-

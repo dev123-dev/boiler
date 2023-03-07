@@ -5,6 +5,8 @@ import { deleteCategory } from "../../../actions/dag";
 import { getAllCategory } from "../../../actions/dag";
 import Addcategory from "./AddCategory";
 import EditCategory from "./EditCategory";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 //import { loadUser } from "../../../actions/auth";
 
 const Category = ({
@@ -14,8 +16,6 @@ const Category = ({
   getAllCategory,
 }) => {
   useEffect(() => {
-   
-    
     if (user) {
       getAllCategory(user.orgId);
     }
@@ -45,6 +45,12 @@ const Category = ({
     setCatId(id);
     handleShow();
   };
+
+  let history = useHistory();
+  const onJoinCat = (data) => {
+    history.push("/joinleavecat", data);
+  };
+
   const onInputchange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -149,13 +155,15 @@ const Category = ({
                                   title="Delete Category"
                                 />
                                 &nbsp;
+                                {/* <Link to="#"> */}{" "}
                                 <img
                                   className="img_icon_size log"
-                                  onClick={() => onDelete(catVal._id)}
+                                  onClick={() => onJoinCat(catVal)}
                                   src={require("../../../static/images/account1.png")}
                                   alt="Join Leave"
                                   title="Join Leave Page"
                                 />
+                                {/* </Link> */}
                               </>
                             ) : (
                               <>Deactivated</>
@@ -258,7 +266,6 @@ const Category = ({
                 </button>
               </div>
             </div>
-            
           </form>
         </Modal.Body>
       </Modal>

@@ -1,13 +1,18 @@
-import React, { useEffect, useState } from "react";
-// import { useState } from 'react';
-// import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import Modal from "react-bootstrap/Modal";
+import { deleteCategory } from "../../../actions/dag";
+import { getAllCategory } from "../../../actions/dag";
+import Addcategory from "./AddCategory";
+import EditCategory from "./EditCategory";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+//import { loadUser } from "../../../actions/auth";
 
-// import addicon from '../assets/add-icon.png';
-// import Modal from 'react-bootstrap/Modal';
+const JoinLeaveCat = ({ auth: { user }, dag: { allcat }, location }) => {
+  const [mydata, setmydata] = useState(location.state);
+  console.log("join", mydata);
 
-export default function JoinLeaveCategory(props) {
-  const [mydata, setmydata] = useState(props.location.state);
-  console.log("joinleave", mydata);
   return (
     <div>
       <div className="mt-5">
@@ -143,4 +148,13 @@ export default function JoinLeaveCategory(props) {
       </div>
     </div>
   );
-}
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  dag: state.dag,
+});
+export default connect(mapStateToProps, {
+  //deleteCategory,
+  // loadUser,
+  // getAllCategory,
+})(JoinLeaveCat);

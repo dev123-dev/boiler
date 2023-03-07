@@ -24,6 +24,9 @@ const CategorySchema = new mongoose.Schema({
   categoryReason: {
     type: String,
   },
+  categoryEntity: {
+    type: Array,
+  },
   EnterById: {
     type: String,
   },
