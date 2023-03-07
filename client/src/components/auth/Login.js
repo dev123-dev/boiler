@@ -200,8 +200,8 @@ const Login = ({
           </div>
           <div className="col-md-12 col-sm-12 col-lg-12 col-12 text-center">
             <button
-              style={{ background: "#877bae" }}
-              className="btn contact_reg"
+              // style={{ background: "#877bae" }}
+              className="btn contact_reg btn_color"
             >
               SIGN IN
             </button>

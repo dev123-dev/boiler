@@ -9,11 +9,9 @@ const DesignationHistroySchema = new mongoose.Schema({
   },
   orgId: {
     type: String,
-   
   },
   orgName: {
     type: String,
-   
   },
   designationStatus: {
     type: String,
@@ -47,4 +45,7 @@ const DesignationHistroySchema = new mongoose.Schema({
   },
 });
 
-module.exports = DesignationHistroy = mongoose.model("DesignationHistorys", DesignationHistroySchema);
+module.exports = DesignationHistroy = mongoose.model(
+  "DesignationHistorys",
+  DesignationHistroySchema
+);

@@ -4,7 +4,6 @@ const DesignationSchema = new mongoose.Schema({
   designationName: {
     type: String,
     required: true,
-    //unique: true,
   },
   orgId: {
     type: String,

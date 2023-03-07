@@ -11,12 +11,10 @@ import axios from "axios";
 const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   const [showLogin, setShowLogin] = useState(true);
   const [showLogout, setShowLogout] = useState(false);
-  const[showrestpassword,setshowrestpassword] = useState(false);
- 
+  const [showrestpassword, setshowrestpassword] = useState(false);
 
   const handleLogoutModalClose = () => setShowLogout(false);
   const handleLogoutModalShow = () => setShowLogout(true);
-
 
   const LogoutModalClose = () => {
     handleLogoutModalClose();
@@ -39,38 +37,41 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   //console.log(user)
 
   //handel reset password
-  const [oldpassword,setOldPassword]=useState("");
-  const [newpassword,setnewPassword]=useState("");
-  const [confrimNewPassword,setConfirmNewPassword]=useState("");
-  const [passwordError,setPassworderror]=useState("");
+  const [oldpassword, setOldPassword] = useState("");
+  const [newpassword, setnewPassword] = useState("");
+  const [confrimNewPassword, setConfirmNewPassword] = useState("");
+  const [passwordError, setPassworderror] = useState("");
 
- const resetPassword =(e)=>{
-  e.preventDefault();
-  if(newpassword===confrimNewPassword){
-    var linkPath = "";
-    axios.post(
-      `${linkPath}/api/user/resetpassword`,
-     {"User_id":user && user._id,
-      "oldpassword":oldpassword,
-      "newpassword":confrimNewPassword},
-    )
-    .then((data)=>{
-      console.log("password set data ",data.data)
-      setPassworderror(data.data)
-    })
-    setPassworderror("")
-    setOldPassword("")
-    setnewPassword("")
-    setConfirmNewPassword("")
-  }
-  else{
-    setPassworderror("please check password")
-    setOldPassword("")
-    setnewPassword("")
-    setConfirmNewPassword("")
-  }
+  const onclose = () => {
+    setPassworderror("");
+    setshowrestpassword(false);
+  };
 
- }
+  const resetPassword = (e) => {
+    e.preventDefault();
+    if (newpassword === confrimNewPassword) {
+      var linkPath = "";
+      axios
+        .post(`${linkPath}/api/user/resetpassword`, {
+          User_id: user && user._id,
+          oldpassword: oldpassword,
+          newpassword: confrimNewPassword,
+        })
+        .then((data) => {
+          console.log("password set data ", data.data);
+          setPassworderror(data.data);
+        });
+      setPassworderror("");
+      setOldPassword("");
+      setnewPassword("");
+      setConfirmNewPassword("");
+    } else {
+      setPassworderror("Please Check the Password");
+      setOldPassword("");
+      setnewPassword("");
+      setConfirmNewPassword("");
+    }
+  };
 
   return (
     <Fragment>
@@ -261,8 +262,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                               </Link>
                             </li>
 
-                           
-                           
                             <li className="hwhite">
                               <Link
                                 to="#"
@@ -272,7 +271,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                                 Logout
                               </Link>
                             </li>
-
                           </ul>
                         </li>
                       </ul>
@@ -307,8 +305,11 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                             </li>
 
                             <li className="hwhite">
-                            <Link to="#" className="navlinkitem"
-                             onClick={()=>setshowrestpassword(true)}>
+                              <Link
+                                to="#"
+                                className="navlinkitem"
+                                onClick={() => setshowrestpassword(true)}
+                              >
                                 Reset Password
                               </Link>
                             </li>
@@ -322,7 +323,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                                 Logout
                               </Link>
                             </li>
-
                           </ul>
                         </li>
                       </ul>
@@ -333,9 +333,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             ) : (
               <Fragment>
                 <Nav>
-                  <NavItem>
-                    
-                  </NavItem>
+                  <NavItem></NavItem>
 
                   <Modal
                     show={showLogin}
@@ -346,7 +344,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                   >
                     <Modal.Header></Modal.Header>
                     <Modal.Body>
-                      
                       <Login />
                     </Modal.Body>
                   </Modal>
@@ -355,7 +352,6 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             )}
           </Navbar.Collapse>
         </Navbar>
-
         <Modal
           show={showLogout}
           backdrop="static"
@@ -385,132 +381,124 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
             </button>
           </Modal.Footer>
         </Modal>
-
-//reset password 
-      <Modal
-        show={showrestpassword}
-        backdrop="static"
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-      >
-        <Modal.Header>
-          <Modal.Title className="container">
-            <h1 className="font-weight-bold ">Reset password</h1>
-          </Modal.Title>
-          <div className="col-lg-2">
-            <button className="close"
-            onClick={()=>setshowrestpassword(false)}
-            >
-              <img
-                // src={require("../../../static/images/close.png");
-               src= {require("../../static/images/close.png")}
-                alt="X"
-                style={{ height: "20px", width: "20px" }}
-              />
-            </button>
-          </div>
-        </Modal.Header>
-
-        {/* <Modal.Body> */}
-        <Modal.Body>
-          <form onSubmit={(e)=>resetPassword(e)}>
-            <div className="container ">
-                
-              <section className="body">
-                <div className="body-inner">
-
-                  <div className="row form-group">
-
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-
-                      <label className="control-label">
-                        Old password <span>*</span>
-                      </label>
-
-                      <div className="controls">
-
-                        <input
-                          name="oldpassword"
-                          type="text"
-                          className="form-control"
-                          value={oldpassword}
-                          onChange={(e)=>{setOldPassword(e.target.value)}}
-                          required
-                        />
-                       
-                      </div>
-                    </div>
-
-                  </div>
-                 
-
-                  <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">
-                        New password <span>*</span>
-                      </label>
-                      <div className="controls">
-                        <input
-                          name="newpassword"
-                          type="password"
-                          className="form-control"
-                          value={newpassword}
-                          onChange={(e)=>{setnewPassword(e.target.value)}}
-                          required
-                        />
-                        
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">
-                        Confirm password <span>*</span>
-                      </label>
-                      <div className="controls">
-                        <input
-                          name="confirmpassword"
-                          type="text"
-                          className="form-control"
-                          value={confrimNewPassword}
-                          onChange={(e)=>{setConfirmNewPassword(e.target.value)}}
-                          required
-                        />
-                        
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div className="row form-group ">
-                    <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
-                      <br />
-                      <label className="control-label">
-                        * Indicates mandatory fields.
-                      </label>
-                      <h3>{passwordError}</h3>
-                    </div>
-                  </div>
-
-                </div>
-                <div className="text-right">
-                  <button className="btn btn-outline-secondary btnall" >
-                    RESET
-                  </button>
-                </div>
-              </section>
+        //reset password
+        <Modal
+          show={showrestpassword}
+          backdrop="static"
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+          <Modal.Header>
+            <Modal.Title className="container">
+              <h1 className="font-weight-bold ">Reset password</h1>
+            </Modal.Title>
+            <div className="col-lg-2">
+              <button
+                className="close"
+                // onClick={() => setshowrestpassword(false)}
+                onClick={onclose}
+              >
+                <img
+                  // src={require("../../../static/images/close.png");
+                  src={require("../../static/images/close.png")}
+                  alt="X"
+                  style={{ height: "20px", width: "20px" }}
+                />
+              </button>
             </div>
-          </form>
-        </Modal.Body>
+          </Modal.Header>
 
-      </Modal>
+          {/* <Modal.Body> */}
+          <Modal.Body>
+            <form onSubmit={(e) => resetPassword(e)}>
+              <div className="container ">
+                <section className="body">
+                  <div className="body-inner">
+                    <div className="h4 " style={{ color: "red" }}>
+                      {passwordError}
+                    </div>
+                    <div className="row form-group">
+                      <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <label className="control-label">
+                          Old password <span>*</span>
+                        </label>
 
+                        <div className="controls">
+                          <input
+                            name="oldpassword"
+                            type="password"
+                            className="form-control"
+                            value={oldpassword}
+                            onChange={(e) => {
+                              setOldPassword(e.target.value);
+                            }}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="row form-group">
+                      <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <label className="control-label">
+                          New password <span>*</span>
+                        </label>
+                        <div className="controls">
+                          <input
+                            name="newpassword"
+                            type="password"
+                            className="form-control"
+                            value={newpassword}
+                            onChange={(e) => {
+                              setnewPassword(e.target.value);
+                            }}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="row form-group">
+                      <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                        <label className="control-label">
+                          Confirm password <span>*</span>
+                        </label>
+                        <div className="controls">
+                          <input
+                            name="confirmpassword"
+                            type="password"
+                            className="form-control"
+                            value={confrimNewPassword}
+                            onChange={(e) => {
+                              setConfirmNewPassword(e.target.value);
+                            }}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="row form-group ">
+                      <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">
+                        <br />
+                        <label className="control-label">
+                          * Indicates mandatory fields.
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <button className="btn btn-outline-secondary btnall">
+                      RESET
+                    </button>
+                  </div>
+                </section>
+              </div>
+            </form>
+          </Modal.Body>
+        </Modal>
       </header>
-
-
     </Fragment>
   );
 };

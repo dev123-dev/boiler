@@ -363,6 +363,7 @@ const AddUserList = ({
                           onChange={(e) => onUserchange(e)}
                           required
                         />
+
                         {err ? (
                           <span id="Passerr" className="form-input-info">
                             password doesnt match
