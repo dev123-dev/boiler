@@ -107,11 +107,9 @@ router.route("/resetpassword").post((req, res) => {
     )
         .then((data) => {
             if(data.modifiedCount==0){
-               
                 res.status(200).json("Please Check you old password");
             }
             else{
-              
                 res.status(200).json("Password Updated");
             }
             
