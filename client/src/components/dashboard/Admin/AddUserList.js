@@ -2,51 +2,60 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
-import { AddUser, getAllUserAdmin } from "../../../actions/dag";
+import {
+  AddUser,
+  getAllUserAdmin,
+  getAllUserGroup,
+} from "../../../actions/dag";
 //, getAllOrganization
 import Select from "react-select";
 
 const AddUserList = ({
-  //dag: { allorg },
+  dag: { allusergrp },
   auth: { isAuthenticated, user, users },
   AddUser,
   getAllUserAdmin,
+  getAllUserGroup,
   //getAllOrganization,
 }) => {
   useEffect(() => {
     // getAllOrganization();
+    if (user) {
+      getAllUserGroup(user.orgId);
+    }
   }, []);
+  console.log("allusergrp", allusergrp);
 
-  const [oraganisation, getOraganisationData] = useState();
-  const [oraganisationId, setOraganisationId] = useState();
-  const [oraganisationName, setOraganisationName] = useState();
+  const [usergroup, getusergroupData] = useState();
+  const [usergroupId, setusergroupId] = useState();
+  const [usergroupName, setusergroupName] = useState();
 
-  //   const allOraganisation = [];
-  //   // console.log("allOraganisation",allOraganisation)
-  //   allorg.map((oraganisation) =>
-  //     allOraganisation.push({
-  //       oraganisationId: oraganisation._id,
-  //       label: oraganisation.orgName,
-  //       value: oraganisation.orgName,
-  //     })
-  //   );
+  const allusergroup = [];
+  // console.log("allusergroup",allusergroup)
+  allusergrp.map((usergroup) =>
+    allusergroup.push({
+      usergroupId: usergroup._id,
+      label: usergroup.groupName,
+      value: usergroup.groupName,
+    })
+  );
 
-  //   const onOraganisationChange = (e) => {
-  //     //console.log(e);
-  //     var oraganisationId = "";
-  //     var oraganisationName = "";
-  //     getOraganisationData(e);
+  const onusergroupChange = (e) => {
+    //console.log(e);
+    var usergroupId = "";
+    var usergroupName = "";
+    getusergroupData(e);
 
-  //     oraganisationId = e.oraganisationId;
-  //     oraganisationName = e.value;
+    usergroupId = e.usergroupId;
+    usergroupName = e.value;
 
-  //     setOraganisationId(oraganisationId);
-  //     setOraganisationName(oraganisationName);
-  //     const changeData = {
-  //       oraganisationIdVal: e.oraganisationId,
-  //     };
-  //     getAllOrganization(changeData);
-  //   };
+    setusergroupId(usergroupId);
+    setusergroupName(usergroupName);
+    const changeData = {
+      usergroupIdVal: e.usergroupId,
+    };
+    getAllUserGroup(changeData);
+  };
 
   const [show, setshow] = useState("");
   const handleClose = () => setshow("false");
@@ -119,7 +128,8 @@ const AddUserList = ({
       userName: UserName,
       fullName: UserFullname,
       email: UserEmail,
-      userGroup: UserOrgbelongs,
+      userGroupId: usergroupId,
+      userGroup: usergroupName,
       //orgId
       orgId: userOrgId,
       orgName: userOrgName,
@@ -232,22 +242,22 @@ const AddUserList = ({
                         User Group<span>*</span>
                       </label>
                       <div className="controls">
-                        <input
+                        {/* <input
                           name="UserOrgbelongs"
                           id="full_name"
                           type="text"
                           className="form-control"
                           onChange={(e) => onUserchange(e)}
                           required
-                        />
-                        {/* <Select
-                          name="UserOrgbelongs"
-                          // options={allOraganisation}
-                          isSearchable={true}
-                          // value={oraganisation}
-                          placeholder="Select UserGroup"
-                          // onChange={(e) => onOraganisationChange(e)}
                         /> */}
+                        <Select
+                          name="UserOrgbelongs"
+                          options={allusergroup}
+                          isSearchable={true}
+                          value={usergroup}
+                          placeholder="Select UserGroup"
+                          onChange={(e) => onusergroupChange(e)}
+                        />
 
                         {/* <select style={{ backgroundcolor: '#877bae' }} name="UserOrgbelongs" className=" selectorgcolor form-control" onChange={(e) => onUserchange(e)} required>
                           <option>--Select Organization--</option>
@@ -420,4 +430,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   AddUser,
   getAllUserAdmin,
+  getAllUserGroup,
 })(AddUserList);

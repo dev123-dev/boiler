@@ -7,13 +7,16 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  orgId:{
+  orgId: {
     type: ObjectId,
-    required:true,
+    required: true,
   },
   orgName: {
     type: String,
     required: true,
+  },
+  userGroupId: {
+    type: String,
   },
   userGroup: {
     type: String,
@@ -34,7 +37,6 @@ const UserSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    
   },
   password: {
     type: String,
@@ -44,38 +46,36 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  userDeactiveReason:{
+  userDeactiveReason: {
     type: String,
   },
-  EnterById:{
+  EnterById: {
     type: String,
   },
-  EnterByName:{
+  EnterByName: {
     type: String,
   },
-  EnterByDateTime:{
-    type:String,
-  },
-  EditById:{
+  EnterByDateTime: {
     type: String,
   },
-  EditByName:{
+  EditById: {
     type: String,
   },
-  EditByDateTime:{
-    type:String,
-  },
-  DeactiveById:{
+  EditByName: {
     type: String,
   },
-  DeactiveByName:{
+  EditByDateTime: {
     type: String,
   },
-  DeactiveByDateTime:{
-    type:String,
+  DeactiveById: {
+    type: String,
   },
-
+  DeactiveByName: {
+    type: String,
+  },
+  DeactiveByDateTime: {
+    type: String,
+  },
 });
 
 module.exports = UserDetails = mongoose.model("users", UserSchema);
-

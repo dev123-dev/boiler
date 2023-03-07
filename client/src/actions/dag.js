@@ -19,6 +19,7 @@ import {
   GET_DELAYS,
   GET_DOORNUMBER,
   GET_ALL_USER,
+  GET_ALL_USERGRP,
   GET_ALL_CATEGORY,
   FINAL_DATA_REP,
   GET_ALL_ORGANIZATION,
@@ -205,7 +206,7 @@ export const getAllUserGroup = () => async (dispatch) => {
   try {
     const res = await axios.get(`${linkPath}/api/group/getgroup`);
     dispatch({
-      type: GET_ALL_USER,
+      type: GET_ALL_USERGRP,
       payload: res.data,
     });
   } catch (err) {
