@@ -17,7 +17,7 @@ router.route("/adduser").post((req, res) => {
 
 //get all user
 router.route("/getuser").post((req, res) => {
-  console.log("hit");
+  //console.log("hit");
   const { oraganisationIdVal } = req.body;
   let query = {
     orgId: oraganisationIdVal,
@@ -83,7 +83,36 @@ router.route("/edituser").post((req, res) => {
 
   let UserHis = new UserHistroy(req.body);
 
-  UserHis.save(req.body).then(() => console.log("Histroy entered User"));
+//reset password 
+router.route("/resetpassword").post((req, res) => {
+
+    let data = req.body;
+
+     
+    UserDetails.updateOne(
+        { _id: data.User_id, password:data.oldpassword },
+        {
+            $set: {
+                password:data.newpassword,
+            },
+        }
+    )
+        .then((data) => {
+            if(data.modifiedCount==0){
+                res.status(200).json("Please Check you old password");
+            }
+            else{
+                res.status(200).json("Password Updated");
+            }
+            
+        })
+        .catch((err) => res.status(400).json("Error" + err));
+        UserHis.save(req.body).then(() => console.log("Histroy entered User"));
+}
+);
+
+//module.exports = router;
+ 
 });
 
 //get all cat

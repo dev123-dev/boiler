@@ -3,7 +3,6 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const auth = require("../../middleware/auth");
 const jwt = require("jsonwebtoken");
-//const config = require('config');
 const { check, validationResult } = require("express-validator");
 const UserDetails = require("../../models/UserDetails");
 
@@ -43,12 +42,11 @@ router.post("/login",
     // if (!errors.isEmpty()) {
     //   return res.status(STATUS_CODE_400).json({ errors: errors.array() });
     // }
-console.log(req.body)
+//console.log(req.body)
     //retriving Data
     const { userName, password } = req.body;
 
     try {
-
       //userName Check In DB
       let UserDetail = await UserDetails.findOne({
         userName: userName,
@@ -108,38 +106,15 @@ router.get("/load-user", auth, async (req, res) => {
 // @route    GET api/auth
 // @desc     Get All Users
 // @access   Private
+
 router.get(GET_ALL_USERS, auth, async (req, res) => {
   try {
-    const user = await UserDetails.find().select("-password"); //.select('-password');
+    const user = await UserDetails.find().select("-password"); 
     res.json(user);
   } catch (err) {
     console.error(err.message);
     res.status(STATUS_CODE_500).send(SERVER_ERROR);
   }
 });
-
-// // @route    POST api/auth
-// // @desc     POST Filtered Users Based on Search
-// // @access   Private
-// router.post(FILTER_USERS, auth, async (req, res) => {
-//   const { alphaSearch } = req.body;
-//   console;
-//   try {
-//     let query = {};
-//     if (alphaSearch !== "") {
-//       query = {
-//         sdName: {
-//           $regex: new RegExp("^" + alphaSearch, "i"),
-//         },
-//       };
-//     }
-//     staffDetails = await UserDetails.find(query).select("-password");
-
-//     res.json(staffDetails);
-//   } catch (err) {
-//     console.error(err.message);
-//     res.status(STATUS_CODE_500).send(SERVER_ERROR);
-//   }
-// });
 
 module.exports = router;
