@@ -79,6 +79,7 @@ const Designation = ({
                 src={require("../../../static/images/refresh-icon.png")}
                 onClick={() => onClickReset()}
                 alt="refresh"
+                title="Refresh"
               />{" "}
               &nbsp;
               <AddDesignation />
@@ -111,7 +112,7 @@ const Designation = ({
                                 onClick={() => onedit(desgVal)}
                                 src={require("../../../static/images/edit_icon.png")}
                                 alt="Edit"
-                                title="Edit Category"
+                                title="Edit Designation"
                               />
                               &nbsp;
                             </>

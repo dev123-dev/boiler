@@ -116,6 +116,7 @@ const Entity = ({
                 src={require("../../../static/images/refresh-icon.png")}
                 onClick={() => onClickReset()}
                 alt="refresh"
+                title="Refresh"
               />{" "}
               &nbsp;
               {/* <AddInstitution /> */}
@@ -123,8 +124,8 @@ const Entity = ({
                 <img
                   className="img_icon_size log"
                   src={require("../../../static/images/add-icon.png")}
-                  alt="Add Designation"
-                  title="Add Designation"
+                  alt="Add Inst/Ind"
+                  title="Add Inst/Ind"
                 />
               </Link>
             </div>
@@ -165,7 +166,7 @@ const Entity = ({
                                   onClick={() => onedit(entVal)}
                                   src={require("../../../static/images/edit_icon.png")}
                                   alt="Edit"
-                                  title="Edit Category"
+                                  title="Edit "
                                 />
                                 &nbsp;
                                 <img
@@ -173,7 +174,7 @@ const Entity = ({
                                   onClick={() => onDelete(entVal._id)}
                                   src={require("../../../static/images/delete.png")}
                                   alt="Delete User"
-                                  title="Delete Category"
+                                  title="Delete "
                                 />
                               </>
                             ) : (

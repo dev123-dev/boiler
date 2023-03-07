@@ -109,6 +109,7 @@ const Category = ({
                 src={require("../../../static/images/refresh-icon.png")}
                 onClick={() => onClickReset()}
                 alt="refresh"
+                title="Refresh"
               />{" "}
               &nbsp;
               <Addcategory />
