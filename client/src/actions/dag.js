@@ -258,11 +258,7 @@ export const getAllCategory = (userdata) => async (dispatch) => {
   // console.log("run with ",userdata )
   try {
     const res = await axios.post(`${linkPath}/api/category/getcategory`, body);
-<<<<<<< HEAD
-    //console.log("res data", res.data);
-=======
     // console.log("res data", res.data);
->>>>>>> be83f7cc03e1e2edcefbc063bec0014aedc54f9d
     dispatch({
       type: GET_ALL_CATEGORY,
       payload: res.data,
@@ -429,13 +425,7 @@ export const getAllUserAdmin = (userdata) => async (dispatch) => {
 
   try {
     const res = await axios.post(`${linkPath}/api/user/getalluseradmin`, body);
-<<<<<<< HEAD
-
-   // console.log("res data", res.data);
-
-=======
     // console.log("res data", res.data);
->>>>>>> be83f7cc03e1e2edcefbc063bec0014aedc54f9d
     dispatch({
 
       type: GET_ALL_User_Admin,
