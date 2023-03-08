@@ -77,6 +77,26 @@ router.route("/editcategory").post((req, res) => {
 
     .catch((err) => res.status(400).json("Error" + err));
 
-
 });
+
+router.route("/addCategoryEnt").post((req, res) => {
+  let data = req.body;
+  console.log("request", req.body);
+  CategoryDetails.updateOne(
+    { _id: data.catid, orgId: data.orgId },
+    {
+      $set: {
+        categoryEntity:data.categoryEntity,
+      },
+    }
+  )
+    .then((data) => {
+      console.log(data)
+      res.status(200).json("updated");
+    })
+    .catch((err) => res.status(400).json("Error" + err));
+  
+});
+
+
 module.exports = router;

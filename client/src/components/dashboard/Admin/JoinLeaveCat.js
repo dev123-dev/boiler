@@ -1,17 +1,64 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import Modal from "react-bootstrap/Modal";
-import { deleteCategory } from "../../../actions/dag";
+import axios from "axios";
 import { getAllCategory } from "../../../actions/dag";
-import Addcategory from "./AddCategory";
-import EditCategory from "./EditCategory";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 //import { loadUser } from "../../../actions/auth";
 
-const JoinLeaveCat = ({ auth: { user }, dag: { allcat }, location }) => {
+const JoinLeaveCat = ({ auth: { user }, dag: { allent }, location,getAllCategory }) => {
+
+  const myuser = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    if (myuser) {
+      getAllCategory(myuser.orgId);
+     
+    }
+  }, []);
+
   const [mydata, setmydata] = useState(location.state);
-  console.log("join", mydata);
+  // console.log("join", mydata);
+  // console.log("all cat ", allent);
+
+  const ent = allent;
+  const [entCatMembers, setEntCatMembers] = useState(mydata.categoryEntity)
+
+  const [notMember, setNotMember] = useState(ent.filter(ele=>!entCatMembers.includes(ele))) //some(item=> item["_id"]===ele["_id"]))); ////
+  
+
+  console.log("not a mem",notMember)
+
+  const JoinEnt = (ele, index) => {
+    setEntCatMembers([...entCatMembers, ele])
+
+    const updated = notMember.filter((elem, id) => {
+      return index !== id;
+    });
+    setNotMember(updated)
+  }
+
+  const LeaveEnt=(ele,index)=>{
+
+    setNotMember([...notMember, ele])
+
+    const updated = entCatMembers.filter((elem, id) => {
+      return index !== id;
+    });
+
+    setEntCatMembers(updated)
+  }
+
+const savent=()=>{
+  //console.log("inside save",mydata._id, " user org id",user.orgId);
+
+  var linkPath = "";
+
+  axios.post(`${linkPath}/api/category/addCategoryEnt`, {
+     "catid":mydata._id,
+     "orgId":user.orgId,
+     "categoryEntity":entCatMembers,
+    })
+    .then((res)=>{console.log(res)})
+}
 
   return (
     <div>
@@ -28,12 +75,9 @@ const JoinLeaveCat = ({ auth: { user }, dag: { allcat }, location }) => {
                         <span style={{ color: "#ff9500" }}></span>
                       </h3>
                     </div>
-                    {/* <div className="col-lg-2 col-md-2 col-sm-2 col-xs-3 pull-right text-right" style={{margintop: "20px"}}>
-                            <a href="#" title="Back"><img style={{width:"24px", height:"24px"}} src={require("../assets/refresh-icon.png")}/></a>
-                            <a style={{textdecoration:"none",cursor:"pointer"}} href="#" title="Refresh"><img style={{width:"24px",height:"24px"}} title="Refresh" src={require("../assets/refresh-icon.png")} /></a>
-                        </div> */}
+
                     <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right">
-                      {/* <div className="text-right"> */}
+
                       <img
                         className="img_icon_size log"
                         //   onClick={handleOpen}
@@ -47,7 +91,7 @@ const JoinLeaveCat = ({ auth: { user }, dag: { allcat }, location }) => {
                   <div className="row">
                     <div
                       className="col-md-6 col-lg-6 col-sm-12 col-xs-12 padding_right table-responsive fixTableHeadjoin"
-                      style={{ paddingleft: " 0px" }}
+
                     >
                       {/* <div className="body-inner table-responsive padding_col_xs">  */}
                       <table
@@ -65,19 +109,29 @@ const JoinLeaveCat = ({ auth: { user }, dag: { allcat }, location }) => {
                                 name="callFromJoin"
                                 value="SearchJoin"
                               />
-                              <input
+                              {/* <input
                                 className="search_control"
                                 type="text"
                                 name="joinEntName"
                                 placeholder="Search"
-                              />
+                              /> */}
                             </th>
                             {/* </form> */}
                             <th style={{ width: "10%" }}>Type</th>
                             <th style={{ width: "5%" }}>Op</th>
                           </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                          {notMember.map((ele, index) => {
+                            return <tr key={index}>
+                              <td><button onClick={() => JoinEnt(ele, index)}>+</button></td>
+                              <td>{ele.entName}</td>
+                              <td>{ele.entType}</td>
+                              <td> <button>Op</button></td>
+                            </tr>
+                          })}
+
+                        </tbody>
                       </table>
                       {/* <ul id="page1" className="pagination pagination-sm" style={{margintop:" 1px"}}>
 
@@ -108,21 +162,31 @@ const JoinLeaveCat = ({ auth: { user }, dag: { allcat }, location }) => {
                             {/* <form id="leaveForm" method="POST"> */}
                             <th style={{ width: "80%" }}>
                               Name &nbsp;
-                              <input
+                              {/* <input
                                 id="idSrchLeave"
                                 className="search_control"
                                 type="text"
                                 name="leaveEntName"
                                 placeholder="Search"
                               />
-                              <input type="hidden" name="callFromLeave" />
+                              <input type="hidden" name="callFromLeave" /> */}
                             </th>
                             {/* </form> */}
                             <th style={{ width: "10%" }}>Type</th>
                             <th style={{ width: "5%" }}>Op</th>
                           </tr>
                         </thead>
-                        <tbody></tbody>
+                        <tbody>
+                          {entCatMembers.map((ele, index) => {
+                            return <tr key={index}>
+                              <td><button onClick={() => LeaveEnt(ele, index)}>-</button></td>
+                              <td>{ele.entName}</td>
+                              <td>{ele.entType}</td>
+                              <td> <button>Op</button></td>
+                            </tr>
+                          })}
+
+                        </tbody>
                       </table>
                       {/* <ul className="pagination pagination-sm" style={{margintop: "1px"}}>
 
@@ -139,7 +203,7 @@ const JoinLeaveCat = ({ auth: { user }, dag: { allcat }, location }) => {
                       </label>
                     </div>
                   </div>
-                  home
+<button onClick={savent} >Save</button>
                 </section>
               </div>
             </div>
@@ -156,5 +220,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   //deleteCategory,
   // loadUser,
-  // getAllCategory,
+  getAllCategory,
 })(JoinLeaveCat);
