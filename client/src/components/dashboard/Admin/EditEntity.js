@@ -91,7 +91,7 @@ const EditEntity = ({
   const entOrgName = user ? user.orgName : "";
   // const [addhead, setaddhead] = useState();
   const [addhead1, setaddhead1] = useState(mydata.InstHead);
-  console.log(mydata);
+  //console.log(mydata);
   const [formDataENT, setformDataENT] = useState({
     entId: mydata._id,
     entName: mydata.entName,
@@ -350,7 +350,7 @@ const EditEntity = ({
                           <img
                             className="img_icon_size log"
                             src={require("../../../static/images/back.png")}
-                            alt="Add User"
+                            alCategoriest="Add User"
                             title="Back"
                           />
                         </Link>

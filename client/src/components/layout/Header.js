@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Navbar, Nav, NavItem, Modal } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import { Link, NavLink } from "react-router-dom";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../actions/auth";
@@ -185,14 +186,34 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 isAuthenticated &&
                 user &&
                 user.userGroup === "Admin" ? (
-                  <NavLink
-                    to="/generatelabel"
-                    className="navlink"
+                  <NavDropdown
+                    title="Generate Label"
                     activeStyle={{ color: "#e79d69", textDecoration: "none" }}
                   >
-                    Generate Label
-                  </NavLink>
+                    {/* {arrow_down}  */}
+                    <NavDropdown.Item className="navlinkhover">
+                      <Link to="/labelforcat">Label for Category</Link>
+                    </NavDropdown.Item>
+                    <NavDropdown.Item className="navlinkhover">
+                      <Link to="/labelforinstind">
+                        Label for Institute/Individual
+                      </Link>
+                    </NavDropdown.Item>
+                    {/* <NavDropdown.Item className="navlinkitem">
+                      {" "}
+                      <Link to="#" onClick={handleShow}>
+                        Logout
+                      </Link>
+                    </NavDropdown.Item> */}
+                  </NavDropdown>
                 ) : (
+                  // <NavLink
+                  //   to="/generatelabel"
+                  //   className="navlink"
+                  //   activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                  // >
+                  //   Generate Label
+                  // </NavLink>
                   <NavItem></NavItem>
                 )}
               </NavItem>

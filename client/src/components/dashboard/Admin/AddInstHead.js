@@ -105,7 +105,7 @@ const AddInstHead = ({
   const handleOpen = (e) => {
     e.preventDefault();
     setShowAddModal(true);
-    console.log("e", e);
+    // console.log("e", e);
 
     var designationId = "";
     var designationName = "";
