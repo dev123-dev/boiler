@@ -196,6 +196,9 @@ const Category = ({
           <div className="col-lg-10">
             <h3 className="modal-title text-center">Edit Category</h3>
           </div>
+          {/* <Modal.Title className="container">
+            <h1 className="font-weight-bold ">Edit Category</h1>
+          </Modal.Title> */}
           <div className="col-lg-2">
             <button onClick={handleUpdateModalClose} className="close">
               <img
@@ -225,10 +228,13 @@ const Category = ({
         aria-labelledby="contained-modal-title-vcenter"
       >
         <Modal.Header>
-          <Modal.Title className="container">
+          {/* <Modal.Title className="container">
             <h1 className="font-weight-bold ">DEACTIVATE </h1>
-          </Modal.Title>
-          <div className="col-lg-2">
+          </Modal.Title> */}
+          <div className="col-lg-11 ">
+            <h3 className="modal-title text-center">DEACTIVATE</h3>
+          </div>
+          <div className="col-lg-1">
             <button onClick={handleClose} className="close">
               <img
                 src={require("../../../static/images/close.png")}

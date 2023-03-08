@@ -24,7 +24,7 @@ const AddUserList = ({
       getAllUserGroup(user.orgId);
     }
   }, []);
-  console.log("allusergrp", allusergrp);
+  //console.log("allusergrp", allusergrp);
 
   const [usergroup, getusergroupData] = useState();
   const [usergroupId, setusergroupId] = useState();

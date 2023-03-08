@@ -179,7 +179,7 @@ export const deleteUser = (id) => async (dispatch) => {
 
 //edit user details
 export const updateUser = (updatedata) => async (dispatch) => {
-  console.log("inside action");
+  //console.log("inside action");
   // console.log(updatedata);
   try {
     axios.post(`${linkPath}/api/user/edituser`, updatedata);
@@ -238,7 +238,7 @@ export const deleteUserGroup = (groupName) => async (dispatch) => {
 ////////////////////////////////////
 //add category
 export const addCategory = (UserData) => async (dispatch) => {
-  console.log(UserData);
+  //console.log(UserData);
   try {
     await axios.post(`${linkPath}/api/category/addcategory`, UserData, config);
     //diapatching get function because it should relfex immidiatly after adding
@@ -253,12 +253,16 @@ export const addCategory = (UserData) => async (dispatch) => {
 //getting all category
 
 export const getAllCategory = (userdata) => async (dispatch) => {
-  console.log(userdata);
+  //console.log(userdata);
   let body = { orgId: userdata };
   // console.log("run with ",userdata )
   try {
     const res = await axios.post(`${linkPath}/api/category/getcategory`, body);
+<<<<<<< HEAD
     //console.log("res data", res.data);
+=======
+    // console.log("res data", res.data);
+>>>>>>> be83f7cc03e1e2edcefbc063bec0014aedc54f9d
     dispatch({
       type: GET_ALL_CATEGORY,
       payload: res.data,
@@ -344,7 +348,7 @@ export const getalldesignation = (userdata) => async (dispatch) => {
 //edit designation details
 export const updateDesignation = (updatedata) => async (dispatch) => {
   console.log("cat action", updatedata);
-  console.log("inside action");
+  //console.log("inside action");
   // console.log(updatedata);
   try {
     axios.post(`${linkPath}/api/designation/editdesignation`, updatedata);
@@ -421,20 +425,24 @@ export const getAllUserAdmin = (userdata) => async (dispatch) => {
   // console.log("action user", userdata);
   let body = { orgId: userdata };
   // console.log("run with ",userdata )
-  console.log(" action body", body);
+  //console.log(" action body", body);
 
   try {
     const res = await axios.post(`${linkPath}/api/user/getalluseradmin`, body);
+<<<<<<< HEAD
 
    // console.log("res data", res.data);
 
+=======
+    // console.log("res data", res.data);
+>>>>>>> be83f7cc03e1e2edcefbc063bec0014aedc54f9d
     dispatch({
 
       type: GET_ALL_User_Admin,
       payload: res.data,
       
     });
-    console.log("res", res.data);
+    // console.log("res", res.data);
   } catch (err) {
 
     dispatch({
