@@ -94,12 +94,18 @@ const JoinLeaveCat = ({
           <br />
           <br />
           <section>
-            <h1
-              style={{ fontFamily: "Serif", color: "#877bae" }}
-              className="font-weight-bold "
-            >
-              Join or Leave For {" " + mydata.categoryName + " "} category
-            </h1>
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 px-4">
+              <h1
+                style={{ fontFamily: "Serif", color: "#877bae" }}
+                className="font-weight-bold "
+              >
+                Join or Leave From
+                <span style={{ color: "#e79d69" }}>
+                  {" "}
+                  {" " + mydata.categoryName + " "}{" "}
+                </span>
+              </h1>
+            </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-12">
               <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
                 &nbsp;

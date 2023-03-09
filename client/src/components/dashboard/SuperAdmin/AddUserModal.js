@@ -33,7 +33,6 @@ const AddUserModal = ({
   );
 
   const onOraganisationChange = (e) => {
-    //console.log(e);
     var oraganisationId = "";
     var oraganisationName = "";
     getOraganisationData(e);
@@ -49,9 +48,9 @@ const AddUserModal = ({
     getAllOrganization(changeData);
   };
 
-  const [show, setshow] = useState("");
-  const handleClose = () => setshow("false");
-  const handleShow = () => setshow("true");
+  // const [show, setshow] = useState("");
+  // const handleClose = () => setshow("false");
+  // const handleShow = () => setshow("true");
 
   // const [inputdata, setinput] = useState("");
   // const [items, setitem] = useState([]);
@@ -72,7 +71,7 @@ const AddUserModal = ({
 
   const {
     UserFullname,
-    UserOrgbelongs,
+    //UserOrgbelongs,
     UserName,
     UserNumber,
     UserEmail,
@@ -82,8 +81,6 @@ const AddUserModal = ({
   } = formDataUSER;
 
   const onUserchange = (e) => {
-    // console.log(e.target.name)
-    // var pass;
     if (e.target.name === "UserPassword" && e.target.value) {
       setpas(e.target.value);
     }
@@ -112,7 +109,6 @@ const AddUserModal = ({
 
   const onSubmitUSERdata = (e) => {
     e.preventDefault();
-    //console.log(formDataUSER)
 
     const finalUSERdata = {
       userName: UserName,
@@ -139,7 +135,7 @@ const AddUserModal = ({
     };
 
     AddUser(finalUSERdata);
-    // console.log(finalUSERdata)
+
     setformDataUSER({
       ...formDataUSER,
       UserFullname: "",
@@ -161,8 +157,6 @@ const AddUserModal = ({
     <Fragment></Fragment>
   ) : (
     <Fragment>
-      {/* <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right"> */}
-
       <img
         className="img_icon_size log"
         onClick={handleOpen}
@@ -171,7 +165,6 @@ const AddUserModal = ({
         title="Add User"
       />
 
-      {/* </div> */}
       <br />
 
       {/* Adding Organization */}
@@ -180,7 +173,7 @@ const AddUserModal = ({
         show={showAddModal}
         backdrop="static"
         keyboard={false}
-        onHide={handleClose}
+        // onHide={handleClose}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered

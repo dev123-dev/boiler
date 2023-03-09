@@ -7,7 +7,6 @@ import { getAllOrganization } from "../../../actions/dag";
 import { deleteUser } from "../../../actions/dag";
 import EditUser from "./EditUser";
 import Select from "react-select";
-import { useHistory } from "react-router-dom";
 
 const Users = ({
   //here to connect to action we need to import the function
@@ -41,11 +40,6 @@ const Users = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  //edit modal
-  const [showEditModal, setShowEditModal] = useState(false);
-  const handleEditModalClose = () => setShowEditModal(false);
-  const handleOpen = () => setShowEditModal(true);
-
   const [UserId, setId] = useState("");
 
   const onDelete = (id) => {
@@ -57,7 +51,7 @@ const Users = ({
   const onedit = (user2) => {
     setShowUpdateModal(true);
     setorgdata(user2);
-    handleOpen();
+    // handleOpen();
   };
 
   const onClickReset = () => {
@@ -221,7 +215,7 @@ const Users = ({
                                   className="img_icon_size log"
                                   onClick={() => onDelete(userVal._id)}
                                   src={require("../../../static/images/delete.png")}
-                                  alt="delete User"
+                                  alt="Delete User"
                                   title="Deactivate User"
                                 />
                               </>

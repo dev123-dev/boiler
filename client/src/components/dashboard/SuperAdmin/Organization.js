@@ -20,13 +20,6 @@ const Organization = ({
     getAllOrganization();
   }, []);
 
-  // const onClickReset = () => {
-
-  //   // setCurrentData(1);
-  //   // getbatchsData("");
-  //   getAllOrganization("");
-  // };
-
   //deactivate
   const [formData, setFormData] = useState({
     Organization_DE_Reason: "",
@@ -88,9 +81,6 @@ const Organization = ({
   return (
     <div>
       <div className="row">
-        {/* <div className="col-lg-1 col-md-12 col-sm-12 col-xs-12 text-center">
-    </div> */}
-
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
           <br />
           <br />
@@ -104,17 +94,6 @@ const Organization = ({
             <br />
             <br />
 
-            {/* <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
-            <img
-              className="img_icon_size log text-right"
-              src={require("../../../static/images/refresh-icon.png")}
-              onClick={() => onClickReset()}
-              // src={refresh}
-              alt="refresh"
-            />{" "}
-            &nbsp;
-            <AddOrgModal />
-          </div> */}
             <AddOrgModal />
 
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead ">

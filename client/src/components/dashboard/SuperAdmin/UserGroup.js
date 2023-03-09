@@ -16,12 +16,6 @@ const UserGroup = ({
     getAllUserGroup();
   }, []);
 
-  //deactivate
-  const [formData, setFormData] = useState({
-    User_DE_Reason: "",
-    isSubmitted: false,
-  });
-
   //deactivate modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -33,9 +27,6 @@ const UserGroup = ({
     setname(grpname);
     handleShow();
   };
-
-  const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const handleUpdateModalClose = () => setShowUpdateModal(false);
 
   //deactivate
   const onAdd = (e) => {
@@ -72,7 +63,6 @@ const UserGroup = ({
                 <thead>
                   <tr className="headingsizes">
                     <th>Group Name</th>
-                    <th>Status</th>
 
                     <th>Operation</th>
                   </tr>
@@ -83,10 +73,9 @@ const UserGroup = ({
                       return (
                         <tr key={idx}>
                           <td>{grpVal.groupName}</td>
-                          <td>{grpVal.groupStatus}</td>
 
                           <td>
-                            {grpVal.groupStatus == "Active" ? (
+                            {grpVal.groupStatus === "Active" ? (
                               <>
                                 <img
                                   className="img_icon_size log"
@@ -97,7 +86,7 @@ const UserGroup = ({
                                 />
                               </>
                             ) : (
-                              <></>
+                              <>Deactivated</>
                             )}
                           </td>
                         </tr>
