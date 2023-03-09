@@ -1999,9 +1999,9 @@ th {
   margin: 20px;
 }
 
-div {
+/* div {
   border: 1px solid red;
-}
+} */
 .btn:hover {
   background-color: #877bae !important;
 }
