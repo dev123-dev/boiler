@@ -29,8 +29,8 @@ router.route("/getcategory").post((req, res) => {
 //deactive  category
 router.route("/deactivecategory").post((req, res) => {
   let data = req.body;
-  console.log("request", req.body);
-  console.log("backend", data.orgId);
+  //console.log("request", req.body);
+  //console.log("backend", data.orgId);
   CategoryDetails.updateOne(
     { _id: data.catid, orgId: data.orgId },
     {
@@ -79,7 +79,7 @@ router.route("/editcategory").post((req, res) => {
 //joinLeave category
 router.route("/addCategoryEnt").post((req, res) => {
   let data = req.body;
-  console.log("request", req.body);
+  //console.log("request", req.body);
   CategoryDetails.updateOne(
     { _id: data.catid, orgId: data.orgId },
     {
@@ -89,7 +89,7 @@ router.route("/addCategoryEnt").post((req, res) => {
     }
   )
     .then((data) => {
-      console.log(data);
+      //console.log(data);
       res.status(200).json("updated");
     })
     .catch((err) => res.status(400).json("Error" + err));

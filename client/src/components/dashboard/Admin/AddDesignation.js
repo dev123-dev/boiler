@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { addDesignation, getalldesignation } from "../../../actions/dag";
@@ -10,18 +10,13 @@ const AddDesignation = ({
   addDesignation,
   getalldesignation,
 }) => {
-  const [show, setshow] = useState("");
-  const handleClose = () => setshow("false");
-  const handleShow = () => setshow("true");
-
   const desigOrgId = user ? user.orgId : "";
   const desigOrgName = user ? user.orgName : "";
 
   const [formDataDesig, setformDataDesig] = useState({
     designationName: "",
-    designationStatus: "",
   });
-  const { designationName, designationStatus } = formDataDesig;
+  const { designationName } = formDataDesig;
 
   const onDESGchange = (e) => {
     setformDataDesig({
@@ -78,7 +73,7 @@ const AddDesignation = ({
         show={showAddModal}
         backdrop="static"
         keyboard={false}
-        onHide={handleClose}
+        onHide={handleAddClose}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -125,26 +120,6 @@ const AddDesignation = ({
                       </div>
                     </div>
                   </div>
-                  {/* <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">
-                        Description<span>*</span>
-                      </label>
-                      <div className="controls">
-                        <input
-                          name="catDesp"
-                          id="cat_Desp"
-                          type="text"
-                          className="form-control"
-                          onChange={(e) => onDESGchange(e)}
-                        />
-                        <span
-                          id="category_result"
-                          className="form-input-info"
-                        ></span>
-                      </div>
-                    </div>
-                  </div> */}
 
                   <div className="row form-group ">
                     <div className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12 text-right">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Fragment } from "react";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+
 import { AddInst, getalldesignation } from "../../../actions/dag";
 import Modal from "react-bootstrap/Modal";
 
@@ -24,7 +24,6 @@ const AddInstitution = ({
     }
   }, []);
 
-  //console.log("indiv", alldesg);
   let history = useHistory();
   const [show, setshow] = useState(false);
   const handleClose = () => setshow(false);
@@ -37,7 +36,7 @@ const AddInstitution = ({
   const [designationName, setdesignationName] = useState();
 
   const alldesignation = [];
-  // console.log("alldesignation",alldesignation)
+
   alldesg &&
     alldesg.map((designation) =>
       alldesignation.push({
@@ -48,7 +47,6 @@ const AddInstitution = ({
     );
 
   const ondesignationChange = (e) => {
-    //console.log(e);
     var designationId = "";
     var designationName = "";
     getdesignationData(e);
@@ -58,10 +56,9 @@ const AddInstitution = ({
 
     setdesignationId(designationId);
     setdesignationName(designationName);
-    const changeData = {
-      designationIdVal: e.designationId,
-    };
-    //getalldesignation(changeData);
+    // const changeData = {
+    //   designationIdVal: e.designationId,
+    // };
   };
 
   const entOrgId = user ? user.orgId : "";
@@ -85,7 +82,7 @@ const AddInstitution = ({
     entStatus: "",
     entType: "",
   });
-  //console.log("array", addhead);
+
   const {
     entName,
     entOrderDesg,
@@ -101,8 +98,6 @@ const AddInstitution = ({
     entDistrict,
     entState,
     entPincode,
-    entStatus,
-    entType,
   } = formDataENT;
 
   const onENTchange = (e) => {
@@ -124,7 +119,7 @@ const AddInstitution = ({
   const onAdd = (e) => {
     e.preventDefault();
     const deletehead = addhead.filter((ele, index) => {
-      return index != headid;
+      return index !== headid;
     });
     setaddhead(deletehead);
     handleClose();
@@ -167,8 +162,6 @@ const AddInstitution = ({
     };
 
     AddInst(finalENTdata);
-    //console.log("final", finalENTdata);
-    // getAllCategory(user.orgId);
 
     setformDataENT({
       ...formDataENT,
@@ -214,7 +207,7 @@ const AddInstitution = ({
 
   const {
     indName,
-    indDesg,
+
     indEmail,
     indAddEmail,
 
@@ -226,7 +219,6 @@ const AddInstitution = ({
     indDistrict,
     indState,
     indPincode,
-    indStatus,
   } = formDataIND;
 
   const onINDchange = (e) => {
@@ -258,7 +250,6 @@ const AddInstitution = ({
       entPinCode: indPincode,
       entStatus: "Active",
       entType: "Individual",
-      // InstHead: addhead,
 
       orgId: entOrgId,
       orgName: entOrgName,
@@ -275,7 +266,6 @@ const AddInstitution = ({
     };
 
     AddInst(finalINDdata);
-    // getAllCategory(user.orgId);
 
     setformDataIND({
       ...formDataIND,
@@ -300,7 +290,6 @@ const AddInstitution = ({
     history.push("/entity");
   };
 
-  // console.log(addhead);
   return !isAuthenticated || !user || !users ? (
     <Fragment></Fragment>
   ) : (
@@ -314,11 +303,6 @@ const AddInstitution = ({
             Add Institute/Individual
             <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12">
               <div className="row form-group ">
-                {/* <div
-                  className="control-group col-md-12 col-lg-12 col-sm-12 col-xs-12"
-                  style={{ border: "1px solid orange" }}
-                > */}
-                {/* <div className="h2"> Add Institution/Individual</div> */}
                 <div className="controls h1 row col-md-12 col-lg-12 col-sm-12 col-xs-12">
                   <div className="col-md-10 col-lg-10 col-sm-10 col-xs-6">
                     <label style={{ cursor: "pointer" }}>
@@ -352,15 +336,11 @@ const AddInstitution = ({
                         src={require("../../../static/images/back.png")}
                         alCategoriest="Add User"
                         title="Back"
+                        alt="back page"
                       />
                     </Link>
                   </div>
                 </div>
-
-                {/* <div className="text-right col-lg-12 col-md-12 col-sm-12 col-xs-12 "> */}
-
-                {/* </div> */}
-                {/* </div> */}
               </div>
             </div>
           </div>
@@ -597,7 +577,6 @@ const AddInstitution = ({
                             type="text"
                             className="form-control"
                             onChange={(e) => onENTchange(e)}
-                            // maxlength="38"
                           />
                         </div>
                       </div>
@@ -617,7 +596,6 @@ const AddInstitution = ({
                         </div>
                       </div>
                     </div>
-                    {/* </div> */}
 
                     <div>
                       <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12 h4 ">
@@ -688,15 +666,6 @@ const AddInstitution = ({
                 <>
                   <div className="container">
                     <div className="h2 px-3"> ADD Individual</div>
-                    {/* <div className="text-right">
-                <img
-                  className="img_icon_size log"
-                  //   onClick={handleOpen}
-                  src={require("../../../static/images/back.png")}
-                  alt="Add User"
-                  title="Back"
-                />
-              </div> */}
 
                     <form onSubmit={(e) => onSubmitINDdata(e)}>
                       <div className="row form-group mt-4" id="eventDiv">
@@ -755,26 +724,6 @@ const AddInstitution = ({
                               // placeholder={desigbelongs}
                               onChange={(e) => ondesignationChange(e)}
                             />
-                            {/* <div className="controls">
-                          <select
-                            className="form-control"
-                            id="desg_menu"
-                            name="indDesg"
-                            required
-                          >
-                            <option selected value="">
-                              --Select Designation--
-                            </option>
-                          </select>
-                        </div> */}
-                            {/* <input
-                          name="indDesg"
-                          id="ent_email"
-                          type="text"
-                          onChange={(e) => onINDchange(e)}
-                          className="form-control validEmail"
-                          required
-                        /> */}
                           </div>
 
                           <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
@@ -965,7 +914,6 @@ const AddInstitution = ({
 
         <Modal
           show={show}
-          // onHide={handleClose}
           centered
           size="lg"
           aria-labelledby="contained-modal-title-vcenter"

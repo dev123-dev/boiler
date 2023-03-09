@@ -29,29 +29,28 @@ const {
 // @route    POST api/auth
 // @desc     Authenticate user & get token
 // @access   Public
-router.post("/login",
-   [
-   check(USERNAME, USERNAME_REQUIRED_INVALID).exists(),
-   check(PASSWORD, PASSWORD_INVALID).exists(),
- ],
+router.post(
+  "/login",
+  [
+    check(USERNAME, USERNAME_REQUIRED_INVALID).exists(),
+    check(PASSWORD, PASSWORD_INVALID).exists(),
+  ],
 
   async (req, res) => {
-    
     const errors = "";
 
     // if (!errors.isEmpty()) {
     //   return res.status(STATUS_CODE_400).json({ errors: errors.array() });
     // }
-//console.log(req.body)
+    //console.log(req.body)
     //retriving Data
     const { userName, password } = req.body;
 
     try {
-      //userName Check In DB
       let UserDetail = await UserDetails.findOne({
         userName: userName,
         password: password,
-        userStatus:"Active"
+        userStatus: "Active",
       });
 
       if (!UserDetail) {
@@ -94,7 +93,6 @@ router.post("/login",
 // @desc     Get Authenticated User
 // @access   Private
 router.get("/load-user", auth, async (req, res) => {
-  
   try {
     const user = await UserDetails.findById(req.user.id).select("-password");
     res.json(user);
@@ -109,7 +107,7 @@ router.get("/load-user", auth, async (req, res) => {
 
 router.get(GET_ALL_USERS, auth, async (req, res) => {
   try {
-    const user = await UserDetails.find().select("-password"); 
+    const user = await UserDetails.find().select("-password");
     res.json(user);
   } catch (err) {
     console.error(err.message);

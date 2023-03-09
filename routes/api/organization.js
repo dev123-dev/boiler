@@ -28,14 +28,12 @@ router.route("/allorganizationdetails").get((req, res) => {
 
 //get all details with status active for dropdown
 router.route("/").get((req, res) => {
-
   OrgDetails.find({ orgStatus: "Active" })
     .sort({ orgStatus: 1 })
     .then((data) => {
       res.status(200).json(data);
     })
     .catch((err) => res.status(400).json("Error" + err));
-    
 });
 
 //deactive Org
@@ -74,7 +72,7 @@ router.route("/deactiveorg").post((req, res) => {
 
 router.route("/editorganization").post((req, res) => {
   let data = req.body;
-  
+
   let OrgHis = new OrgHistroy(req.body);
   OrgHis.save(req.body).then(() => console.log("Histroy entered"));
 

@@ -81,7 +81,7 @@ router.route("/editinstind").post((req, res) => {
 
   // let CatHis = new CategoryHistroy(req.body);
   // CatHis.save(req.body).then(() => console.log("Histroy entered for CAtegory"));
-  console.log(data);
+  // console.log(data);
 
   EntDetails.updateOne(
     { _id: data.entId, orgId: data.orgId },

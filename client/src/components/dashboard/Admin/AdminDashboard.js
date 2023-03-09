@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NotFound from "../../layout/NotFound";
@@ -10,7 +10,6 @@ const AdminDashboard = ({
   dag: { allcat, allent },
   getAllCategory,
   getAllEntity,
-  loadUser,
 }) => {
   useEffect(() => {
     const myuser = JSON.parse(localStorage.getItem("user"));
@@ -33,7 +32,6 @@ const AdminDashboard = ({
               style={{
                 fontFamily: "Serif",
                 color: "#877bae",
-                // fontSize: "45px",
               }}
               className="font-weight-bold "
             >
@@ -102,7 +100,6 @@ const AdminDashboard = ({
               </div>
               <div className="col-lg-1"></div>
             </div>
-            {/* </div> */}
           </section>
         </div>
       </div>

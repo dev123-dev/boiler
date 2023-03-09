@@ -5,9 +5,8 @@ import { deleteCategory } from "../../../actions/dag";
 import { getAllCategory } from "../../../actions/dag";
 import Addcategory from "./AddCategory";
 import EditCategory from "./EditCategory";
-import { Link } from "react-router-dom";
+
 import { useHistory } from "react-router-dom";
-//import { loadUser } from "../../../actions/auth";
 
 const Category = ({
   auth: { user },
@@ -20,7 +19,7 @@ const Category = ({
       getAllCategory(user.orgId);
     }
   }, []);
-  // console.log("user data on cat",user)
+
   const onClickReset = () => {
     if (user) {
       getAllCategory(user.orgId);
@@ -71,16 +70,10 @@ const Category = ({
     handleClose();
   };
 
-  //edit modal
-  const [showEditModal, setShowEditModal] = useState(false);
-  const handleEditModalClose = () => setShowEditModal(false);
-  const handleOpen = () => setShowEditModal(true);
-
   const [catdata, setcatdata] = useState(null);
   const onedit = (user2) => {
     setShowUpdateModal(true);
     setcatdata(user2);
-    handleOpen();
   };
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -138,7 +131,7 @@ const Category = ({
                           <td>{catVal.categoryDesp}</td>
 
                           <td>
-                            {catVal.categoryStatus == "Active" ? (
+                            {catVal.categoryStatus === "Active" ? (
                               <>
                                 <img
                                   className="img_icon_size log"
@@ -196,9 +189,7 @@ const Category = ({
           <div className="col-lg-10">
             <h3 className="modal-title text-center">Edit Category</h3>
           </div>
-          {/* <Modal.Title className="container">
-            <h1 className="font-weight-bold ">Edit Category</h1>
-          </Modal.Title> */}
+
           <div className="col-lg-2">
             <button onClick={handleUpdateModalClose} className="close">
               <img
@@ -210,7 +201,6 @@ const Category = ({
           </div>
         </Modal.Header>
         <Modal.Body>
-          {/* <EditUser userdata={orgdata} closeedit={handleUpdateModalClose} /> */}
           <EditCategory
             categorydata={catdata}
             closeedit={handleUpdateModalClose}
@@ -222,15 +212,11 @@ const Category = ({
 
       <Modal
         show={show}
-        // onHide={handleClose}
         centered
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
       >
         <Modal.Header>
-          {/* <Modal.Title className="container">
-            <h1 className="font-weight-bold ">DEACTIVATE </h1>
-          </Modal.Title> */}
           <div className="col-lg-11 ">
             <h3 className="modal-title text-center">DEACTIVATE</h3>
           </div>
@@ -284,8 +270,7 @@ const mapStateToProps = (state) => ({
   dag: state.dag,
 });
 export default connect(mapStateToProps, {
-  //   getallcatGroup,
   deleteCategory,
-  // loadUser,
+
   getAllCategory,
 })(Category);

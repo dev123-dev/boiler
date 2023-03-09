@@ -7,7 +7,7 @@ import {
   getAllUserAdmin,
   getAllUserGroup,
 } from "../../../actions/dag";
-//, getAllOrganization
+
 import Select from "react-select";
 
 const AddUserList = ({
@@ -16,22 +16,19 @@ const AddUserList = ({
   AddUser,
   getAllUserAdmin,
   getAllUserGroup,
-  //getAllOrganization,
 }) => {
   useEffect(() => {
-    // getAllOrganization();
     if (user) {
       getAllUserGroup(user.orgId);
     }
   }, []);
-  //console.log("allusergrp", allusergrp);
 
   const [usergroup, getusergroupData] = useState();
   const [usergroupId, setusergroupId] = useState();
   const [usergroupName, setusergroupName] = useState();
 
   const allusergroup = [];
-  // console.log("allusergroup",allusergroup)
+
   allusergrp.map((usergroup) =>
     allusergroup.push({
       usergroupId: usergroup._id,
@@ -59,12 +56,10 @@ const AddUserList = ({
 
   const [show, setshow] = useState("");
   const handleClose = () => setshow("false");
-  const handleShow = () => setshow("true");
+  // const handleShow = () => setshow("true");
 
   const userOrgId = user ? user.orgId : "";
   const userOrgName = user ? user.orgName : "";
-  // const [inputdata, setinput] = useState("");
-  // const [items, setitem] = useState([]);
 
   const [pas, setpas] = useState("");
   const [err, seterr] = useState(null);
@@ -82,7 +77,7 @@ const AddUserList = ({
 
   const {
     UserFullname,
-    UserOrgbelongs,
+
     UserName,
     UserNumber,
     UserEmail,
@@ -122,7 +117,6 @@ const AddUserList = ({
 
   const onSubmitUSERdata = (e) => {
     e.preventDefault();
-    //console.log(formDataUSER)
 
     const finalUSERdata = {
       userName: UserName,
@@ -150,7 +144,7 @@ const AddUserList = ({
     };
 
     AddUser(finalUSERdata);
-    // console.log(finalUSERdata)
+
     setformDataUSER({
       ...formDataUSER,
       UserFullname: "",
@@ -173,8 +167,6 @@ const AddUserList = ({
     <Fragment></Fragment>
   ) : (
     <Fragment>
-      {/* <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right"> */}
-
       <img
         className="img_icon_size log"
         onClick={handleOpen}
@@ -183,7 +175,6 @@ const AddUserList = ({
         title="Add User"
       />
 
-      {/* </div> */}
       <br />
 
       {/* Adding Organization */}
@@ -242,14 +233,6 @@ const AddUserList = ({
                         User Group<span>*</span>
                       </label>
                       <div className="controls">
-                        {/* <input
-                          name="UserOrgbelongs"
-                          id="full_name"
-                          type="text"
-                          className="form-control"
-                          onChange={(e) => onUserchange(e)}
-                          required
-                        /> */}
                         <Select
                           name="UserOrgbelongs"
                           options={allusergroup}
@@ -267,19 +250,6 @@ const AddUserList = ({
                           placeholder="Select UserGroup"
                           onChange={(e) => onusergroupChange(e)}
                         />
-
-                        {/* <select style={{ backgroundcolor: '#877bae' }} name="UserOrgbelongs" className=" selectorgcolor form-control" onChange={(e) => onUserchange(e)} required>
-                          <option>--Select Organization--</option>
-
-                          {allorg &&
-                            allorg.map((org, idx) => {
-
-                              if (org.orgStatus === "Active") {
-                                return (<option key={idx} value={org.orgName}>{org.orgName}</option>)
-                              }
-                            })
-                          }
-                        </select> */}
 
                         <span className="form-input-info"></span>
                       </div>

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
-//import { addDesignation, getalldesignation } from "../../../actions/dag";
-//import { getAllCategory } from "../../../actions/dag";
+
 import Select from "react-select";
 import { getalldesignation } from "../../../actions/dag";
 
@@ -20,9 +19,6 @@ const AddInstHead = ({
       getalldesignation(user.orgId);
     }
   }, []);
-  const [show, setshow] = useState("");
-  const handleClose = () => setshow("false");
-  const handleShow = () => setshow("true");
 
   //select dropdown
 
@@ -46,28 +42,10 @@ const AddInstHead = ({
   const [desigbelongsId, setdesigbelongsId] = useState("");
 
   const ondesignationChange = (e) => {
-    // console.log("dropdown", e);
-    // console.log("dropdownvalue", e.value);
     setdesigbelongs(e.value);
 
     setdesigbelongsId(e.designationId);
-    // var designationId = "";
-    // var designationName = "";
-    // getdesignationData(e);
-
-    // designationId = e.designationId;
-    // designationName = e.value;
-
-    // setdesignationId(designationId);
-    // setdesignationName(designationName);
-    // const changeData = {
-    //   designationIdVal: e.designationId,
-    // };
   };
-  //console.log("desigbelongs", desigbelongs);
-
-  //   const desigOrgId = user ? user.orgId : "";
-  //   const desigOrgName = user ? user.orgName : "";
 
   const [formDataHead, setformDataHead] = useState({
     headName: "",
@@ -87,7 +65,6 @@ const AddInstHead = ({
     headPhone,
     headAddEmail,
     headAddPhone,
-    headDesgBelongs,
 
     // headStatus,
   } = formDataHead;
@@ -105,7 +82,6 @@ const AddInstHead = ({
   const handleOpen = (e) => {
     e.preventDefault();
     setShowAddModal(true);
-    // console.log("e", e);
 
     var designationId = "";
     var designationName = "";
@@ -116,9 +92,9 @@ const AddInstHead = ({
 
     setdesignationId(designationId);
     setdesignationName(designationName);
-    const changeData = {
-      designationIdVal: e.designationId,
-    };
+    // const changeData = {
+    //   designationIdVal: e.designationId,
+    // };
   };
 
   const onSubmitDESGdata = (e) => {
@@ -127,7 +103,6 @@ const AddInstHead = ({
       e.target.name === headName ||
       e.target.name === headEmail ||
       e.target.name === headPhone
-      // e.target.name === headDesgBelongs
     ) {
       if (e.target.value === "") {
         alert("enter all fierlds");
@@ -147,18 +122,10 @@ const AddInstHead = ({
         desgId: designationId,
         headDesgBelongs: designationName,
         desigbelongsId: desigbelongsId,
-
-        // designationStatus: "Active",
-        //orgId: desigOrgId,
-        // orgName: desigOrgName,
-        //  EnterById: user._id,
-        // EnterByName: user.userName,
-        //EnterByDateTime: new Date().toLocaleString("en-GB"),
       };
-      //  console.log("final", finalDESGdata);
+
       setaddhead([...addhead, finalDESGdata]);
-      //addDesignation(finalDESGdata);
-      // getalldesignation(user.orgId);
+
       setformDataHead({
         ...formDataHead,
         headName: "",
@@ -167,13 +134,9 @@ const AddInstHead = ({
         headAddEmail: "",
         headAddPhone: "",
         headDesgBelongs: "",
-
-        // headStatus: "",
       });
       handleAddClose();
     }
-    // setdesigbelongs("");
-    // setdesigbelongsId("");
   };
 
   return !isAuthenticated || !user ? (
@@ -196,7 +159,7 @@ const AddInstHead = ({
         show={showAddModal}
         backdrop="static"
         keyboard={false}
-        onHide={handleClose}
+        onHide={handleAddClose}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -264,27 +227,6 @@ const AddInstHead = ({
                           placeholder={desigbelongs}
                           onChange={(e) => ondesignationChange(e)}
                         />
-                        {/* <input
-                          name="headDesgBelongs"
-                          id="full_name"
-                          type="text"
-                          className="form-control"
-                          onChange={(e) => onInputChange(e)}
-                          required
-                        /> */}
-
-                        {/* <select style={{ backgroundcolor: '#877bae' }} name="UserOrgbelongs" className=" selectorgcolor form-control" onChange={(e) => onUserchange(e)} required>
-                          <option>--Select Organization--</option>
-
-                          {allorg &&
-                            allorg.map((org, idx) => {
-
-                              if (org.orgStatus === "Active") {
-                                return (<option key={idx} value={org.orgName}>{org.orgName}</option>)
-                              }
-                            })
-                          }
-                        </select> */}
 
                         <span className="form-input-info"></span>
                       </div>
@@ -373,7 +315,7 @@ const AddInstHead = ({
 
                 <div className="text-right">
                   <button
-                    onClick={handleClose}
+                    onClick={handleAddClose}
                     className="btn btn-outline-secondary btnall "
                   >
                     CANCEL
@@ -398,6 +340,3 @@ const mapStateToProps = (state) => ({
   dag: state.dag,
 });
 export default connect(mapStateToProps, { getalldesignation })(AddInstHead);
-//, getAllCategory
-
-//addDesignation, getalldesignation;
