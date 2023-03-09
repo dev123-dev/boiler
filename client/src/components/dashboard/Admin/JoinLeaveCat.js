@@ -4,7 +4,6 @@ import axios from "axios";
 import { getAllCategory } from "../../../actions/dag";
 import Modal from "react-bootstrap/Modal";
 import { useHistory } from "react-router-dom";
-//import { loadUser } from "../../../actions/auth";
 
 const JoinLeaveCat = ({
   auth: { user },
@@ -23,7 +22,6 @@ const JoinLeaveCat = ({
   const [showAddModal, setShowAddModal] = useState(false);
   const handleAddClose = () => setShowAddModal(false);
   const handleOpen = () => {
-    // console.log("clicked");
     setShowAddModal(true);
   };
 
@@ -75,8 +73,6 @@ const JoinLeaveCat = ({
   };
 
   const savent = () => {
-    //console.log("inside save",mydata._id, " user org id",user.orgId);
-
     var linkPath = "";
 
     axios
@@ -107,13 +103,6 @@ const JoinLeaveCat = ({
             </h1>
             <div className="col-lg-12 col-md-12 col-sm-12 col-12">
               <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
-                {/* <img
-                  className="img_icon_size log text-right"
-                  src={require("../../../static/images/refresh-icon.png")}
-                  // onClick={() => onClickReset()}
-                  alt="refresh"
-                  title="Refresh"
-                />{" "} */}
                 &nbsp;
                 <img
                   className="img_icon_size log"
@@ -132,7 +121,6 @@ const JoinLeaveCat = ({
                   <section className="body">
                     <div className="row">
                       <div className="col-md-6 col-lg-6 col-sm-12 col-xs-12 padding_right table-responsive fixTableHeadjoin">
-                        {/* <div className="body-inner table-responsive padding_col_xs">  */}
                         <table
                           className="table table-bordered table-striped table-hover"
                           id="datatable2"

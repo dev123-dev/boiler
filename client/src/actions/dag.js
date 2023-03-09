@@ -218,8 +218,6 @@ export const getAllUserGroup = () => async (dispatch) => {
 
 //deleting user group details
 export const deleteUserGroup = (groupName) => async (dispatch) => {
-  // console.log('INSIDE ACTION')
-  // console.log(id);
   try {
     const res = await axios.post(
       `${linkPath}/api/group/deactivegroup`,
@@ -235,10 +233,8 @@ export const deleteUserGroup = (groupName) => async (dispatch) => {
   }
 };
 
-
 //add category
 export const addCategory = (UserData) => async (dispatch) => {
-  //console.log(UserData);
   try {
     await axios.post(`${linkPath}/api/category/addcategory`, UserData, config);
     //diapatching get function because it should relfex immidiatly after adding
@@ -253,12 +249,11 @@ export const addCategory = (UserData) => async (dispatch) => {
 //getting all category
 
 export const getAllCategory = (userdata) => async (dispatch) => {
-  //console.log(userdata);
   let body = { orgId: userdata };
-  // console.log("run with ",userdata )
+
   try {
     const res = await axios.post(`${linkPath}/api/category/getcategory`, body);
-    // console.log("res data", res.data);
+
     dispatch({
       type: GET_ALL_CATEGORY,
       payload: res.data,
@@ -273,8 +268,6 @@ export const getAllCategory = (userdata) => async (dispatch) => {
 
 //deleting category details
 export const deleteCategory = (id) => async (dispatch) => {
-  // console.log('INSIDE ACTION')
-  // console.log("delete", id);
   try {
     const res = await axios.post(
       `${linkPath}/api/category/deactivecategory`,
@@ -292,9 +285,6 @@ export const deleteCategory = (id) => async (dispatch) => {
 
 //edit category details
 export const updateCategory = (updatedata) => async (dispatch) => {
-  //console.log("cat action", updatedata);
-  //console.log("inside action");
-  // console.log(updatedata);
   try {
     axios.post(`${linkPath}/api/category/editcategory`, updatedata);
     // dispatch(getAllCategory());
@@ -322,7 +312,6 @@ export const addDesignation = (UserData) => async (dispatch) => {
 //getting all designation
 
 export const getalldesignation = (userdata) => async (dispatch) => {
-  // console.log(userdata);
   let body = { orgId: userdata };
   try {
     const res = await axios.post(
@@ -344,8 +333,7 @@ export const getalldesignation = (userdata) => async (dispatch) => {
 //edit designation details
 export const updateDesignation = (updatedata) => async (dispatch) => {
   console.log("cat action", updatedata);
-  //console.log("inside action");
-  // console.log(updatedata);
+
   try {
     axios.post(`${linkPath}/api/designation/editdesignation`, updatedata);
     //dispatch(getalldesignation());
@@ -355,7 +343,6 @@ export const updateDesignation = (updatedata) => async (dispatch) => {
 //Add institiion
 
 export const AddInst = (UserData) => async (dispatch) => {
-  //console.log("inserted to database");
   try {
     await axios.post(`${linkPath}/api/entity/addinsind`, UserData, config);
     //diapatching get function because it should relfex immidiatly after adding
@@ -370,7 +357,6 @@ export const AddInst = (UserData) => async (dispatch) => {
 //getting all inst/indvi
 
 export const getAllEntity = (userdata) => async (dispatch) => {
-  // console.log(userdata);
   let body = { orgId: userdata };
   try {
     const res = await axios.post(`${linkPath}/api/entity/getinsind`, body);
@@ -388,8 +374,6 @@ export const getAllEntity = (userdata) => async (dispatch) => {
 
 //deleting entity details
 export const deleteEntity = (id) => async (dispatch) => {
-  // console.log('INSIDE ACTION')
-  // console.log("delete", id);
   try {
     const res = await axios.post(
       `${linkPath}/api/entity/deactiveinstind`,
@@ -407,9 +391,6 @@ export const deleteEntity = (id) => async (dispatch) => {
 
 //edit Institution details
 export const UpdateInst = (updatedata) => async (dispatch) => {
-  //console.log("cat action", updatedata);
-  //console.log("inside action");
-  // console.log(updatedata);
   try {
     axios.post(`${linkPath}/api/entity/editinstind`, updatedata);
     // dispatch(getAllCategory());
@@ -418,26 +399,18 @@ export const UpdateInst = (updatedata) => async (dispatch) => {
 
 //getalluser for admin
 export const getAllUserAdmin = (userdata) => async (dispatch) => {
-  // console.log("action user", userdata);
   let body = { orgId: userdata };
-  // console.log("run with ",userdata )
-  //console.log(" action body", body);
 
   try {
     const res = await axios.post(`${linkPath}/api/user/getalluseradmin`, body);
-    // console.log("res data", res.data);
-    dispatch({
 
+    dispatch({
       type: GET_ALL_User_Admin,
       payload: res.data,
-      
     });
-    // console.log("res", res.data);
   } catch (err) {
-
     dispatch({
       type: GET_ALL_User_Admin,
-
     });
   }
 };

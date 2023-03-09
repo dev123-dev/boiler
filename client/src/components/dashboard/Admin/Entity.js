@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
-import { deleteCategory } from "../../../actions/dag";
+
 import { getAllEntity, deleteEntity } from "../../../actions/dag";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import EditCategory from "./EditCategory";
 
 import { useHistory } from "react-router-dom";
-// import AddInstitution from "./AddInstitution";
-//import { loadUser } from "../../../actions/auth";
 
 const Entity = ({
   auth: { isAuthenticated, user, users, finalDataRep },
   //here to connect to action we need to import the function
   //then again we need to mention inside the const function
   dag: { allent },
-  //deleteCategory,
+
   deleteEntity,
-  //loadUser,
+
   getAllEntity,
 }) => {
   useEffect(() => {
@@ -31,7 +29,6 @@ const Entity = ({
     if (user) {
       getAllEntity(user.orgId);
     }
-    // getAllEntity(user.orgId);
   };
 
   //deactivate
@@ -72,22 +69,12 @@ const Entity = ({
     handleClose();
   };
 
-  //edit modal
-  const [showEditModal, setShowEditModal] = useState(false);
-  const handleEditModalClose = () => setShowEditModal(false);
-  const handleOpen = () => setShowEditModal(true);
-
   const [catdata, setcatdata] = useState({});
-  const [data, setdata] = useState(null);
+
   const onedit = (user2) => {
-    //console.log("user2", user2);
     localStorage.setItem("editEnity", JSON.stringify(user2));
 
     history.push("/editentity");
-
-    //setShowUpdateModal(true);
-    // setcatdata(user2);
-    // handleOpen();
   };
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -119,7 +106,6 @@ const Entity = ({
                 title="Refresh"
               />{" "}
               &nbsp;
-              {/* <AddInstitution /> */}
               <Link to="/addinstitute">
                 <img
                   className="img_icon_size log"
@@ -159,7 +145,7 @@ const Entity = ({
                           </td>
 
                           <td>
-                            {entVal.entStatus == "Active" ? (
+                            {entVal.entStatus === "Active" ? (
                               <>
                                 <img
                                   className="img_icon_size log"
@@ -218,7 +204,6 @@ const Entity = ({
           </div>
         </Modal.Header>
         <Modal.Body>
-          {/* <EditUser userdata={orgdata} closeedit={handleUpdateModalClose} /> */}
           <EditCategory
             categorydata={catdata}
             closeedit={handleUpdateModalClose}
@@ -278,37 +263,6 @@ const Entity = ({
                 </button>
               </div>
             </div>
-            {/* <div className="controls col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-              <div
-                className="col-lg-2 col-md-12 col-sm-12 col-xs-12"
-                style={{ border: "1px solid green" }}
-              ></div>
-              <div
-                className="col-lg-8 col-md-12 col-sm-12 col-xs-12 text-center"
-                style={{ border: "1px solid blue" }}
-              >
-                <textarea
-                  rows="2"
-                  name="Entity_DE_Reason"
-                  onChange={(e) => onInputchange(e)}
-                  id="org_reason"
-                  className="form-control"
-                  required
-                ></textarea>
-              </div>
-              <div
-                className="col-lg-2 col-md-12 col-sm-12 col-xs-12"
-                style={{ border: "1px solid green" }}
-              ></div>
-              Do You really want to Deactivate this Category?
-              <span className="form-input-info"></span>
-              <div className="text-right">
-                <button className="btn contact_reg btn_color" type="submit">
-                  {" "}
-                  DEACTIVATE
-                </button>
-              </div>
-            </div> */}
           </form>
         </Modal.Body>
       </Modal>

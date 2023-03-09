@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-//import AddUserModal from "./AddUserModal";
+
 import Modal from "react-bootstrap/Modal";
 import { getAllUserAdmin } from "../../../actions/dag";
-import { getAllOrganization } from "../../../actions/dag";
+
 import { deleteUser } from "../../../actions/dag";
-//import EditUser from "./EditUser";
-import Select from "react-select";
-import { useHistory } from "react-router-dom";
+
 import AddUserList from "./AddUserList";
 import EditUserList from "./EditUserList";
 
@@ -43,9 +41,9 @@ const UserList = ({
   const handleShow = () => setShow(true);
 
   //edit modal
-  const [showEditModal, setShowEditModal] = useState(false);
-  const handleEditModalClose = () => setShowEditModal(false);
-  const handleOpen = () => setShowEditModal(true);
+  // const [showEditModal, setShowEditModal] = useState(false);
+  // const handleEditModalClose = () => setShowEditModal(false);
+  // const handleOpen = () => setShowEditModal(true);
 
   const [UserId, setId] = useState("");
 
@@ -58,7 +56,7 @@ const UserList = ({
   const onedit = (user2) => {
     setShowUpdateModal(true);
     setuserlistdata(user2);
-    handleOpen();
+    // handleOpen();
   };
 
   const onClickReset = () => {
@@ -69,36 +67,6 @@ const UserList = ({
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const handleUpdateModalClose = () => setShowUpdateModal(false);
-
-  const [oraganisation, getOraganisationData] = useState();
-  const [oraganisationId, setOraganisationId] = useState();
-  const [oraganisationName, setOraganisationName] = useState();
-
-  // const allOraganisation = [];
-  // allorg.map((oraganisation) =>
-  //   allOraganisation.push({
-  //     oraganisationId: oraganisation._id,
-  //     label: oraganisation.orgName,
-  //     value: oraganisation.orgName,
-  //   })
-  // );
-
-  const onOraganisationChange = (e) => {
-    //console.log(e);
-    var oraganisationId = "";
-    var oraganisationName = "";
-    getOraganisationData(e);
-
-    oraganisationId = e.oraganisationId;
-    oraganisationName = e.value;
-
-    setOraganisationId(oraganisationId);
-    setOraganisationName(oraganisationName);
-    const changeData = {
-      oraganisationIdVal: e.oraganisationId,
-    };
-    getAllUserAdmin(changeData);
-  };
 
   //deactivate
   const onAdd = (e) => {
@@ -127,34 +95,6 @@ const UserList = ({
               Users Lists
             </h1>
 
-            {/* <select>
-            <option>-select Org name-</option>
-            {allorg &&
-                            allorg.map((org, idx) => {
-
-                              if (org.orgStatus === "Active") {
-                                return (<option key={idx} value={org.orgName}>{org.orgName}</option>)
-                              }
-                            })
-                          }
-
-          </select> */}
-            {/* <div style={{ width: "250px" }}>
-              <Select
-                styles={{
-                  control: (baseStyles, state) => ({
-                    ...baseStyles,
-                    borderColor: state.isFocused ? "grey" : "purple",
-                  }),
-                }}
-                name="institutionName"
-                options={allOraganisation}
-                isSearchable={true}
-                value={oraganisation}
-                placeholder="Select Oraganisation"
-                onChange={(e) => onOraganisationChange(e)}
-              />
-            </div> */}
             <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
               <img
                 className="img_icon_size log text-right"
@@ -163,7 +103,6 @@ const UserList = ({
                 alt="refresh"
               />{" "}
               &nbsp;
-              {/* <AddUserModal /> */}
               <AddUserList />
             </div>
 
@@ -298,14 +237,13 @@ const UserList = ({
             <button onClick={handleUpdateModalClose} className="close">
               <img
                 src={require("../../../static/images/close.png")}
-                alt="X"
+                alt="close"
                 style={{ height: "20px", width: "20px" }}
               />
             </button>
           </div>
         </Modal.Header>
         <Modal.Body>
-          {/* <EditUser userdata={userlistdata} closeedit={handleUpdateModalClose} /> */}
           <EditUserList
             userlistdata={userlistdata}
             closeedit={handleUpdateModalClose}

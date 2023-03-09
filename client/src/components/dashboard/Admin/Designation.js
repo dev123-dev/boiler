@@ -4,10 +4,8 @@ import Modal from "react-bootstrap/Modal";
 
 import { getalldesignation } from "../../../actions/dag";
 
-//import EditCategory from "./EditCategory";
 import AddDesignation from "./AddDesignation";
 import EditDesignation from "./EditDesignation";
-//import { loadUser } from "../../../actions/auth";
 
 const Designation = ({
   auth: { isAuthenticated, user },
@@ -26,18 +24,6 @@ const Designation = ({
     // getbatchsData("");
     getalldesignation(user.orgId);
   };
-
-  //deactivate
-  const [formData, setFormData] = useState({
-    category_DE_Reason: "",
-    isSubmitted: false,
-  });
-  const { category_DE_Reason } = formData;
-
-  //deactivate modal
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   //edit modal
   const [showEditModal, setShowEditModal] = useState(false);
@@ -159,11 +145,6 @@ const Designation = ({
             desigdata={designationdata}
             closeedit={handleUpdateModalClose}
           />
-
-          {/* <EditCategory
-            categorydata={catdata}
-            closeedit={handleUpdateModalClose}
-          /> */}
         </Modal.Body>
       </Modal>
     </div>
@@ -174,8 +155,5 @@ const mapStateToProps = (state) => ({
   dag: state.dag,
 });
 export default connect(mapStateToProps, {
-  //   getalldesgGroup,
-
-  // loadUser,
   getalldesignation,
 })(Designation);

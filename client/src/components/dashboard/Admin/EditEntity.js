@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import { Fragment } from "react";
 import { connect } from "react-redux";
-//import { Redirect } from "react-router-dom";
-import { UpdateInst, getalldesignation } from "../../../actions/dag";
-//import Modal from "react-bootstrap/Modal";
 
-//import UpdateInstHead from "./UpdateInstHead";
+import { UpdateInst, getalldesignation } from "../../../actions/dag";
+
 import Select from "react-select";
 import { Link } from "react-router-dom";
 
@@ -17,7 +15,7 @@ import { Modal } from "react-bootstrap";
 const EditEntity = ({
   auth: { isAuthenticated, user, users, finalDataRep },
   dag: { alldesg },
-  catdata,
+
   UpdateInst,
   getalldesignation,
 }) => {
@@ -36,15 +34,13 @@ const EditEntity = ({
   const [mydata, setmydata] = useState(
     JSON.parse(localStorage.getItem("editEnity"))
   );
-  // console.log("local", mydata);
-  const [showins, setShowins] = useState(true);
 
   const [designation, getdesignationData] = useState();
   const [designationId, setdesignationId] = useState();
   const [designationName, setdesignationName] = useState();
 
   const alldesignation = [];
-  // console.log("alldesignation",alldesignation)
+
   alldesg &&
     alldesg.map((designation) =>
       alldesignation.push({
@@ -64,14 +60,13 @@ const EditEntity = ({
   const onAdd = (e) => {
     e.preventDefault();
     const deletehead = addhead1.filter((ele, index) => {
-      return index != headid;
+      return index !== headid;
     });
     setaddhead1(deletehead);
     handleClose();
   };
 
   const ondesignationChange = (e) => {
-    //console.log(e);
     var designationId = "";
     var designationName = "";
     getdesignationData(e);
@@ -81,17 +76,16 @@ const EditEntity = ({
 
     setdesignationId(designationId);
     setdesignationName(designationName);
-    const changeData = {
-      designationIdVal: e.designationId,
-    };
-    //getalldesignation(changeData);
+    // const changeData = {
+    //   designationIdVal: e.designationId,
+    // };
   };
 
   const entOrgId = user ? user.orgId : "";
   const entOrgName = user ? user.orgName : "";
-  // const [addhead, setaddhead] = useState();
+
   const [addhead1, setaddhead1] = useState(mydata.InstHead);
-  //console.log(mydata);
+
   const [formDataENT, setformDataENT] = useState({
     entId: mydata._id,
     entName: mydata.entName,
@@ -185,8 +179,6 @@ const EditEntity = ({
     };
 
     UpdateInst(update);
-    //console.log("final", update);
-    // getAllCategory(user.orgId);
 
     setformDataENT({
       ...formDataENT,
@@ -296,7 +288,6 @@ const EditEntity = ({
     };
 
     UpdateInst(updateIND);
-    // getAllCategory(user.orgId);
 
     setformDataIND({
       ...formDataIND,
@@ -321,7 +312,6 @@ const EditEntity = ({
     history.push("/entity");
   };
 
-  // console.log(addhead);
   return !isAuthenticated || !user || !users ? (
     <Fragment></Fragment>
   ) : (
@@ -336,7 +326,6 @@ const EditEntity = ({
                 <section>
                   <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12">
                     <form onSubmit={(e) => onUpdateENTdata(e)}>
-                      {/* <div className="h3 px-4"> ADD Institution</div> */}
                       <div className=" col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                         <h1
                           style={{ fontFamily: "Serif", color: "#877bae" }}
@@ -352,6 +341,7 @@ const EditEntity = ({
                             src={require("../../../static/images/back.png")}
                             alCategoriest="Add User"
                             title="Back"
+                            alt="Back"
                           />
                         </Link>
                       </div>
@@ -620,15 +610,10 @@ const EditEntity = ({
                           </div>
                         </div>
                       </div>
-                      {/* </div> */}
 
                       <div>
                         <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12 h4 ">
                           Details of Institution Heads .
-                          {/* <AddInstHead
-                        setaddhead={setaddhead}
-                        addhead={addhead}
-                      /> */}
                           <AddInstHead
                             setaddhead={setaddhead1}
                             addhead={addhead1}
@@ -711,7 +696,6 @@ const EditEntity = ({
                       EDIT Individual
                     </h1>
                   </div>
-                  {/* <div className="h2 px-3"> ADD Individual</div> */}
 
                   <form onSubmit={(e) => onUpdateINDdata(e)}>
                     <div className="row form-group mt-4" id="eventDiv">
@@ -778,26 +762,6 @@ const EditEntity = ({
                             placeholder={indDesg}
                             onChange={(e) => ondesignationChange(e)}
                           />
-                          {/* <div className="controls">
-                          <select
-                            className="form-control"
-                            id="desg_menu"
-                            name="indDesg"
-                            required
-                          >
-                            <option selected value="">
-                              --Select Designation--
-                            </option>
-                          </select>
-                        </div> */}
-                          {/* <input
-                          name="indDesg"
-                          id="ent_email"
-                          type="text"
-                          onChange={(e) => onINDchange(e)}
-                          className="form-control validEmail"
-                          required
-                        /> */}
                         </div>
 
                         <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-12">
@@ -993,41 +957,6 @@ const EditEntity = ({
           </>
         )}
 
-        {/* <div className=" rowcol-md-12 col-lg-12 col-sm-12 col-xs-12">
-            <div className="row form-group ">
-              <div className="control-group col-md-8 col-lg-8 col-sm-8 col-xs-8">
-             
-                <div className="controls h1">
-                  <label style={{ cursor: "pointer" }}>
-                    <input
-                      className="radio h1"
-                      type="radio"
-                      id="institution"
-                      name="eventchange"
-                      value="institution"
-                      onClick={() => setShowins(true)}
-                    />
-                    &nbsp; Institution
-                  </label>
-                  &nbsp;&nbsp;
-                  <label style={{ cursor: "pointer" }}>
-                    <input
-                      className="radio h1"
-                      type="radio"
-                      id="individuals"
-                      name="eventchange"
-                      value="individuals"
-                      onClick={() => setShowins(false)}
-                    />
-                    &nbsp; Individual
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div> */}
-
-        {/* {showins ? <h1>hiii</h1> : <></>} */}
-
         <Modal
           show={show}
           // onHide={handleClose}
@@ -1044,6 +973,7 @@ const EditEntity = ({
                 <img
                   src={require("../../../static/images/close.png")}
                   alt="X"
+                  title="close"
                   style={{ height: "20px", width: "20px" }}
                 />
               </button>
