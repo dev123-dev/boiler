@@ -96,7 +96,7 @@ const AddOrgModal = ({ auth: { isAuthenticated, user }, AddOrganization }) => {
     <Fragment></Fragment>
   ) : (
     <Fragment>
-      <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right">
+      <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right pb-1">
         <img
           className="img_icon_size log"
           onClick={handleOpen}
@@ -105,7 +105,6 @@ const AddOrgModal = ({ auth: { isAuthenticated, user }, AddOrganization }) => {
           title="Add Org"
         />
       </div>
-      <br />
 
       {/* Adding Organization */}
 

@@ -250,6 +250,15 @@ const AddInstHead = ({
                         <Select
                           name="desigbelongs"
                           options={alldesignation}
+                          theme={(theme) => ({
+                            ...theme,
+                            borderRadius: 0,
+                            colors: {
+                              ...theme.colors,
+                              primary25: "#e79d69",
+                              primary: "#877bae",
+                            },
+                          })}
                           isSearchable={true}
                           value={desigbelongs}
                           placeholder={desigbelongs}

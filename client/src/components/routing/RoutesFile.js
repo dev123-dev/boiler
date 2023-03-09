@@ -24,6 +24,8 @@ import EditEntity from "../dashboard/Admin/EditEntity";
 import JoinLeaveCat from "../dashboard/Admin/JoinLeaveCat";
 import LabelForCat from "../dashboard/Admin/LabelForCat";
 import LabelForInstInd from "../dashboard/Admin/LabelForInstInd";
+import EmptyCategory from "../dashboard/Admin/EmptyCategory";
+import EmptyInstInd from "../dashboard/Admin/EmptyInstInd";
 
 const RoutesFile = () => {
   return (
@@ -62,6 +64,9 @@ const RoutesFile = () => {
           path="/labelforinstind"
           component={LabelForInstInd}
         />
+        <PrivateRoute exact path="/emptycategory" component={EmptyCategory} />
+        <PrivateRoute exact path="/emptyinstind" component={EmptyInstInd} />
+        <PrivateRoute exact path="/joinleavecat" component={JoinLeaveCat} />
 
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
         <Route component={NotFound} />

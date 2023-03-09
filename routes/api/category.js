@@ -15,12 +15,11 @@ router.route("/addcategory").post((req, res) => {
 
 //get all cat
 router.route("/getcategory").post((req, res) => {
-  let body = req.body; 
+  let body = req.body;
   CategoryDetails.find({ orgId: body.orgId })
     .sort({ categoryStatus: 1 })
 
     .then((data) => {
-     
       res.status(200).json(data);
     })
 
@@ -48,14 +47,13 @@ router.route("/deactivecategory").post((req, res) => {
       res.status(200).json(data);
     })
     .catch((err) => res.status(400).json("Error" + err));
-  
 });
 
 //edit
 
 router.route("/editcategory").post((req, res) => {
   let data = req.body;
- 
+
   let CatHis = new CategoryHistroy(req.body);
   CatHis.save(req.body).then(() => console.log("Histroy entered for CAtegory"));
 
@@ -76,9 +74,9 @@ router.route("/editcategory").post((req, res) => {
     })
 
     .catch((err) => res.status(400).json("Error" + err));
-
 });
 
+//joinLeave category
 router.route("/addCategoryEnt").post((req, res) => {
   let data = req.body;
   console.log("request", req.body);
@@ -86,17 +84,15 @@ router.route("/addCategoryEnt").post((req, res) => {
     { _id: data.catid, orgId: data.orgId },
     {
       $set: {
-        categoryEntity:data.categoryEntity,
+        categoryEntity: data.categoryEntity,
       },
     }
   )
     .then((data) => {
-      console.log(data)
+      console.log(data);
       res.status(200).json("updated");
     })
     .catch((err) => res.status(400).json("Error" + err));
-  
 });
-
 
 module.exports = router;

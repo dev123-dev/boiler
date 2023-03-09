@@ -94,14 +94,17 @@ const Organization = ({
         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
           <br />
           <br />
-          <h1
-            style={{ fontFamily: "Serif", color: "#877bae" }}
-            className="font-weight-bold "
-          >
-            Organisation Lists
-          </h1>
+          <section>
+            <h1
+              style={{ fontFamily: "Serif", color: "#877bae" }}
+              className="font-weight-bold "
+            >
+              Organisation Lists
+            </h1>
+            <br />
+            <br />
 
-          {/* <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
+            {/* <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
             <img
               className="img_icon_size log text-right"
               src={require("../../../static/images/refresh-icon.png")}
@@ -112,64 +115,65 @@ const Organization = ({
             &nbsp;
             <AddOrgModal />
           </div> */}
-          <AddOrgModal />
+            <AddOrgModal />
 
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead">
-            <table
-              border="1"
-              id="datatable2"
-              className="table-striped table table-bordered table-hover"
-            >
-              <thead>
-                <tr className="headingsizes">
-                  <th>Org Name</th>
-                  <th>Email</th>
-                  <th>Phone No.</th>
-                  <th>Address</th>
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead ">
+              <table
+                border="1"
+                id="datatable2"
+                className="table-striped table table-bordered table-hover"
+              >
+                <thead>
+                  <tr className="headingsizes">
+                    <th>Org Name</th>
+                    <th>Email</th>
+                    <th>Phone No.</th>
+                    <th>Address</th>
 
-                  <th>Status</th>
-                  <th>Operation</th>
-                </tr>
-              </thead>
-              <tbody>
-                {allorg &&
-                  allorg.map((orgVal, idx) => {
-                    if (orgVal.orgStatus == "Active") {
-                      return (
-                        <tr key={idx}>
-                          <td>{orgVal.orgName}</td>
-                          <td>{orgVal.email}</td>
-                          <td>{orgVal.phoneNumber}</td>
-                          <td>{orgVal.address}</td>
+                    <th>Status</th>
+                    <th>Operation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {allorg &&
+                    allorg.map((orgVal, idx) => {
+                      if (orgVal.orgStatus == "Active") {
+                        return (
+                          <tr key={idx}>
+                            <td>{orgVal.orgName}</td>
+                            <td>{orgVal.email}</td>
+                            <td>{orgVal.phoneNumber}</td>
+                            <td>{orgVal.address}</td>
 
-                          <td>{orgVal.orgStatus}</td>
-                          <td>
-                            <img
-                              className="img_icon_size log"
-                              onClick={() => onedit(orgVal)}
-                              src={require("../../../static/images/edit_icon.png")}
-                              alt="Edit"
-                              title="Edit Organization"
-                            />
-                            &nbsp;&nbsp;
-                            <img
-                              className="img_icon_size log"
-                              onClick={() => onDelete(orgVal._id)}
-                              src={require("../../../static/images/delete.png")}
-                              alt="delete User"
-                              title="Deactivate Organization"
-                            />
-                          </td>
-                        </tr>
-                      );
-                    }
-                  })}
-              </tbody>
-            </table>
-            <div className="text-right ">
-              <label>No. of Users :{allorg && allorg.length}</label>
+                            <td>{orgVal.orgStatus}</td>
+                            <td>
+                              <img
+                                className="img_icon_size log"
+                                onClick={() => onedit(orgVal)}
+                                src={require("../../../static/images/edit_icon.png")}
+                                alt="Edit"
+                                title="Edit Organization"
+                              />
+                              &nbsp;&nbsp;
+                              <img
+                                className="img_icon_size log"
+                                onClick={() => onDelete(orgVal._id)}
+                                src={require("../../../static/images/delete.png")}
+                                alt="delete User"
+                                title="Deactivate Organization"
+                              />
+                            </td>
+                          </tr>
+                        );
+                      }
+                    })}
+                </tbody>
+              </table>
             </div>
-          </div>
+            <div className="text-right ">
+              <label>No. of Organisation :{allorg && allorg.length}</label>
+            </div>
+          </section>
         </div>
       </div>
 

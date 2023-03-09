@@ -1417,9 +1417,9 @@ td {
 .navlink.active {
   color: #d9d9d9;
 }
-.navlink:hover {
-  /* background-color: rgb(231, 157, 105); */
-}
+/* .navlink:hover {
+  background-color: rgb(231, 157, 105);
+} */
 
 .btn-group-xs > .btn,
 .btn-xs {
@@ -1986,9 +1986,6 @@ th {
 .selectorgcolor {
   color: rgb(100, 72, 192);
 }
-/* div {
-  border: 1px solid red;
-} */
 
 #shadow-bck {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -2002,9 +1999,9 @@ th {
   margin: 20px;
 }
 
-/* div {
+div {
   border: 1px solid red;
-} */
+}
 .btn:hover {
   background-color: #877bae !important;
 }
