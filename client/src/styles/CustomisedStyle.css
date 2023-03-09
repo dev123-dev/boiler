@@ -799,6 +799,11 @@ label {
   height: 750px;
   max-height: 150px;
 }
+.fixTableHeadview {
+  overflow-y: auto;
+  height: 200px;
+  max-height: 150px;
+}
 
 @media (min-width: 992px) {
   .dropdown-menu > .nav-item > a {
@@ -1999,9 +2004,9 @@ th {
   margin: 20px;
 }
 
-/* div {
+div {
   border: 1px solid red;
-} */
+}
 .btn:hover {
   background-color: #877bae !important;
 }
