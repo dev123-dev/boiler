@@ -137,7 +137,10 @@ const Users = ({
                           }
 
           </select> */}
-            <div style={{ width: "250px" }}>
+            <div
+              style={{ width: "250px" }}
+              className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+            >
               <Select
                 styles={{
                   control: (baseStyles, state) => ({
@@ -147,6 +150,15 @@ const Users = ({
                 }}
                 name="institutionName"
                 options={allOraganisation}
+                theme={(theme) => ({
+                  ...theme,
+                  borderRadius: 0,
+                  colors: {
+                    ...theme.colors,
+                    primary25: "#e79d69",
+                    primary: "#877bae",
+                  },
+                })}
                 isSearchable={true}
                 value={oraganisation}
                 placeholder="Select Oraganisation"
