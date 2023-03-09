@@ -235,7 +235,7 @@ export const deleteUserGroup = (groupName) => async (dispatch) => {
   }
 };
 
-////////////////////////////////////
+
 //add category
 export const addCategory = (UserData) => async (dispatch) => {
   //console.log(UserData);

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import { getAllCategory } from "../../../actions/dag";
+import Modal from "react-bootstrap/Modal";
+import { useHistory } from "react-router-dom";
 //import { loadUser } from "../../../actions/auth";
 
 const JoinLeaveCat = ({ auth: { user }, dag: { allent }, location,getAllCategory }) => {
@@ -14,17 +16,15 @@ const JoinLeaveCat = ({ auth: { user }, dag: { allent }, location,getAllCategory
      
     }
   }, []);
-
+  const history = useHistory();
   const [mydata, setmydata] = useState(location.state);
-  // console.log("join", mydata);
-  // console.log("all cat ", allent);
+  const[showjoin,setShoejoin]=useState(false)
 
   const ent = allent;
+
   const [entCatMembers, setEntCatMembers] = useState(mydata.categoryEntity)
 
-  const [notMember, setNotMember] = useState(ent.filter(ele=>!entCatMembers.includes(ele))) //some(item=> item["_id"]===ele["_id"]))); ////
-  
-
+  const [notMember, setNotMember] = useState( ent.filter(ele=>!entCatMembers.some(item=>item["_id"]===ele["_id"]))); 
   console.log("not a mem",notMember)
 
   const JoinEnt = (ele, index) => {
@@ -58,6 +58,8 @@ const savent=()=>{
      "categoryEntity":entCatMembers,
     })
     .then((res)=>{console.log(res)})
+    setShoejoin(false)
+    history.push("/category");
 }
 
   return (
@@ -71,19 +73,21 @@ const savent=()=>{
                   <div className="row form-group">
                     <div className="col-md-10 col-lg-10 col-sm-10 col-xs-9 no-pad">
                       <h3>
-                        Join or Leave From{" "}
+                        Join or Leave For {" "+mydata.categoryName+" "} category
                         <span style={{ color: "#ff9500" }}></span>
                       </h3>
                     </div>
 
                     <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right">
-
+                    <button  className="btn btn-outline-secondary btn-sm mx-3"
+                    onClick={() =>setShoejoin(true)}
+                    style={{border:"1px solid black"}} >Save</button>
                       <img
                         className="img_icon_size log"
-                        //   onClick={handleOpen}
                         src={require("../../../static/images/back.png")}
                         alt="Add User"
                         title="Back"
+                        onClick={() =>{ history.push("/category")}}
                       />
                     </div>
                     <br />
@@ -133,9 +137,7 @@ const savent=()=>{
 
                         </tbody>
                       </table>
-                      {/* <ul id="page1" className="pagination pagination-sm" style={{margintop:" 1px"}}>
-
-                        </ul> */}
+                      
                       <label
                         style={{
                           fontsize: "18px",
@@ -203,13 +205,44 @@ const savent=()=>{
                       </label>
                     </div>
                   </div>
-<button onClick={savent} >Save</button>
+
                 </section>
               </div>
             </div>
           </div>
         </section>
       </div>
+
+      <Modal
+          show={showjoin}
+          backdrop="static"
+          keyboard={false}
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          className="logout-modal"
+        >
+          <Modal.Header className="confirmbox-heading">
+            <h4 className="mt-0">Confirmation</h4>
+          </Modal.Header>
+          <Modal.Body>
+            <h5>Are you sure you want to join this Entity?</h5>
+          </Modal.Body>
+          <Modal.Footer>
+            <button
+              className="btn contact_reg btn_color"
+              onClick={savent} 
+            >
+              YES
+            </button>
+            <button
+              className="btn contact_reg btn_color"
+              onClick={() =>setShoejoin(false)}
+            >
+              NO
+            </button>
+          </Modal.Footer>
+        </Modal>
+
     </div>
   );
 };
