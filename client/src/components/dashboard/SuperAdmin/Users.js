@@ -222,9 +222,9 @@ const Users = ({
                     })}
                 </tbody>
               </table>
-              <div className="text-right">
-                <label>No. of Users :{alluser && alluser.length}</label>
-              </div>
+            </div>
+            <div className="text-right">
+              <label>No. of Users :{alluser && alluser.length}</label>
             </div>
           </section>
         </div>

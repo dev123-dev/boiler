@@ -226,6 +226,9 @@ const UserList = ({
                 </tbody>
               </table>
             </div>
+            <div className="text-right">
+              <label>No. of Users :{alluseradmin && alluseradmin.length}</label>
+            </div>
           </section>
         </div>
       </div>

@@ -123,10 +123,10 @@ const Category = ({
               >
                 <thead>
                   <tr className="headingsizes">
-                    <th>Category Name</th>
-                    <th>Description</th>
+                    <th style={{ width: "40%" }}>Category Name</th>
+                    <th style={{ width: "40%" }}>Description</th>
 
-                    <th>Operation</th>
+                    <th style={{ width: "20%" }}>Operation</th>
                   </tr>
                 </thead>
                 <tbody>

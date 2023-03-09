@@ -105,7 +105,6 @@ const AddOrgModal = ({ auth: { isAuthenticated, user }, AddOrganization }) => {
           title="Add Org"
         />
       </div>
-      <br />
 
       {/* Adding Organization */}
 

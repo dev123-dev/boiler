@@ -187,6 +187,7 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 user &&
                 user.userGroup === "Admin" ? (
                   <NavDropdown
+                    style={{ cursor: "pointer" }}
                     title="Generate Label"
                     activeStyle={{ color: "#e79d69", textDecoration: "none" }}
                   >
@@ -223,9 +224,10 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 user &&
                 user.userGroup === "Admin" ? (
                   <NavLink
-                    to="/EmptyCategory"
+                    to="/emptycategory"
                     className="navlink"
                     activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    title="Category which do not contain any institution/Individual"
                   >
                     Empty Category
                   </NavLink>
@@ -239,9 +241,10 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 user &&
                 user.userGroup === "Admin" ? (
                   <NavLink
-                    to="/EmptyInstInd"
+                    to="/emptyinstind"
                     className="navlink"
                     activeStyle={{ color: "#e79d69", textDecoration: "none" }}
+                    title=" Institution/Individual which do not belong to any Category"
                   >
                     Empty Inst/Ind
                   </NavLink>
