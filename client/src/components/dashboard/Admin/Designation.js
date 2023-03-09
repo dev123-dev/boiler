@@ -27,7 +27,7 @@ const Designation = ({
 
   //edit modal
   const [showEditModal, setShowEditModal] = useState(false);
-  const handleEditModalClose = () => setShowEditModal(false);
+  //const handleEditModalClose = () => setShowEditModal(false);
   const handleOpen = () => setShowEditModal(true);
 
   const [designationdata, setdesgdata] = useState(null);

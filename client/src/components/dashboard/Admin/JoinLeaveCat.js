@@ -27,7 +27,6 @@ const JoinLeaveCat = ({
 
   const [show, setshow] = useState("");
   const handleClose = () => setshow("false");
-  const handleShow = () => setshow("true");
 
   const [viewdata, setviewdata] = useState(null);
   const onView = (user2) => {

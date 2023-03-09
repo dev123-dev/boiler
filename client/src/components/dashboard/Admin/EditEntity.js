@@ -123,7 +123,7 @@ const EditEntity = ({
     entState,
     entPincode,
     entType,
-    InstHead,
+    // InstHead,
   } = formDataENT;
 
   const onENTchange = (e) => {

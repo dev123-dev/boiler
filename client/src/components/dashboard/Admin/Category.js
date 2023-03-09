@@ -168,9 +168,9 @@ const Category = ({
                     })}
                 </tbody>
               </table>
-              <div className="text-right ">
-                No. of Categories:{allcat && allcat.length}
-              </div>
+            </div>
+            <div className="text-right ">
+              No. of Categories:{allcat && allcat.length}
             </div>
           </section>
         </div>

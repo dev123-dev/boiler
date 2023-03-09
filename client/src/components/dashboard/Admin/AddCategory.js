@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { Fragment } from "react";
 import { connect } from "react-redux";
 import { addCategory } from "../../../actions/dag";
@@ -12,7 +12,7 @@ const AddCategory = ({
 }) => {
   const [show, setshow] = useState("");
   const handleClose = () => setshow("false");
-  const handleShow = () => setshow("true");
+  //const handleShow = () => setshow("true");
 
   const catOrgId = user ? user.orgId : "";
   const catOrgName = user ? user.orgName : "";
@@ -23,7 +23,7 @@ const AddCategory = ({
     catStatus: "",
   });
 
-  const { catName, catDesp, categoryStatus } = formDataCAT;
+  const { catName, catDesp } = formDataCAT;
 
   const onCATchange = (e) => {
     setformDataCAT({
@@ -167,13 +167,6 @@ const AddCategory = ({
                   </div>
                 </div>
                 <div className="text-right">
-                  <button
-                    onClick={handleClose}
-                    className="btn btn-outline-secondary btnall"
-                  >
-                    CANCEL
-                  </button>
-
                   <button className="btn btn-outline-secondary btnall">
                     ADD
                   </button>
