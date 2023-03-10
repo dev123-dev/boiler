@@ -16,29 +16,18 @@ const AdminDashboard = ({
   useEffect(() => {
     if (myuser) {
       getAllCategory(myuser.orgId);
-      console.log("user  ",myuser.fullName)
-      console.log("allcat ",allcat)
-      
-     
+      //console.log("user  ",myuser.fullName)
+      //console.log("allcat ",allcat)
       getAllEntity(myuser.orgId);
-      setarr();
+      //setarr();
     }
   }, [refreshPage]);
   
-  const [emptyCatcount, setemptyCatcount] = useState(0);
+  //let countEmptycat=0;
   
-  const setarr = () => {
-   
-    
     const catArray = allcat && allcat.map(ele => ele && ele.categoryEntity);
-   
-    const emptyHobbiesArray = catArray && catArray.filter(ele => ele && ele.length === 0);
-    const countEmptycat =emptyHobbiesArray && emptyHobbiesArray.length;
-    //console.log(countEmptycat);
-
-    setemptyCatcount(countEmptycat);
-
-  };
+    const emptyCatArray = catArray && catArray.filter(ele => ele && ele.length === 0);
+     const countEmptycat =emptyCatArray && emptyCatArray.length;
 
   return !isAuthenticated || !user ? (
     <NotFound />
@@ -107,7 +96,7 @@ const AdminDashboard = ({
                   <h2> Empty Category</h2>
                   <h4>
                     {" "}
-                    { emptyCatcount}
+                    { countEmptycat}
                     {/* {allcat &&
                       allcat.categoryEntity &&
                       allcat.categoryEntity.length} */}

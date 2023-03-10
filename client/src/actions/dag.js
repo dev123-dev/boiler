@@ -258,7 +258,7 @@ export const getAllCategory = (userdata) => async (dispatch) => {
       type: GET_ALL_CATEGORY,
       payload: res.data,
     });
-    console.log("action", res.data);
+    //console.log("action", res.data);
   } catch (err) {
     // dispatch({
     //   type: GET_ALL_CATEGORY,
@@ -293,7 +293,7 @@ export const updateCategory = (updatedata) => async (dispatch) => {
 
 //add Designation
 export const addDesignation = (UserData) => async (dispatch) => {
-  console.log(UserData);
+  //console.log(UserData);
   try {
     await axios.post(
       `${linkPath}/api/designation/adddesignation`,
@@ -332,7 +332,7 @@ export const getalldesignation = (userdata) => async (dispatch) => {
 
 //edit designation details
 export const updateDesignation = (updatedata) => async (dispatch) => {
-  console.log("cat action", updatedata);
+ // console.log("cat action", updatedata);
 
   try {
     axios.post(`${linkPath}/api/designation/editdesignation`, updatedata);

@@ -81,7 +81,7 @@ const dagreducer = (state = initialState, action) => {
       };
     case GET_ALL_CATEGORY:
       // localStorage.setItem("category", JSON.stringify(payload))
-      console.log("reducer",payload)
+      //console.log("reducer",payload)
       return {
         ...state,
         allcat: payload,

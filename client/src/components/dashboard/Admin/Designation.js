@@ -18,7 +18,7 @@ const Designation = ({
     }
   }, []);
 
-  console.log(user);
+  //console.log(user);
   const onClickReset = () => {
     // setCurrentData(1);
     // getbatchsData("");

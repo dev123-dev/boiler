@@ -38,7 +38,7 @@ const EditCategory = ({
     };
     closeedit();
 
-    console.log("action", update);
+    //console.log("action", update);
 
     updateCategory(update);
     getAllCategory(user.orgId);
