@@ -11,63 +11,34 @@ const AdminDashboard = ({
   getAllCategory,
   getAllEntity,
 }) => {
+  const myuser = JSON.parse(localStorage.getItem("user"));
+  const[refreshPage,setRefreshPage]=useState(true)
   useEffect(() => {
-    const myuser = JSON.parse(localStorage.getItem("user"));
-
     if (myuser) {
       getAllCategory(myuser.orgId);
+      console.log("user  ",myuser.fullName)
+      console.log("allcat ",allcat)
+      
+     
       getAllEntity(myuser.orgId);
-      console.log("called get cat", allcat);
       setarr();
     }
-  }, []);
-
+  }, [refreshPage]);
+  
   const [emptyCatcount, setemptyCatcount] = useState(0);
-  // const userNames = allcat.map(({ categoryEntity }) => categoryEntity);
-  // console.log("username", userNames);
+  
   const setarr = () => {
-    // console.log("allcat", allcat);
+   
+    
+    const catArray = allcat && allcat.map(ele => ele && ele.categoryEntity);
+   
+    const emptyHobbiesArray = catArray && catArray.filter(ele => ele && ele.length === 0);
+    const countEmptycat =emptyHobbiesArray && emptyHobbiesArray.length;
+    //console.log(countEmptycat);
 
-    const emptyarrlength =
-      allcat &&
-      allcat.map((obj) => {
-        const innerarray = obj.categoryEntity;
-        if (innerarray !== null && innerarray.length === 0) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-    const zerocount =
-      emptyarrlength &&
-      emptyarrlength.reduce((acc, curr) => {
-        return acc + curr;
-      }, 0);
-    console.log("zerocount", zerocount);
-    setemptyCatcount(zerocount);
+    setemptyCatcount(countEmptycat);
+
   };
-
-  // const [emptCatcount, setEmptCatcount] = useState(0);
-  // const setarr = () => {
-  //   const arr =
-  //     allcat &&
-  //     allcat.map((ele) => {
-  //       if (ele.categoryEntity.length === 0) {
-  //         return 1;
-  //       } else {
-  //         return 2;
-  //       }
-  //     });
-  //   const element = 1;
-  //   let count = 0;
-  //   console.log("array", arr);
-  //   console.log("arraylength", arr && arr.length);
-  //   for (var i = 0; i < arr.length; ++i) {
-  //     if (arr[i] == element) count++;
-  //   }
-  //   setEmptCatcount(count);
-  //   console.log("count", count);
-  // };
 
   return !isAuthenticated || !user ? (
     <NotFound />
@@ -136,7 +107,7 @@ const AdminDashboard = ({
                   <h2> Empty Category</h2>
                   <h4>
                     {" "}
-                    {emptyCatcount}
+                    { emptyCatcount}
                     {/* {allcat &&
                       allcat.categoryEntity &&
                       allcat.categoryEntity.length} */}

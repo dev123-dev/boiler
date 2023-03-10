@@ -258,11 +258,11 @@ export const getAllCategory = (userdata) => async (dispatch) => {
       type: GET_ALL_CATEGORY,
       payload: res.data,
     });
-    console.log("res", res.data);
+    console.log("action", res.data);
   } catch (err) {
-    dispatch({
-      type: GET_ALL_CATEGORY,
-    });
+    // dispatch({
+    //   type: GET_ALL_CATEGORY,
+    // });
   }
 };
 
