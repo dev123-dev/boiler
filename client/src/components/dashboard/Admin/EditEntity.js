@@ -757,7 +757,7 @@ const EditEntity = ({
                               },
                             })}
                             isSearchable={true}
-                            value={indDesg}
+                            value={designation}
                             placeholder={indDesg}
                             onChange={(e) => ondesignationChange(e)}
                           />

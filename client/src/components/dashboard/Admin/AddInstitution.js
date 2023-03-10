@@ -858,7 +858,6 @@ const AddInstitution = ({
                                 type="text"
                                 onChange={(e) => onINDchange(e)}
                                 className="form-control"
-                                required
                               />
                             </div>
                           </div>

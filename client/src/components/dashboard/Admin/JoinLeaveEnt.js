@@ -99,11 +99,12 @@ const JoinLeaveEnt = ({
                 style={{ fontFamily: "Serif", color: "#877bae" }}
                 className="font-weight-bold "
               >
-                Join or Leave From
+                Join or Leave
                 <span style={{ color: "#e79d69" }}>
                   {" "}
                   {" " + mydata.entName + " "}{" "}
                 </span>
+                from the below Categories
               </h1>
             </div>
             <div className="col-lg-12 col-md-12 col-sm-12 col-12">
@@ -176,13 +177,15 @@ const JoinLeaveEnt = ({
                                   <td>{ele.categoryDesp}</td>
                                   <td>
                                     {" "}
-                                    <button
+                                    <a
+                                      style={{
+                                        cursor: "pointer",
+                                        textDecoration: "underline",
+                                      }}
                                       onClick={() => onView(ele)}
-                                      // onClick={handleOpen}
-                                      className="btn btn-sm "
                                     >
                                       View
-                                    </button>
+                                    </a>
                                   </td>
                                 </tr>
                               );
@@ -256,13 +259,22 @@ const JoinLeaveEnt = ({
                                   <td>{ele.categoryDesp}</td>
                                   <td>
                                     {" "}
-                                    <button
+                                    {/* <button
                                       onClick={() => onView(ele)}
                                       // onClick={handleOpen}
                                       className="btn btn-sm "
                                     >
                                       View
-                                    </button>
+                                    </button> */}
+                                    <a
+                                      style={{
+                                        cursor: "pointer",
+                                        textDecoration: "underline",
+                                      }}
+                                      onClick={() => onView(ele)}
+                                    >
+                                      View
+                                    </a>
                                   </td>
                                 </tr>
                               );

@@ -18,34 +18,32 @@ const AdminDashboard = ({
       getAllCategory(myuser.orgId);
       getAllEntity(myuser.orgId);
       console.log("called get cat", allcat);
-      setarr();
+      //setarr();
     }
   }, []);
 
-  const [emptyCatcount, setemptyCatcount] = useState(0);
-  // const userNames = allcat.map(({ categoryEntity }) => categoryEntity);
-  // console.log("username", userNames);
-  const setarr = () => {
-    // console.log("allcat", allcat);
+  // const [emptyCatcount, setemptyCatcount] = useState(0);
 
-    const emptyarrlength =
-      allcat &&
-      allcat.map((obj) => {
-        const innerarray = obj.categoryEntity;
-        if (innerarray !== null && innerarray.length === 0) {
-          return 1;
-        } else {
-          return 0;
-        }
-      });
-    const zerocount =
-      emptyarrlength &&
-      emptyarrlength.reduce((acc, curr) => {
-        return acc + curr;
-      }, 0);
-    console.log("zerocount", zerocount);
-    setemptyCatcount(zerocount);
-  };
+  // const setarr = () => {
+
+  //   const emptyarrlength =
+  //     allcat &&
+  //     allcat.map((obj) => {
+  //       const innerarray = obj.categoryEntity;
+  //       if (innerarray !== null && innerarray.length === 0) {
+  //         return 1;
+  //       } else {
+  //         return 0;
+  //       }
+  //     });
+  //   const zerocount =
+  //     emptyarrlength &&
+  //     emptyarrlength.reduce((acc, curr) => {
+  //       return acc + curr;
+  //     }, 0);
+  //   console.log("zerocount", zerocount);
+  //   setemptyCatcount(zerocount);
+  // };
 
   // const [emptCatcount, setEmptCatcount] = useState(0);
   // const setarr = () => {
@@ -136,7 +134,7 @@ const AdminDashboard = ({
                   <h2> Empty Category</h2>
                   <h4>
                     {" "}
-                    {emptyCatcount}
+                    {/* {emptyCatcount} */}
                     {/* {allcat &&
                       allcat.categoryEntity &&
                       allcat.categoryEntity.length} */}

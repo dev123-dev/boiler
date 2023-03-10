@@ -176,13 +176,15 @@ const JoinLeaveCat = ({
                                   <td>{ele.entType}</td>
                                   <td>
                                     {" "}
-                                    <button
+                                    <a
+                                      style={{
+                                        cursor: "pointer",
+                                        textDecoration: "underline",
+                                      }}
                                       onClick={() => onView(ele)}
-                                      // onClick={handleOpen}
-                                      className="btn btn-sm "
                                     >
                                       View
-                                    </button>
+                                    </a>
                                   </td>
                                 </tr>
                               );
@@ -256,13 +258,22 @@ const JoinLeaveCat = ({
                                   <td>{ele.entType}</td>
                                   <td>
                                     {" "}
-                                    <button
+                                    {/* <button
                                       onClick={() => onView(ele)}
                                       // onClick={handleOpen}
                                       className="btn btn-sm "
                                     >
                                       View
-                                    </button>
+                                    </button> */}
+                                    <a
+                                      style={{
+                                        cursor: "pointer",
+                                        textDecoration: "underline",
+                                      }}
+                                      onClick={() => onView(ele)}
+                                    >
+                                      View
+                                    </a>
                                   </td>
                                 </tr>
                               );

@@ -41,6 +41,11 @@ const AddInstHead = ({
   const [desigbelongs, setdesigbelongs] = useState("");
   const [desigbelongsId, setdesigbelongsId] = useState("");
 
+  //m
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   const ondesignationChange = (e) => {
     setdesigbelongs(e.value);
 
@@ -98,14 +103,15 @@ const AddInstHead = ({
   };
 
   const onSubmitDESGdata = (e) => {
-    console.log("cliecked");
+    // console.log("cliecked");
     if (
       e.target.name === headName ||
       e.target.name === headEmail ||
       e.target.name === headPhone
     ) {
       if (e.target.value === "") {
-        alert("enter all fierlds");
+        handleShow();
+        // alert("enter all fierlds");
       }
 
       e.preventDefault();
@@ -330,6 +336,44 @@ const AddInstHead = ({
               </section>
             </div>
           </form>
+        </Modal.Body>
+      </Modal>
+
+      <Modal
+        show={show}
+        centered
+        size="sm"
+        aria-labelledby="contained-modal-title-vcenter"
+      >
+        <Modal.Header>
+          {/* <div className="col-lg-11 ">
+            <h3 className="modal-title text-center">DEACTIVATE</h3>
+          </div>
+          <div className="col-lg-1">
+            <button onClick={handleClose} className="close">
+              <img
+                src={require("../../../static/images/close.png")}
+                alt="X"
+                style={{ height: "20px", width: "20px" }}
+              />
+            </button>
+          </div> */}
+        </Modal.Header>
+        <Modal.Body>
+          <div className="row col-lg-12 col-md-9 col-sm-9 col-12 ">
+            <div className="col-lg-12 col-md-4 col-sm-4 col-12 py-2">
+              <label>Please enter mandatory (*) fields</label>
+            </div>
+            <div className=" col-lg-12 col-md-9 col-sm-9 col-12 text-right">
+              <button
+                className="btn btn-outline-secondary btnall btn-sm"
+                onClick={handleClose}
+              >
+                {" "}
+                OK
+              </button>
+            </div>
+          </div>
         </Modal.Body>
       </Modal>
     </Fragment>
