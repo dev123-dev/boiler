@@ -55,6 +55,9 @@ const IndInsSchema = new mongoose.Schema({
   entStatus: {
     type: String,
   },
+  categoryBelongs: {
+    type: Array,
+  },
   orgId: {
     type: String,
     required: true,

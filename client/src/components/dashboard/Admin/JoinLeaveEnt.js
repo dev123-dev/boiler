@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { getAllCategory } from "../../../actions/dag";
+import { getAllEntity } from "../../../actions/dag";
 import Modal from "react-bootstrap/Modal";
 import { useHistory } from "react-router-dom";
 
-const JoinLeaveCat = ({
+const JoinLeaveEnt = ({
   auth: { user },
-  dag: { allent },
+  dag: { allcat },
   location,
-  getAllCategory,
+  getAllEntity,
 }) => {
   const myuser = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
     if (myuser) {
-      getAllCategory(myuser.orgId);
+      getAllEntity(myuser.orgId);
     }
   }, []);
 
@@ -41,12 +41,12 @@ const JoinLeaveCat = ({
   const [showjoin, setShowjoin] = useState(false);
   console.log("datafromemtycat", mydata);
 
-  const ent = allent;
+  const cat = allcat;
 
-  const [entCatMembers, setEntCatMembers] = useState(mydata.categoryEntity);
+  const [entCatMembers, setEntCatMembers] = useState(mydata.categoryBelongs);
 
   const [notMember, setNotMember] = useState(
-    ent.filter(
+    cat.filter(
       (ele) => !entCatMembers.some((item) => item["_id"] === ele["_id"])
     )
   );
@@ -75,16 +75,16 @@ const JoinLeaveCat = ({
     var linkPath = "";
 
     axios
-      .post(`${linkPath}/api/category/addCategoryEnt`, {
-        catid: mydata._id,
+      .post(`${linkPath}/api/entity/addEntCat`, {
+        entid: mydata._id,
         orgId: user.orgId,
-        categoryEntity: entCatMembers,
+        categoryBelongs: entCatMembers,
       })
       .then((res) => {
         console.log(res);
       });
     setShowjoin(false);
-    history.push("/category");
+    history.push("/emptyinstind");
   };
 
   return (
@@ -102,7 +102,7 @@ const JoinLeaveCat = ({
                 Join or Leave From
                 <span style={{ color: "#e79d69" }}>
                   {" "}
-                  {" " + mydata.categoryName + " "}{" "}
+                  {" " + mydata.entName + " "}{" "}
                 </span>
               </h1>
             </div>
@@ -115,7 +115,7 @@ const JoinLeaveCat = ({
                   alt="Add User"
                   title="Back"
                   onClick={() => {
-                    history.push("/category");
+                    history.push("/emptyinstind");
                   }}
                 />
               </div>
@@ -149,7 +149,7 @@ const JoinLeaveCat = ({
                               /> */}
                               </th>
                               {/* </form> */}
-                              <th style={{ width: "10%" }}>Type</th>
+                              <th style={{ width: "10%" }}>Description</th>
                               <th style={{ width: "5%" }}>Op</th>
                             </tr>
                           </thead>
@@ -172,8 +172,8 @@ const JoinLeaveCat = ({
                                       title="Add "
                                     />
                                   </td>
-                                  <td>{ele.entName}</td>
-                                  <td>{ele.entType}</td>
+                                  <td>{ele.categoryName}</td>
+                                  <td>{ele.categoryDesp}</td>
                                   <td>
                                     {" "}
                                     <button
@@ -229,7 +229,7 @@ const JoinLeaveCat = ({
                               <input type="hidden" name="callFromLeave" /> */}
                               </th>
                               {/* </form> */}
-                              <th style={{ width: "10%" }}>Type</th>
+                              <th style={{ width: "10%" }}>Description</th>
                               <th style={{ width: "5%" }}>Op</th>
                             </tr>
                           </thead>
@@ -252,8 +252,8 @@ const JoinLeaveCat = ({
                                       title="Leave"
                                     />
                                   </td>
-                                  <td>{ele.entName}</td>
-                                  <td>{ele.entType}</td>
+                                  <td>{ele.categoryName}</td>
+                                  <td>{ele.categoryDesp}</td>
                                   <td>
                                     {" "}
                                     <button
@@ -317,7 +317,13 @@ const JoinLeaveCat = ({
             <h4 className="mt-0">Confirmation</h4>
           </Modal.Header>
           <Modal.Body>
-            <h5>Are you sure you want to join this Entity?</h5>
+            <h5>
+              Are you sure you want to join{" "}
+              <span style={{ color: "#e79d69" }}>
+                {" " + mydata.entName + " "}{" "}
+              </span>
+              to these Category?
+            </h5>
           </Modal.Body>
           <Modal.Footer>
             <button
@@ -374,7 +380,7 @@ const JoinLeaveCat = ({
                           type="text"
                           className="form-control"
                           readOnly
-                          value={viewdata && viewdata.entName}
+                          value={viewdata && viewdata.categoryName}
                         />
 
                         <span
@@ -384,70 +390,14 @@ const JoinLeaveCat = ({
                       </div>
                     </div>
                     <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">Designation/Order</label>
+                      <label className="control-label">Description</label>
                       <div className="controls">
-                        <input
+                        <textarea
                           name="UserName"
                           id="category_status"
                           type="text"
                           className="form-control"
-                          value={viewdata && viewdata.entOrderDesg}
-                          readOnly
-                        />
-                        <span className="form-input-info"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">Phone No.</label>
-                      <div className="controls">
-                        <input
-                          name="UserNumber"
-                          id="category_status"
-                          type="text"
-                          className="form-control"
-                          readOnly
-                          value={viewdata && viewdata.entPhone}
-                        />
-                        <span className="form-input-info"></span>
-                      </div>
-                    </div>
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">Email </label>
-                      <div className="controls">
-                        <input
-                          name="UserEmail"
-                          id="cat_name"
-                          type="text"
-                          className="form-control"
-                          value={viewdata && viewdata.entEmail}
-                          readOnly
-                        />
-                        <span
-                          id="category_result"
-                          className="form-input-info"
-                        ></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">Address</label>
-                      <div className="controls">
-                        <textarea
-                          rows="2"
-                          name="UserAddress"
-                          id="category_description"
-                          className="form-control"
-                          value={
-                            viewdata &&
-                            viewdata.entAddress1 +
-                              " " +
-                              viewdata.entAddress2 +
-                              " " +
-                              viewdata.entAddress3
-                          }
+                          value={viewdata && viewdata.categoryDesp}
                           readOnly
                         ></textarea>
                         <span className="form-input-info"></span>
@@ -456,7 +406,7 @@ const JoinLeaveCat = ({
                   </div>
 
                   <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  body-inner no-padding table-responsive fixTableHeadview">
-                    <label>Category List in which they exists</label>
+                    <label>Entity List in which they exists</label>
                     <table
                       border="1"
                       id="datatable2"
@@ -464,8 +414,11 @@ const JoinLeaveCat = ({
                     >
                       <thead>
                         <tr className="headingsizes">
-                          <th style={{ width: "30%" }}>SL. No.</th>
-                          <th style={{ width: "70%" }}>Category Name</th>
+                          <th style={{ width: "20%" }}>SL. No.</th>
+                          <th style={{ width: "60%" }}>
+                            Institution/Individual Name
+                          </th>
+                          <th style={{ width: "20%" }}>Type</th>
                         </tr>
                       </thead>
                       <tbody>{/* <td></td> */}</tbody>
@@ -495,5 +448,5 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
   //deleteCategory,
   // loadUser,
-  getAllCategory,
-})(JoinLeaveCat);
+  getAllEntity,
+})(JoinLeaveEnt);

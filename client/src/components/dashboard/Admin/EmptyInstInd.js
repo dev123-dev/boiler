@@ -1,11 +1,33 @@
-import React from "react";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
-import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
+import { getAllEntity } from "../../../actions/dag";
 
-export default function EmptyInstInd() {
+import { useHistory } from "react-router-dom";
+
+const EmptyInstInd = ({
+  auth: { user },
+  dag: { allent },
+
+  getAllEntity,
+}) => {
+  useEffect(() => {
+    if (user) {
+      getAllEntity(user.orgId);
+    }
+  }, []);
+
+  const onClickReset = () => {
+    if (user) {
+      getAllEntity(user.orgId);
+    }
+  };
+
+  let history = useHistory();
+  const onJoinCat = (data) => {
+    history.push("/joinleaveent", data);
+  };
+
   return (
     <div>
       <div className="row">
@@ -25,7 +47,7 @@ export default function EmptyInstInd() {
               <img
                 className="img_icon_size log text-right"
                 src={require("../../../static/images/refresh-icon.png")}
-                //onClick={() => onClickReset()}
+                onClick={() => onClickReset()}
                 alt="refresh"
                 title="Refresh"
               />{" "}
@@ -38,13 +60,47 @@ export default function EmptyInstInd() {
                 id="datatable2"
                 className="table table-bordered table-hover table-striped"
               >
-                <tr className="headingsizes">
-                  <th style={{ width: "50%" }}> Name</th>
-                  <th style={{ width: "40%" }}>Type</th>
+                <thead>
+                  <tr className="headingsizes">
+                    <th style={{ width: "50%" }}> Name</th>
+                    <th style={{ width: "40%" }}>Type</th>
 
-                  <th style={{ width: "10%" }}>Operation</th>
-                </tr>
-                <tr></tr>
+                    <th style={{ width: "10%" }}>Operation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {allent &&
+                    allent.map((entVal, idx) => {
+                      if (
+                        entVal.categoryBelongs &&
+                        entVal.categoryBelongs.length === 0 &&
+                        entVal.entStatus === "Active"
+                      ) {
+                        return (
+                          <tr key={idx}>
+                            <td>{entVal.entName}</td>
+                            <td>{entVal.entType}</td>
+
+                            <td>
+                              {entVal.entStatus === "Active" ? (
+                                <>
+                                  <img
+                                    className="img_icon_size log"
+                                    onClick={() => onJoinCat(entVal)}
+                                    src={require("../../../static/images/account1.png")}
+                                    alt="Join Leave"
+                                    title="Join Leave Page"
+                                  />
+                                </>
+                              ) : (
+                                <>Deactivated</>
+                              )}
+                            </td>
+                          </tr>
+                        );
+                      }
+                    })}
+                </tbody>
               </table>
             </div>
           </section>
@@ -52,4 +108,11 @@ export default function EmptyInstInd() {
       </div>
     </div>
   );
-}
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  dag: state.dag,
+});
+export default connect(mapStateToProps, {
+  getAllEntity,
+})(EmptyInstInd);

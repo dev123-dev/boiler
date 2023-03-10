@@ -38,14 +38,14 @@ const Organization = ({
   const handleShow = () => setShow(true);
 
   //edit modal
-  const [showEditModal, setShowEditModal] = useState(false);
-  const handleEditModalClose = () => setShowEditModal(false);
-  const handleOpen = () => setShowEditModal(true);
-  const onAddStaffModalChange = (e) => {
-    if (e) {
-      handleEditModalClose();
-    }
-  };
+  // const [showEditModal, setShowEditModal] = useState(false);
+  // const handleEditModalClose = () => setShowEditModal(false);
+  // const handleOpen = () => setShowEditModal(true);
+  // const onAddStaffModalChange = (e) => {
+  //   if (e) {
+  //     handleEditModalClose();
+  //   }
+  // };
 
   const [OrgId, setId] = useState("");
 
@@ -59,7 +59,7 @@ const Organization = ({
     setShowUpdateModal(true);
 
     setorgdata(org);
-    handleOpen();
+    //  handleOpen();
   };
 
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -109,14 +109,13 @@ const Organization = ({
                     <th>Phone No.</th>
                     <th>Address</th>
 
-                    <th>Status</th>
                     <th>Operation</th>
                   </tr>
                 </thead>
                 <tbody>
                   {allorg &&
                     allorg.map((orgVal, idx) => {
-                      if (orgVal.orgStatus == "Active") {
+                      if (orgVal.orgStatus === "Active") {
                         return (
                           <tr key={idx}>
                             <td>{orgVal.orgName}</td>
@@ -124,7 +123,6 @@ const Organization = ({
                             <td>{orgVal.phoneNumber}</td>
                             <td>{orgVal.address}</td>
 
-                            <td>{orgVal.orgStatus}</td>
                             <td>
                               <img
                                 className="img_icon_size log"

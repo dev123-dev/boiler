@@ -573,7 +573,6 @@ const EditEntity = ({
                               value={entState}
                               className="form-control"
                               onChange={(e) => onENTchange(e)}
-                              required
                             />
                           </div>
                         </div>

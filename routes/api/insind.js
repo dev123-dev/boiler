@@ -116,4 +116,22 @@ router.route("/editinstind").post((req, res) => {
     .catch((err) => res.status(400).json("Error" + err));
 });
 
+//joinLeave entity
+router.route("/addEntCat").post((req, res) => {
+  let data = req.body;
+  //console.log("request", req.body);
+  EntDetails.updateOne(
+    { _id: data.entid, orgId: data.orgId },
+    {
+      $set: {
+        categoryBelongs: data.categoryBelongs,
+      },
+    }
+  )
+    .then((data) => {
+      //console.log(data);
+      res.status(200).json("updated");
+    })
+    .catch((err) => res.status(400).json("Error" + err));
+});
 module.exports = router;
