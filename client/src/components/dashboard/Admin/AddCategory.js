@@ -95,10 +95,13 @@ const AddCategory = ({
         centered
       >
         <Modal.Header>
-          <Modal.Title className="container">
+          {/* <Modal.Title className="container">
             <h1 className="font-weight-bold ">ADD CATEGORY</h1>
-          </Modal.Title>
-          <div className="col-lg-2">
+          </Modal.Title> */}
+          <div className="col-lg-11">
+            <h3 className="modal-title text-center">ADD CATEGORY </h3>
+          </div>
+          <div className="col-lg-1">
             <button onClick={() => handleAddClose()} className="close">
               <img
                 src={require("../../../static/images/close.png")}

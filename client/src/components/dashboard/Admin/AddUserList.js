@@ -189,9 +189,13 @@ const AddUserList = ({
         centered
       >
         <Modal.Header>
-          <Modal.Title className="container">
+          {/* <Modal.Title className="container">
             <h1 className="font-weight-bold ">ADD USER</h1>
-          </Modal.Title>
+          </Modal.Title> */}
+          <div className="col-lg-11">
+            <h3 className="modal-title text-center">ADD USER </h3>
+          </div>
+
           <div className="col-lg-2">
             <button onClick={() => handleAddClose()} className="close">
               <img
