@@ -29,13 +29,15 @@ const AddUserList = ({
 
   const allusergroup = [];
 
-  allusergrp.map((usergroup) =>
-    allusergroup.push({
-      usergroupId: usergroup._id,
-      label: usergroup.groupName,
-      value: usergroup.groupName,
-    })
-  );
+  allusergrp.map((usergroup) => {
+    if (usergroup.groupStatus === "Active") {
+      allusergroup.push({
+        usergroupId: usergroup._id,
+        label: usergroup.groupName,
+        value: usergroup.groupName,
+      });
+    }
+  });
 
   const onusergroupChange = (e) => {
     //console.log(e);

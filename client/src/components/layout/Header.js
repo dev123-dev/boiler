@@ -97,7 +97,14 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
           ) : (
             <Navbar.Brand></Navbar.Brand>
           )}
-          {!loading && isAuthenticated && user && user.userGroup === "Admin" ? (
+          {(!loading &&
+            isAuthenticated &&
+            user &&
+            user.userGroup === "Admin") ||
+          (!loading &&
+            isAuthenticated &&
+            user &&
+            user.userGroup === "Clerk") ? (
             <Navbar.Brand>
               <NavLink to="/admindashboard">
                 <img
@@ -150,10 +157,14 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
               </NavItem>
 
               <NavItem>
-                {!loading &&
-                isAuthenticated &&
-                user &&
-                user.userGroup === "Admin" ? (
+                {(!loading &&
+                  isAuthenticated &&
+                  user &&
+                  user.userGroup === "Admin") ||
+                (!loading &&
+                  isAuthenticated &&
+                  user &&
+                  user.userGroup === "Clerk") ? (
                   <NavLink
                     to="/category"
                     className="navlink"
@@ -166,10 +177,14 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 )}
               </NavItem>
               <NavItem>
-                {!loading &&
-                isAuthenticated &&
-                user &&
-                user.userGroup === "Admin" ? (
+                {(!loading &&
+                  isAuthenticated &&
+                  user &&
+                  user.userGroup === "Admin") ||
+                (!loading &&
+                  isAuthenticated &&
+                  user &&
+                  user.userGroup === "Clerk") ? (
                   <NavLink
                     to="/entity"
                     className="navlink"
@@ -182,10 +197,14 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 )}
               </NavItem>
               <NavItem>
-                {!loading &&
-                isAuthenticated &&
-                user &&
-                user.userGroup === "Admin" ? (
+                {(!loading &&
+                  isAuthenticated &&
+                  user &&
+                  user.userGroup === "Admin") ||
+                (!loading &&
+                  isAuthenticated &&
+                  user &&
+                  user.userGroup === "Clerk") ? (
                   <NavDropdown
                     style={{ cursor: "pointer" }}
                     title="Generate Label"
@@ -219,10 +238,14 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 )}
               </NavItem>
               <NavItem>
-                {!loading &&
-                isAuthenticated &&
-                user &&
-                user.userGroup === "Admin" ? (
+                {(!loading &&
+                  isAuthenticated &&
+                  user &&
+                  user.userGroup === "Admin") ||
+                (!loading &&
+                  isAuthenticated &&
+                  user &&
+                  user.userGroup === "Clerk") ? (
                   <NavLink
                     to="/emptycategory"
                     className="navlink"
@@ -236,10 +259,14 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                 )}
               </NavItem>
               <NavItem>
-                {!loading &&
-                isAuthenticated &&
-                user &&
-                user.userGroup === "Admin" ? (
+                {(!loading &&
+                  isAuthenticated &&
+                  user &&
+                  user.userGroup === "Admin") ||
+                (!loading &&
+                  isAuthenticated &&
+                  user &&
+                  user.userGroup === "Clerk") ? (
                   <NavLink
                     to="/emptyinstind"
                     className="navlink"
@@ -317,27 +344,46 @@ const Header = ({ auth: { isAuthenticated, loading, user }, logout }) => {
                           </Link>
 
                           <ul className="dropdown-menu second-level-menu ">
-                            <li className="hwhite">
-                              <Link to="/designation" className="navlinkitem">
-                                Designation Setting
-                              </Link>
-                            </li>
-                            <li className="hwhite">
-                              <Link to="/userlist" className="navlinkitem">
-                                User Setting
-                              </Link>
-                            </li>
-
-                            <li className="hwhite">
-                              <Link
-                                to="#"
-                                className="navlinkitem"
-                                onClick={() => setshowrestpassword(true)}
-                              >
-                                Reset Password
-                              </Link>
-                            </li>
-
+                            {!loading &&
+                            isAuthenticated &&
+                            user &&
+                            user.userGroup === "Admin" ? (
+                              <li className="hwhite">
+                                <Link to="/designation" className="navlinkitem">
+                                  Designation Setting
+                                </Link>
+                              </li>
+                            ) : (
+                              <></>
+                            )}
+                            {!loading &&
+                            isAuthenticated &&
+                            user &&
+                            user.userGroup === "Admin" ? (
+                              <li className="hwhite">
+                                <Link to="/userlist" className="navlinkitem">
+                                  User Setting
+                                </Link>
+                              </li>
+                            ) : (
+                              <></>
+                            )}
+                            {!loading &&
+                            isAuthenticated &&
+                            user &&
+                            user.userGroup === "Admin" ? (
+                              <li className="hwhite">
+                                <Link
+                                  to="#"
+                                  className="navlinkitem"
+                                  onClick={() => setshowrestpassword(true)}
+                                >
+                                  Reset Password
+                                </Link>
+                              </li>
+                            ) : (
+                              <></>
+                            )}
                             <li className="hwhite">
                               <Link
                                 to="#"

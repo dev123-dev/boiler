@@ -53,7 +53,11 @@ const Organization = ({
     setId(id);
     handleShow();
   };
-
+  const onClickReset = () => {
+    // setCurrentData(1);
+    // getbatchsData("");
+    getAllOrganization("");
+  };
   const [orgdata, setorgdata] = useState(null);
   const onedit = (org) => {
     setShowUpdateModal(true);
@@ -93,8 +97,16 @@ const Organization = ({
             </h1>
             <br />
             <br />
-
-            <AddOrgModal />
+            <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
+              <img
+                className="img_icon_size log text-right"
+                src={require("../../../static/images/refresh-icon.png")}
+                onClick={() => onClickReset()}
+                alt="refresh"
+              />{" "}
+              &nbsp;
+              <AddOrgModal />
+            </div>
 
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center body-inner no-padding table-responsive fixTableHead ">
               <table
