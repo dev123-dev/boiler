@@ -80,7 +80,7 @@ router.route("/editcategory").post((req, res) => {
 //joinLeave category
 router.route("/addCategoryEnt").post((req, res) => {
   let data = req.body;
-  //console.log("request", req.body);
+  
   CategoryDetails.updateOne(
     { _id: data.catid, orgId: data.orgId },
     {
@@ -90,13 +90,11 @@ router.route("/addCategoryEnt").post((req, res) => {
     }
   )
     .then((data) => {
-     
       res.status(200).json("updated");
     })
     .catch((err) => res.status(400).json("Error" + err));
 
     data.categoryEntity.map((ele)=>{
-
        EntDetails.updateOne(
          { _id: ele._id, orgId: data.orgId },
          {
@@ -106,7 +104,23 @@ router.route("/addCategoryEnt").post((req, res) => {
          }
        )
        .then((data))
-    })   
+    })
+      
+    
+    data.notAMember.map((ele)=>{
+      
+      EntDetails.updateOne(
+        { _id: ele._id, orgId: data.orgId },
+        {
+          $pull: {
+           categoryBelongs:{categoryId: data.catid},
+          },
+        }
+      )
+
+      .then((data))
+   })
+
 });
 
 module.exports = router;

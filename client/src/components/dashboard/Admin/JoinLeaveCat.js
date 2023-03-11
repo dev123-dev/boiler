@@ -79,14 +79,19 @@ const JoinLeaveCat = ({
       .post(`${linkPath}/api/category/addCategoryEnt`, {
         catid: mydata._id,
         orgId: user.orgId,
+        "notAMember":notMember,
         categoryEntity: entCatMembers,
-        categoryBelongs:{"categoryId":mydata._id, "categoryName":mydata.categoryName, "OrgId":mydata.orgId}
+        categoryBelongs:{"categoryId":mydata._id,
+         "categoryName":mydata.categoryName, 
+         "OrgId":mydata.orgId}
       })
       .then((res) => {
         console.log(res);
       });
     setShowjoin(false);
     history.push("/category");
+    console.log("not a member",notMember)
+    
   };
 
   return (
