@@ -1,9 +1,11 @@
 const router = require("express").Router();
 const CategoryDetails = require("../../models/CategoryDetails");
 const CategoryHistroy = require("../../models/CategoryHistroy");
+const EntDetails = require("../../models/InsIndDetails");
 
 //add user
 router.route("/addcategory").post((req, res) => {
+
   let Category = new CategoryDetails(req.body);
 
   Category.save(req.body)
@@ -22,12 +24,12 @@ router.route("/getcategory").post((req, res) => {
     .then((data) => {
       res.status(200).json(data);
     })
-
     .catch((err) => res.status(400).json("Error" + err));
 });
 
 //deactive  category
 router.route("/deactivecategory").post((req, res) => {
+
   let data = req.body;
   //console.log("request", req.body);
   //console.log("backend", data.orgId);
@@ -50,7 +52,6 @@ router.route("/deactivecategory").post((req, res) => {
 });
 
 //edit
-
 router.route("/editcategory").post((req, res) => {
   let data = req.body;
 
@@ -89,10 +90,23 @@ router.route("/addCategoryEnt").post((req, res) => {
     }
   )
     .then((data) => {
-      //console.log(data);
+     
       res.status(200).json("updated");
     })
     .catch((err) => res.status(400).json("Error" + err));
+
+    data.categoryEntity.map((ele)=>{
+
+       EntDetails.updateOne(
+         { _id: ele._id, orgId: data.orgId },
+         {
+           $addToSet: {
+            categoryBelongs: data.categoryBelongs,
+           },
+         }
+       )
+       .then((data))
+    })   
 });
 
 module.exports = router;

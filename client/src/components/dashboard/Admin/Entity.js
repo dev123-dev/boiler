@@ -13,9 +13,7 @@ const Entity = ({
   //here to connect to action we need to import the function
   //then again we need to mention inside the const function
   dag: { allent },
-
   deleteEntity,
-
   getAllEntity,
 }) => {
   useEffect(() => {
@@ -24,6 +22,7 @@ const Entity = ({
     }
   }, []);
 
+console.log("called ",allent)
   let history = useHistory();
   const onClickReset = () => {
     if (user) {

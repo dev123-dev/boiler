@@ -34,12 +34,12 @@ const JoinLeaveCat = ({
 
     handleOpen();
   };
-  console.log("viewdata", viewdata);
+  //console.log("viewdata", viewdata);
 
   const history = useHistory();
   const [mydata, setmydata] = useState(location.state);
   const [showjoin, setShowjoin] = useState(false);
-  console.log("datafromemtycat", mydata);
+  //console.log("datafromemtycat", mydata);
 
   const ent = allent;
 
@@ -50,8 +50,9 @@ const JoinLeaveCat = ({
       (ele) => !entCatMembers.some((item) => item["_id"] === ele["_id"])
     )
   );
-  console.log("entcatmember", entCatMembers);
-  console.log("not a memebre", notMember);
+
+  //console.log("entcatmember", entCatMembers);
+  console.log("not a mydata", mydata);
   const JoinEnt = (ele, index) => {
     setEntCatMembers([...entCatMembers, ele]);
 
@@ -79,6 +80,7 @@ const JoinLeaveCat = ({
         catid: mydata._id,
         orgId: user.orgId,
         categoryEntity: entCatMembers,
+        categoryBelongs:{"categoryId":mydata._id, "categoryName":mydata.categoryName, "OrgId":mydata.orgId}
       })
       .then((res) => {
         console.log(res);

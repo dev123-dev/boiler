@@ -16,7 +16,7 @@ async function updateExpiryStatus() {
   var todayDateymd = yyyy + "-" + mm + "-" + dd;
 
   try {
-    console.log("hit");
+    console.log(" cronJOBhit");
     org
       .updateMany(
         { endDate: { $lte: todayDateymd }, orgStatus: "Active" },
