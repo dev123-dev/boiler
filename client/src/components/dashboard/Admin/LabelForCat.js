@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 
@@ -14,6 +15,10 @@ export default function LabelForCat() {
   const onexport = () => {
     // setShowEditModal(true);
     handleShow();
+  };
+  let history = useHistory();
+  const generatepage = () => {
+    history.push("/generatelabel");
   };
   return (
     <div>
@@ -233,7 +238,10 @@ export default function LabelForCat() {
                 CANCEL
               </button>
 
-              <button className="btn btn-outline-secondary btnall">
+              <button
+                onClick={generatepage}
+                className="btn btn-outline-secondary btnall"
+              >
                 GENERATE
               </button>
             </div>

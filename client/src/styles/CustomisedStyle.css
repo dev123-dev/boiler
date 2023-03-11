@@ -2042,3 +2042,22 @@ th {
     display: none;
   }
 }
+
+.grid {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+  grid-template-columns: 80px 80px;
+  grid-template-columns: 80px 80px; */
+  grid-template-columns: auto auto auto;
+
+  grid-column: 1;
+  grid-gap: 20px;
+  /* justify-items: start; */
+}
+.item {
+  min-height: 175px;
+  min-width: 150px;
+  background-color: #eee;
+  /* justify-self: start;
+  align-self: start; */
+}

@@ -27,6 +27,7 @@ import LabelForInstInd from "../dashboard/Admin/LabelForInstInd";
 import EmptyCategory from "../dashboard/Admin/EmptyCategory";
 import EmptyInstInd from "../dashboard/Admin/EmptyInstInd";
 import JoinLeaveEnt from "../dashboard/Admin/JoinLeaveEnt";
+import GenerateLabel from "../dashboard/Admin/GenerateLabel";
 
 const RoutesFile = () => {
   return (
@@ -69,7 +70,7 @@ const RoutesFile = () => {
         <PrivateRoute exact path="/emptyinstind" component={EmptyInstInd} />
         <PrivateRoute exact path="/joinleavecat" component={JoinLeaveCat} />
         <PrivateRoute exact path="/joinleaveent" component={JoinLeaveEnt} />
-
+        <PrivateRoute exact path="/generatelabel" component={GenerateLabel} />
         <PrivateRoute exact path="/route-driver" component={RouteDriver} />
         <Route component={NotFound} />
       </Switch>
