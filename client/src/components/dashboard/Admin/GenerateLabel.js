@@ -79,7 +79,7 @@ const GenerateLabel = ({
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
-    documentTitle: "emp-data",
+    documentTitle: "Generate Label",
     onAfterPrint: () => alert("print success"),
   });
   console.log("allent", allent);
