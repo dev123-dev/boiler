@@ -148,7 +148,7 @@ const Category = ({
                                   alt="Delete User"
                                   title="Delete Category"
                                 />
-                                &nbsp;
+                                {/* &nbsp; */}
                                 {/* <Link to="#"> */}{" "}
                                 <img
                                   className="img_icon_size log"

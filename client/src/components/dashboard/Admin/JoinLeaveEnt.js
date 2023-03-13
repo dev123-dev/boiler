@@ -34,12 +34,12 @@ const JoinLeaveEnt = ({
 
     handleOpen();
   };
-  //console.log("viewdata", viewdata);
+  console.log("viewdata", viewdata);
 
   const history = useHistory();
   const [mydata, setmydata] = useState(location.state);
   const [showjoin, setShowjoin] = useState(false);
- // console.log("datafromemtycat", mydata);
+  // console.log("datafromemtycat", mydata);
 
   const cat = allcat;
 
@@ -78,9 +78,9 @@ const JoinLeaveEnt = ({
       .post(`${linkPath}/api/entity/addEntCat`, {
         entid: mydata._id,
         orgId: user.orgId,
-        "notAMember":notMember,
+        notAMember: notMember,
         categoryBelongs: entCatMembers,
-        "categoryEntity":mydata,
+        categoryEntity: mydata,
       })
       .then((res) => {
         console.log(res);
@@ -435,7 +435,19 @@ const JoinLeaveEnt = ({
                           <th style={{ width: "20%" }}>Type</th>
                         </tr>
                       </thead>
-                      <tbody>{/* <td></td> */}</tbody>
+                      <tbody>
+                        {viewdata &&
+                          viewdata.categoryEntity &&
+                          viewdata.categoryEntity.map((entVal, idx) => {
+                            return (
+                              <tr key={idx}>
+                                <td> {idx + 1}</td>
+                                <td>{entVal.entName}</td>
+                                <td>{entVal.entType}</td>
+                              </tr>
+                            );
+                          })}
+                      </tbody>
                     </table>
                   </div>
                 </div>

@@ -51,7 +51,7 @@ const JoinLeaveCat = ({
     )
   );
 
-  //console.log("entcatmember", entCatMembers);
+  console.log("entcatmember", entCatMembers);
   console.log("not a mydata", mydata);
   const JoinEnt = (ele, index) => {
     setEntCatMembers([...entCatMembers, ele]);
@@ -489,15 +489,16 @@ const JoinLeaveCat = ({
                         </tr>
                       </thead>
                       <tbody>
-                        {/* {viewdata.categoryBelongs &&
+                        {viewdata &&
+                          viewdata.categoryBelongs &&
                           viewdata.categoryBelongs.map((catVal, idx) => {
                             return (
                               <tr key={idx}>
-                                <td> 1</td>
+                                <td> {idx + 1}</td>
                                 <td>{catVal.categoryName}</td>
                               </tr>
                             );
-                          })} */}
+                          })}
                       </tbody>
                     </table>
                   </div>
