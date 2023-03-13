@@ -34,7 +34,7 @@ const JoinLeaveCat = ({
 
     handleOpen();
   };
-  //console.log("viewdata", viewdata);
+  console.log("viewdata", viewdata);
 
   const history = useHistory();
   const [mydata, setmydata] = useState(location.state);
@@ -79,19 +79,21 @@ const JoinLeaveCat = ({
       .post(`${linkPath}/api/category/addCategoryEnt`, {
         catid: mydata._id,
         orgId: user.orgId,
-        "notAMember":notMember,
+        notAMember: notMember,
         categoryEntity: entCatMembers,
-        categoryBelongs:{"_id":mydata._id,
-         "categoryName":mydata.categoryName, 
-         "OrgId":mydata.orgId}
+        categoryBelongs: mydata,
+        // categoryBelongs: {
+        //   _id: mydata._id,
+        //   categoryName: mydata.categoryName,
+        //   OrgId: mydata.orgId,
+        // },
       })
       .then((res) => {
         console.log(res);
       });
     setShowjoin(false);
     history.push("/category");
-    console.log("not a member",notMember)
-    
+    console.log("not a member", notMember);
   };
 
   return (
@@ -486,7 +488,17 @@ const JoinLeaveCat = ({
                           <th style={{ width: "70%" }}>Category Name</th>
                         </tr>
                       </thead>
-                      <tbody>{/* <td></td> */}</tbody>
+                      <tbody>
+                        {/* {viewdata.categoryBelongs &&
+                          viewdata.categoryBelongs.map((catVal, idx) => {
+                            return (
+                              <tr key={idx}>
+                                <td> 1</td>
+                                <td>{catVal.categoryName}</td>
+                              </tr>
+                            );
+                          })} */}
+                      </tbody>
                     </table>
                   </div>
                 </div>
