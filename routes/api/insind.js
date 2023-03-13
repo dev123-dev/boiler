@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const CategoryDetails = require("../../models/CategoryDetails");
 const EntDetails = require("../../models/InsIndDetails");
 //const CategoryHistroy = require("../../models/CategoryHistroy");
 
@@ -129,9 +130,49 @@ router.route("/addEntCat").post((req, res) => {
     }
   )
     .then((data) => {
-      //console.log(data);
       res.status(200).json("updated");
     })
     .catch((err) => res.status(400).json("Error" + err));
+
+
+    data.categoryBelongs.map((ele)=>{
+
+    //console.log("ent  is ",ele.categoryName)
+    CategoryDetails.updateOne(
+      { _id: ele._id, orgId: data.orgId },
+      {
+        $addToSet: {
+          categoryEntity: data.categoryEntity,
+        },
+      }
+    )
+    .then((data))
+
+    data.notAMember.map((ele)=>{
+      
+      CategoryDetails.updateOne(
+        { _id: ele._id, orgId: data.orgId },
+        {
+          $pull: {
+            categoryEntity:{_id: data.enttid},
+          },
+        }
+      )
+
+      .then((data))
+   })
+
+    })
+ 
+
+    // CategoryDetails.updateOne(
+    //   { _id: data.catid, orgId: data.orgId },
+    //   {
+    //     $set: {
+    //       categoryEntity: data.entity,
+    //     },
+    //   }
+    // )
+
 });
 module.exports = router;

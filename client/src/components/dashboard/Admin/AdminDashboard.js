@@ -16,18 +16,21 @@ const AdminDashboard = ({
   useEffect(() => {
     if (myuser) {
       getAllCategory(myuser.orgId);
-      //console.log("user  ",myuser.fullName)
-      //console.log("allcat ",allcat)
+     
       getAllEntity(myuser.orgId);
-      //setarr();
+      
     }
   }, [refreshPage]);
   
-  //let countEmptycat=0;
+ 
   
     const catArray = allcat && allcat.map(ele => ele && ele.categoryEntity);
     const emptyCatArray = catArray && catArray.filter(ele => ele && ele.length === 0);
      const countEmptycat =emptyCatArray && emptyCatArray.length;
+
+     const entArray = allent && allent.map(ele => ele && ele.categoryBelongs);
+     const emptyEntArray = entArray && entArray.filter(ele => ele && ele.length === 0);
+      const countEmptyent =emptyEntArray && emptyEntArray.length;
 
   return !isAuthenticated || !user ? (
     <NotFound />
@@ -95,13 +98,11 @@ const AdminDashboard = ({
                 <div>
                   <h2> Empty Category</h2>
                   <h4>
-                    {" "}
+                    
                     { countEmptycat}
-                    {/* {allcat &&
-                      allcat.categoryEntity &&
-                      allcat.categoryEntity.length} */}
+                   
                   </h4>
-                </div>{" "}
+                </div>
               </div>
               <div
                 className="col-lg-5 card h2 text-center pt-5 "
@@ -109,8 +110,8 @@ const AdminDashboard = ({
               >
                 <div>
                   <h2> Empty Instit/Individual</h2>
-                  <h4> 5</h4>
-                </div>{" "}
+                  <h4>{countEmptyent}</h4>
+                </div>
               </div>
               <div className="col-lg-1"></div>
             </div>

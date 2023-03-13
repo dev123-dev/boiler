@@ -78,7 +78,9 @@ const JoinLeaveEnt = ({
       .post(`${linkPath}/api/entity/addEntCat`, {
         entid: mydata._id,
         orgId: user.orgId,
+        "notAMember":notMember,
         categoryBelongs: entCatMembers,
+        "categoryEntity":mydata,
       })
       .then((res) => {
         console.log(res);
