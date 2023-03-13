@@ -81,7 +81,7 @@ const JoinLeaveCat = ({
         orgId: user.orgId,
         "notAMember":notMember,
         categoryEntity: entCatMembers,
-        categoryBelongs:{"categoryId":mydata._id,
+        categoryBelongs:{"_id":mydata._id,
          "categoryName":mydata.categoryName, 
          "OrgId":mydata.orgId}
       })

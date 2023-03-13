@@ -113,11 +113,10 @@ router.route("/addCategoryEnt").post((req, res) => {
         { _id: ele._id, orgId: data.orgId },
         {
           $pull: {
-           categoryBelongs:{categoryId: data.catid},
+           categoryBelongs:{_id: data.catid},
           },
         }
       )
-
       .then((data))
    })
 
