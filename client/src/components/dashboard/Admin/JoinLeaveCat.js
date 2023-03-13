@@ -82,19 +82,10 @@ const {categoryEntity, ...mydata1}=mydata;
         orgId: user.orgId,
         notAMember: notMember,
         categoryEntity: entCatMembers,
-<<<<<<< HEAD
          categoryBelongs:mydata1,
         // {"_id":mydata._id,
         //  "categoryName":mydata.categoryName, 
         //  "OrgId":mydata.orgId}
-=======
-        categoryBelongs: mydata,
-        // categoryBelongs: {
-        //   _id: mydata._id,
-        //   categoryName: mydata.categoryName,
-        //   OrgId: mydata.orgId,
-        // },
->>>>>>> bdf9441283a6b44e9ca15ce8f0077f2612e21907
       })
       .then((res) => {
         console.log(res);
