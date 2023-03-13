@@ -1,25 +1,67 @@
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
+import { deleteCategory } from "../../../actions/dag";
+import { getAllCategory } from "../../../actions/dag";
+import Addcategory from "./AddCategory";
+import EditCategory from "./EditCategory";
 
-export default function LabelForCat() {
+import { useHistory } from "react-router-dom";
+
+const LabelForCat = ({
+  auth: { user },
+  dag: { allcat },
+  deleteCategory,
+  getAllCategory,
+}) => {
+  useEffect(() => {
+    if (user) {
+      getAllCategory(user.orgId);
+    }
+  }, []);
+
+  const onClickReset = () => {
+    if (user) {
+      getAllCategory(user.orgId);
+    }
+  };
+
+  //deactivate
+
+  //deactivate modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [showEditModal, setShowEditModal] = useState(false);
-  const handleEditModalClose = () => setShowEditModal(false);
-  const handleOpen = () => setShowEditModal(true);
+  const [catId, setCatId] = useState("");
+
+  // const onInputchange = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
+
+  //deactivate
+
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const handleUpdateModalClose = () => {
+    setShowUpdateModal(false);
+    getAllCategory(user.orgId);
+  };
+
+  ////
+
+  //   const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
 
   const onexport = () => {
     // setShowEditModal(true);
     handleShow();
   };
-  let history = useHistory();
+  let history1 = useHistory();
   const generatepage = () => {
-    history.push("/generatelabel");
+    history1.push("/generatelabel");
   };
+
   return (
     <div>
       <div className="row ">
@@ -36,7 +78,7 @@ export default function LabelForCat() {
               <span style={{ color: "#e79d69" }}> Categories</span>
             </h1>
             {/* </div> */}
-            <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
+            {/* <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
               <img
                 className="img_icon_size log text-right"
                 src={require("../../../static/images/refresh-icon.png")}
@@ -45,7 +87,7 @@ export default function LabelForCat() {
                 title="Refresh"
               />{" "}
               &nbsp;
-            </div>
+            </div> */}
 
             <div
               className="row form-group"
@@ -92,6 +134,15 @@ export default function LabelForCat() {
                 >
                   <strong>Export</strong>
                 </button>
+                <span style={{ marginRight: "5px", marginLeft: "13px" }}>
+                  <img
+                    className="img_icon_size log text-right"
+                    src={require("../../../static/images/refresh-icon.png")}
+                    // onClick={() => onClickReset()}
+                    alt="refresh"
+                    title="Refresh"
+                  />{" "}
+                </span>
               </div>
             </div>
 
@@ -117,7 +168,40 @@ export default function LabelForCat() {
                     <th style={{ width: "40%" }}>Description</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  {allcat &&
+                    allcat.map((catVal, idx) => {
+                      if (
+                        catVal.categoryEntity &&
+                        catVal.categoryEntity.length !== 0 &&
+                        catVal.categoryStatus === "Active"
+                      ) {
+                        return (
+                          <tr key={idx}>
+                            <td>hh</td>
+                            <td>{catVal.categoryName}</td>
+                            <td>{catVal.categoryDesp}</td>
+
+                            {/* <td>
+                              {catVal.categoryStatus === "Active" ? (
+                                <>
+                                  <img
+                                    className="img_icon_size log"
+                                    // onClick={() => onJoinCat(catVal)}
+                                    src={require("../../../static/images/account1.png")}
+                                    alt="Join Leave"
+                                    title="Join Leave Page"
+                                  />
+                                </>
+                              ) : (
+                                <>Deactivated</>
+                              )}
+                            </td> */}
+                          </tr>
+                        );
+                      }
+                    })}
+                </tbody>
               </table>
               {/* <ul className="pagination pagination-sm" style="margin-top: 1px;"></ul>
         <label
@@ -252,4 +336,13 @@ export default function LabelForCat() {
       </Modal>
     </div>
   );
-}
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  dag: state.dag,
+});
+export default connect(mapStateToProps, {
+  deleteCategory,
+
+  getAllCategory,
+})(LabelForCat);

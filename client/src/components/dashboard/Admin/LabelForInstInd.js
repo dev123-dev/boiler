@@ -2,19 +2,64 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 
-export default function LabelForInstInd() {
+import { getAllEntity } from "../../../actions/dag";
+
+import { useHistory } from "react-router-dom";
+
+const LabelForInstInd = ({
+  auth: { user },
+  dag: { allent },
+
+  getAllEntity,
+}) => {
+  useEffect(() => {
+    if (user) {
+      getAllEntity(user.orgId);
+    }
+  }, []);
+
+  const onClickReset = () => {
+    if (user) {
+      getAllEntity(user.orgId);
+    }
+  };
+
+  //deactivate
+
+  //deactivate modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const [showEditModal, setShowEditModal] = useState(false);
-  const handleEditModalClose = () => setShowEditModal(false);
-  const handleOpen = () => setShowEditModal(true);
+  const [catId, setCatId] = useState("");
+
+  // const onInputchange = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
+
+  //deactivate
+
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const handleUpdateModalClose = () => {
+    setShowUpdateModal(false);
+    getAllEntity(user.orgId);
+  };
+
+  ////
+
+  //   const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
 
   const onexport = () => {
     // setShowEditModal(true);
     handleShow();
   };
+  let history1 = useHistory();
+  const generatepage = () => {
+    history1.push("/generatelabel");
+  };
+
   return (
     <div>
       <div className="row ">
@@ -31,7 +76,7 @@ export default function LabelForInstInd() {
               <span style={{ color: "#e79d69" }}> Institution/Individual</span>
             </h1>
             {/* </div> */}
-            <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
+            {/* <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
               <img
                 className="img_icon_size log text-right"
                 src={require("../../../static/images/refresh-icon.png")}
@@ -40,7 +85,7 @@ export default function LabelForInstInd() {
                 title="Refresh"
               />{" "}
               &nbsp;
-            </div>
+            </div> */}
 
             <div
               className="row form-group"
@@ -87,6 +132,15 @@ export default function LabelForInstInd() {
                 >
                   <strong>Export</strong>
                 </button>
+                <span style={{ marginRight: "5px", marginLeft: "13px" }}>
+                  <img
+                    className="img_icon_size log text-right"
+                    src={require("../../../static/images/refresh-icon.png")}
+                    onClick={() => onClickReset()}
+                    alt="refresh"
+                    title="Refresh"
+                  />{" "}
+                </span>
               </div>
             </div>
 
@@ -106,13 +160,54 @@ export default function LabelForInstInd() {
                         type="text"
                         //   value="<?=@$SrchName; ?>"
                         placeholder="Search"
-                        autofocus
+                        // autofocus
                       />
                     </th>
-                    <th style={{ width: "40%" }}>Description</th>
+                    <th style={{ width: "40%" }}>Type</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  {allent &&
+                    allent.map((entVal, idx) => {
+                      if (
+                        entVal.categoryBelongs &&
+                        entVal.categoryBelongs.length !== 0 &&
+                        entVal.entStatus === "Active"
+                      ) {
+                        return (
+                          <tr key={idx}>
+                            <td>
+                              {" "}
+                              <input
+                                type="checkbox"
+                                id="all_category"
+                                name="all_category"
+                                //  onclick="selectCheckOptions(this.id, this.checked)"
+                              />
+                            </td>
+                            <td>{entVal.entName}</td>
+                            <td>{entVal.entType}</td>
+
+                            {/* <td>
+                              {entVal.entStatus === "Active" ? (
+                                <>
+                                  <img
+                                    className="img_icon_size log"
+                                    // onClick={() => onJoinCat(entVal)}
+                                    src={require("../../../static/images/account1.png")}
+                                    alt="Join Leave"
+                                    title="Join Leave Page"
+                                  />
+                                </>
+                              ) : (
+                                <>Deactivated</>
+                              )}
+                            </td> */}
+                          </tr>
+                        );
+                      }
+                    })}
+                </tbody>
               </table>
               {/* <ul className="pagination pagination-sm" style="margin-top: 1px;"></ul>
         <label
@@ -244,4 +339,11 @@ export default function LabelForInstInd() {
       </Modal>
     </div>
   );
-}
+};
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  dag: state.dag,
+});
+export default connect(mapStateToProps, {
+  getAllEntity,
+})(LabelForInstInd);
