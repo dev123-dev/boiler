@@ -105,8 +105,7 @@ router.route("/addCategoryEnt").post((req, res) => {
        )
        .then((data))
     })
-      
-    
+       
     data.notAMember.map((ele)=>{
       
       EntDetails.updateOne(

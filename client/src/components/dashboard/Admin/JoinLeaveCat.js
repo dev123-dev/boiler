@@ -74,6 +74,7 @@ const JoinLeaveCat = ({
 
   const savent = () => {
     var linkPath = "";
+const {categoryEntity, ...mydata1}=mydata;
 
     axios
       .post(`${linkPath}/api/category/addCategoryEnt`, {
@@ -81,9 +82,10 @@ const JoinLeaveCat = ({
         orgId: user.orgId,
         "notAMember":notMember,
         categoryEntity: entCatMembers,
-        categoryBelongs:{"_id":mydata._id,
-         "categoryName":mydata.categoryName, 
-         "OrgId":mydata.orgId}
+         categoryBelongs:mydata1,
+        // {"_id":mydata._id,
+        //  "categoryName":mydata.categoryName, 
+        //  "OrgId":mydata.orgId}
       })
       .then((res) => {
         console.log(res);
