@@ -47,6 +47,7 @@ const Category = ({
 
   let history = useHistory();
   const onJoinCat = (data) => {
+    console.log("array category", data);
     history.push("/joinleavecat", data);
   };
 

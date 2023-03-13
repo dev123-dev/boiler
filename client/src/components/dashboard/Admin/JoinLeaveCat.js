@@ -13,6 +13,8 @@ const JoinLeaveCat = ({
 }) => {
   const myuser = JSON.parse(localStorage.getItem("user"));
 
+  console.log("allent", allent);
+
   useEffect(() => {
     if (myuser) {
       getAllCategory(myuser.orgId);
@@ -30,6 +32,7 @@ const JoinLeaveCat = ({
 
   const [viewdata, setviewdata] = useState(null);
   const onView = (user2) => {
+    console.log("user2", user2);
     setviewdata(user2);
 
     handleOpen();
@@ -39,9 +42,10 @@ const JoinLeaveCat = ({
   const history = useHistory();
   const [mydata, setmydata] = useState(location.state);
   const [showjoin, setShowjoin] = useState(false);
-  //console.log("datafromemtycat", mydata);
+  console.log("datafromemtycat", mydata);
 
   const ent = allent;
+  console.log("stratmydata", mydata);
 
   const [entCatMembers, setEntCatMembers] = useState(mydata.categoryEntity);
 
@@ -52,7 +56,7 @@ const JoinLeaveCat = ({
   );
 
   console.log("entcatmember", entCatMembers);
-  console.log("not a mydata", mydata);
+  console.log("not a mydata", notMember);
   const JoinEnt = (ele, index) => {
     setEntCatMembers([...entCatMembers, ele]);
 
@@ -75,6 +79,7 @@ const JoinLeaveCat = ({
   const savent = () => {
     var linkPath = "";
     const { categoryEntity, ...mydata1 } = mydata;
+    console.log("my", mydata1);
 
     axios
       .post(`${linkPath}/api/category/addCategoryEnt`, {
@@ -245,6 +250,7 @@ const JoinLeaveCat = ({
                           </thead>
                           <tbody>
                             {entCatMembers.map((ele, index) => {
+                              //console.log("ele", ele);
                               return (
                                 <tr key={index}>
                                   <td>
