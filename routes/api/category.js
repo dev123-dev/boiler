@@ -31,8 +31,7 @@ router.route("/getcategory").post((req, res) => {
 router.route("/deactivecategory").post((req, res) => {
 
   let data = req.body;
-  //console.log("request", req.body);
-  //console.log("backend", data.orgId);
+
   CategoryDetails.updateOne(
     { _id: data.catid, orgId: data.orgId },
     {
@@ -49,6 +48,16 @@ router.route("/deactivecategory").post((req, res) => {
       res.status(200).json(data);
     })
     .catch((err) => res.status(400).json("Error" + err));
+
+    // EntDetails.updateMany(
+    //   { "categoryBelongs._id": data.catId },
+    //   {
+    //     $pull: {
+    //        "categoryBelongs.$":{_id: data.catid}
+    //      },
+    //   }
+    // )
+    // .then(data)
 });
 
 //edit
@@ -73,8 +82,16 @@ router.route("/editcategory").post((req, res) => {
     .then((data) => {
       res.status(200).json(data);
     })
-
     .catch((err) => res.status(400).json("Error" + err));
+
+    EntDetails.updateMany(
+      { "categoryBelongs._id": data.catId },
+      {
+        $set: { "categoryBelongs.$.categoryName": data.categoryName}
+      }
+    )
+    .then((data))
+    .catch((data))
 });
 
 //joinLeave category
@@ -117,7 +134,9 @@ router.route("/addCategoryEnt").post((req, res) => {
         }
       )
       .then((data))
+      .catch((data))
    })
+
 
 });
 

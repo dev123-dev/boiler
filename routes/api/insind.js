@@ -46,43 +46,15 @@ router.route("/deactiveinstind").post((req, res) => {
     .then((data) => {
       res.status(200).json(data);
     })
-
     .catch((err) => res.status(400).json("Error" + err));
-  // console.log(data)
+
+ 
 });
-
-// //deactive  category
-// router.route("/deactivecategory").post((req, res) => {
-//   let data = req.body;
-
-//   CategoryDetails.updateOne(
-//     { _id: data.catid, orgId: data.orgId },
-//     {
-//       $set: {
-//         categoryStatus: "Deactive",
-//         categoryReason: data.catdeletereason,
-//         DeactiveById: data.DeactiveById,
-//         DeactiveByName: data.DeactiveByName,
-//         DeactiveByDateTime: data.DeactiveByDateTime,
-//       },
-//     }
-//   )
-//     .then((data) => {
-//       res.status(200).json(data);
-//     })
-
-//     .catch((err) => res.status(400).json("Error" + err));
-//   // console.log(data)
-// });
 
 //edit
 
 router.route("/editinstind").post((req, res) => {
   let data = req.body;
-
-  // let CatHis = new CategoryHistroy(req.body);
-  // CatHis.save(req.body).then(() => console.log("Histroy entered for CAtegory"));
-  // console.log(data);
 
   EntDetails.updateOne(
     { _id: data.entId, orgId: data.orgId },
@@ -113,8 +85,16 @@ router.route("/editinstind").post((req, res) => {
     .then((data) => {
       res.status(200).json(data);
     })
-
     .catch((err) => res.status(400).json("Error" + err));
+
+    EntDetails.updateMany(
+      { "categoryBelongs._id": data.catId },
+      {
+        $set: { categoryName: data.categoryName}
+      }
+    )
+    .then(data)
+
 });
 
 //joinLeave entity
@@ -147,6 +127,7 @@ router.route("/addEntCat").post((req, res) => {
       }
     )
     .then((data))
+    .catch((data))
 
     data.notAMember.map((ele)=>{
       
@@ -158,21 +139,14 @@ router.route("/addEntCat").post((req, res) => {
           },
         }
       )
-
       .then((data))
+      .catch((data))
    })
 
     })
  
 
-    // CategoryDetails.updateOne(
-    //   { _id: data.catid, orgId: data.orgId },
-    //   {
-    //     $set: {
-    //       categoryEntity: data.entity,
-    //     },
-    //   }
-    // )
+   
 
 });
 module.exports = router;
