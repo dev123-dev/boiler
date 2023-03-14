@@ -76,18 +76,29 @@ const JoinLeaveCat = ({
     setEntCatMembers(updated);
   };
 
+  console.log("entcat", entCatMembers);
   const savent = () => {
     var linkPath = "";
     const { categoryEntity, ...mydata1 } = mydata;
-    console.log("my", mydata1);
+
+    const myCatData = { _id: mydata1._id, categoryName: mydata1.categoryName };
+
+    const myentdata1 = entCatMembers.map((ele) => ({
+      _id: ele._id,
+      entName: ele.entName,
+    }));
+
+    console.log("entcat1", myentdata1);
+
+    // console.log("mycatdata", myCatData);
 
     axios
       .post(`${linkPath}/api/category/addCategoryEnt`, {
         catid: mydata._id,
         orgId: user.orgId,
         notAMember: notMember,
-        categoryEntity: entCatMembers,
-        categoryBelongs: mydata1,
+        categoryEntity: myentdata1,
+        categoryBelongs: myCatData,
         // {"_id":mydata._id,
         //  "categoryName":mydata.categoryName,
         //  "OrgId":mydata.orgId}

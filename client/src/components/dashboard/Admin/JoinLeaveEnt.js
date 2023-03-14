@@ -70,17 +70,31 @@ const JoinLeaveEnt = ({
 
     setEntCatMembers(updated);
   };
+  console.log("entcat", entCatMembers);
 
   const savent = () => {
     var linkPath = "";
     const { categoryBelongs, ...mydata1 } = mydata;
+
+    // const myEntData = { _id: mydata1._id, entName: mydata1.entName };
+    // console.log("myent", mydata1);
+
+    const myEntData1 = { _id: mydata1._id, entName: mydata1.entName };
+
+    const myCatData1 = entCatMembers.map((ele) => ({
+      _id: ele._id,
+      categoryName: ele.categoryName,
+    }));
+
+    console.log("entcat1", myCatData1);
+
     axios
       .post(`${linkPath}/api/entity/addEntCat`, {
         entid: mydata._id,
         orgId: user.orgId,
         notAMember: notMember,
-        categoryBelongs: entCatMembers,
-        categoryEntity: mydata1,
+        categoryBelongs: myCatData1,
+        categoryEntity: myEntData1,
       })
       .then((res) => {
         console.log(res);
