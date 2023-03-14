@@ -79,7 +79,11 @@ const JoinLeaveEnt = ({
     // const myEntData = { _id: mydata1._id, entName: mydata1.entName };
     // console.log("myent", mydata1);
 
-    const myEntData1 = { _id: mydata1._id, entName: mydata1.entName };
+    const myEntData1 = {
+      _id: mydata1._id,
+      entName: mydata1.entName,
+      entType: mydata1.entType,
+    };
 
     const myCatData1 = entCatMembers.map((ele) => ({
       _id: ele._id,

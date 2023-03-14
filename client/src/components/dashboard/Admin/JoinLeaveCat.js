@@ -86,6 +86,7 @@ const JoinLeaveCat = ({
     const myentdata1 = entCatMembers.map((ele) => ({
       _id: ele._id,
       entName: ele.entName,
+      entType: ele.entType,
     }));
 
     console.log("entcat1", myentdata1);
@@ -244,7 +245,7 @@ const JoinLeaveCat = ({
                               <th style={{ width: "5%" }}>Leave</th>
                               {/* <form id="leaveForm" method="POST"> */}
                               <th style={{ width: "80%" }}>
-                                Name &nbsp;
+                                Name
                                 {/* <input
                                 id="idSrchLeave"
                                 className="search_control"
