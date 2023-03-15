@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { getAllCategory } from "../../../actions/dag";
+import { getAllCategory, getViewDetails } from "../../../actions/dag";
 import Modal from "react-bootstrap/Modal";
 import { useHistory } from "react-router-dom";
 
 const JoinLeaveCat = ({
   auth: { user },
-  dag: { allent },
+  dag: { allent, allviewdata },
   location,
   getAllCategory,
+  getViewDetails,
 }) => {
   const myuser = JSON.parse(localStorage.getItem("user"));
 
@@ -32,12 +33,14 @@ const JoinLeaveCat = ({
 
   const [viewdata, setviewdata] = useState(null);
   const onView = (user2) => {
-    console.log("user2", user2);
+    getViewDetails(user2._id);
+    console.log("user2 id", user2._id);
     setviewdata(user2);
 
     handleOpen();
   };
   console.log("viewdata", viewdata);
+  console.log("allviewdata", allviewdata.entName);
 
   const history = useHistory();
   const [mydata, setmydata] = useState(location.state);
@@ -45,7 +48,7 @@ const JoinLeaveCat = ({
   console.log("datafromemtycat", mydata);
 
   const ent = allent;
-  console.log("stratmydata", mydata);
+  // console.log("allent", allent);
 
   const [entCatMembers, setEntCatMembers] = useState(mydata.categoryEntity);
 
@@ -401,124 +404,133 @@ const JoinLeaveCat = ({
             <div className="container ">
               <section className="body">
                 <div className="body-inner">
-                  <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label"> Name </label>
-                      <div className="controls">
-                        <input
-                          name="fullName"
-                          id="cat_name"
-                          type="text"
-                          className="form-control"
-                          readOnly
-                          value={viewdata && viewdata.entName}
-                        />
+                  {allviewdata &&
+                    allviewdata.map((ele, index) => {
+                      return (
+                        <div key={index}>
+                          <div className="row form-group">
+                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                              <label className="control-label"> Name </label>
+                              <div className="controls">
+                                <input
+                                  name="fullName"
+                                  id="cat_name"
+                                  type="text"
+                                  className="form-control"
+                                  readOnly
+                                  value={ele.entName}
+                                />
 
-                        <span
-                          id="category_result"
-                          className="form-input-info"
-                        ></span>
-                      </div>
-                    </div>
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">Designation/Order</label>
-                      <div className="controls">
-                        <input
-                          name="UserName"
-                          id="category_status"
-                          type="text"
-                          className="form-control"
-                          value={viewdata && viewdata.entOrderDesg}
-                          readOnly
-                        />
-                        <span className="form-input-info"></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">Phone No.</label>
-                      <div className="controls">
-                        <input
-                          name="UserNumber"
-                          id="category_status"
-                          type="text"
-                          className="form-control"
-                          readOnly
-                          value={viewdata && viewdata.entPhone}
-                        />
-                        <span className="form-input-info"></span>
-                      </div>
-                    </div>
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">Email </label>
-                      <div className="controls">
-                        <input
-                          name="UserEmail"
-                          id="cat_name"
-                          type="text"
-                          className="form-control"
-                          value={viewdata && viewdata.entEmail}
-                          readOnly
-                        />
-                        <span
-                          id="category_result"
-                          className="form-input-info"
-                        ></span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">Address</label>
-                      <div className="controls">
-                        <textarea
-                          rows="2"
-                          name="UserAddress"
-                          id="category_description"
-                          className="form-control"
-                          value={
-                            viewdata &&
-                            viewdata.entAddress1 +
-                              " " +
-                              viewdata.entAddress2 +
-                              " " +
-                              viewdata.entAddress3
-                          }
-                          readOnly
-                        ></textarea>
-                        <span className="form-input-info"></span>
-                      </div>
-                    </div>
-                  </div>
+                                <span
+                                  id="category_result"
+                                  className="form-input-info"
+                                ></span>
+                              </div>
+                            </div>
+                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                              <label className="control-label">
+                                Designation/Order
+                              </label>
+                              <div className="controls">
+                                <input
+                                  name="UserName"
+                                  id="category_status"
+                                  type="text"
+                                  className="form-control"
+                                  value={ele.entOrderDesg}
+                                  readOnly
+                                />
+                                <span className="form-input-info"></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="row form-group">
+                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                              <label className="control-label">Phone No.</label>
+                              <div className="controls">
+                                <input
+                                  name="UserNumber"
+                                  id="category_status"
+                                  type="text"
+                                  className="form-control"
+                                  readOnly
+                                  value={ele.entPhone}
+                                />
+                                <span className="form-input-info"></span>
+                              </div>
+                            </div>
+                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                              <label className="control-label">Email </label>
+                              <div className="controls">
+                                <input
+                                  name="UserEmail"
+                                  id="cat_name"
+                                  type="text"
+                                  className="form-control"
+                                  value={ele.entEmail}
+                                  readOnly
+                                />
+                                <span
+                                  id="category_result"
+                                  className="form-input-info"
+                                ></span>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="row form-group">
+                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                              <label className="control-label">Address</label>
+                              <div className="controls">
+                                <textarea
+                                  rows="2"
+                                  name="UserAddress"
+                                  id="category_description"
+                                  className="form-control"
+                                  value={
+                                    ele.entAddress1 +
+                                    " " +
+                                    ele.entAddress2 +
+                                    " " +
+                                    ele.entAddress3
+                                  }
+                                  readOnly
+                                ></textarea>
+                                <span className="form-input-info"></span>
+                              </div>
+                            </div>
+                          </div>
 
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  body-inner no-padding table-responsive fixTableHeadview">
-                    <label>Category List in which they exists</label>
-                    <table
-                      border="1"
-                      id="datatable2"
-                      className="table-striped table table-bordered table-hover"
-                    >
-                      <thead>
-                        <tr className="headingsizes">
-                          <th style={{ width: "30%" }}>SL. No.</th>
-                          <th style={{ width: "70%" }}>Category Name</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {viewdata &&
-                          viewdata.categoryBelongs &&
-                          viewdata.categoryBelongs.map((catVal, idx) => {
-                            return (
-                              <tr key={idx}>
-                                <td> {idx + 1}</td>
-                                <td>{catVal.categoryName}</td>
-                              </tr>
-                            );
-                          })}
-                      </tbody>
-                    </table>
-                  </div>
+                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  body-inner no-padding table-responsive fixTableHeadview">
+                            <label>Category List in which they exists</label>
+                            <table
+                              border="1"
+                              id="datatable2"
+                              className="table-striped table table-bordered table-hover"
+                            >
+                              <thead>
+                                <tr className="headingsizes">
+                                  <th style={{ width: "30%" }}>SL. No.</th>
+                                  <th style={{ width: "70%" }}>
+                                    Category Name
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {ele.categoryBelongs &&
+                                  ele.categoryBelongs.map((catVal, idx) => {
+                                    return (
+                                      <tr key={idx}>
+                                        <td> {idx + 1}</td>
+                                        <td>{catVal.categoryName}</td>
+                                      </tr>
+                                    );
+                                  })}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               </section>
               <div className="text-right">
@@ -544,4 +556,5 @@ export default connect(mapStateToProps, {
   //deleteCategory,
   // loadUser,
   getAllCategory,
+  getViewDetails,
 })(JoinLeaveCat);

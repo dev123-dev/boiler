@@ -19,7 +19,7 @@ const Designation = ({
   }, []);
 
   //console.log(user);
-  
+
   const onClickReset = () => {
     // setCurrentData(1);
     // getbatchsData("");
@@ -43,7 +43,7 @@ const Designation = ({
 
   const handleUpdateModalClose = () => {
     setShowUpdateModal(false);
-    getalldesignation(user.orgId);
+    //getalldesignation(user.orgId);
   };
 
   return (

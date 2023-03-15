@@ -144,7 +144,7 @@ const LabelForInstInd = ({
               </div>
             </div>
 
-            <div className="body-inner col-md-12 col-lg-12 col-sm-12 col-xs-12 no-padding table-responsive text-center fixTableHead">
+            <div className="body-inner col-md-12 col-lg-12 col-sm-12 col-xs-12 no-padding table-responsive text-center fixTableHeadLabelCatInst">
               <table
                 id="datatable2"
                 className="table table-bordered table-hover table-striped"

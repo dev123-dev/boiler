@@ -67,7 +67,7 @@ const Category = ({
       DeactiveByDateTime: new Date().toLocaleString("en-GB"),
     };
     deleteCategory(reason);
-    getAllCategory(user.orgId);
+    //getAllCategory(user.orgId);
     handleClose();
   };
 
@@ -80,7 +80,6 @@ const Category = ({
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const handleUpdateModalClose = () => {
     setShowUpdateModal(false);
-    getAllCategory(user.orgId);
   };
 
   return (

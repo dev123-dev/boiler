@@ -28,6 +28,8 @@ import {
   GET_ALL_ORGANIZATION_DETAILS,
   GET_ALL_ENTITY,
   GET_ALL_User_Admin,
+  GET_VIEW_DATA,
+  GET_VIEW_ENT_DATA,
 } from "./types";
 
 var linkPath = "";
@@ -301,7 +303,6 @@ export const addDesignation = (UserData) => async (dispatch) => {
       config
     );
     //diapatching get function because it should relfex immidiatly after adding
-    //dispatch(getAllCategory());
   } catch (err) {
     dispatch({
       type: AUTH_ERROR,
@@ -332,7 +333,7 @@ export const getalldesignation = (userdata) => async (dispatch) => {
 
 //edit designation details
 export const updateDesignation = (updatedata) => async (dispatch) => {
- // console.log("cat action", updatedata);
+  // console.log("cat action", updatedata);
 
   try {
     axios.post(`${linkPath}/api/designation/editdesignation`, updatedata);
@@ -412,5 +413,53 @@ export const getAllUserAdmin = (userdata) => async (dispatch) => {
     dispatch({
       type: GET_ALL_User_Admin,
     });
+  }
+};
+
+//getting view details joinleavecat
+
+export const getViewDetails = (userdata) => async (dispatch) => {
+  let body = { userId: userdata };
+  console.log("body view", body);
+
+  try {
+    const res = await axios.post(
+      `${linkPath}/api/category/getviewdetails`,
+      body
+    );
+
+    dispatch({
+      type: GET_VIEW_DATA,
+      payload: res.data,
+    });
+    //console.log("action", res.data);
+  } catch (err) {
+    // dispatch({
+    //   type: GET_ALL_CATEGORY,
+    // });
+  }
+};
+
+//getting view details joinleaveent
+
+export const getViewEntDetails = (userdata) => async (dispatch) => {
+  let body = { userId: userdata };
+  console.log("body view", body);
+
+  try {
+    const res = await axios.post(
+      `${linkPath}/api/entity/getviewentdetails`,
+      body
+    );
+
+    dispatch({
+      type: GET_VIEW_ENT_DATA,
+      payload: res.data,
+    });
+    //console.log("action", res.data);
+  } catch (err) {
+    // dispatch({
+    //   type: GET_ALL_CATEGORY,
+    // });
   }
 };

@@ -3,8 +3,6 @@ import {
   GET_ALL_TENANTS,
   GET_ALL_SETTINGS,
   EXP_REPORT,
-  GET_DOORNOS,
-  GET_DOORNUMBER,
   GET_ALL_ORGANIZATION,
   GET_ALL_ORGANIZATION_DETAILS,
   GET_ALL_SUPERUSER,
@@ -14,6 +12,8 @@ import {
   GET_ALL_DESIGNATION,
   GET_ALL_ENTITY,
   GET_ALL_User_Admin,
+  GET_VIEW_DATA,
+  GET_VIEW_ENT_DATA,
 } from "../actions/types";
 
 const initialState = {
@@ -41,6 +41,8 @@ const initialState = {
   allent: [""],
   allsuperuser: [""],
   alluseradmin: [""],
+  allviewdata: [""],
+  allviewentdata: [""],
 };
 
 const dagreducer = (state = initialState, action) => {
@@ -52,8 +54,7 @@ const dagreducer = (state = initialState, action) => {
         ...state,
         expReport: payload,
       };
-    
-   
+
     case GET_ALL_ORGANIZATION:
       return {
         ...state,
@@ -101,6 +102,16 @@ const dagreducer = (state = initialState, action) => {
       return {
         ...state,
         alluseradmin: payload,
+      };
+    case GET_VIEW_DATA:
+      return {
+        ...state,
+        allviewdata: payload,
+      };
+    case GET_VIEW_ENT_DATA:
+      return {
+        ...state,
+        allviewentdata: payload,
       };
 
     default:

@@ -42,5 +42,7 @@ export const GET_ALL_DESIGNATION = "GET_ALL_DESIGNATION";
 export const GET_ALL_ENTITY = " GET_ALL_ENTITY";
 export const GET_ALL_User_Admin = "GET_ALL_User_Admin";
 export const GET_ALL_USERGRP = "GET_ALL_USERGRP";
+export const GET_VIEW_DATA = "GET_VIEW_DATA";
+export const GET_VIEW_ENT_DATA = "GET_VIEW_ENT_DATA";
 
 // export const GET_ALL_USER = "GET_ALL_USER";

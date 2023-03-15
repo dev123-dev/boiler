@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { getAllEntity } from "../../../actions/dag";
+import { getAllEntity, getViewEntDetails } from "../../../actions/dag";
 import Modal from "react-bootstrap/Modal";
 import { useHistory } from "react-router-dom";
 
 const JoinLeaveEnt = ({
   auth: { user },
-  dag: { allcat },
+  dag: { allcat, allviewentdata },
   location,
   getAllEntity,
+  getViewEntDetails,
 }) => {
   const myuser = JSON.parse(localStorage.getItem("user"));
 
@@ -18,6 +19,8 @@ const JoinLeaveEnt = ({
       getAllEntity(myuser.orgId);
     }
   }, []);
+
+  console.log("allviewentdata", allviewentdata);
 
   const [showAddModal, setShowAddModal] = useState(false);
   const handleAddClose = () => setShowAddModal(false);
@@ -30,6 +33,7 @@ const JoinLeaveEnt = ({
 
   const [viewdata, setviewdata] = useState(null);
   const onView = (user2) => {
+    getViewEntDetails(user2._id);
     setviewdata(user2);
 
     handleOpen();
@@ -402,72 +406,80 @@ const JoinLeaveEnt = ({
             <div className="container ">
               <section className="body">
                 <div className="body-inner">
-                  <div className="row form-group">
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label"> Name </label>
-                      <div className="controls">
-                        <input
-                          name="fullName"
-                          id="cat_name"
-                          type="text"
-                          className="form-control"
-                          readOnly
-                          value={viewdata && viewdata.categoryName}
-                        />
+                  {allviewentdata &&
+                    allviewentdata.map((ele, index) => {
+                      return (
+                        <div key={index}>
+                          <div className="row form-group">
+                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                              <label className="control-label"> Name </label>
+                              <div className="controls">
+                                <input
+                                  name="fullName"
+                                  id="cat_name"
+                                  type="text"
+                                  className="form-control"
+                                  readOnly
+                                  value={ele.categoryName}
+                                />
 
-                        <span
-                          id="category_result"
-                          className="form-input-info"
-                        ></span>
-                      </div>
-                    </div>
-                    <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
-                      <label className="control-label">Description</label>
-                      <div className="controls">
-                        <textarea
-                          name="UserName"
-                          id="category_status"
-                          type="text"
-                          className="form-control"
-                          value={viewdata && viewdata.categoryDesp}
-                          readOnly
-                        ></textarea>
-                        <span className="form-input-info"></span>
-                      </div>
-                    </div>
-                  </div>
+                                <span
+                                  id="category_result"
+                                  className="form-input-info"
+                                ></span>
+                              </div>
+                            </div>
+                            <div className="control-group col-md-6 col-lg-6 col-sm-6 col-xs-6">
+                              <label className="control-label">
+                                Description
+                              </label>
+                              <div className="controls">
+                                <textarea
+                                  name="UserName"
+                                  id="category_status"
+                                  type="text"
+                                  className="form-control"
+                                  value={ele.categoryDesp}
+                                  readOnly
+                                ></textarea>
+                                <span className="form-input-info"></span>
+                              </div>
+                            </div>
+                          </div>
 
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  body-inner no-padding table-responsive fixTableHeadview">
-                    <label>Entity List in which they exists</label>
-                    <table
-                      border="1"
-                      id="datatable2"
-                      className="table-striped table table-bordered table-hover"
-                    >
-                      <thead>
-                        <tr className="headingsizes">
-                          <th style={{ width: "20%" }}>SL. No.</th>
-                          <th style={{ width: "60%" }}>
-                            Institution/Individual Name
-                          </th>
-                          <th style={{ width: "20%" }}>Type</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {viewdata &&
-                          viewdata.categoryEntity &&
-                          viewdata.categoryEntity.map((entVal, idx) => {
-                            return (
-                              <tr key={idx}>
-                                <td> {idx + 1}</td>
-                                <td>{entVal.entName}</td>
-                                <td>{entVal.entType}</td>
-                              </tr>
-                            );
-                          })}
-                      </tbody>
-                    </table>
-                  </div>
+                          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12  body-inner no-padding table-responsive fixTableHeadview">
+                            <label>Entity List in which they exists</label>
+                            <table
+                              border="1"
+                              id="datatable2"
+                              className="table-striped table table-bordered table-hover"
+                            >
+                              <thead>
+                                <tr className="headingsizes">
+                                  <th style={{ width: "20%" }}>SL. No.</th>
+                                  <th style={{ width: "60%" }}>
+                                    Institution/Individual Name
+                                  </th>
+                                  <th style={{ width: "20%" }}>Type</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {ele.categoryEntity &&
+                                  ele.categoryEntity.map((entVal, idx) => {
+                                    return (
+                                      <tr key={idx}>
+                                        <td> {idx + 1}</td>
+                                        <td>{entVal.entName}</td>
+                                        <td>{entVal.entType}</td>
+                                      </tr>
+                                    );
+                                  })}
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      );
+                    })}
                 </div>
               </section>
               <div className="text-right">
@@ -493,4 +505,5 @@ export default connect(mapStateToProps, {
   //deleteCategory,
   // loadUser,
   getAllEntity,
+  getViewEntDetails,
 })(JoinLeaveEnt);
