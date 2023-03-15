@@ -134,9 +134,7 @@ router.route("/addEntCat").post((req, res) => {
     })
     .catch((err) => res.status(400).json("Error" + err));
 
-
-    data.categoryBelongs.map((ele)=>{
-
+  data.categoryBelongs.map((ele) => {
     //console.log("ent  is ",ele.categoryName)
     CategoryDetails.updateOne(
       { _id: ele._id, orgId: data.orgId },
@@ -145,34 +143,40 @@ router.route("/addEntCat").post((req, res) => {
           categoryEntity: data.categoryEntity,
         },
       }
-    )
-    .then((data))
+    ).then(data);
 
-    data.notAMember.map((ele)=>{
-      
+    data.notAMember.map((ele) => {
       CategoryDetails.updateOne(
         { _id: ele._id, orgId: data.orgId },
         {
           $pull: {
-            categoryEntity:{_id: data.enttid},
+            categoryEntity: { _id: data.enttid },
           },
         }
-      )
+      ).then(data);
+    });
+  });
 
-      .then((data))
-   })
+  // CategoryDetails.updateOne(
+  //   { _id: data.catid, orgId: data.orgId },
+  //   {
+  //     $set: {
+  //       categoryEntity: data.entity,
+  //     },
+  //   }
+  // )
+});
 
+//get all view  data
+router.route("/getviewentdetails").post((req, res) => {
+  let body = req.body;
+  //console.log("bodyapi", body);
+  CategoryDetails.find({ _id: body.userId })
+
+    .then((data) => {
+      res.status(200).json(data);
+      console.log("dataid", data);
     })
- 
-
-    // CategoryDetails.updateOne(
-    //   { _id: data.catid, orgId: data.orgId },
-    //   {
-    //     $set: {
-    //       categoryEntity: data.entity,
-    //     },
-    //   }
-    // )
-
+    .catch((err) => res.status(400).json("Error" + err));
 });
 module.exports = router;

@@ -29,6 +29,7 @@ import {
   GET_ALL_ENTITY,
   GET_ALL_User_Admin,
   GET_VIEW_DATA,
+  GET_VIEW_ENT_DATA,
 } from "./types";
 
 var linkPath = "";
@@ -415,7 +416,7 @@ export const getAllUserAdmin = (userdata) => async (dispatch) => {
   }
 };
 
-//getting view details
+//getting view details joinleavecat
 
 export const getViewDetails = (userdata) => async (dispatch) => {
   let body = { userId: userdata };
@@ -429,6 +430,30 @@ export const getViewDetails = (userdata) => async (dispatch) => {
 
     dispatch({
       type: GET_VIEW_DATA,
+      payload: res.data,
+    });
+    //console.log("action", res.data);
+  } catch (err) {
+    // dispatch({
+    //   type: GET_ALL_CATEGORY,
+    // });
+  }
+};
+
+//getting view details joinleaveent
+
+export const getViewEntDetails = (userdata) => async (dispatch) => {
+  let body = { userId: userdata };
+  console.log("body view", body);
+
+  try {
+    const res = await axios.post(
+      `${linkPath}/api/entity/getviewentdetails`,
+      body
+    );
+
+    dispatch({
+      type: GET_VIEW_ENT_DATA,
       payload: res.data,
     });
     //console.log("action", res.data);

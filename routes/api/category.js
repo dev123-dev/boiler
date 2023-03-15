@@ -118,11 +118,12 @@ router.route("/addCategoryEnt").post((req, res) => {
 //get all view  data
 router.route("/getviewdetails").post((req, res) => {
   let body = req.body;
-  console.log("body", body);
-  CategoryDetails.find({ _id: body.userId })
+  //console.log("bodyapi", body);
+  EntDetails.find({ _id: body.userId })
 
     .then((data) => {
       res.status(200).json(data);
+      //console.log("dataid", data);
     })
     .catch((err) => res.status(400).json("Error" + err));
 });

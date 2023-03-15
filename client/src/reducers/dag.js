@@ -13,6 +13,7 @@ import {
   GET_ALL_ENTITY,
   GET_ALL_User_Admin,
   GET_VIEW_DATA,
+  GET_VIEW_ENT_DATA,
 } from "../actions/types";
 
 const initialState = {
@@ -41,6 +42,7 @@ const initialState = {
   allsuperuser: [""],
   alluseradmin: [""],
   allviewdata: [""],
+  allviewentdata: [""],
 };
 
 const dagreducer = (state = initialState, action) => {
@@ -105,6 +107,11 @@ const dagreducer = (state = initialState, action) => {
       return {
         ...state,
         allviewdata: payload,
+      };
+    case GET_VIEW_ENT_DATA:
+      return {
+        ...state,
+        allviewentdata: payload,
       };
 
     default:
