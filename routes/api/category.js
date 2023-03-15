@@ -5,7 +5,6 @@ const EntDetails = require("../../models/InsIndDetails");
 
 //add user
 router.route("/addcategory").post((req, res) => {
-
   let Category = new CategoryDetails(req.body);
 
   Category.save(req.body)
@@ -29,7 +28,6 @@ router.route("/getcategory").post((req, res) => {
 
 //deactive  category
 router.route("/deactivecategory").post((req, res) => {
-
   let data = req.body;
   //console.log("request", req.body);
   //console.log("backend", data.orgId);
@@ -80,7 +78,7 @@ router.route("/editcategory").post((req, res) => {
 //joinLeave category
 router.route("/addCategoryEnt").post((req, res) => {
   let data = req.body;
-  
+
   CategoryDetails.updateOne(
     { _id: data.catid, orgId: data.orgId },
     {
@@ -94,31 +92,39 @@ router.route("/addCategoryEnt").post((req, res) => {
     })
     .catch((err) => res.status(400).json("Error" + err));
 
-    data.categoryEntity.map((ele)=>{
-       EntDetails.updateOne(
-         { _id: ele._id, orgId: data.orgId },
-         {
-           $addToSet: {
-            categoryBelongs: data.categoryBelongs,
-           },
-         }
-       )
-       .then((data))
-    })
-       
-    data.notAMember.map((ele)=>{
-      
-      EntDetails.updateOne(
-        { _id: ele._id, orgId: data.orgId },
-        {
-          $pull: {
-           categoryBelongs:{_id: data.catid},
-          },
-        }
-      )
-      .then((data))
-   })
+  data.categoryEntity.map((ele) => {
+    EntDetails.updateOne(
+      { _id: ele._id, orgId: data.orgId },
+      {
+        $addToSet: {
+          categoryBelongs: data.categoryBelongs,
+        },
+      }
+    ).then(data);
+  });
 
+  data.notAMember.map((ele) => {
+    EntDetails.updateOne(
+      { _id: ele._id, orgId: data.orgId },
+      {
+        $pull: {
+          categoryBelongs: { _id: data.catid },
+        },
+      }
+    ).then(data);
+  });
+});
+
+//get all view  data
+router.route("/getviewdetails").post((req, res) => {
+  let body = req.body;
+  console.log("body", body);
+  CategoryDetails.find({ _id: body.userId })
+
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((err) => res.status(400).json("Error" + err));
 });
 
 module.exports = router;

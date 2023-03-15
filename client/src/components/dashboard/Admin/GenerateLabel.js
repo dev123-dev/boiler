@@ -89,8 +89,8 @@ const GenerateLabel = ({
   ) : (
     <>
       <div>
-        <div className="row">
-          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left">
+        <div className="row mb-4 ">
+          <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-left fixTableHeadLabel">
             <br />
             <br />
             <section>
@@ -176,7 +176,7 @@ const GenerateLabel = ({
                   <div className="item">item2</div>
                 </div>
               </div>
-              <div className="text-right">
+              {/* <div className="text-left">
                 <button
                   className="btn btn-outline-secondary btnall "
                   onClick={handlePrint}
@@ -185,10 +185,20 @@ const GenerateLabel = ({
                 </button>
               </div>
 
-              <div className="mb-4 text-right"> </div>
+              <div className="mb-4 text-right"> </div> */}
             </section>
           </div>
         </div>
+        <div className="text-right">
+          <button
+            className="btn btn-outline-secondary btnall "
+            onClick={handlePrint}
+          >
+            print this
+          </button>
+        </div>
+
+        <div className="mb-4 text-right"> </div>
       </div>
     </>
   );

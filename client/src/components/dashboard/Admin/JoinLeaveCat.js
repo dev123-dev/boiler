@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import { getAllCategory } from "../../../actions/dag";
+import { getAllCategory, getViewDetails } from "../../../actions/dag";
 import Modal from "react-bootstrap/Modal";
 import { useHistory } from "react-router-dom";
 
@@ -10,6 +10,7 @@ const JoinLeaveCat = ({
   dag: { allent },
   location,
   getAllCategory,
+  getViewDetails,
 }) => {
   const myuser = JSON.parse(localStorage.getItem("user"));
 
@@ -32,7 +33,8 @@ const JoinLeaveCat = ({
 
   const [viewdata, setviewdata] = useState(null);
   const onView = (user2) => {
-    console.log("user2", user2);
+    //getViewDetails(user2._id);
+    console.log("user2", user2._id);
     setviewdata(user2);
 
     handleOpen();
@@ -544,4 +546,5 @@ export default connect(mapStateToProps, {
   //deleteCategory,
   // loadUser,
   getAllCategory,
+  getViewDetails,
 })(JoinLeaveCat);

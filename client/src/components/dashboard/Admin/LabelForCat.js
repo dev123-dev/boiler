@@ -3,15 +3,13 @@ import { connect } from "react-redux";
 import Modal from "react-bootstrap/Modal";
 import { deleteCategory } from "../../../actions/dag";
 import { getAllCategory } from "../../../actions/dag";
-import Addcategory from "./AddCategory";
-import EditCategory from "./EditCategory";
 
 import { useHistory } from "react-router-dom";
 
 const LabelForCat = ({
   auth: { user },
   dag: { allcat },
-  deleteCategory,
+
   getAllCategory,
 }) => {
   useEffect(() => {
@@ -41,11 +39,11 @@ const LabelForCat = ({
 
   //deactivate
 
-  const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const handleUpdateModalClose = () => {
-    setShowUpdateModal(false);
-    getAllCategory(user.orgId);
-  };
+  // const [showUpdateModal, setShowUpdateModal] = useState(false);
+  // const handleUpdateModalClose = () => {
+  //   setShowUpdateModal(false);
+  //   getAllCategory(user.orgId);
+  // };
 
   ////
 
@@ -78,25 +76,8 @@ const LabelForCat = ({
               <span style={{ color: "#e79d69" }}> Categories</span>
             </h1>
             {/* </div> */}
-            {/* <div className="col-lg-12 col-md-12 col-sm-12 col-12  text-right mb-2">
-              <img
-                className="img_icon_size log text-right"
-                src={require("../../../static/images/refresh-icon.png")}
-                // onClick={() => onClickReset()}
-                alt="refresh"
-                title="Refresh"
-              />{" "}
-              &nbsp;
-            </div> */}
 
-            <div
-              className="row form-group"
-              //   style={{
-              //     fontsize: "15px",
-              //     margintop: "-0.5em",
-              //     height: " 33.07px",
-              //   }}
-            >
+            <div className="row form-group">
               <div className=" col-md-9 col-lg-9 col-sm-9 col-xs-9 ">
                 <label className="checkbox-inline">
                   <input
@@ -138,7 +119,7 @@ const LabelForCat = ({
                   <img
                     className="img_icon_size log text-right"
                     src={require("../../../static/images/refresh-icon.png")}
-                    // onClick={() => onClickReset()}
+                    onClick={() => onClickReset()}
                     alt="refresh"
                     title="Refresh"
                   />{" "}
@@ -146,7 +127,7 @@ const LabelForCat = ({
               </div>
             </div>
 
-            <div className="body-inner col-md-12 col-lg-12 col-sm-12 col-xs-12 no-padding table-responsive text-center fixTableHead">
+            <div className="body-inner col-md-12 col-lg-12 col-sm-12 col-xs-12 no-padding table-responsive text-center fixTableHeadLabelCatInst">
               <table
                 id="datatable2"
                 className="table table-bordered table-hover table-striped"
@@ -178,25 +159,17 @@ const LabelForCat = ({
                       ) {
                         return (
                           <tr key={idx}>
-                            <td>hh</td>
+                            <td>
+                              {" "}
+                              <input
+                                type="checkbox"
+                                id="all_category"
+                                name="all_category"
+                                //  onclick="selectCheckOptions(this.id, this.checked)"
+                              />
+                            </td>
                             <td>{catVal.categoryName}</td>
                             <td>{catVal.categoryDesp}</td>
-
-                            {/* <td>
-                              {catVal.categoryStatus === "Active" ? (
-                                <>
-                                  <img
-                                    className="img_icon_size log"
-                                    // onClick={() => onJoinCat(catVal)}
-                                    src={require("../../../static/images/account1.png")}
-                                    alt="Join Leave"
-                                    title="Join Leave Page"
-                                  />
-                                </>
-                              ) : (
-                                <>Deactivated</>
-                              )}
-                            </td> */}
                           </tr>
                         );
                       }
