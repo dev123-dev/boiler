@@ -47,8 +47,6 @@ router.route("/deactiveinstind").post((req, res) => {
       res.status(200).json(data);
     })
     .catch((err) => res.status(400).json("Error" + err));
-
- 
 });
 
 //edit
@@ -87,14 +85,12 @@ router.route("/editinstind").post((req, res) => {
     })
     .catch((err) => res.status(400).json("Error" + err));
 
-    EntDetails.updateMany(
-      { "categoryBelongs._id": data.catId },
-      {
-        $set: { categoryName: data.categoryName}
-      }
-    )
-    .then(data)
-
+  CategoryDetails.updateMany(
+    { "categoryEntity._id": data.entId },
+    {
+      $set: { "categoryEntity.$.entName": data.entName },
+    }
+  ).then(data);
 });
 
 //joinLeave entity
